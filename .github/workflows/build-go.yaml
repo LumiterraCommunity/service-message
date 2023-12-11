@@ -1,0 +1,61 @@
+name: Build golang message
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: ap-southeast-1
+  authToken: ${{ github.token }}
+
+jobs:
+  build-image:
+    name: Build golang message
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: setup-nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      - name: Setup yarn
+        run: npm install -g yarn
+
+      - name: Set up .NET
+        uses: xt0rted/setup-dotnet@v1.0.0
+        with:
+          dotnet-version: 6.0.201
+
+      - run: |
+          yarn
+          yarn build
+
+      - uses: actions/setup-go@v2
+        with:
+          stable: 'false'
+          go-version: '1.20'
+      - run: |
+          go install github.com/atombender/go-jsonschema/cmd/gojsonschema@latest
+          mkdir -p out
+          gojsonschema -p main schema.json > ./out/message.go
+          
+      - uses: peaceiris/actions-gh-pages@v3.7.3
+        name: GitHub Pages Deploy
+        with:
+          github_token: ${{ github.token }}
+          publish_dir: "out"
+          user_name: "lumi bot"
+          user_email: "bot-noreply@lumiterra.net"
+
+          

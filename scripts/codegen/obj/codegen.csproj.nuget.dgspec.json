@@ -1,0 +1,75 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/alberthuang/code/service-message/scripts/codegen/codegen.csproj": {}
+  },
+  "projects": {
+    "/Users/alberthuang/code/service-message/scripts/codegen/codegen.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alberthuang/code/service-message/scripts/codegen/codegen.csproj",
+        "projectName": "codegen",
+        "projectPath": "/Users/alberthuang/code/service-message/scripts/codegen/codegen.csproj",
+        "packagesPath": "/Users/alberthuang/.nuget/packages/",
+        "outputPath": "/Users/alberthuang/code/service-message/scripts/codegen/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alberthuang/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "NJsonSchema": {
+              "target": "Package",
+              "version": "[10.7.2, )"
+            },
+            "NJsonSchema.CodeGeneration": {
+              "target": "Package",
+              "version": "[10.7.2, )"
+            },
+            "NJsonSchema.CodeGeneration.CSharp": {
+              "target": "Package",
+              "version": "[10.7.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

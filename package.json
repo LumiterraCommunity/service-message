@@ -1,0 +1,20 @@
+{
+  "name": "@TheLandGame/service-message",
+  "version": "1.0.85",
+  "main": "dist",
+  "module": "dist/esm",
+  "repository": "git@github.com:TheLandGame/service-message.git",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "yarn build:lib",
+    "build": "tsc ./main.ts && node ./main.js",
+    "build:lib": "rm -rf ./dist && yarn build:cjs && yarn build:esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm"
+  },
+  "dependencies": {
+    "tslib": "^2.4.0",
+    "typescript": "^4.4.3",
+    "typescript-json-schema": "^0.53.0"
+  }
+}
