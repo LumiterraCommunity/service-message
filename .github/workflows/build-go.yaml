@@ -49,7 +49,7 @@ jobs:
           go get github.com/atombender/go-jsonschema/...
           go install github.com/atombender/go-jsonschema@latest
           mkdir -p out
-          gojsonschema -p main schema.json > ./out/message.go
+          go-jsonschema -p main schema.json > ./out/message.go
           
       - uses: peaceiris/actions-gh-pages@v3.7.3
         name: GitHub Pages Deploy
