@@ -1,6 +1,6 @@
 {
   "name": "@TheLandGame/service-message",
-  "version": "1.0.85",
+  "version": "1.0.87",
   "main": "dist",
   "module": "dist/esm",
   "repository": "git@github.com:TheLandGame/service-message.git",
