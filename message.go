@@ -63,6 +63,9 @@ type BatchMintNFT struct {
 	// index和itemIds一一对应
 	Qualitys []BatchMintNFTQualitysElem `json:"qualitys,omitempty" yaml:"qualitys,omitempty" mapstructure:"qualitys,omitempty"`
 
+	// Remark corresponds to the JSON schema field "remark".
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -2127,6 +2130,9 @@ func (j *BatchMintNFT) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["itemIds"]; !ok || v == nil {
 		return fmt.Errorf("field itemIds in BatchMintNFT: required")
+	}
+	if v, ok := raw["remark"]; !ok || v == nil {
+		return fmt.Errorf("field remark in BatchMintNFT: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in BatchMintNFT: required")
