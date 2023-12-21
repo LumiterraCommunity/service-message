@@ -75,10 +75,6 @@ export enum Web3ServiceAction {
     // 用于只知道用户地址的情况
     MintNFTWithItemIdAndUserAddress = 'MintNFTWithItemIdAndUserAddress',
 
-    // 批量mint nft
-    // 以节省网络开销
-    BatchMintNFTWithItemId = 'BatchMintNFTWithItemId',
-
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
 
@@ -94,20 +90,26 @@ export enum Web3ServiceAction {
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
 
-    // 使用消耗品
-    UseConsumable = 'UseConsumable',
+    // // 使用消耗品
+    // UseConsumable = 'UseConsumable',
 
-    // 丢弃NFT
-    BurnNFT = 'BurnNFT',
+    // // 丢弃NFT
+    // BurnNFT = 'BurnNFT',
 
-    // 批量丢弃nft
-    BatchBurnNFT = 'BatchBurnNFT',
+    // // 批量丢弃nft
+    // BatchBurnNFT = 'BatchBurnNFT',
 
+    // // MultiBatchBurnNFT = 'MultiBatchBurnNFT',
     // MultiBatchBurnNFT = 'MultiBatchBurnNFT',
-    MultiBatchBurnNFT = 'MultiBatchBurnNFT',
 
     // 
-    UseLUAUSD = "UseLUAUSD",
+    // UseLUAUSD = "UseLUAUSD",
+
+    // 批量检测用户是否可以消耗指定的NFT
+    CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',
+
+    // 批量检测用户是否可以消耗指定的LUAUSD
+    CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
 }
 
 export enum SceneDynamicServiceAction {
@@ -134,24 +136,11 @@ export enum SubscriptionEvent {
     // 批量用户NFT变更
     MultiUpdateUserNFT = 'MultiUpdateUserNFT',
 
-    // 使用消耗品
-    UseConsumabled = 'UseConsumabled',
-
     // 穿装备
     UseEquipment = 'UseEquipment',
 
     // 卸下装备
     UnloadEquipment = 'UnloadEquipment',
-
-    // MELD期货创建
-    MELDFutureMint = 'MELDFutureMint',
-
-    // 
-    MELDFutureExchangeRateChange = 'MELDFutureExchangeRateChange',
-
-    MELDFutureRelease = 'MELDFutureRelease',
-
-    MELDExchange2Ditamin = 'MELDExchange2Ditamin',
 
     MarketplaceTrade = 'MarketplaceTrade',
 
@@ -173,7 +162,17 @@ export enum SubscriptionEvent {
     // Scene Dynamic
     UpdateUpcomingUses = 'UpdateUpcomingUses',
 
-    CloseServer = 'CloseServer'
+    CloseServer = 'CloseServer',
+
+    // MultiBatchBurnNFT
+    MultiBatchBurnNFT = 'MultiBatchBurnNFT',
+    
+    // CheckMultiUseLUAUSD
+    MultiUseLUAUSD = 'MultiUseLUAUSD',
+
+    // 批量mint nft
+    // 以节省网络开销
+    BatchMintNFT = 'BatchMintNFT',
 }
 
 export enum PVPSubscriptionEvent {

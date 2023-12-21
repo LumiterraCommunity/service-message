@@ -4,29 +4,35 @@
 type Int32 = number;
 type integer = Int32;
 
-export interface UseLUAUSDInput {
-    /**
-     * 使用金额
-     */
-    amount: integer;
+export interface CheckMultiUseLUAUSDInput {
+    userIds: string[];
 
     /**
-     * 用户id
+     * 和userId一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
      */
-    userId: string;
-
-    useType: string;
-    useParams: string;
+    amounts: integer[];
 }
 
-export interface UseLUAUSDOutput {
-    /**
-     * 是否成功
-     */
-    success: boolean;
+export interface CheckMultiUseLUAUSDOutput {
+    result: boolean;
+}
+
+export interface MultiUseLUAUSD {
+    userIds: string[];
 
     /**
-     * 如果燃烧失败, 则返回失败原因, 否则返回空字符串
+     * 和userId一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
      */
-    failedReason: string;
+    amounts: integer[];
+
+    /**
+     * 每个用户的消耗备注
+     */
+    remarks: string[];
 }

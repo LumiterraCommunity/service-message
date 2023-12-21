@@ -315,94 +315,7 @@ export interface MultiUpdateUserNFT {
     nfts: NFT[];
 }
 
-export interface MintNFTWithMetadataInput {
-    // mint to user id
-    userId: string;
-
-    // game user itemId, aka cid
-    itemId: string;
-
-    // Mint NFT metadata
-    metadata: NFTMetadata;
-
-    // count
-    amount: integer;
-
-    // 是否异步
-    // 如果为true, 则不会立即返回mint结果, 而是通过事件通知
-    async: boolean;
-}
-
-export interface MintNFTWithMetadataOutput {
-    // 事务id
-    // 通过这个id可以查询事务状态
-    txId: string;
-}
-
-
-export interface MintNFTWithItemIdInput {
-    // mint to user id
-    userId: string;
-
-    // game user itemId, aka cid
-    itemId: string;
-
-    // qualityVal
-    // int类型的品质
-    qualityVal?: string;
-
-    // string类型的品质
-    quality?: NFTTrait_Quality;
-
-    // count
-    amount: integer;
-
-    /**
-     * 玩家所在的坐标landId,
-     * 当mint场景是捡取掉落物时携带
-     */
-    landId: integer;
-
-    // 是否异步
-    // 如果为true, 则不会立即mint, 而是将mint请求放入队列, 等待后台处理
-    async: boolean;
-}
-
-export interface MintNFTWithItemIdOutput {
-    // 事务id
-    // 通过这个id可以查询事务状态
-    txId: string;
-}
-
-export interface MintNFTWithItemIdAndUserAddressInput {
-    // mint to user id
-    userAddress: string;
-
-    // game user itemId, aka cid
-    itemId: string;
-
-    // qualityVal
-    // int类型的品质
-    qualityVal?: string;
-
-    // string类型的品质
-    quality?: NFTTrait_Quality;
-
-    // count
-    amount: integer;
-
-    // 是否异步
-    // 如果为true, 则不会立即mint, 而是将mint请求放入队列, 等待后台处理
-    async: boolean;
-}
-
-export interface MintNFTWithItemIdAndUserAddressOutput {
-    // 事务id
-    // 通过这个id可以查询事务状态
-    txId: string;
-}
-
-export interface BatchMintNFTWithItemIdInput {
+export interface BatchMintNFT {
     // mint to user id
     userId: string
 
@@ -431,135 +344,40 @@ export interface BatchMintNFTWithItemIdInput {
      */
     qualitys?: NFTTrait_Quality[];
 
-    /**
-     * 玩家所在的坐标landId,
-     * 当mint场景是捡取掉落物时携带
-     */
-    landId: integer;
-
-    // 是否异步
-    // 如果为true, 则不会立即mint, 而是将mint请求放入队列, 等待后台处理
-    async: boolean;
-}
-
-export interface BatchMintNFTWithItemIdOutput {
-    // 事务id
-    // 通过这个id可以查询事务状态
-    txId: string;
-}
-
-export interface UseConsumableInput {
-    /**
-     * 使用消耗品的用户
-     */
-    userId: string
-
-    /**
-     * 消耗品的id
-     */
-    nftId: string;
-
-    /**
-     * 消耗品的数量
-     */
-    amount: integer;
-
-    /**
-     * 使用消耗品的动态参数
-    */
-    args?: string;
-
-    /**
-     * 使用消耗品的坐标
-     */
-    landId: integer;
-}
-
-export interface UseConsumableOutput {
-    /**
-    * 使用消耗品的用户
-    */
-    userId: string
-
-    /**
-     * 消耗品的id
-     */
-    nftId: string;
-
-    /**
-     * 消耗品的数量
-     */
-    amount: integer;
-
-    // 是否使用成功
-    success: boolean;
-}
-
-export interface UseConsumabled {
-    /**
-    * 使用消耗品的用户
-    */
-    userId: string;
-
-    nft: NFT;
-
-    /**
-     * 消耗品的数量
-     */
-    amount: integer;
-
-    /**
-     * 使用消耗品的坐标
-     */
-    landId: integer;
-
-    /**
-     * 消息版本号
-     */
-    etag: integer;
+    remark: string;
 }
 
 export interface BatchBurnNFTInput {
     userId: string
 
-    nftIds: string[]
+    nftIds?: string[]
 
-    amounts: string[]
-}
-
-export interface BatchBurnNFTOutput {
-}
-
-export interface MultiBatchBurnNFTInput {
-    inputs: BatchBurnNFTInput[]
-}
-
-export interface MultiBatchBurnNFTOutput {
-
-}
-
-export interface BurnNFTInput {
-    /**
-     * 用户id
-     */
-    userId: string
+    itemIds?: string[]
 
     /**
-     * 丢弃的NFTId
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
      */
-    nftId: string
+    amounts: integer[]
 
     /**
-     * 丢弃的数量
+     * 每个用户的消耗备注
      */
-    amount: integer
+    remarks: string;
 }
 
-export interface BurnNFTOutput {
-    /**
-     * 是否丢弃成功
-     */
-    success: boolean;
+export interface CheckMultiBatchBurnNFTInput {
+    input: BatchBurnNFTInput[]
+}
+
+export interface CheckMultiBatchBurnNFTOutput {
+    result: boolean
+}
+
+export interface MultiBatchBurnNFT {
+    input: BatchBurnNFTInput[]
 }
 
 export interface GetUserNFTsByUserIdAndAddressInput {
@@ -577,10 +395,6 @@ export interface GetUserNFTsByUserIdAndAddressInput {
 export interface GetUserNFTsByUserIdAndAddressOutput {
     nfts: NFT[];
 }
-
-
-
-
 
 export interface UseEquipment {
     nftId: string;
