@@ -118,6 +118,9 @@ type BatchBurnNFTInput struct {
 	// NftIds corresponds to the JSON schema field "nftIds".
 	NftIds []string `json:"nftIds" yaml:"nftIds" mapstructure:"nftIds"`
 
+	// 每个用户的消耗备注
+	Remarks string `json:"remarks" yaml:"remarks" mapstructure:"remarks"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -136,6 +139,9 @@ func (j *BatchBurnNFTInput) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["nftIds"]; !ok || v == nil {
 		return fmt.Errorf("field nftIds in BatchBurnNFTInput: required")
+	}
+	if v, ok := raw["remarks"]; !ok || v == nil {
+		return fmt.Errorf("field remarks in BatchBurnNFTInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in BatchBurnNFTInput: required")
@@ -1282,6 +1288,9 @@ func (j *UseLUAUSD) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["amounts"]; !ok || v == nil {
 		return fmt.Errorf("field amounts in UseLUAUSD: required")
+	}
+	if v, ok := raw["remarks"]; !ok || v == nil {
+		return fmt.Errorf("field remarks in UseLUAUSD: required")
 	}
 	if v, ok := raw["userIds"]; !ok || v == nil {
 		return fmt.Errorf("field userIds in UseLUAUSD: required")
@@ -5638,6 +5647,9 @@ type UseLUAUSD struct {
 	// 和userId一一对应
 	// 所有数量
 	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// 每个用户的消耗备注
+	Remarks []string `json:"remarks" yaml:"remarks" mapstructure:"remarks"`
 
 	// UserIds corresponds to the JSON schema field "userIds".
 	UserIds []string `json:"userIds" yaml:"userIds" mapstructure:"userIds"`
