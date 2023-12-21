@@ -859,6 +859,18 @@ type MultiUpdateUserNFT struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
+type MultiUseLUAUSD struct {
+	// 和userId一一对应
+	// 所有数量
+	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// 每个用户的消耗备注
+	Remarks []string `json:"remarks" yaml:"remarks" mapstructure:"remarks"`
+
+	// UserIds corresponds to the JSON schema field "userIds".
+	UserIds []string `json:"userIds" yaml:"userIds" mapstructure:"userIds"`
+}
+
 type NFT struct {
 	// NFT address
 	Address string `json:"address" yaml:"address" mapstructure:"address"`
@@ -1279,138 +1291,206 @@ type PlayerKilled struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
-// 玩家重生事件, 当玩家重生时, 会触发此事件
-type PlayerReborn struct {
-	// 重生的地格id
-	RebornLandId int `json:"rebornLandId" yaml:"rebornLandId" mapstructure:"rebornLandId"`
-
-	// 玩家重生类型
-	Type PlayerRebornType `json:"type" yaml:"type" mapstructure:"type"`
-
-	// 重生的玩家id
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserIdByAddressInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["blockchainAddress"]; !ok || v == nil {
+		return fmt.Errorf("field blockchainAddress in GetUserIdByAddressInput: required")
+	}
+	type Plain GetUserIdByAddressInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserIdByAddressInput(plain)
+	return nil
 }
-
-type PlayerRebornType string
-
-const PlayerRebornTypeInPlace PlayerRebornType = "in_place"
-const PlayerRebornTypeMainCity PlayerRebornType = "main_city"
-
-type Prefetch struct {
-	// QuestionId corresponds to the JSON schema field "questionId".
-	QuestionId string `json:"questionId" yaml:"questionId" mapstructure:"questionId"`
-
-	// QuestionType corresponds to the JSON schema field "questionType".
-	QuestionType QuestionType `json:"questionType" yaml:"questionType" mapstructure:"questionType"`
-
-	// Resources corresponds to the JSON schema field "resources".
-	Resources []string `json:"resources" yaml:"resources" mapstructure:"resources"`
-}
-
-type PvpHistory struct {
-	// EndType corresponds to the JSON schema field "endType".
-	EndType string `json:"endType" yaml:"endType" mapstructure:"endType"`
-
-	// Loser corresponds to the JSON schema field "loser".
-	Loser string `json:"loser" yaml:"loser" mapstructure:"loser"`
-
-	// LoserName corresponds to the JSON schema field "loserName".
-	LoserName string `json:"loserName" yaml:"loserName" mapstructure:"loserName"`
-
-	// LoserScore corresponds to the JSON schema field "loserScore".
-	LoserScore int `json:"loserScore" yaml:"loserScore" mapstructure:"loserScore"`
-
-	// PvpType corresponds to the JSON schema field "pvpType".
-	PvpType string `json:"pvpType" yaml:"pvpType" mapstructure:"pvpType"`
-
-	// ScoreOffset corresponds to the JSON schema field "scoreOffset".
-	ScoreOffset int `json:"scoreOffset" yaml:"scoreOffset" mapstructure:"scoreOffset"`
-
-	// TimeSec corresponds to the JSON schema field "timeSec".
-	TimeSec int `json:"timeSec" yaml:"timeSec" mapstructure:"timeSec"`
-
-	// Winner corresponds to the JSON schema field "winner".
-	Winner string `json:"winner" yaml:"winner" mapstructure:"winner"`
-
-	// WinnerName corresponds to the JSON schema field "winnerName".
-	WinnerName string `json:"winnerName" yaml:"winnerName" mapstructure:"winnerName"`
-
-	// WinnerScore corresponds to the JSON schema field "winnerScore".
-	WinnerScore int `json:"winnerScore" yaml:"winnerScore" mapstructure:"winnerScore"`
-}
-
-type PvpPlayerProfile struct {
-	// Avatars corresponds to the JSON schema field "avatars".
-	Avatars []PlayerAvatar `json:"avatars" yaml:"avatars" mapstructure:"avatars"`
-
-	// BaseInfo corresponds to the JSON schema field "baseInfo".
-	BaseInfo PlayerInfo `json:"baseInfo" yaml:"baseInfo" mapstructure:"baseInfo"`
-
-	// ItemSlots corresponds to the JSON schema field "itemSlots".
-	ItemSlots []PlayerItemSlot `json:"itemSlots" yaml:"itemSlots" mapstructure:"itemSlots"`
-
-	// PlayerId corresponds to the JSON schema field "playerId".
-	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
-
-	// Score corresponds to the JSON schema field "score".
-	Score int `json:"score" yaml:"score" mapstructure:"score"`
-}
-
-type PvpPlayerRank struct {
-	// Avatars corresponds to the JSON schema field "avatars".
-	Avatars []PlayerAvatar `json:"avatars" yaml:"avatars" mapstructure:"avatars"`
-
-	// BaseInfo corresponds to the JSON schema field "baseInfo".
-	BaseInfo PlayerInfo `json:"baseInfo" yaml:"baseInfo" mapstructure:"baseInfo"`
-
-	// PlayerId corresponds to the JSON schema field "playerId".
-	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
-
-	// Rank corresponds to the JSON schema field "rank".
-	Rank int `json:"rank" yaml:"rank" mapstructure:"rank"`
-
-	// Score corresponds to the JSON schema field "score".
-	Score int `json:"score" yaml:"score" mapstructure:"score"`
-}
-
-type PvpSurrenderInput struct {
-	// PkSessionId corresponds to the JSON schema field "pkSessionId".
-	PkSessionId string `json:"pkSessionId" yaml:"pkSessionId" mapstructure:"pkSessionId"`
-
-	// PlayerId corresponds to the JSON schema field "playerId".
-	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
-}
-
-type PvpSurrenderOutput struct {
-	// Success corresponds to the JSON schema field "success".
-	Success bool `json:"success" yaml:"success" mapstructure:"success"`
-}
-
-type Question struct {
-	// Id corresponds to the JSON schema field "id".
-	Id string `json:"id" yaml:"id" mapstructure:"id"`
-
-	// StructJSON corresponds to the JSON schema field "structJSON".
-	StructJSON string `json:"structJSON" yaml:"structJSON" mapstructure:"structJSON"`
-}
-
-type QuestionType string
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
+func (j *MintBatteryInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["giftNum"]; !ok || v == nil {
+		return fmt.Errorf("field giftNum in MintBatteryInput: required")
+	}
+	if v, ok := raw["num"]; !ok || v == nil {
+		return fmt.Errorf("field num in MintBatteryInput: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in MintBatteryInput: required")
+	}
+	type Plain MintBatteryInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MintBatteryInput(plain)
+	return nil
+}
+
+var enumValues_AuthUserType = []interface{}{
+	"MANAGER",
+	"STUDENT",
+	"TEACHER",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MintBatteryOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["failedReason"]; !ok || v == nil {
+		return fmt.Errorf("field failedReason in MintBatteryOutput: required")
+	}
+	if v, ok := raw["success"]; !ok || v == nil {
+		return fmt.Errorf("field success in MintBatteryOutput: required")
+	}
+	type Plain MintBatteryOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MintBatteryOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *AppId) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_AppId {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_AppId, v)
+	}
+	*j = AppId(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiBatchBurnNFT) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["input"]; !ok || v == nil {
+		return fmt.Errorf("field input in MultiBatchBurnNFT: required")
+	}
+	type Plain MultiBatchBurnNFT
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiBatchBurnNFT(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetUserIdByAddressOutput: required")
+		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdInput: required")
 	}
-	type Plain GetUserIdByAddressOutput
+	type Plain GetPlayerUsingNftsByUserIdInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = GetUserIdByAddressOutput(plain)
+	*j = GetPlayerUsingNftsByUserIdInput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["buildDatas"]; !ok || v == nil {
+		return fmt.Errorf("field buildDatas in MultiBuildUpdateEvent: required")
+	}
+	if v, ok := raw["etag"]; !ok || v == nil {
+		return fmt.Errorf("field etag in MultiBuildUpdateEvent: required")
+	}
+	type Plain MultiBuildUpdateEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiBuildUpdateEvent(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerInfo) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["curExp"]; !ok || v == nil {
+		return fmt.Errorf("field curExp in PlayerInfo: required")
+	}
+	if v, ok := raw["curHp"]; !ok || v == nil {
+		return fmt.Errorf("field curHp in PlayerInfo: required")
+	}
+	if v, ok := raw["feature"]; !ok || v == nil {
+		return fmt.Errorf("field feature in PlayerInfo: required")
+	}
+	if v, ok := raw["icon"]; !ok || v == nil {
+		return fmt.Errorf("field icon in PlayerInfo: required")
+	}
+	if v, ok := raw["level"]; !ok || v == nil {
+		return fmt.Errorf("field level in PlayerInfo: required")
+	}
+	if v, ok := raw["playerName"]; !ok || v == nil {
+		return fmt.Errorf("field playerName in PlayerInfo: required")
+	}
+	if v, ok := raw["roleCId"]; !ok || v == nil {
+		return fmt.Errorf("field roleCId in PlayerInfo: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in PlayerInfo: required")
+	}
+	type Plain PlayerInfo
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerInfo(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiGetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["userIds"]; !ok || v == nil {
+		return fmt.Errorf("field userIds in MultiGetPlayerInfoByUserIdInput: required")
+	}
+	type Plain MultiGetPlayerInfoByUserIdInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiGetPlayerInfoByUserIdInput(plain)
 	return nil
 }
 
@@ -1432,6 +1512,42 @@ func (j *GetPlayerPvpRankOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetPlayerPvpRankOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiGetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["playerInfos"]; !ok || v == nil {
+		return fmt.Errorf("field playerInfos in MultiGetPlayerInfoByUserIdOutput: required")
+	}
+	type Plain MultiGetPlayerInfoByUserIdOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiGetPlayerInfoByUserIdOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["playerData"]; !ok || v == nil {
+		return fmt.Errorf("field playerData in GetPlayerInfoByUserIdOutput: required")
+	}
+	type Plain GetPlayerInfoByUserIdOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPlayerInfoByUserIdOutput(plain)
 	return nil
 }
 
@@ -1483,42 +1599,6 @@ func (j *UserUsingNft) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["playerData"]; !ok || v == nil {
-		return fmt.Errorf("field playerData in GetPlayerInfoByUserIdOutput: required")
-	}
-	type Plain GetPlayerInfoByUserIdOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerInfoByUserIdOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["UserUsingNfts"]; !ok || v == nil {
-		return fmt.Errorf("field UserUsingNfts in MultiGetPlayerUsingNftsByUserIdOutput: required")
-	}
-	type Plain MultiGetPlayerUsingNftsByUserIdOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MultiGetPlayerUsingNftsByUserIdOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *PvpPlayerRank) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -1546,6 +1626,41 @@ func (j *PvpPlayerRank) UnmarshalJSON(b []byte) error {
 	}
 	*j = PvpPlayerRank(plain)
 	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["UserUsingNfts"]; !ok || v == nil {
+		return fmt.Errorf("field UserUsingNfts in MultiGetPlayerUsingNftsByUserIdOutput: required")
+	}
+	type Plain MultiGetPlayerUsingNftsByUserIdOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiGetPlayerUsingNftsByUserIdOutput(plain)
+	return nil
+}
+
+type PvpPlayerRank struct {
+	// Avatars corresponds to the JSON schema field "avatars".
+	Avatars []PlayerAvatar `json:"avatars" yaml:"avatars" mapstructure:"avatars"`
+
+	// BaseInfo corresponds to the JSON schema field "baseInfo".
+	BaseInfo PlayerInfo `json:"baseInfo" yaml:"baseInfo" mapstructure:"baseInfo"`
+
+	// PlayerId corresponds to the JSON schema field "playerId".
+	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
+
+	// Rank corresponds to the JSON schema field "rank".
+	Rank int `json:"rank" yaml:"rank" mapstructure:"rank"`
+
+	// Score corresponds to the JSON schema field "score".
+	Score int `json:"score" yaml:"score" mapstructure:"score"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -1599,41 +1714,20 @@ func (j *RecyclingInfo) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerInfo) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpRankInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["curExp"]; !ok || v == nil {
-		return fmt.Errorf("field curExp in PlayerInfo: required")
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in GetPlayerPvpRankInput: required")
 	}
-	if v, ok := raw["curHp"]; !ok || v == nil {
-		return fmt.Errorf("field curHp in PlayerInfo: required")
-	}
-	if v, ok := raw["feature"]; !ok || v == nil {
-		return fmt.Errorf("field feature in PlayerInfo: required")
-	}
-	if v, ok := raw["icon"]; !ok || v == nil {
-		return fmt.Errorf("field icon in PlayerInfo: required")
-	}
-	if v, ok := raw["level"]; !ok || v == nil {
-		return fmt.Errorf("field level in PlayerInfo: required")
-	}
-	if v, ok := raw["playerName"]; !ok || v == nil {
-		return fmt.Errorf("field playerName in PlayerInfo: required")
-	}
-	if v, ok := raw["roleCId"]; !ok || v == nil {
-		return fmt.Errorf("field roleCId in PlayerInfo: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in PlayerInfo: required")
-	}
-	type Plain PlayerInfo
+	type Plain GetPlayerPvpRankInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = PlayerInfo(plain)
+	*j = GetPlayerPvpRankInput(plain)
 	return nil
 }
 
@@ -1688,20 +1782,20 @@ func (j *RecipeInfo) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpRankInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in GetPlayerPvpRankInput: required")
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in GetPlayerItemSlotsInput: required")
 	}
-	type Plain GetPlayerPvpRankInput
+	type Plain GetPlayerItemSlotsInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = GetPlayerPvpRankInput(plain)
+	*j = GetPlayerItemSlotsInput(plain)
 	return nil
 }
 
@@ -1733,20 +1827,62 @@ func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpProfileOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["userIds"]; !ok || v == nil {
-		return fmt.Errorf("field userIds in MultiGetPlayerInfoByUserIdInput: required")
+	if v, ok := raw["profile"]; !ok || v == nil {
+		return fmt.Errorf("field profile in GetPlayerPvpProfileOutput: required")
 	}
-	type Plain MultiGetPlayerInfoByUserIdInput
+	type Plain GetPlayerPvpProfileOutput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = MultiGetPlayerInfoByUserIdInput(plain)
+	*j = GetPlayerPvpProfileOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUseLUAUSD) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["amounts"]; !ok || v == nil {
+		return fmt.Errorf("field amounts in MultiUseLUAUSD: required")
+	}
+	if v, ok := raw["remarks"]; !ok || v == nil {
+		return fmt.Errorf("field remarks in MultiUseLUAUSD: required")
+	}
+	if v, ok := raw["userIds"]; !ok || v == nil {
+		return fmt.Errorf("field userIds in MultiUseLUAUSD: required")
+	}
+	type Plain MultiUseLUAUSD
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiUseLUAUSD(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *Auth) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["accessToken"]; !ok || v == nil {
+		return fmt.Errorf("field accessToken in Auth: required")
+	}
+	type Plain Auth
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = Auth(plain)
 	return nil
 }
 
@@ -1797,189 +1933,6 @@ func (j *NFTTraitTypes) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitTypes, v)
 	}
 	*j = NFTTraitTypes(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdInput: required")
-	}
-	type Plain GetPlayerUsingNftsByUserIdInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerUsingNftsByUserIdInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["buildDatas"]; !ok || v == nil {
-		return fmt.Errorf("field buildDatas in MultiBuildUpdateEvent: required")
-	}
-	if v, ok := raw["etag"]; !ok || v == nil {
-		return fmt.Errorf("field etag in MultiBuildUpdateEvent: required")
-	}
-	type Plain MultiBuildUpdateEvent
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MultiBuildUpdateEvent(plain)
-	return nil
-}
-
-type UsingNFT struct {
-	// 装备位置 对时装和装备有效
-	AvatarPos int `json:"avatarPos" yaml:"avatarPos" mapstructure:"avatarPos"`
-
-	// Cid corresponds to the JSON schema field "cid".
-	Cid int `json:"cid" yaml:"cid" mapstructure:"cid"`
-
-	// NftId corresponds to the JSON schema field "nftId".
-	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
-
-	// 游戏角色id
-	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
-
-	// 用户id
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiBatchBurnNFT) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["input"]; !ok || v == nil {
-		return fmt.Errorf("field input in MultiBatchBurnNFT: required")
-	}
-	type Plain MultiBatchBurnNFT
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MultiBatchBurnNFT(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *AppId) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_AppId {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_AppId, v)
-	}
-	*j = AppId(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MintBatteryOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["failedReason"]; !ok || v == nil {
-		return fmt.Errorf("field failedReason in MintBatteryOutput: required")
-	}
-	if v, ok := raw["success"]; !ok || v == nil {
-		return fmt.Errorf("field success in MintBatteryOutput: required")
-	}
-	type Plain MintBatteryOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MintBatteryOutput(plain)
-	return nil
-}
-
-var enumValues_AuthUserType = []interface{}{
-	"MANAGER",
-	"STUDENT",
-	"TEACHER",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MintBatteryInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["giftNum"]; !ok || v == nil {
-		return fmt.Errorf("field giftNum in MintBatteryInput: required")
-	}
-	if v, ok := raw["num"]; !ok || v == nil {
-		return fmt.Errorf("field num in MintBatteryInput: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in MintBatteryInput: required")
-	}
-	type Plain MintBatteryInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MintBatteryInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *AuthUserType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_AuthUserType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_AuthUserType, v)
-	}
-	*j = AuthUserType(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *Auth) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["accessToken"]; !ok || v == nil {
-		return fmt.Errorf("field accessToken in Auth: required")
-	}
-	type Plain Auth
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = Auth(plain)
 	return nil
 }
 
@@ -2251,24 +2204,12 @@ func (j *Skill) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_NFTTraitType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitType, v)
-	}
-	*j = NFTTraitType(v)
-	return nil
+type Skill struct {
+	// skill level
+	Level int `json:"level" yaml:"level" mapstructure:"level"`
+
+	// skill Id,  only key
+	SkillId int `json:"skillId" yaml:"skillId" mapstructure:"skillId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -2372,95 +2313,6 @@ func (j *DitaminBurnSource) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BurnDitaminInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["amount"]; !ok || v == nil {
-		return fmt.Errorf("field amount in BurnDitaminInput: required")
-	}
-	if v, ok := raw["source"]; !ok || v == nil {
-		return fmt.Errorf("field source in BurnDitaminInput: required")
-	}
-	if v, ok := raw["txHash"]; !ok || v == nil {
-		return fmt.Errorf("field txHash in BurnDitaminInput: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in BurnDitaminInput: required")
-	}
-	type Plain BurnDitaminInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = BurnDitaminInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerItemSlotsInput: required")
-	}
-	type Plain GetPlayerItemSlotsInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerItemSlotsInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpProfileOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["profile"]; !ok || v == nil {
-		return fmt.Errorf("field profile in GetPlayerPvpProfileOutput: required")
-	}
-	type Plain GetPlayerPvpProfileOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerPvpProfileOutput(plain)
-	return nil
-}
-
-var enumValues_NFTTraitPlaceableLands = []interface{}{
-	"Occupied",
-	"Ticket",
-	"VIP",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitPlaceableLands) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_NFTTraitPlaceableLands {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitPlaceableLands, v)
-	}
-	*j = NFTTraitPlaceableLands(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *BurnDitaminOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -2478,36 +2330,6 @@ func (j *BurnDitaminOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = BurnDitaminOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpPlayerProfile) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["avatars"]; !ok || v == nil {
-		return fmt.Errorf("field avatars in PvpPlayerProfile: required")
-	}
-	if v, ok := raw["baseInfo"]; !ok || v == nil {
-		return fmt.Errorf("field baseInfo in PvpPlayerProfile: required")
-	}
-	if v, ok := raw["itemSlots"]; !ok || v == nil {
-		return fmt.Errorf("field itemSlots in PvpPlayerProfile: required")
-	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in PvpPlayerProfile: required")
-	}
-	if v, ok := raw["score"]; !ok || v == nil {
-		return fmt.Errorf("field score in PvpPlayerProfile: required")
-	}
-	type Plain PvpPlayerProfile
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PvpPlayerProfile(plain)
 	return nil
 }
 
@@ -2536,61 +2358,6 @@ func (j *CanBuildNFTInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerAvatar) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["cid"]; !ok || v == nil {
-		return fmt.Errorf("field cid in PlayerAvatar: required")
-	}
-	if v, ok := raw["nftId"]; !ok || v == nil {
-		return fmt.Errorf("field nftId in PlayerAvatar: required")
-	}
-	if v, ok := raw["nftJson"]; !ok || v == nil {
-		return fmt.Errorf("field nftJson in PlayerAvatar: required")
-	}
-	if v, ok := raw["pos"]; !ok || v == nil {
-		return fmt.Errorf("field pos in PlayerAvatar: required")
-	}
-	type Plain PlayerAvatar
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PlayerAvatar(plain)
-	return nil
-}
-
-var enumValues_NFTTraitQuality = []interface{}{
-	"Advanced",
-	"Basic",
-	"Enhanced",
-	"Super",
-	"Ultimate",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitQuality) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_NFTTraitQuality {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitQuality, v)
-	}
-	*j = NFTTraitQuality(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *CanBuildNFTOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -2608,66 +2375,6 @@ func (j *CanBuildNFTOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = CanBuildNFTOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpProfileInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in GetPlayerPvpProfileInput: required")
-	}
-	type Plain GetPlayerPvpProfileInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerPvpProfileInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerItemSlot) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["level"]; !ok || v == nil {
-		return fmt.Errorf("field level in PlayerItemSlot: required")
-	}
-	if v, ok := raw["position"]; !ok || v == nil {
-		return fmt.Errorf("field position in PlayerItemSlot: required")
-	}
-	type Plain PlayerItemSlot
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PlayerItemSlot(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["itemSlots"]; !ok || v == nil {
-		return fmt.Errorf("field itemSlots in GetPlayerItemSlotsOutput: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerItemSlotsOutput: required")
-	}
-	type Plain GetPlayerItemSlotsOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerItemSlotsOutput(plain)
 	return nil
 }
 
@@ -2715,34 +2422,6 @@ func (j *LandServiceAction) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_LandServiceAction, v)
 	}
 	*j = LandServiceAction(v)
-	return nil
-}
-
-var enumValues_NFTTraitRarity = []interface{}{
-	"common",
-	"epic",
-	"mythic",
-	"rare",
-	"unique",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitRarity) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_NFTTraitRarity {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitRarity, v)
-	}
-	*j = NFTTraitRarity(v)
 	return nil
 }
 
@@ -2860,62 +2539,6 @@ func (j *HarvestInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserTrackOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["ditamin_amount"]; !ok || v == nil {
-		return fmt.Errorf("field ditamin_amount in GetUserTrackOutput: required")
-	}
-	if v, ok := raw["occupied_land_num"]; !ok || v == nil {
-		return fmt.Errorf("field occupied_land_num in GetUserTrackOutput: required")
-	}
-	if v, ok := raw["stake_vipname"]; !ok || v == nil {
-		return fmt.Errorf("field stake_vipname in GetUserTrackOutput: required")
-	}
-	if v, ok := raw["ticket_land_num"]; !ok || v == nil {
-		return fmt.Errorf("field ticket_land_num in GetUserTrackOutput: required")
-	}
-	if v, ok := raw["vip_land_num"]; !ok || v == nil {
-		return fmt.Errorf("field vip_land_num in GetUserTrackOutput: required")
-	}
-	type Plain GetUserTrackOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetUserTrackOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPvpHistoryInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in GetPvpHistoryInput: required")
-	}
-	type Plain GetPvpHistoryInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPvpHistoryInput(plain)
-	return nil
-}
-
-type Skill struct {
-	// skill level
-	Level int `json:"level" yaml:"level" mapstructure:"level"`
-
-	// skill Id,  only key
-	SkillId int `json:"skillId" yaml:"skillId" mapstructure:"skillId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *CheckMultiUseLUAUSDInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -2937,6 +2560,106 @@ func (j *CheckMultiUseLUAUSDInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
+func (j *PvpPlayerProfile) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["avatars"]; !ok || v == nil {
+		return fmt.Errorf("field avatars in PvpPlayerProfile: required")
+	}
+	if v, ok := raw["baseInfo"]; !ok || v == nil {
+		return fmt.Errorf("field baseInfo in PvpPlayerProfile: required")
+	}
+	if v, ok := raw["itemSlots"]; !ok || v == nil {
+		return fmt.Errorf("field itemSlots in PvpPlayerProfile: required")
+	}
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in PvpPlayerProfile: required")
+	}
+	if v, ok := raw["score"]; !ok || v == nil {
+		return fmt.Errorf("field score in PvpPlayerProfile: required")
+	}
+	type Plain PvpPlayerProfile
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PvpPlayerProfile(plain)
+	return nil
+}
+
+var enumValues_NFTTraitPlaceableLands = []interface{}{
+	"Occupied",
+	"Ticket",
+	"VIP",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTraitPlaceableLands) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_NFTTraitPlaceableLands {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitPlaceableLands, v)
+	}
+	*j = NFTTraitPlaceableLands(v)
+	return nil
+}
+
+type PvpPlayerProfile struct {
+	// Avatars corresponds to the JSON schema field "avatars".
+	Avatars []PlayerAvatar `json:"avatars" yaml:"avatars" mapstructure:"avatars"`
+
+	// BaseInfo corresponds to the JSON schema field "baseInfo".
+	BaseInfo PlayerInfo `json:"baseInfo" yaml:"baseInfo" mapstructure:"baseInfo"`
+
+	// ItemSlots corresponds to the JSON schema field "itemSlots".
+	ItemSlots []PlayerItemSlot `json:"itemSlots" yaml:"itemSlots" mapstructure:"itemSlots"`
+
+	// PlayerId corresponds to the JSON schema field "playerId".
+	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
+
+	// Score corresponds to the JSON schema field "score".
+	Score int `json:"score" yaml:"score" mapstructure:"score"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerAvatar) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["cid"]; !ok || v == nil {
+		return fmt.Errorf("field cid in PlayerAvatar: required")
+	}
+	if v, ok := raw["nftId"]; !ok || v == nil {
+		return fmt.Errorf("field nftId in PlayerAvatar: required")
+	}
+	if v, ok := raw["nftJson"]; !ok || v == nil {
+		return fmt.Errorf("field nftJson in PlayerAvatar: required")
+	}
+	if v, ok := raw["pos"]; !ok || v == nil {
+		return fmt.Errorf("field pos in PlayerAvatar: required")
+	}
+	type Plain PlayerAvatar
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerAvatar(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
 func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -2951,6 +2674,94 @@ func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = CheckMultiUseLUAUSDOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerPvpProfileInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in GetPlayerPvpProfileInput: required")
+	}
+	type Plain GetPlayerPvpProfileInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPlayerPvpProfileInput(plain)
+	return nil
+}
+
+var enumValues_NFTTraitQuality = []interface{}{
+	"Advanced",
+	"Basic",
+	"Enhanced",
+	"Super",
+	"Ultimate",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTraitQuality) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_NFTTraitQuality {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitQuality, v)
+	}
+	*j = NFTTraitQuality(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerItemSlot) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["level"]; !ok || v == nil {
+		return fmt.Errorf("field level in PlayerItemSlot: required")
+	}
+	if v, ok := raw["position"]; !ok || v == nil {
+		return fmt.Errorf("field position in PlayerItemSlot: required")
+	}
+	type Plain PlayerItemSlot
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerItemSlot(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["itemSlots"]; !ok || v == nil {
+		return fmt.Errorf("field itemSlots in GetPlayerItemSlotsOutput: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in GetPlayerItemSlotsOutput: required")
+	}
+	type Plain GetPlayerItemSlotsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPlayerItemSlotsOutput(plain)
 	return nil
 }
 
@@ -3035,6 +2846,34 @@ func (j *CollectionInput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+var enumValues_NFTTraitRarity = []interface{}{
+	"common",
+	"epic",
+	"mythic",
+	"rare",
+	"unique",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTraitRarity) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_NFTTraitRarity {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitRarity, v)
+	}
+	*j = NFTTraitRarity(v)
+	return nil
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *CollectionOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
@@ -3096,6 +2935,56 @@ func (j *DeductUserExpInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
+func (j *BurnDitaminInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["amount"]; !ok || v == nil {
+		return fmt.Errorf("field amount in BurnDitaminInput: required")
+	}
+	if v, ok := raw["source"]; !ok || v == nil {
+		return fmt.Errorf("field source in BurnDitaminInput: required")
+	}
+	if v, ok := raw["txHash"]; !ok || v == nil {
+		return fmt.Errorf("field txHash in BurnDitaminInput: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in BurnDitaminInput: required")
+	}
+	type Plain BurnDitaminInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BurnDitaminInput(plain)
+	return nil
+}
+
+var enumValues_QuestionType = []interface{}{
+	"AdjustClock",
+	"BlockCompute",
+	"CageShuffle",
+	"CardMemory",
+	"CuttingArt",
+	"HitBrick",
+	"MatchingMouse",
+	"QuickFlashMemory",
+	"ReverseMemory",
+	"RotatingSilhouette",
+	"SequenceBalloon",
+	"SingleChoice",
+}
+
+type PvpSurrenderInput struct {
+	// PkSessionId corresponds to the JSON schema field "pkSessionId".
+	PkSessionId string `json:"pkSessionId" yaml:"pkSessionId" mapstructure:"pkSessionId"`
+
+	// PlayerId corresponds to the JSON schema field "playerId".
+	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
 func (j *DeductUserExpOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -3113,6 +3002,43 @@ func (j *DeductUserExpOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = DeductUserExpOutput(plain)
+	return nil
+}
+
+var enumValues_NFTTraitType = []interface{}{
+	"Bow",
+	"Chest Armor",
+	"Consumable",
+	"Dagger",
+	"Feet Armor",
+	"Hands Armor",
+	"Head Armor",
+	"Legs Armor",
+	"Material",
+	"MysteryBox",
+	"Placeable",
+	"Spear",
+	"Sword",
+	"Wearable",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTraitType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_NFTTraitType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitType, v)
+	}
+	*j = NFTTraitType(v)
 	return nil
 }
 
@@ -3202,33 +3128,6 @@ var enumValues_GraphqlServiceAction = []interface{}{
 	"GetUserWeb3Profile",
 	"SendMetaTx",
 	"SendTx",
-}
-var enumValues_NFTTraitWearingPosition = []interface{}{
-	"Gloves",
-	"Head",
-	"Lower Body",
-	"Shoes",
-	"Upper Body",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitWearingPosition) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_NFTTraitWearingPosition {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitWearingPosition, v)
-	}
-	*j = NFTTraitWearingPosition(v)
-	return nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -3351,6 +3250,36 @@ func (j *ForgetUserRecipesInput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserTrackOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["ditamin_amount"]; !ok || v == nil {
+		return fmt.Errorf("field ditamin_amount in GetUserTrackOutput: required")
+	}
+	if v, ok := raw["occupied_land_num"]; !ok || v == nil {
+		return fmt.Errorf("field occupied_land_num in GetUserTrackOutput: required")
+	}
+	if v, ok := raw["stake_vipname"]; !ok || v == nil {
+		return fmt.Errorf("field stake_vipname in GetUserTrackOutput: required")
+	}
+	if v, ok := raw["ticket_land_num"]; !ok || v == nil {
+		return fmt.Errorf("field ticket_land_num in GetUserTrackOutput: required")
+	}
+	if v, ok := raw["vip_land_num"]; !ok || v == nil {
+		return fmt.Errorf("field vip_land_num in GetUserTrackOutput: required")
+	}
+	type Plain GetUserTrackOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserTrackOutput(plain)
+	return nil
+}
+
 var enumValues_GameDataServiceAction = []interface{}{
 	"DeductUserExp",
 	"GetPlayerInfoByUserId",
@@ -3360,30 +3289,6 @@ var enumValues_GameDataServiceAction = []interface{}{
 	"MultiGetPlayerInfoByUserId",
 	"MultiGetPlayerUsingNftsByUserId",
 	"UpgradePlayerItemSlots",
-}
-var enumValues_PVPEndType = []interface{}{
-	"endTypeTie",
-	"endTypeWin",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPEndType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_PVPEndType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPEndType, v)
-	}
-	*j = PVPEndType(v)
-	return nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -3442,21 +3347,31 @@ func (j *GetUserRecipesOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+var enumValues_NFTTraitWearingPosition = []interface{}{
+	"Gloves",
+	"Head",
+	"Lower Body",
+	"Shoes",
+	"Upper Body",
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchEnterInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+func (j *NFTTraitWearingPosition) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
 		return err
 	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PVPMatchEnterInput: required")
+	var ok bool
+	for _, expected := range enumValues_NFTTraitWearingPosition {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
 	}
-	type Plain PVPMatchEnterInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTraitWearingPosition, v)
 	}
-	*j = PVPMatchEnterInput(plain)
+	*j = NFTTraitWearingPosition(v)
 	return nil
 }
 
@@ -3479,24 +3394,6 @@ func (j *GetAllBuildDataInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchEnterOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["succese"]; !ok || v == nil {
-		return fmt.Errorf("field succese in PVPMatchEnterOutput: required")
-	}
-	type Plain PVPMatchEnterOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PVPMatchEnterOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *GetUserRecipesInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -3511,24 +3408,6 @@ func (j *GetUserRecipesInput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserRecipesInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchLeaveInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PVPMatchLeaveInput: required")
-	}
-	type Plain PVPMatchLeaveInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PVPMatchLeaveInput(plain)
 	return nil
 }
 
@@ -3554,24 +3433,6 @@ func (j *GetAllBuildDataOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchLeaveOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["succese"]; !ok || v == nil {
-		return fmt.Errorf("field succese in PVPMatchLeaveOutput: required")
-	}
-	type Plain PVPMatchLeaveOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PVPMatchLeaveOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
 func (j *GetUserNFTsOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -3592,32 +3453,6 @@ func (j *GetUserNFTsOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserNFTsOutput(plain)
-	return nil
-}
-
-var enumValues_PVPPKSessionStatus = []interface{}{
-	"ended",
-	"preloading",
-	"started",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPPKSessionStatus) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_PVPPKSessionStatus {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPPKSessionStatus, v)
-	}
-	*j = PVPPKSessionStatus(v)
 	return nil
 }
 
@@ -3660,34 +3495,46 @@ func (j *NFTPlaceableTimeout) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+var enumValues_PVPEndType = []interface{}{
+	"endTypeTie",
+	"endTypeWin",
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UsingNFT) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+func (j *PVPEndType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
 		return err
 	}
-	if v, ok := raw["avatarPos"]; !ok || v == nil {
-		return fmt.Errorf("field avatarPos in UsingNFT: required")
+	var ok bool
+	for _, expected := range enumValues_PVPEndType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
 	}
-	if v, ok := raw["cid"]; !ok || v == nil {
-		return fmt.Errorf("field cid in UsingNFT: required")
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPEndType, v)
 	}
-	if v, ok := raw["nftId"]; !ok || v == nil {
-		return fmt.Errorf("field nftId in UsingNFT: required")
-	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in UsingNFT: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in UsingNFT: required")
-	}
-	type Plain UsingNFT
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = UsingNFT(plain)
+	*j = PVPEndType(v)
 	return nil
+}
+
+type UsingNFT struct {
+	// 装备位置 对时装和装备有效
+	AvatarPos int `json:"avatarPos" yaml:"avatarPos" mapstructure:"avatarPos"`
+
+	// Cid corresponds to the JSON schema field "cid".
+	Cid int `json:"cid" yaml:"cid" mapstructure:"cid"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
+
+	// 游戏角色id
+	PlayerId string `json:"playerId" yaml:"playerId" mapstructure:"playerId"`
+
+	// 用户id
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -3705,27 +3552,6 @@ func (j *GetUserNFTsInput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserNFTsInput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomPreLeaveInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PVPRoomPreLeaveInput: required")
-	}
-	if v, ok := raw["roomId"]; !ok || v == nil {
-		return fmt.Errorf("field roomId in PVPRoomPreLeaveInput: required")
-	}
-	type Plain PVPRoomPreLeaveInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PVPRoomPreLeaveInput(plain)
 	return nil
 }
 
@@ -3769,20 +3595,20 @@ func (j *LandData) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomPreLeaveOutput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchEnterInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["canLeave"]; !ok || v == nil {
-		return fmt.Errorf("field canLeave in PVPRoomPreLeaveOutput: required")
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PVPMatchEnterInput: required")
 	}
-	type Plain PVPRoomPreLeaveOutput
+	type Plain PVPMatchEnterInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = PVPRoomPreLeaveOutput(plain)
+	*j = PVPMatchEnterInput(plain)
 	return nil
 }
 
@@ -3805,23 +3631,20 @@ func (j *GetUserNFTsByUserIdAndAddressOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomReadyInput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchEnterOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PVPRoomReadyInput: required")
+	if v, ok := raw["succese"]; !ok || v == nil {
+		return fmt.Errorf("field succese in PVPMatchEnterOutput: required")
 	}
-	if v, ok := raw["pvpRoomId"]; !ok || v == nil {
-		return fmt.Errorf("field pvpRoomId in PVPRoomReadyInput: required")
-	}
-	type Plain PVPRoomReadyInput
+	type Plain PVPMatchEnterOutput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = PVPRoomReadyInput(plain)
+	*j = PVPMatchEnterOutput(plain)
 	return nil
 }
 
@@ -3843,6 +3666,24 @@ func (j *GetAllLandDataOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetAllLandDataOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPMatchLeaveInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PVPMatchLeaveInput: required")
+	}
+	type Plain PVPMatchLeaveInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PVPMatchLeaveInput(plain)
 	return nil
 }
 
@@ -3894,40 +3735,77 @@ func (j *NFT) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-var enumValues_PVPServiceAction = []interface{}{
-	"CreatePVPRoom",
-	"GetCurrentPkSessionId",
-	"GetPlayerPvpProfile",
-	"GetPlayerPvpRank",
-	"GetPvpHistory",
-	"PVPMatchEnter",
-	"PVPMatchLeave",
-	"PVPRoomPreLeave",
-	"PVPRoomReady",
-	"PkSessionAgain",
-	"PkSessionDoQuestion",
-	"PkSessionLoadSuccess",
-	"PkSessionUITick",
-	"PvpSurrender",
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPMatchLeaveOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["succese"]; !ok || v == nil {
+		return fmt.Errorf("field succese in PVPMatchLeaveOutput: required")
+	}
+	type Plain PVPMatchLeaveOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PVPMatchLeaveOutput(plain)
+	return nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPServiceAction) UnmarshalJSON(b []byte) error {
+func (j *UsingNFT) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["avatarPos"]; !ok || v == nil {
+		return fmt.Errorf("field avatarPos in UsingNFT: required")
+	}
+	if v, ok := raw["cid"]; !ok || v == nil {
+		return fmt.Errorf("field cid in UsingNFT: required")
+	}
+	if v, ok := raw["nftId"]; !ok || v == nil {
+		return fmt.Errorf("field nftId in UsingNFT: required")
+	}
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in UsingNFT: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in UsingNFT: required")
+	}
+	type Plain UsingNFT
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = UsingNFT(plain)
+	return nil
+}
+
+var enumValues_PVPPKSessionStatus = []interface{}{
+	"ended",
+	"preloading",
+	"started",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPPKSessionStatus) UnmarshalJSON(b []byte) error {
 	var v string
 	if err := json.Unmarshal(b, &v); err != nil {
 		return err
 	}
 	var ok bool
-	for _, expected := range enumValues_PVPServiceAction {
+	for _, expected := range enumValues_PVPPKSessionStatus {
 		if reflect.DeepEqual(v, expected) {
 			ok = true
 			break
 		}
 	}
 	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPServiceAction, v)
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPPKSessionStatus, v)
 	}
-	*j = PVPServiceAction(v)
+	*j = PVPPKSessionStatus(v)
 	return nil
 }
 
@@ -3952,27 +3830,6 @@ func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = NFTMetadata(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdOutput: required")
-	}
-	if v, ok := raw["usingNfts"]; !ok || v == nil {
-		return fmt.Errorf("field usingNfts in GetPlayerUsingNftsByUserIdOutput: required")
-	}
-	type Plain GetPlayerUsingNftsByUserIdOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetPlayerUsingNftsByUserIdOutput(plain)
 	return nil
 }
 
@@ -4019,20 +3876,44 @@ func (j *NFTAttribute) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerInfoByUserIdInput: required")
+		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdOutput: required")
 	}
-	type Plain GetPlayerInfoByUserIdInput
+	if v, ok := raw["usingNfts"]; !ok || v == nil {
+		return fmt.Errorf("field usingNfts in GetPlayerUsingNftsByUserIdOutput: required")
+	}
+	type Plain GetPlayerUsingNftsByUserIdOutput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = GetPlayerInfoByUserIdInput(plain)
+	*j = GetPlayerUsingNftsByUserIdOutput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPRoomPreLeaveInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PVPRoomPreLeaveInput: required")
+	}
+	if v, ok := raw["roomId"]; !ok || v == nil {
+		return fmt.Errorf("field roomId in PVPRoomPreLeaveInput: required")
+	}
+	type Plain PVPRoomPreLeaveInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PVPRoomPreLeaveInput(plain)
 	return nil
 }
 
@@ -4057,26 +3938,65 @@ func (j *GetUserNFTsByUserIdAndAddressInput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPRoomPreLeaveOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["canLeave"]; !ok || v == nil {
+		return fmt.Errorf("field canLeave in PVPRoomPreLeaveOutput: required")
+	}
+	type Plain PVPRoomPreLeaveOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PVPRoomPreLeaveOutput(plain)
+	return nil
+}
+
 var enumValues_PVPUserType = []interface{}{
 	"guest",
 	"user",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
+func (j *PVPRoomReadyInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["playerInfos"]; !ok || v == nil {
-		return fmt.Errorf("field playerInfos in MultiGetPlayerInfoByUserIdOutput: required")
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PVPRoomReadyInput: required")
 	}
-	type Plain MultiGetPlayerInfoByUserIdOutput
+	if v, ok := raw["pvpRoomId"]; !ok || v == nil {
+		return fmt.Errorf("field pvpRoomId in PVPRoomReadyInput: required")
+	}
+	type Plain PVPRoomReadyInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = MultiGetPlayerInfoByUserIdOutput(plain)
+	*j = PVPRoomReadyInput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in GetUserIdByAddressOutput: required")
+	}
+	type Plain GetUserIdByAddressOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserIdByAddressOutput(plain)
 	return nil
 }
 
@@ -4100,21 +4020,60 @@ func (j *PVPUserType) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+var enumValues_PVPServiceAction = []interface{}{
+	"CreatePVPRoom",
+	"GetCurrentPkSessionId",
+	"GetPlayerPvpProfile",
+	"GetPlayerPvpRank",
+	"GetPvpHistory",
+	"PVPMatchEnter",
+	"PVPMatchLeave",
+	"PVPRoomPreLeave",
+	"PVPRoomReady",
+	"PkSessionAgain",
+	"PkSessionDoQuestion",
+	"PkSessionLoadSuccess",
+	"PkSessionUITick",
+	"PvpSurrender",
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserIdByAddressInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+func (j *PVPServiceAction) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
 		return err
 	}
-	if v, ok := raw["blockchainAddress"]; !ok || v == nil {
-		return fmt.Errorf("field blockchainAddress in GetUserIdByAddressInput: required")
+	var ok bool
+	for _, expected := range enumValues_PVPServiceAction {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
 	}
-	type Plain GetUserIdByAddressInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPServiceAction, v)
+	}
+	*j = PVPServiceAction(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *AuthUserType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
 		return err
 	}
-	*j = GetUserIdByAddressInput(plain)
+	var ok bool
+	for _, expected := range enumValues_AuthUserType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_AuthUserType, v)
+	}
+	*j = AuthUserType(v)
 	return nil
 }
 
@@ -4155,6 +4114,14 @@ func (j *Question) UnmarshalJSON(b []byte) error {
 	}
 	*j = Question(plain)
 	return nil
+}
+
+type Question struct {
+	// Id corresponds to the JSON schema field "id".
+	Id string `json:"id" yaml:"id" mapstructure:"id"`
+
+	// StructJSON corresponds to the JSON schema field "structJSON".
+	StructJSON string `json:"structJSON" yaml:"structJSON" mapstructure:"structJSON"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -4217,30 +4184,6 @@ func (j *PVPPlayer) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-var enumValues_PVPSubscriptionEvent = []interface{}{
-	"PVPMatchBegin",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPSubscriptionEvent) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_PVPSubscriptionEvent {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPSubscriptionEvent, v)
-	}
-	*j = PVPSubscriptionEvent(v)
-	return nil
-}
-
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *Prefetch) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
@@ -4265,7 +4208,50 @@ func (j *Prefetch) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type Prefetch struct {
+	// QuestionId corresponds to the JSON schema field "questionId".
+	QuestionId string `json:"questionId" yaml:"questionId" mapstructure:"questionId"`
+
+	// QuestionType corresponds to the JSON schema field "questionType".
+	QuestionType QuestionType `json:"questionType" yaml:"questionType" mapstructure:"questionType"`
+
+	// Resources corresponds to the JSON schema field "resources".
+	Resources []string `json:"resources" yaml:"resources" mapstructure:"resources"`
+}
+
 const QuestionTypeSingleChoice QuestionType = "SingleChoice"
+const QuestionTypeSequenceBalloon QuestionType = "SequenceBalloon"
+const QuestionTypeRotatingSilhouette QuestionType = "RotatingSilhouette"
+const QuestionTypeReverseMemory QuestionType = "ReverseMemory"
+const QuestionTypeQuickFlashMemory QuestionType = "QuickFlashMemory"
+const QuestionTypeMatchingMouse QuestionType = "MatchingMouse"
+
+var enumValues_PVPSubscriptionEvent = []interface{}{
+	"PVPMatchBegin",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PVPSubscriptionEvent) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_PVPSubscriptionEvent {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PVPSubscriptionEvent, v)
+	}
+	*j = PVPSubscriptionEvent(v)
+	return nil
+}
+
+const QuestionTypeHitBrick QuestionType = "HitBrick"
+const QuestionTypeCuttingArt QuestionType = "CuttingArt"
 
 var enumValues_PVPType = []interface{}{
 	"pvpTypeMatch",
@@ -4292,9 +4278,9 @@ func (j *PVPType) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const QuestionTypeSequenceBalloon QuestionType = "SequenceBalloon"
-const QuestionTypeRotatingSilhouette QuestionType = "RotatingSilhouette"
-const QuestionTypeReverseMemory QuestionType = "ReverseMemory"
+const QuestionTypeCardMemory QuestionType = "CardMemory"
+const QuestionTypeCageShuffle QuestionType = "CageShuffle"
+const QuestionTypeBlockCompute QuestionType = "BlockCompute"
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *PageMeta) UnmarshalJSON(b []byte) error {
@@ -4314,7 +4300,7 @@ func (j *PageMeta) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const QuestionTypeQuickFlashMemory QuestionType = "QuickFlashMemory"
+const QuestionTypeAdjustClock QuestionType = "AdjustClock"
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *PkSessionAgainInput) UnmarshalJSON(b []byte) error {
@@ -4334,7 +4320,25 @@ func (j *PkSessionAgainInput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const QuestionTypeMatchingMouse QuestionType = "MatchingMouse"
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *QuestionType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_QuestionType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_QuestionType, v)
+	}
+	*j = QuestionType(v)
+	return nil
+}
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *PkSessionAgainOutput) UnmarshalJSON(b []byte) error {
@@ -4354,7 +4358,7 @@ func (j *PkSessionAgainOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const QuestionTypeHitBrick QuestionType = "HitBrick"
+type QuestionType string
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *PkSessionDoQuestionInput) UnmarshalJSON(b []byte) error {
@@ -4380,7 +4384,23 @@ func (j *PkSessionDoQuestionInput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const QuestionTypeCuttingArt QuestionType = "CuttingArt"
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetQuestionResourcesByTypesInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["types"]; !ok || v == nil {
+		return fmt.Errorf("field types in GetQuestionResourcesByTypesInput: required")
+	}
+	type Plain GetQuestionResourcesByTypesInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetQuestionResourcesByTypesInput(plain)
+	return nil
+}
 
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *PkSessionDoQuestionOutput) UnmarshalJSON(b []byte) error {
@@ -4397,212 +4417,6 @@ func (j *PkSessionDoQuestionOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = PkSessionDoQuestionOutput(plain)
-	return nil
-}
-
-const QuestionTypeCardMemory QuestionType = "CardMemory"
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionLoadSuccessInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["pkSessionId"]; !ok || v == nil {
-		return fmt.Errorf("field pkSessionId in PkSessionLoadSuccessInput: required")
-	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PkSessionLoadSuccessInput: required")
-	}
-	type Plain PkSessionLoadSuccessInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PkSessionLoadSuccessInput(plain)
-	return nil
-}
-
-const QuestionTypeCageShuffle QuestionType = "CageShuffle"
-const QuestionTypeBlockCompute QuestionType = "BlockCompute"
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionUITickInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["data"]; !ok || v == nil {
-		return fmt.Errorf("field data in PkSessionUITickInput: required")
-	}
-	if v, ok := raw["pkSessionId"]; !ok || v == nil {
-		return fmt.Errorf("field pkSessionId in PkSessionUITickInput: required")
-	}
-	if v, ok := raw["player"]; !ok || v == nil {
-		return fmt.Errorf("field player in PkSessionUITickInput: required")
-	}
-	type Plain PkSessionUITickInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PkSessionUITickInput(plain)
-	return nil
-}
-
-const QuestionTypeAdjustClock QuestionType = "AdjustClock"
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *QuestionType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_QuestionType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_QuestionType, v)
-	}
-	*j = QuestionType(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerDeath) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["deathLandId"]; !ok || v == nil {
-		return fmt.Errorf("field deathLandId in PlayerDeath: required")
-	}
-	if v, ok := raw["killerId"]; !ok || v == nil {
-		return fmt.Errorf("field killerId in PlayerDeath: required")
-	}
-	if v, ok := raw["killerName"]; !ok || v == nil {
-		return fmt.Errorf("field killerName in PlayerDeath: required")
-	}
-	if v, ok := raw["lastDamage"]; !ok || v == nil {
-		return fmt.Errorf("field lastDamage in PlayerDeath: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in PlayerDeath: required")
-	}
-	type Plain PlayerDeath
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PlayerDeath(plain)
-	return nil
-}
-
-var enumValues_QuestionType = []interface{}{
-	"AdjustClock",
-	"BlockCompute",
-	"CageShuffle",
-	"CardMemory",
-	"CuttingArt",
-	"HitBrick",
-	"MatchingMouse",
-	"QuickFlashMemory",
-	"ReverseMemory",
-	"RotatingSilhouette",
-	"SequenceBalloon",
-	"SingleChoice",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerKilled) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["killedLandId"]; !ok || v == nil {
-		return fmt.Errorf("field killedLandId in PlayerKilled: required")
-	}
-	if v, ok := raw["lastDamage"]; !ok || v == nil {
-		return fmt.Errorf("field lastDamage in PlayerKilled: required")
-	}
-	if v, ok := raw["targetId"]; !ok || v == nil {
-		return fmt.Errorf("field targetId in PlayerKilled: required")
-	}
-	if v, ok := raw["targetName"]; !ok || v == nil {
-		return fmt.Errorf("field targetName in PlayerKilled: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in PlayerKilled: required")
-	}
-	type Plain PlayerKilled
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PlayerKilled(plain)
-	return nil
-}
-
-var enumValues_NFTTraitType = []interface{}{
-	"Bow",
-	"Chest Armor",
-	"Consumable",
-	"Dagger",
-	"Feet Armor",
-	"Hands Armor",
-	"Head Armor",
-	"Legs Armor",
-	"Material",
-	"MysteryBox",
-	"Placeable",
-	"Spear",
-	"Sword",
-	"Wearable",
-}
-var enumValues_PlayerRebornType = []interface{}{
-	"in_place",
-	"main_city",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerRebornType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_PlayerRebornType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PlayerRebornType, v)
-	}
-	*j = PlayerRebornType(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetQuestionResourcesByTypesInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["types"]; !ok || v == nil {
-		return fmt.Errorf("field types in GetQuestionResourcesByTypesInput: required")
-	}
-	type Plain GetQuestionResourcesByTypesInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetQuestionResourcesByTypesInput(plain)
 	return nil
 }
 
@@ -4625,6 +4439,27 @@ func (j *GetCurrentPkSessionIdInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
+func (j *PkSessionLoadSuccessInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["pkSessionId"]; !ok || v == nil {
+		return fmt.Errorf("field pkSessionId in PkSessionLoadSuccessInput: required")
+	}
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PkSessionLoadSuccessInput: required")
+	}
+	type Plain PkSessionLoadSuccessInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PkSessionLoadSuccessInput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
 func (j *GetPvpHistoryOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
@@ -4639,30 +4474,6 @@ func (j *GetPvpHistoryOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetPvpHistoryOutput(plain)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerReborn) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["rebornLandId"]; !ok || v == nil {
-		return fmt.Errorf("field rebornLandId in PlayerReborn: required")
-	}
-	if v, ok := raw["type"]; !ok || v == nil {
-		return fmt.Errorf("field type in PlayerReborn: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in PlayerReborn: required")
-	}
-	type Plain PlayerReborn
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = PlayerReborn(plain)
 	return nil
 }
 
@@ -4685,23 +4496,26 @@ func (j *GetCurrentPkSessionIdOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpSurrenderInput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionUITickInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if v, ok := raw["data"]; !ok || v == nil {
+		return fmt.Errorf("field data in PkSessionUITickInput: required")
+	}
 	if v, ok := raw["pkSessionId"]; !ok || v == nil {
-		return fmt.Errorf("field pkSessionId in PvpSurrenderInput: required")
+		return fmt.Errorf("field pkSessionId in PkSessionUITickInput: required")
 	}
-	if v, ok := raw["playerId"]; !ok || v == nil {
-		return fmt.Errorf("field playerId in PvpSurrenderInput: required")
+	if v, ok := raw["player"]; !ok || v == nil {
+		return fmt.Errorf("field player in PkSessionUITickInput: required")
 	}
-	type Plain PvpSurrenderInput
+	type Plain PkSessionUITickInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = PvpSurrenderInput(plain)
+	*j = PkSessionUITickInput(plain)
 	return nil
 }
 
@@ -4748,6 +4562,226 @@ func (j *PvpHistory) UnmarshalJSON(b []byte) error {
 	}
 	*j = PvpHistory(plain)
 	return nil
+}
+
+type PvpHistory struct {
+	// EndType corresponds to the JSON schema field "endType".
+	EndType string `json:"endType" yaml:"endType" mapstructure:"endType"`
+
+	// Loser corresponds to the JSON schema field "loser".
+	Loser string `json:"loser" yaml:"loser" mapstructure:"loser"`
+
+	// LoserName corresponds to the JSON schema field "loserName".
+	LoserName string `json:"loserName" yaml:"loserName" mapstructure:"loserName"`
+
+	// LoserScore corresponds to the JSON schema field "loserScore".
+	LoserScore int `json:"loserScore" yaml:"loserScore" mapstructure:"loserScore"`
+
+	// PvpType corresponds to the JSON schema field "pvpType".
+	PvpType string `json:"pvpType" yaml:"pvpType" mapstructure:"pvpType"`
+
+	// ScoreOffset corresponds to the JSON schema field "scoreOffset".
+	ScoreOffset int `json:"scoreOffset" yaml:"scoreOffset" mapstructure:"scoreOffset"`
+
+	// TimeSec corresponds to the JSON schema field "timeSec".
+	TimeSec int `json:"timeSec" yaml:"timeSec" mapstructure:"timeSec"`
+
+	// Winner corresponds to the JSON schema field "winner".
+	Winner string `json:"winner" yaml:"winner" mapstructure:"winner"`
+
+	// WinnerName corresponds to the JSON schema field "winnerName".
+	WinnerName string `json:"winnerName" yaml:"winnerName" mapstructure:"winnerName"`
+
+	// WinnerScore corresponds to the JSON schema field "winnerScore".
+	WinnerScore int `json:"winnerScore" yaml:"winnerScore" mapstructure:"winnerScore"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerDeath) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["deathLandId"]; !ok || v == nil {
+		return fmt.Errorf("field deathLandId in PlayerDeath: required")
+	}
+	if v, ok := raw["killerId"]; !ok || v == nil {
+		return fmt.Errorf("field killerId in PlayerDeath: required")
+	}
+	if v, ok := raw["killerName"]; !ok || v == nil {
+		return fmt.Errorf("field killerName in PlayerDeath: required")
+	}
+	if v, ok := raw["lastDamage"]; !ok || v == nil {
+		return fmt.Errorf("field lastDamage in PlayerDeath: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in PlayerDeath: required")
+	}
+	type Plain PlayerDeath
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerDeath(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in GetPlayerInfoByUserIdInput: required")
+	}
+	type Plain GetPlayerInfoByUserIdInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPlayerInfoByUserIdInput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerKilled) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["killedLandId"]; !ok || v == nil {
+		return fmt.Errorf("field killedLandId in PlayerKilled: required")
+	}
+	if v, ok := raw["lastDamage"]; !ok || v == nil {
+		return fmt.Errorf("field lastDamage in PlayerKilled: required")
+	}
+	if v, ok := raw["targetId"]; !ok || v == nil {
+		return fmt.Errorf("field targetId in PlayerKilled: required")
+	}
+	if v, ok := raw["targetName"]; !ok || v == nil {
+		return fmt.Errorf("field targetName in PlayerKilled: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in PlayerKilled: required")
+	}
+	type Plain PlayerKilled
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerKilled(plain)
+	return nil
+}
+
+type PlayerRebornType string
+
+var enumValues_PlayerRebornType = []interface{}{
+	"in_place",
+	"main_city",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerRebornType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_PlayerRebornType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_PlayerRebornType, v)
+	}
+	*j = PlayerRebornType(v)
+	return nil
+}
+
+const PlayerRebornTypeInPlace PlayerRebornType = "in_place"
+const PlayerRebornTypeMainCity PlayerRebornType = "main_city"
+
+// 玩家重生事件, 当玩家重生时, 会触发此事件
+type PlayerReborn struct {
+	// 重生的地格id
+	RebornLandId int `json:"rebornLandId" yaml:"rebornLandId" mapstructure:"rebornLandId"`
+
+	// 玩家重生类型
+	Type PlayerRebornType `json:"type" yaml:"type" mapstructure:"type"`
+
+	// 重生的玩家id
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PlayerReborn) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["rebornLandId"]; !ok || v == nil {
+		return fmt.Errorf("field rebornLandId in PlayerReborn: required")
+	}
+	if v, ok := raw["type"]; !ok || v == nil {
+		return fmt.Errorf("field type in PlayerReborn: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in PlayerReborn: required")
+	}
+	type Plain PlayerReborn
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PlayerReborn(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPvpHistoryInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in GetPvpHistoryInput: required")
+	}
+	type Plain GetPvpHistoryInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPvpHistoryInput(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *PvpSurrenderInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["pkSessionId"]; !ok || v == nil {
+		return fmt.Errorf("field pkSessionId in PvpSurrenderInput: required")
+	}
+	if v, ok := raw["playerId"]; !ok || v == nil {
+		return fmt.Errorf("field playerId in PvpSurrenderInput: required")
+	}
+	type Plain PvpSurrenderInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = PvpSurrenderInput(plain)
+	return nil
+}
+
+type PvpSurrenderOutput struct {
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -5483,42 +5517,6 @@ func (j *UseEquipment) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = UseEquipment(plain)
-	return nil
-}
-
-type UseLUAUSD struct {
-	// 和userId一一对应
-	// 所有数量
-	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
-
-	// 每个用户的消耗备注
-	Remarks []string `json:"remarks" yaml:"remarks" mapstructure:"remarks"`
-
-	// UserIds corresponds to the JSON schema field "userIds".
-	UserIds []string `json:"userIds" yaml:"userIds" mapstructure:"userIds"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *UseLUAUSD) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["amounts"]; !ok || v == nil {
-		return fmt.Errorf("field amounts in UseLUAUSD: required")
-	}
-	if v, ok := raw["remarks"]; !ok || v == nil {
-		return fmt.Errorf("field remarks in UseLUAUSD: required")
-	}
-	if v, ok := raw["userIds"]; !ok || v == nil {
-		return fmt.Errorf("field userIds in UseLUAUSD: required")
-	}
-	type Plain UseLUAUSD
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = UseLUAUSD(plain)
 	return nil
 }
 
