@@ -369,11 +369,11 @@ export interface BatchBurnNFTInput {
 }
 
 export interface CheckMultiBatchBurnNFTInput {
-    input: BatchBurnNFTInput[]
+    inputs: BatchBurnNFTInput[]
 }
 
 export interface CheckMultiBatchBurnNFTOutput {
-    result: boolean
+    results: boolean[]
 }
 
 export interface MultiBatchBurnNFT {
