@@ -214,13 +214,13 @@ type ChargedOutput struct {
 }
 
 type CheckMultiBatchBurnNFTInput struct {
-	// Input corresponds to the JSON schema field "input".
-	Input []BatchBurnNFTInput `json:"input" yaml:"input" mapstructure:"input"`
+	// Inputs corresponds to the JSON schema field "inputs".
+	Inputs []BatchBurnNFTInput `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
 }
 
 type CheckMultiBatchBurnNFTOutput struct {
-	// Result corresponds to the JSON schema field "result".
-	Result bool `json:"result" yaml:"result" mapstructure:"result"`
+	// Results corresponds to the JSON schema field "results".
+	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
 }
 
 type CheckMultiUseLUAUSDInput struct {
@@ -2463,8 +2463,8 @@ func (j *CheckMultiBatchBurnNFTInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["input"]; !ok || v == nil {
-		return fmt.Errorf("field input in CheckMultiBatchBurnNFTInput: required")
+	if v, ok := raw["inputs"]; !ok || v == nil {
+		return fmt.Errorf("field inputs in CheckMultiBatchBurnNFTInput: required")
 	}
 	type Plain CheckMultiBatchBurnNFTInput
 	var plain Plain
@@ -2502,8 +2502,8 @@ func (j *CheckMultiBatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["result"]; !ok || v == nil {
-		return fmt.Errorf("field result in CheckMultiBatchBurnNFTOutput: required")
+	if v, ok := raw["results"]; !ok || v == nil {
+		return fmt.Errorf("field results in CheckMultiBatchBurnNFTOutput: required")
 	}
 	type Plain CheckMultiBatchBurnNFTOutput
 	var plain Plain
