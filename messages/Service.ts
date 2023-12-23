@@ -63,17 +63,16 @@ export enum GameDataServiceAction {
 }
 
 export enum Web3ServiceAction {
+    // // 针对一些固定属性的NFT
+    // // 比如材料, 特定的消耗品.
+    // // 这类的NFT属性是由产品配置表格决定的.
+    // // 同一个itemId的NFT属性一样.
+    // MintNFTWithItemId = 'MintNFTWithItemId',
 
-    // 针对一些固定属性的NFT
-    // 比如材料, 特定的消耗品.
-    // 这类的NFT属性是由产品配置表格决定的.
-    // 同一个itemId的NFT属性一样.
-    MintNFTWithItemId = 'MintNFTWithItemId',
-
-    // 跟上面的功能一样
-    // 只是用户标识变成user address 而不是 user id
-    // 用于只知道用户地址的情况
-    MintNFTWithItemIdAndUserAddress = 'MintNFTWithItemIdAndUserAddress',
+    // // 跟上面的功能一样
+    // // 只是用户标识变成user address 而不是 user id
+    // // 用于只知道用户地址的情况
+    // MintNFTWithItemIdAndUserAddress = 'MintNFTWithItemIdAndUserAddress',
 
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
