@@ -9,7 +9,7 @@ export interface CheckMultiUseLUAUSDInput {
 }
 
 export interface CheckMultiUseLUAUSDOutput {
-    result: boolean;
+    results: boolean[];
 }
 
 export interface UseLUAUSD {
