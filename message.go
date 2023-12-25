@@ -229,8 +229,8 @@ type CheckMultiUseLUAUSDInput struct {
 }
 
 type CheckMultiUseLUAUSDOutput struct {
-	// Result corresponds to the JSON schema field "result".
-	Result bool `json:"result" yaml:"result" mapstructure:"result"`
+	// Results corresponds to the JSON schema field "results".
+	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
 }
 
 type CheckQuestionAnswerInput struct {
@@ -3528,8 +3528,8 @@ func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["result"]; !ok || v == nil {
-		return fmt.Errorf("field result in CheckMultiUseLUAUSDOutput: required")
+	if v, ok := raw["results"]; !ok || v == nil {
+		return fmt.Errorf("field results in CheckMultiUseLUAUSDOutput: required")
 	}
 	type Plain CheckMultiUseLUAUSDOutput
 	var plain Plain
