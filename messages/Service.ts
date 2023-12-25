@@ -89,21 +89,6 @@ export enum Web3ServiceAction {
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
 
-    // // 使用消耗品
-    // UseConsumable = 'UseConsumable',
-
-    // // 丢弃NFT
-    // BurnNFT = 'BurnNFT',
-
-    // // 批量丢弃nft
-    // BatchBurnNFT = 'BatchBurnNFT',
-
-    // // MultiBatchBurnNFT = 'MultiBatchBurnNFT',
-    // MultiBatchBurnNFT = 'MultiBatchBurnNFT',
-
-    // 
-    // UseLUAUSD = "UseLUAUSD",
-
     // 批量检测用户是否可以消耗指定的NFT
     CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',
 
@@ -163,11 +148,11 @@ export enum SubscriptionEvent {
 
     CloseServer = 'CloseServer',
 
-    // MultiBatchBurnNFT
-    MultiBatchBurnNFT = 'MultiBatchBurnNFT',
+    // BatchBurnNFT
+    BatchBurnNFT = 'BatchBurnNFT',
 
     // CheckMultiUseLUAUSD
-    MultiUseLUAUSD = 'MultiUseLUAUSD',
+    UseLUAUSD = 'UseLUAUSD',
 
     // 批量mint nft
     // 以节省网络开销
