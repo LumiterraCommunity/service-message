@@ -365,7 +365,7 @@ export interface BatchBurnNFT {
     /**
      * 每个用户的消耗备注
      */
-    remarks: string;
+    remark: string;
 }
 
 export interface CheckMultiBatchBurnNFTInput {
