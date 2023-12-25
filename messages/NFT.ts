@@ -347,7 +347,7 @@ export interface BatchMintNFT {
     remark: string;
 }
 
-export interface BatchBurnNFTInput {
+export interface BatchBurnNFT {
     userId: string
 
     nftIds?: string[]
@@ -369,15 +369,11 @@ export interface BatchBurnNFTInput {
 }
 
 export interface CheckMultiBatchBurnNFTInput {
-    inputs: BatchBurnNFTInput[]
+    inputs: BatchBurnNFT[]
 }
 
 export interface CheckMultiBatchBurnNFTOutput {
     results: boolean[]
-}
-
-export interface MultiBatchBurnNFT {
-    input: BatchBurnNFTInput[]
 }
 
 export interface GetUserNFTsByUserIdAndAddressInput {

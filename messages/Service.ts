@@ -165,7 +165,7 @@ export enum SubscriptionEvent {
 
     // MultiBatchBurnNFT
     MultiBatchBurnNFT = 'MultiBatchBurnNFT',
-    
+
     // CheckMultiUseLUAUSD
     MultiUseLUAUSD = 'MultiUseLUAUSD',
 
