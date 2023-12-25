@@ -41,7 +41,7 @@ type BatchBurnNFT struct {
 	NftIds []string `json:"nftIds,omitempty" yaml:"nftIds,omitempty" mapstructure:"nftIds,omitempty"`
 
 	// 每个用户的消耗备注
-	Remarks string `json:"remarks" yaml:"remarks" mapstructure:"remarks"`
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -3041,8 +3041,8 @@ func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["amounts"]; !ok || v == nil {
 		return fmt.Errorf("field amounts in BatchBurnNFT: required")
 	}
-	if v, ok := raw["remarks"]; !ok || v == nil {
-		return fmt.Errorf("field remarks in BatchBurnNFT: required")
+	if v, ok := raw["remark"]; !ok || v == nil {
+		return fmt.Errorf("field remark in BatchBurnNFT: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in BatchBurnNFT: required")
