@@ -1544,18 +1544,17 @@ type StartServerOutput struct {
 
 type SubscriptionEvent string
 
+const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
 const SubscriptionEventDitaminBurn SubscriptionEvent = "DitaminBurn"
 const SubscriptionEventDitaminProduce SubscriptionEvent = "DitaminProduce"
 const SubscriptionEventFinishQuestion SubscriptionEvent = "FinishQuestion"
 const SubscriptionEventMarketplaceTrade SubscriptionEvent = "MarketplaceTrade"
-const SubscriptionEventMultiBatchBurnNFT SubscriptionEvent = "MultiBatchBurnNFT"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
 const SubscriptionEventMultiRecyclingEvent SubscriptionEvent = "MultiRecyclingEvent"
 const SubscriptionEventMultiUpdateUserNFT SubscriptionEvent = "MultiUpdateUserNFT"
-const SubscriptionEventMultiUseLUAUSD SubscriptionEvent = "MultiUseLUAUSD"
 const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
@@ -1563,6 +1562,7 @@ const SubscriptionEventUnloadEquipment SubscriptionEvent = "UnloadEquipment"
 const SubscriptionEventUpdateUpcomingUses SubscriptionEvent = "UpdateUpcomingUses"
 const SubscriptionEventUpdateUserNFT SubscriptionEvent = "UpdateUserNFT"
 const SubscriptionEventUseEquipment SubscriptionEvent = "UseEquipment"
+const SubscriptionEventUseLUAUSD SubscriptionEvent = "UseLUAUSD"
 
 type TemporaryToken struct {
 	// CreatedAt corresponds to the JSON schema field "createdAt".
@@ -4375,18 +4375,17 @@ func (j *DitaminProduceSource) UnmarshalJSON(b []byte) error {
 }
 
 var enumValues_SubscriptionEvent = []interface{}{
+	"BatchBurnNFT",
 	"BatchMintNFT",
 	"CloseServer",
 	"DitaminBurn",
 	"DitaminProduce",
 	"FinishQuestion",
 	"MarketplaceTrade",
-	"MultiBatchBurnNFT",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
 	"MultiRecyclingEvent",
 	"MultiUpdateUserNFT",
-	"MultiUseLUAUSD",
 	"PlayerDeath",
 	"PlayerKilled",
 	"PlayerReborn",
@@ -4394,6 +4393,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"UpdateUpcomingUses",
 	"UpdateUserNFT",
 	"UseEquipment",
+	"UseLUAUSD",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
