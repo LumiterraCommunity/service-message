@@ -1,8 +1,8 @@
 /**
  * @TJS-type integer
  */
- type Int32 = number;
- type integer = Int32;
+type Int32 = number;
+type integer = Int32;
 
 /**
  * 玩家死亡事件, 当玩家死亡时触发
@@ -90,9 +90,9 @@ export interface PlayerKilled {
 }
 
 
-export interface PlayerInfo{
+export interface PlayerInfo {
     userId: string;
-    
+
     playerName: string;
 
     icon: string;
@@ -106,16 +106,16 @@ export interface MultiGetPlayerInfoByUserIdInput {
     userIds: string[];
 }
 export interface MultiGetPlayerInfoByUserIdOutput {
-    playerInfos : PlayerInfo[];
+    playerInfos: PlayerInfo[];
 }
 
 
-export interface PlayerItemSlot{
+export interface PlayerItemSlot {
     // item socket postion
     position: integer;
 
     // item socket level
-    level: integer; 
+    level: integer;
 }
 export interface GetPlayerItemSlotsInput {
     userId: string;
@@ -132,21 +132,21 @@ export interface UpgradePlayerItemSlotsInput {
 }
 export interface UpgradePlayerItemSlotsOutput {
     userId: string;
-     /**
-     * 是否成功
-     */
+    /**
+    * 是否成功
+    */
     success: boolean;
 }
 
-export interface DeductUserExpInput{
+export interface DeductUserExpInput {
     userId: string;
 
-    deductExp: integer;    
+    deductExp: integer;
 }
-export interface DeductUserExpOutput{
-     /**
-     * 是否扣除成功
-     */
+export interface DeductUserExpOutput {
+    /**
+    * 是否扣除成功
+    */
     deductSuccess: boolean;
 
     /**

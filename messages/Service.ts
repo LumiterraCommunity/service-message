@@ -75,7 +75,10 @@ export enum Web3ServiceAction {
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
 
     // 
-    GetGameMessageById = 'GetGameMessageById',
+    GetGameMessageStatusById = 'GetGameMessageStatusById',
+
+    // 
+    ExecGameMessage = 'ExecGameMessage',
 }
 
 export enum SceneDynamicServiceAction {
