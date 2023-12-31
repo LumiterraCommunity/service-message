@@ -6,6 +6,10 @@ type integer = Int32;
 
 import { NFTTrait_Quality } from './NFTAttribute';
 
+export interface GetGameMessageByIdInput {
+
+}
+
 export interface CanBuildNFTInput {
     /**
      *  NFT Id

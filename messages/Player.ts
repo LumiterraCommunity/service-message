@@ -97,25 +97,9 @@ export interface PlayerInfo{
 
     icon: string;
 
-    feature: string;
-
-    /**
-     * 角色cid (男性 1001 / 女性 1002)
-    */
-    roleCId: integer;
-
     level: integer;
 
-    curExp: integer;
-    
-    curHp: integer;
-}
-
-export interface GetPlayerInfoByUserIdInput {
-    userId: string;
-}
-export interface GetPlayerInfoByUserIdOutput {
-    playerData: PlayerInfo;
+    inviteCode: string;
 }
 
 export interface MultiGetPlayerInfoByUserIdInput {
@@ -124,8 +108,6 @@ export interface MultiGetPlayerInfoByUserIdInput {
 export interface MultiGetPlayerInfoByUserIdOutput {
     playerInfos : PlayerInfo[];
 }
-
-
 
 
 export interface PlayerItemSlot{

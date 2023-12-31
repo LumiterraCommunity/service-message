@@ -10,15 +10,11 @@ export enum AppId {
 export enum GraphqlServiceAction {
     CanBuildNFT = 'CanBuildNFT',
     GetUserNFTs = 'GetUserNFTs',
-    GetInitLandAttributions = 'GetInitLandAttributions',
     GetUserWeb3Profile = 'GetUserWeb3Profile',
     GetUserIdByAddress = 'GetUserIdByAddress',
 
     // 获取对用户特殊资产的跟踪
     GetUserTrack = 'GetUserTrack',
-
-    // 燃烧用户的ditamin
-    BurnDitamin = 'BurnDitamin',
 
     // 获取指定类型的题目
     GetQuestionsByTypesRandom = 'GetQuestionsByTypesRandom',
@@ -27,11 +23,6 @@ export enum GraphqlServiceAction {
     CheckQuestionAnswer = 'CheckQuestionAnswer',
 
     GetQuestionResourcesByTypes = 'GetQuestionResourcesByTypes',
-
-    // 执行区块链元交易
-    SendMetaTx = 'SendMetaTx',
-
-    SendTx = 'SendTx',
 }
 
 export enum PVPServiceAction {
@@ -54,7 +45,6 @@ export enum PVPServiceAction {
 export enum GameDataServiceAction {
     LandUsingSkill = 'LandUsingSkill',
     DeductUserExp = 'DeductUserExp',
-    GetPlayerInfoByUserId = 'GetPlayerInfoByUserId',
     MultiGetPlayerInfoByUserId = 'MultiGetPlayerInfoByUserId',
     GetPlayerUsingNftsByUserId = 'GetPlayerUsingNftsByUserId',
     MultiGetPlayerUsingNftsByUserId = 'MultiGetPlayerUsingNftsByUserId',
@@ -63,17 +53,6 @@ export enum GameDataServiceAction {
 }
 
 export enum Web3ServiceAction {
-    // // 针对一些固定属性的NFT
-    // // 比如材料, 特定的消耗品.
-    // // 这类的NFT属性是由产品配置表格决定的.
-    // // 同一个itemId的NFT属性一样.
-    // MintNFTWithItemId = 'MintNFTWithItemId',
-
-    // // 跟上面的功能一样
-    // // 只是用户标识变成user address 而不是 user id
-    // // 用于只知道用户地址的情况
-    // MintNFTWithItemIdAndUserAddress = 'MintNFTWithItemIdAndUserAddress',
-
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
 
@@ -94,6 +73,9 @@ export enum Web3ServiceAction {
 
     // 批量检测用户是否可以消耗指定的LUAUSD
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
+
+    // 
+    GetGameMessageById = 'GetGameMessageById',
 }
 
 export enum SceneDynamicServiceAction {
@@ -126,10 +108,7 @@ export enum SubscriptionEvent {
     // 卸下装备
     UnloadEquipment = 'UnloadEquipment',
 
-    MarketplaceTrade = 'MarketplaceTrade',
-
-    DitaminProduce = 'DitaminProduce',
-    DitaminBurn = 'DitaminBurn',
+    // MarketplaceTrade = 'MarketplaceTrade',
 
     // 角色死亡
     PlayerDeath = 'PlayerDeath',
@@ -141,7 +120,7 @@ export enum SubscriptionEvent {
     PlayerKilled = 'PlayerKilled',
 
     // 完成问题
-    FinishQuestion = 'FinishQuestion',
+    // FinishQuestion = 'FinishQuestion',
 
     // Scene Dynamic
     UpdateUpcomingUses = 'UpdateUpcomingUses',
