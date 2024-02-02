@@ -139,6 +139,8 @@ export enum SubscriptionEvent {
     // 批量mint nft
     // 以节省网络开销
     BatchMintNFT = 'BatchMintNFT',
+
+    BatchTransferNFT = 'BatchTransferNFT',
 }
 
 export enum PVPSubscriptionEvent {
