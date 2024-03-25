@@ -347,14 +347,14 @@ export interface BatchMintNFT {
     remark: string;
 }
 
-export interface BatchMintNFTWithAttributes {
+export interface MintNFTWithAttributes {
     // mint to user id
     userId: string
 
     /**
      * 需要mint的所有的itemId
      */
-    itemIds: string[];
+    itemIds: string;
 
     /**
      * index和itemIds一一对应
@@ -362,7 +362,7 @@ export interface BatchMintNFTWithAttributes {
      * @items.type integer
      * @items.minimum 0
      */
-    amounts: integer[];
+    amounts: integer;
 
     attributes: NFTAttribute[];
 
@@ -419,11 +419,11 @@ export interface CheckMultiBatchBurnNFTOutput {
     results: boolean[]
 }
 
-export interface CheckMultiBatchMintNFTWithAttributesInput {
-    inputs: BatchMintNFTWithAttributes[]
+export interface CheckMintNFTWithAttributesInput {
+    inputs: MintNFTWithAttributes
 }
 
-export interface CheckMultiBatchMintNFTWithAttributesOutput {
+export interface CheckMintNFTWithAttributesOutput {
     results: boolean[]
 }
 

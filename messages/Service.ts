@@ -75,7 +75,7 @@ export enum Web3ServiceAction {
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
 
     // 检测自定义NFT属性铸造
-    CheckMultiBatchMintNFTWithAttributes = 'CheckMultiBatchMintNFTWithAttributes',
+    CheckMintNFTWithAttributes = 'CheckMintNFTWithAttributes',
 
     // 
     GetGameMessageStatusById = 'GetGameMessageStatusById',
@@ -144,7 +144,7 @@ export enum SubscriptionEvent {
     BatchMintNFT = 'BatchMintNFT',
 
     // 使用自定义Attributes批量mint nft
-    BatchMintNFTWithAttributes = 'BatchMintNFTWithAttributes',
+    MintNFTWithAttributes = 'MintNFTWithAttributes',
 
     BatchTransferNFT = 'BatchTransferNFT',
 }
