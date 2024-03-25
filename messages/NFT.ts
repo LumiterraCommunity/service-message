@@ -420,11 +420,11 @@ export interface CheckMultiBatchBurnNFTOutput {
 }
 
 export interface CheckMintNFTWithAttributesInput {
-    inputs: MintNFTWithAttributes
+    input: MintNFTWithAttributes
 }
 
 export interface CheckMintNFTWithAttributesOutput {
-    results: boolean[]
+    result: boolean
 }
 
 export interface GetUserNFTsByUserIdAndAddressInput {
