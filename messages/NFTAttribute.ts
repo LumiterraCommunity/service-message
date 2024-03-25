@@ -185,4 +185,5 @@ export enum NFTTrait_Type {
     Placeable = 'Placeable', // 可放置
     Wearable = 'Wearable', // 可穿戴
     MysteryBox = 'MysteryBox', // 神秘宝箱
+    PetEgg = 'PetEgg', // 宠物蛋
 }
