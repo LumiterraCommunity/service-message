@@ -74,6 +74,9 @@ export enum Web3ServiceAction {
     // 批量检测用户是否可以消耗指定的LUAUSD
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
 
+    // 检测自定义NFT属性铸造
+    CheckMultiBatchMintNFTWithAttributes = 'CheckMultiBatchMintNFTWithAttributes',
+
     // 
     GetGameMessageStatusById = 'GetGameMessageStatusById',
 
@@ -139,6 +142,9 @@ export enum SubscriptionEvent {
     // 批量mint nft
     // 以节省网络开销
     BatchMintNFT = 'BatchMintNFT',
+
+    // 使用自定义Attributes批量mint nft
+    BatchMintNFTWithAttributes = 'BatchMintNFTWithAttributes',
 
     BatchTransferNFT = 'BatchTransferNFT',
 }

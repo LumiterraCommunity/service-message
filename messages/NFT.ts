@@ -37,7 +37,7 @@ export interface CanBuildNFTOutput {
  * NFTAttribute 为产品定义的每个NFT的属性.
  */
 export interface NFTAttribute {
-    display_type?: string;
+    display_type?: string; // list
 
     trait_type: string;
 
@@ -347,6 +347,28 @@ export interface BatchMintNFT {
     remark: string;
 }
 
+export interface BatchMintNFTWithAttributes {
+    // mint to user id
+    userId: string
+
+    /**
+     * 需要mint的所有的itemId
+     */
+    itemIds: string[];
+
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
+    amounts: integer[];
+
+    attributes: NFTAttribute[];
+
+    remark: string;
+}
+
 export interface BatchBurnNFT {
     userId: string
 
@@ -394,6 +416,14 @@ export interface CheckMultiBatchBurnNFTInput {
 }
 
 export interface CheckMultiBatchBurnNFTOutput {
+    results: boolean[]
+}
+
+export interface CheckMultiBatchMintNFTWithAttributesInput {
+    inputs: BatchMintNFTWithAttributes[]
+}
+
+export interface CheckMultiBatchMintNFTWithAttributesOutput {
     results: boolean[]
 }
 
