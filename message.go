@@ -811,8 +811,8 @@ func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
 }
 
 type CheckMintNFTWithAttributesInput struct {
-	// Inputs corresponds to the JSON schema field "inputs".
-	Inputs MintNFTWithAttributes `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
+	// Input corresponds to the JSON schema field "input".
+	Input MintNFTWithAttributes `json:"input" yaml:"input" mapstructure:"input"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -821,8 +821,8 @@ func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["inputs"]; !ok || v == nil {
-		return fmt.Errorf("field inputs in CheckMintNFTWithAttributesInput: required")
+	if v, ok := raw["input"]; !ok || v == nil {
+		return fmt.Errorf("field input in CheckMintNFTWithAttributesInput: required")
 	}
 	type Plain CheckMintNFTWithAttributesInput
 	var plain Plain
@@ -834,8 +834,8 @@ func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
 }
 
 type CheckMintNFTWithAttributesOutput struct {
-	// Results corresponds to the JSON schema field "results".
-	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
+	// Result corresponds to the JSON schema field "result".
+	Result bool `json:"result" yaml:"result" mapstructure:"result"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -844,8 +844,8 @@ func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["results"]; !ok || v == nil {
-		return fmt.Errorf("field results in CheckMintNFTWithAttributesOutput: required")
+	if v, ok := raw["result"]; !ok || v == nil {
+		return fmt.Errorf("field result in CheckMintNFTWithAttributesOutput: required")
 	}
 	type Plain CheckMintNFTWithAttributesOutput
 	var plain Plain
