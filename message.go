@@ -264,87 +264,6 @@ func (j *BatchMintNFT) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// NFTAttribute 为产品定义的每个NFT的属性.
-type NFTAttribute struct {
-	// DisplayType corresponds to the JSON schema field "display_type".
-	DisplayType *string `json:"display_type,omitempty" yaml:"display_type,omitempty" mapstructure:"display_type,omitempty"`
-
-	// TraitType corresponds to the JSON schema field "trait_type".
-	TraitType string `json:"trait_type" yaml:"trait_type" mapstructure:"trait_type"`
-
-	// Value corresponds to the JSON schema field "value".
-	Value string `json:"value" yaml:"value" mapstructure:"value"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTAttribute) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["trait_type"]; !ok || v == nil {
-		return fmt.Errorf("field trait_type in NFTAttribute: required")
-	}
-	if v, ok := raw["value"]; !ok || v == nil {
-		return fmt.Errorf("field value in NFTAttribute: required")
-	}
-	type Plain NFTAttribute
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = NFTAttribute(plain)
-	return nil
-}
-
-type BatchMintNFTWithAttributes struct {
-	// index和itemIds一一对应
-	// 所有数量
-	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
-
-	// Attributes corresponds to the JSON schema field "attributes".
-	Attributes []NFTAttribute `json:"attributes" yaml:"attributes" mapstructure:"attributes"`
-
-	// 需要mint的所有的itemId
-	ItemIds []string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
-
-	// Remark corresponds to the JSON schema field "remark".
-	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchMintNFTWithAttributes) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["amounts"]; !ok || v == nil {
-		return fmt.Errorf("field amounts in BatchMintNFTWithAttributes: required")
-	}
-	if v, ok := raw["attributes"]; !ok || v == nil {
-		return fmt.Errorf("field attributes in BatchMintNFTWithAttributes: required")
-	}
-	if v, ok := raw["itemIds"]; !ok || v == nil {
-		return fmt.Errorf("field itemIds in BatchMintNFTWithAttributes: required")
-	}
-	if v, ok := raw["remark"]; !ok || v == nil {
-		return fmt.Errorf("field remark in BatchMintNFTWithAttributes: required")
-	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in BatchMintNFTWithAttributes: required")
-	}
-	type Plain BatchMintNFTWithAttributes
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = BatchMintNFTWithAttributes(plain)
-	return nil
-}
-
 type BatchTransferNFT struct {
 	// index和itemIds一一对应
 	// 所有数量
@@ -810,6 +729,133 @@ func (j *ChargedOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// NFTAttribute 为产品定义的每个NFT的属性.
+type NFTAttribute struct {
+	// DisplayType corresponds to the JSON schema field "display_type".
+	DisplayType *string `json:"display_type,omitempty" yaml:"display_type,omitempty" mapstructure:"display_type,omitempty"`
+
+	// TraitType corresponds to the JSON schema field "trait_type".
+	TraitType string `json:"trait_type" yaml:"trait_type" mapstructure:"trait_type"`
+
+	// Value corresponds to the JSON schema field "value".
+	Value string `json:"value" yaml:"value" mapstructure:"value"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTAttribute) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["trait_type"]; !ok || v == nil {
+		return fmt.Errorf("field trait_type in NFTAttribute: required")
+	}
+	if v, ok := raw["value"]; !ok || v == nil {
+		return fmt.Errorf("field value in NFTAttribute: required")
+	}
+	type Plain NFTAttribute
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = NFTAttribute(plain)
+	return nil
+}
+
+type MintNFTWithAttributes struct {
+	// index和itemIds一一对应
+	// 所有数量
+	Amounts int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// Attributes corresponds to the JSON schema field "attributes".
+	Attributes []NFTAttribute `json:"attributes" yaml:"attributes" mapstructure:"attributes"`
+
+	// 需要mint的所有的itemId
+	ItemIds string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+
+	// Remark corresponds to the JSON schema field "remark".
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["amounts"]; !ok || v == nil {
+		return fmt.Errorf("field amounts in MintNFTWithAttributes: required")
+	}
+	if v, ok := raw["attributes"]; !ok || v == nil {
+		return fmt.Errorf("field attributes in MintNFTWithAttributes: required")
+	}
+	if v, ok := raw["itemIds"]; !ok || v == nil {
+		return fmt.Errorf("field itemIds in MintNFTWithAttributes: required")
+	}
+	if v, ok := raw["remark"]; !ok || v == nil {
+		return fmt.Errorf("field remark in MintNFTWithAttributes: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in MintNFTWithAttributes: required")
+	}
+	type Plain MintNFTWithAttributes
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MintNFTWithAttributes(plain)
+	return nil
+}
+
+type CheckMintNFTWithAttributesInput struct {
+	// Inputs corresponds to the JSON schema field "inputs".
+	Inputs MintNFTWithAttributes `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["inputs"]; !ok || v == nil {
+		return fmt.Errorf("field inputs in CheckMintNFTWithAttributesInput: required")
+	}
+	type Plain CheckMintNFTWithAttributesInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = CheckMintNFTWithAttributesInput(plain)
+	return nil
+}
+
+type CheckMintNFTWithAttributesOutput struct {
+	// Results corresponds to the JSON schema field "results".
+	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["results"]; !ok || v == nil {
+		return fmt.Errorf("field results in CheckMintNFTWithAttributesOutput: required")
+	}
+	type Plain CheckMintNFTWithAttributesOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = CheckMintNFTWithAttributesOutput(plain)
+	return nil
+}
+
 type CheckMultiBatchBurnNFTInput struct {
 	// Inputs corresponds to the JSON schema field "inputs".
 	Inputs []BatchBurnNFT `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
@@ -853,52 +899,6 @@ func (j *CheckMultiBatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = CheckMultiBatchBurnNFTOutput(plain)
-	return nil
-}
-
-type CheckMultiBatchMintNFTWithAttributesInput struct {
-	// Inputs corresponds to the JSON schema field "inputs".
-	Inputs []BatchMintNFTWithAttributes `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiBatchMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["inputs"]; !ok || v == nil {
-		return fmt.Errorf("field inputs in CheckMultiBatchMintNFTWithAttributesInput: required")
-	}
-	type Plain CheckMultiBatchMintNFTWithAttributesInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = CheckMultiBatchMintNFTWithAttributesInput(plain)
-	return nil
-}
-
-type CheckMultiBatchMintNFTWithAttributesOutput struct {
-	// Results corresponds to the JSON schema field "results".
-	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiBatchMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["results"]; !ok || v == nil {
-		return fmt.Errorf("field results in CheckMultiBatchMintNFTWithAttributesOutput: required")
-	}
-	type Plain CheckMultiBatchMintNFTWithAttributesOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = CheckMultiBatchMintNFTWithAttributesOutput(plain)
 	return nil
 }
 
@@ -5301,9 +5301,9 @@ type SubscriptionEvent string
 var enumValues_SubscriptionEvent = []interface{}{
 	"BatchBurnNFT",
 	"BatchMintNFT",
-	"BatchMintNFTWithAttributes",
 	"BatchTransferNFT",
 	"CloseServer",
+	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
 	"MultiRecyclingEvent",
@@ -5340,9 +5340,9 @@ func (j *SubscriptionEvent) UnmarshalJSON(b []byte) error {
 
 const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
-const SubscriptionEventBatchMintNFTWithAttributes SubscriptionEvent = "BatchMintNFTWithAttributes"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
+const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
 const SubscriptionEventMultiRecyclingEvent SubscriptionEvent = "MultiRecyclingEvent"
@@ -5761,8 +5761,8 @@ func (j *User) UnmarshalJSON(b []byte) error {
 type Web3ServiceAction string
 
 var enumValues_Web3ServiceAction = []interface{}{
+	"CheckMintNFTWithAttributes",
 	"CheckMultiBatchBurnNFT",
-	"CheckMultiBatchMintNFTWithAttributes",
 	"CheckMultiUseLUAUSD",
 	"ExecGameMessage",
 	"ForgetUserRecipes",
@@ -5793,8 +5793,8 @@ func (j *Web3ServiceAction) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+const Web3ServiceActionCheckMintNFTWithAttributes Web3ServiceAction = "CheckMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiBatchBurnNFT Web3ServiceAction = "CheckMultiBatchBurnNFT"
-const Web3ServiceActionCheckMultiBatchMintNFTWithAttributes Web3ServiceAction = "CheckMultiBatchMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUAUSD"
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
 const Web3ServiceActionForgetUserRecipes Web3ServiceAction = "ForgetUserRecipes"
