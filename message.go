@@ -29,20 +29,26 @@ func (j *MintBatteryOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdInput: required")
+	if v, ok := raw["attributes"]; !ok || v == nil {
+		return fmt.Errorf("field attributes in NFTMetadata: required")
 	}
-	type Plain GetPlayerUsingNftsByUserIdInput
+	if v, ok := raw["description"]; !ok || v == nil {
+		return fmt.Errorf("field description in NFTMetadata: required")
+	}
+	if v, ok := raw["name"]; !ok || v == nil {
+		return fmt.Errorf("field name in NFTMetadata: required")
+	}
+	type Plain NFTMetadata
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = GetPlayerUsingNftsByUserIdInput(plain)
+	*j = NFTMetadata(plain)
 	return nil
 }
 
@@ -1096,26 +1102,7 @@ type CollectionOutput struct {
 	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *CollectionOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["failedReason"]; !ok || v == nil {
-		return fmt.Errorf("field failedReason in CollectionOutput: required")
-	}
-	if v, ok := raw["success"]; !ok || v == nil {
-		return fmt.Errorf("field success in CollectionOutput: required")
-	}
-	type Plain CollectionOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = CollectionOutput(plain)
-	return nil
-}
+type AppId string
 
 type CreatePVPRoomInput map[string]interface{}
 
@@ -1515,9 +1502,7 @@ func (j *GameDataServiceAction) UnmarshalJSON(b []byte) error {
 const GameDataServiceActionDeductUserExp GameDataServiceAction = "DeductUserExp"
 const GameDataServiceActionGetPlayerItemSlots GameDataServiceAction = "GetPlayerItemSlots"
 const GameDataServiceActionGetPlayerUsingNftsByUserId GameDataServiceAction = "GetPlayerUsingNftsByUserId"
-
-type AppId string
-
+const GameDataServiceActionLandUsingSkill GameDataServiceAction = "LandUsingSkill"
 const GameDataServiceActionMultiGetPlayerInfoByUserId GameDataServiceAction = "MultiGetPlayerInfoByUserId"
 const GameDataServiceActionMultiGetPlayerUsingNftsByUserId GameDataServiceAction = "MultiGetPlayerUsingNftsByUserId"
 const GameDataServiceActionUpgradePlayerItemSlots GameDataServiceAction = "UpgradePlayerItemSlots"
@@ -2229,12 +2214,22 @@ type GetPlayerUsingNftsByUserIdInput struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
-type MultiBuildUpdateEvent struct {
-	// 建造物信息
-	BuildDatas []BuildData `json:"buildDatas" yaml:"buildDatas" mapstructure:"buildDatas"`
-
-	// 消息版本号
-	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in GetPlayerUsingNftsByUserIdInput: required")
+	}
+	type Plain GetPlayerUsingNftsByUserIdInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetPlayerUsingNftsByUserIdInput(plain)
+	return nil
 }
 
 type UsingNFT struct {
@@ -2793,28 +2788,12 @@ type NFTMetadata struct {
 	YoutubeUrl *string `json:"youtube_url,omitempty" yaml:"youtube_url,omitempty" mapstructure:"youtube_url,omitempty"`
 }
 
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["attributes"]; !ok || v == nil {
-		return fmt.Errorf("field attributes in NFTMetadata: required")
-	}
-	if v, ok := raw["description"]; !ok || v == nil {
-		return fmt.Errorf("field description in NFTMetadata: required")
-	}
-	if v, ok := raw["name"]; !ok || v == nil {
-		return fmt.Errorf("field name in NFTMetadata: required")
-	}
-	type Plain NFTMetadata
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = NFTMetadata(plain)
-	return nil
+type MultiBuildUpdateEvent struct {
+	// 建造物信息
+	BuildDatas []BuildData `json:"buildDatas" yaml:"buildDatas" mapstructure:"buildDatas"`
+
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
 }
 
 type NFT struct {
@@ -3549,7 +3528,26 @@ type MintBatteryOutput struct {
 	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
-const GameDataServiceActionLandUsingSkill GameDataServiceAction = "LandUsingSkill"
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *CollectionOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["failedReason"]; !ok || v == nil {
+		return fmt.Errorf("field failedReason in CollectionOutput: required")
+	}
+	if v, ok := raw["success"]; !ok || v == nil {
+		return fmt.Errorf("field success in CollectionOutput: required")
+	}
+	type Plain CollectionOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = CollectionOutput(plain)
+	return nil
+}
 
 var enumValues_AppId = []interface{}{
 	"game-service-main",
@@ -3559,7 +3557,7 @@ var enumValues_AppId = []interface{}{
 	"web3-service",
 }
 
-const NFTTraitTypeSword NFTTraitType = "Sword"
+const PVPTypePvpTypeMatch PVPType = "pvpTypeMatch"
 
 type MultiGetPlayerInfoByUserIdInput struct {
 	// UserIds corresponds to the JSON schema field "userIds".
@@ -4076,6 +4074,7 @@ var enumValues_NFTTraitType = []interface{}{
 	"Legs Armor",
 	"Material",
 	"MysteryBox",
+	"PetEgg",
 	"Placeable",
 	"Spear",
 	"Sword",
@@ -4112,30 +4111,10 @@ const NFTTraitTypeHeadArmor NFTTraitType = "Head Armor"
 const NFTTraitTypeLegsArmor NFTTraitType = "Legs Armor"
 const NFTTraitTypeMaterial NFTTraitType = "Material"
 const NFTTraitTypeMysteryBox NFTTraitType = "MysteryBox"
+const NFTTraitTypePetEgg NFTTraitType = "PetEgg"
 const NFTTraitTypePlaceable NFTTraitType = "Placeable"
 const NFTTraitTypeSpear NFTTraitType = "Spear"
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if v, ok := raw["buildDatas"]; !ok || v == nil {
-		return fmt.Errorf("field buildDatas in MultiBuildUpdateEvent: required")
-	}
-	if v, ok := raw["etag"]; !ok || v == nil {
-		return fmt.Errorf("field etag in MultiBuildUpdateEvent: required")
-	}
-	type Plain MultiBuildUpdateEvent
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = MultiBuildUpdateEvent(plain)
-	return nil
-}
-
+const NFTTraitTypeSword NFTTraitType = "Sword"
 const NFTTraitTypeWearable NFTTraitType = "Wearable"
 
 type NFTTraitWearingPosition string
@@ -4520,7 +4499,27 @@ func (j *PVPType) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const PVPTypePvpTypeMatch PVPType = "pvpTypeMatch"
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if v, ok := raw["buildDatas"]; !ok || v == nil {
+		return fmt.Errorf("field buildDatas in MultiBuildUpdateEvent: required")
+	}
+	if v, ok := raw["etag"]; !ok || v == nil {
+		return fmt.Errorf("field etag in MultiBuildUpdateEvent: required")
+	}
+	type Plain MultiBuildUpdateEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiBuildUpdateEvent(plain)
+	return nil
+}
+
 const PVPTypePvpTypePk PVPType = "pvpTypePk"
 
 type PageMeta struct {
