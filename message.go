@@ -808,13 +808,16 @@ type MintBatteryOutput struct {
 type MintNFTWithAttributes struct {
 	// index和itemIds一一对应
 	// 所有数量
-	Amounts int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
 
 	// Attributes corresponds to the JSON schema field "attributes".
 	Attributes []NFTAttribute `json:"attributes" yaml:"attributes" mapstructure:"attributes"`
 
 	// 需要mint的所有的itemId
-	ItemIds string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+	ItemId string `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
+
+	// QualityVal corresponds to the JSON schema field "qualityVal".
+	QualityVal string `json:"qualityVal" yaml:"qualityVal" mapstructure:"qualityVal"`
 
 	// Remark corresponds to the JSON schema field "remark".
 	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
@@ -3183,14 +3186,17 @@ func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["amounts"]; !ok || v == nil {
-		return fmt.Errorf("field amounts in MintNFTWithAttributes: required")
+	if v, ok := raw["amount"]; !ok || v == nil {
+		return fmt.Errorf("field amount in MintNFTWithAttributes: required")
 	}
 	if v, ok := raw["attributes"]; !ok || v == nil {
 		return fmt.Errorf("field attributes in MintNFTWithAttributes: required")
 	}
-	if v, ok := raw["itemIds"]; !ok || v == nil {
-		return fmt.Errorf("field itemIds in MintNFTWithAttributes: required")
+	if v, ok := raw["itemId"]; !ok || v == nil {
+		return fmt.Errorf("field itemId in MintNFTWithAttributes: required")
+	}
+	if v, ok := raw["qualityVal"]; !ok || v == nil {
+		return fmt.Errorf("field qualityVal in MintNFTWithAttributes: required")
 	}
 	if v, ok := raw["remark"]; !ok || v == nil {
 		return fmt.Errorf("field remark in MintNFTWithAttributes: required")
