@@ -84,15 +84,6 @@ export enum NFTTraitTypes {
 
     // 宠物蛋
     PetName = 'Pet Name',
-    BattlePotentiality = 'Battle Potentiality',
-    FarmPotentiality = 'Farm Potentiality',
-    GatherPotentiality = 'Gather Potentiality',
-    BattleCurExp = 'Battle Exp',
-    BattleLv = 'Battle Level',
-    FarmCurExp = 'Farm Exp',
-    FarmLv = 'Farm Level',
-    GatherCurExp = 'Gather Exp',
-    GatherLv = 'Gather Level',
     AbilityList = 'Abilities',
 }
 
