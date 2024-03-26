@@ -430,6 +430,7 @@ export interface CheckMintNFTWithAttributesInput {
 
 export interface CheckMintNFTWithAttributesOutput {
     result: boolean
+    resaon: string
 }
 
 export interface GetUserNFTsByUserIdAndAddressInput {
