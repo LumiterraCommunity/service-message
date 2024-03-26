@@ -237,6 +237,9 @@ type CheckMintNFTWithAttributesInput struct {
 }
 
 type CheckMintNFTWithAttributesOutput struct {
+	// Resaon corresponds to the JSON schema field "resaon".
+	Resaon string `json:"resaon" yaml:"resaon" mapstructure:"resaon"`
+
 	// Result corresponds to the JSON schema field "result".
 	Result bool `json:"result" yaml:"result" mapstructure:"result"`
 }
@@ -3261,6 +3264,9 @@ func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if v, ok := raw["resaon"]; !ok || v == nil {
+		return fmt.Errorf("field resaon in CheckMintNFTWithAttributesOutput: required")
 	}
 	if v, ok := raw["result"]; !ok || v == nil {
 		return fmt.Errorf("field result in CheckMintNFTWithAttributesOutput: required")
