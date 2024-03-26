@@ -354,7 +354,7 @@ export interface MintNFTWithAttributes {
     /**
      * 需要mint的所有的itemId
      */
-    itemIds: string;
+    itemId: string;
 
     /**
      * index和itemIds一一对应
@@ -362,7 +362,12 @@ export interface MintNFTWithAttributes {
      * @items.type integer
      * @items.minimum 0
      */
-    amounts: integer;
+    amount: integer;
+
+    /**
+     * 
+     */
+    qualityVal: string;
 
     attributes: NFTAttribute[];
 
