@@ -40,6 +40,9 @@ export interface DungeonInvestData {
     // 当前剩余投资
     curInvest: string;
 
+    // 单次副本开启最大奖励金额
+    maxChallenageBonus: string;
+
     // LP情况
     totalBaseLP: string;
     totalRewardLP: string;
