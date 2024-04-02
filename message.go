@@ -1458,7 +1458,7 @@ func (j *DitaminProduce) UnmarshalJSON(b []byte) error {
 
 type DivestDungeonInput struct {
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
 	// MinOutAmount corresponds to the JSON schema field "minOutAmount".
 	MinOutAmount string `json:"minOutAmount" yaml:"minOutAmount" mapstructure:"minOutAmount"`
@@ -1466,8 +1466,8 @@ type DivestDungeonInput struct {
 	// RemoveBaseLP corresponds to the JSON schema field "removeBaseLP".
 	RemoveBaseLP string `json:"removeBaseLP" yaml:"removeBaseLP" mapstructure:"removeBaseLP"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -1488,8 +1488,8 @@ func (j *DivestDungeonInput) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["removeBaseLP"]; !ok || v == nil {
 		return fmt.Errorf("field removeBaseLP in DivestDungeonInput: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in DivestDungeonInput: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in DivestDungeonInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in DivestDungeonInput: required")
@@ -1649,7 +1649,7 @@ type DungeonPVEPStart struct {
 	AppId string `json:"appId" yaml:"appId" mapstructure:"appId"`
 
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
 	// UserIds corresponds to the JSON schema field "userIds".
 	UserIds []string `json:"userIds" yaml:"userIds" mapstructure:"userIds"`
@@ -1687,7 +1687,7 @@ type DungeonStartPVEPCallback struct {
 	ChallengeBonus string `json:"challengeBonus" yaml:"challengeBonus" mapstructure:"challengeBonus"`
 
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
 	// FailedUserIds corresponds to the JSON schema field "failedUserIds".
 	FailedUserIds []string `json:"failedUserIds" yaml:"failedUserIds" mapstructure:"failedUserIds"`
@@ -1728,13 +1728,13 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 
 type EstimateDivestDungeonInput struct {
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
 	// RemoveBaseLP corresponds to the JSON schema field "removeBaseLP".
 	RemoveBaseLP string `json:"removeBaseLP" yaml:"removeBaseLP" mapstructure:"removeBaseLP"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -1794,10 +1794,10 @@ type EstimateInvestDungeonInput struct {
 	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
 
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -1815,8 +1815,8 @@ func (j *EstimateInvestDungeonInput) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["dungeonId"]; !ok || v == nil {
 		return fmt.Errorf("field dungeonId in EstimateInvestDungeonInput: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in EstimateInvestDungeonInput: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in EstimateInvestDungeonInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in EstimateInvestDungeonInput: required")
@@ -2837,8 +2837,8 @@ func (j *InvestHavestLog) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["timestamp"]; !ok || v == nil {
 		return fmt.Errorf("field timestamp in InvestHavestLog: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in InvestHavestLog: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in InvestHavestLog: required")
 	}
 	type Plain InvestHavestLog
 	var plain Plain
@@ -4270,14 +4270,17 @@ func (j *TotemInvestData) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["claimableReward"]; !ok || v == nil {
 		return fmt.Errorf("field claimableReward in TotemInvestData: required")
 	}
+	if v, ok := raw["dungeonId"]; !ok || v == nil {
+		return fmt.Errorf("field dungeonId in TotemInvestData: required")
+	}
 	if v, ok := raw["rewardLP"]; !ok || v == nil {
 		return fmt.Errorf("field rewardLP in TotemInvestData: required")
 	}
 	if v, ok := raw["rewardLPRadio"]; !ok || v == nil {
 		return fmt.Errorf("field rewardLPRadio in TotemInvestData: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in TotemInvestData: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in TotemInvestData: required")
 	}
 	type Plain TotemInvestData
 	var plain Plain
@@ -4827,8 +4830,8 @@ func (j *InvestDungeonInput) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["minBaseLP"]; !ok || v == nil {
 		return fmt.Errorf("field minBaseLP in InvestDungeonInput: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in InvestDungeonInput: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in InvestDungeonInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in InvestDungeonInput: required")
@@ -4872,8 +4875,8 @@ func (j *EstimateDivestDungeonInput) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["removeBaseLP"]; !ok || v == nil {
 		return fmt.Errorf("field removeBaseLP in EstimateDivestDungeonInput: required")
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in EstimateDivestDungeonInput: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in EstimateDivestDungeonInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in EstimateDivestDungeonInput: required")
@@ -4911,8 +4914,8 @@ func (j *HavestDungeonInvestRewardInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if v, ok := raw["totemId"]; !ok || v == nil {
-		return fmt.Errorf("field totemId in HavestDungeonInvestRewardInput: required")
+	if v, ok := raw["totemNFTId"]; !ok || v == nil {
+		return fmt.Errorf("field totemNFTId in HavestDungeonInvestRewardInput: required")
 	}
 	if v, ok := raw["userId"]; !ok || v == nil {
 		return fmt.Errorf("field userId in HavestDungeonInvestRewardInput: required")
@@ -5135,8 +5138,8 @@ type GetUserTrackOutput struct {
 }
 
 type HavestDungeonInvestRewardInput struct {
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -5311,13 +5314,13 @@ type InvestDungeonInput struct {
 	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
 
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId string `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
 
 	// MinBaseLP corresponds to the JSON schema field "minBaseLP".
 	MinBaseLP string `json:"minBaseLP" yaml:"minBaseLP" mapstructure:"minBaseLP"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -5517,7 +5520,7 @@ type GetInvestHavestLogsInput struct {
 
 type GetUserAllTotemInvestDataInput struct {
 	// DungeonId corresponds to the JSON schema field "dungeonId".
-	DungeonId *string `json:"dungeonId,omitempty" yaml:"dungeonId,omitempty" mapstructure:"dungeonId,omitempty"`
+	DungeonId *float64 `json:"dungeonId,omitempty" yaml:"dungeonId,omitempty" mapstructure:"dungeonId,omitempty"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -5548,8 +5551,8 @@ type InvestHavestLog struct {
 	// Timestamp corresponds to the JSON schema field "timestamp".
 	Timestamp string `json:"timestamp" yaml:"timestamp" mapstructure:"timestamp"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 }
 
 type GetInvestHavestLogsOutput struct {
@@ -6306,14 +6309,17 @@ type TotemInvestData struct {
 	// ClaimableReward corresponds to the JSON schema field "claimableReward".
 	ClaimableReward string `json:"claimableReward" yaml:"claimableReward" mapstructure:"claimableReward"`
 
+	// DungeonId corresponds to the JSON schema field "dungeonId".
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+
 	// RewardLP corresponds to the JSON schema field "rewardLP".
 	RewardLP string `json:"rewardLP" yaml:"rewardLP" mapstructure:"rewardLP"`
 
 	// RewardLPRadio corresponds to the JSON schema field "rewardLPRadio".
 	RewardLPRadio int `json:"rewardLPRadio" yaml:"rewardLPRadio" mapstructure:"rewardLPRadio"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
+	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 }
 
 type UnloadEquipment struct {
