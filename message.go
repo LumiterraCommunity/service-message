@@ -477,6 +477,9 @@ type DungeonStartPVEPCallback struct {
 
 	// FailedUserIds corresponds to the JSON schema field "failedUserIds".
 	FailedUserIds []string `json:"failedUserIds" yaml:"failedUserIds" mapstructure:"failedUserIds"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
 type EstimateDivestDungeonInput struct {
@@ -5357,6 +5360,9 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["failedUserIds"]; !ok || v == nil {
 		return fmt.Errorf("field failedUserIds in DungeonStartPVEPCallback: required")
+	}
+	if v, ok := raw["success"]; !ok || v == nil {
+		return fmt.Errorf("field success in DungeonStartPVEPCallback: required")
 	}
 	type Plain DungeonStartPVEPCallback
 	var plain Plain
