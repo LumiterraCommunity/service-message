@@ -7,7 +7,7 @@ type integer = Int32;
 export interface DungeonPVEPStart {
     appId: string;
 
-    dungeonId: string;
+    dungeonId: integer;
 
     userIds: string[];
 }
@@ -15,7 +15,7 @@ export interface DungeonPVEPStart {
 export interface DungeonStartPVEPCallback {
     appId: string;
 
-    dungeonId: string;
+    dungeonId: integer;
 
     challengeBonus: string;
 
@@ -71,7 +71,8 @@ export interface GetAllDungeonInvestDataOutput {
 }
 
 export interface TotemInvestData {
-    totemId: string;
+    totemNFTId: string;
+    dungeonId: integer;
 
     baseLP: string;
     rewardLP: string;
@@ -87,7 +88,7 @@ export interface UpdateTotemInvestData {
 }
 
 export interface GetUserAllTotemInvestDataInput {
-    dungeonId?: string;
+    dungeonId?: integer;
     userId: string;
 }
 
@@ -97,9 +98,9 @@ export interface GetUserAllTotemInvestDataOutput {
 
 export interface EstimateInvestDungeonInput {
     // 副本id
-    dungeonId: string;
+    dungeonId: integer;
     // 图腾id
-    totemId: string;
+    totemNFTId: string;
 
     userId: string;
 
@@ -119,9 +120,9 @@ export interface EstimateInvestDungeonOutput {
 
 export interface InvestDungeonInput {
     // 副本id
-    dungeonId: string;
+    dungeonId: integer;
     // 图腾id
-    totemId: string;
+    totemNFTId: string;
 
     // 
     userId: string;
@@ -140,9 +141,9 @@ export interface InvestDungeonOutput {
 
 export interface EstimateDivestDungeonInput {
     // 副本id
-    dungeonId: string;
+    dungeonId: integer;
     // 图腾id
-    totemId: string;
+    totemNFTId: string;
 
     userId: string;
 
@@ -164,9 +165,9 @@ export interface EstimateDivestDungeonOutput {
 
 export interface DivestDungeonInput {
     // 副本id
-    dungeonId: string;
+    dungeonId: integer;
     // 图腾id
-    totemId: string;
+    totemNFTId: string;
 
     userId: string;
 
@@ -183,7 +184,7 @@ export interface DivestDungeonOutput {
 }
 
 export interface HavestDungeonInvestRewardInput {
-    totemId: string;
+    totemNFTId: string;
     userId: string;
 }
 
@@ -197,7 +198,7 @@ export interface GetInvestHavestLogsInput {
 }
 
 export interface InvestHavestLog {
-    totemId: string;
+    totemNFTId: string;
     amount: string;
     timestamp: string;
 }
