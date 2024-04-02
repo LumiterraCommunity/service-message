@@ -188,7 +188,10 @@ export interface DivestDungeonOutput {
 
 export interface HavestDungeonInvestRewardInput {
     totemNFTId: string;
-    userId: string;
+    ownerUserId: string;
+    toUserId: string;
+    amount: string;
+    type: string;
 }
 
 export interface HavestDungeonInvestRewardOutput {
@@ -204,6 +207,7 @@ export interface InvestHavestLog {
     totemNFTId: string;
     amount: string;
     timestamp: string;
+    type: string;
 }
 
 export interface GetInvestHavestLogsOutput {
