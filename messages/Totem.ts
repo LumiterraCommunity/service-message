@@ -43,6 +43,9 @@ export interface DungeonInvestData {
     // 单次副本开启最大奖励金额
     maxChallenageBonus: string;
 
+    // 副本id
+    dungeonId: integer;
+
     // LP情况
     totalBaseLP: string;
     totalRewardLP: string;
