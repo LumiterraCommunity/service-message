@@ -2846,6 +2846,9 @@ func (j *InvestHavestLog) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["totemNFTId"]; !ok || v == nil {
 		return fmt.Errorf("field totemNFTId in InvestHavestLog: required")
 	}
+	if v, ok := raw["type"]; !ok || v == nil {
+		return fmt.Errorf("field type in InvestHavestLog: required")
+	}
 	type Plain InvestHavestLog
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
@@ -4920,11 +4923,20 @@ func (j *HavestDungeonInvestRewardInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if v, ok := raw["amount"]; !ok || v == nil {
+		return fmt.Errorf("field amount in HavestDungeonInvestRewardInput: required")
+	}
+	if v, ok := raw["ownerUserId"]; !ok || v == nil {
+		return fmt.Errorf("field ownerUserId in HavestDungeonInvestRewardInput: required")
+	}
+	if v, ok := raw["toUserId"]; !ok || v == nil {
+		return fmt.Errorf("field toUserId in HavestDungeonInvestRewardInput: required")
+	}
 	if v, ok := raw["totemNFTId"]; !ok || v == nil {
 		return fmt.Errorf("field totemNFTId in HavestDungeonInvestRewardInput: required")
 	}
-	if v, ok := raw["userId"]; !ok || v == nil {
-		return fmt.Errorf("field userId in HavestDungeonInvestRewardInput: required")
+	if v, ok := raw["type"]; !ok || v == nil {
+		return fmt.Errorf("field type in HavestDungeonInvestRewardInput: required")
 	}
 	type Plain HavestDungeonInvestRewardInput
 	var plain Plain
@@ -5144,11 +5156,20 @@ type GetUserTrackOutput struct {
 }
 
 type HavestDungeonInvestRewardInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// OwnerUserId corresponds to the JSON schema field "ownerUserId".
+	OwnerUserId string `json:"ownerUserId" yaml:"ownerUserId" mapstructure:"ownerUserId"`
+
+	// ToUserId corresponds to the JSON schema field "toUserId".
+	ToUserId string `json:"toUserId" yaml:"toUserId" mapstructure:"toUserId"`
+
 	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
 	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
 
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+	// Type corresponds to the JSON schema field "type".
+	Type string `json:"type" yaml:"type" mapstructure:"type"`
 }
 
 type GetUserTrackInput struct {
@@ -5559,6 +5580,9 @@ type InvestHavestLog struct {
 
 	// TotemNFTId corresponds to the JSON schema field "totemNFTId".
 	TotemNFTId string `json:"totemNFTId" yaml:"totemNFTId" mapstructure:"totemNFTId"`
+
+	// Type corresponds to the JSON schema field "type".
+	Type string `json:"type" yaml:"type" mapstructure:"type"`
 }
 
 type GetInvestHavestLogsOutput struct {
