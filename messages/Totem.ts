@@ -19,6 +19,8 @@ export interface DungeonStartPVEPCallback {
 
     challengeBonus: string;
 
+    success: boolean;
+
     failedUserIds: string[];
 }
 
