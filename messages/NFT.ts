@@ -181,21 +181,6 @@ export interface NFT {
     createdAt: integer
 }
 
-/**
- * NFT放置过期时间结构体
- */
-export interface NFTPlaceableTimeout {
-    /**
-     *  NFT Id
-     */
-    nftId: string;
-
-    /**
-     * 名字（是否唯一） 
-     * */
-    timeoutSec: integer;
-}
-
 export interface GetUserNFTsInput {
     userId: string;
 }
@@ -210,11 +195,6 @@ export interface GetUserNFTsOutput {
      * user all nfts
      */
     nfts: NFT[];
-
-    /**
-     * NFT放置过期时间表
-     */
-    placeableTimeouts: NFTPlaceableTimeout[];
 }
 
 
@@ -235,11 +215,6 @@ export interface GetUserExternalNFTsOutput {
      * user all nfts
      */
     nfts: NFT[];
-
-    /**
-     * NFT放置过期时间表
-     */
-    placeableTimeouts: NFTPlaceableTimeout[];
 }
 
 export interface RecipeInfo {
