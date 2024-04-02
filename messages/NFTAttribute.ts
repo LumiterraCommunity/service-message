@@ -179,9 +179,21 @@ export enum NFTTrait_Type {
     PetEgg = 'PetEgg', // 宠物蛋
 }
 
-
 export enum ExternalTotemTraitTypes {
     rarity = 'rarity',
+    type = 'type',
+}
+
+export enum ExternalTotemTrait_Type {
+    Totem = 'Totem',
+}
+
+export enum ExternalTotemTrait_Rarity {
+    A = 'A',
+    B = 'B',
+    C = 'C',
+    D = 'D',
+    E = 'E',
 }
 
 export enum ExternalNFT_Address {
