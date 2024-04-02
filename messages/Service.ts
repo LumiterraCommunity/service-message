@@ -88,7 +88,7 @@ export enum Web3ServiceAction {
 
     // 图腾投资协议
     GetAllDungeonInvestData = 'GetAllDungeonInvestData',
-    GetAllTotemInvestData = 'GetAllTotemInvestData',
+    GetUserAllTotemInvestData = 'GetUserAllTotemInvestData',
     EstimateInvestDungeon = 'EstimateInvestDungeon',
     InvestDungeon = 'InvestDungeon',
     EstimateDivestDungeon = 'EstimateDivestDungeon',

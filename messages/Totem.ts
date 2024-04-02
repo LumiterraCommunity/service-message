@@ -86,12 +86,12 @@ export interface UpdateTotemInvestData {
     data: TotemInvestData;
 }
 
-export interface GetAllTotemInvestDataInput {
+export interface GetUserAllTotemInvestDataInput {
     dungeonId?: string;
     userId: string;
 }
 
-export interface GetAllTotemInvestDataOutput {
+export interface GetUserAllTotemInvestDataOutput {
     investDatas: TotemInvestData[];
 }
 
