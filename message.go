@@ -454,7 +454,7 @@ type DungeonInvestData struct {
 	TotemERewardBoostPrecent int `json:"totemERewardBoostPrecent" yaml:"totemERewardBoostPrecent" mapstructure:"totemERewardBoostPrecent"`
 }
 
-type DungeonStart struct {
+type DungeonPVEPStart struct {
 	// AppId corresponds to the JSON schema field "appId".
 	AppId string `json:"appId" yaml:"appId" mapstructure:"appId"`
 
@@ -465,7 +465,7 @@ type DungeonStart struct {
 	UserIds []string `json:"userIds" yaml:"userIds" mapstructure:"userIds"`
 }
 
-type DungeonStartCallback struct {
+type DungeonStartPVEPCallback struct {
 	// AppId corresponds to the JSON schema field "appId".
 	AppId string `json:"appId" yaml:"appId" mapstructure:"appId"`
 
@@ -5341,53 +5341,53 @@ func (j *EstimateDivestDungeonInput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonStartCallback) UnmarshalJSON(b []byte) error {
+func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if v, ok := raw["appId"]; !ok || v == nil {
-		return fmt.Errorf("field appId in DungeonStartCallback: required")
+		return fmt.Errorf("field appId in DungeonStartPVEPCallback: required")
 	}
 	if v, ok := raw["challengeBonus"]; !ok || v == nil {
-		return fmt.Errorf("field challengeBonus in DungeonStartCallback: required")
+		return fmt.Errorf("field challengeBonus in DungeonStartPVEPCallback: required")
 	}
 	if v, ok := raw["dungeonId"]; !ok || v == nil {
-		return fmt.Errorf("field dungeonId in DungeonStartCallback: required")
+		return fmt.Errorf("field dungeonId in DungeonStartPVEPCallback: required")
 	}
 	if v, ok := raw["failedUserIds"]; !ok || v == nil {
-		return fmt.Errorf("field failedUserIds in DungeonStartCallback: required")
+		return fmt.Errorf("field failedUserIds in DungeonStartPVEPCallback: required")
 	}
-	type Plain DungeonStartCallback
+	type Plain DungeonStartPVEPCallback
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = DungeonStartCallback(plain)
+	*j = DungeonStartPVEPCallback(plain)
 	return nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonStart) UnmarshalJSON(b []byte) error {
+func (j *DungeonPVEPStart) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if v, ok := raw["appId"]; !ok || v == nil {
-		return fmt.Errorf("field appId in DungeonStart: required")
+		return fmt.Errorf("field appId in DungeonPVEPStart: required")
 	}
 	if v, ok := raw["dungeonId"]; !ok || v == nil {
-		return fmt.Errorf("field dungeonId in DungeonStart: required")
+		return fmt.Errorf("field dungeonId in DungeonPVEPStart: required")
 	}
 	if v, ok := raw["userIds"]; !ok || v == nil {
-		return fmt.Errorf("field userIds in DungeonStart: required")
+		return fmt.Errorf("field userIds in DungeonPVEPStart: required")
 	}
-	type Plain DungeonStart
+	type Plain DungeonPVEPStart
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = DungeonStart(plain)
+	*j = DungeonPVEPStart(plain)
 	return nil
 }
 
