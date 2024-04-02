@@ -1536,6 +1536,9 @@ type DungeonInvestData struct {
 	// CurInvest corresponds to the JSON schema field "curInvest".
 	CurInvest string `json:"curInvest" yaml:"curInvest" mapstructure:"curInvest"`
 
+	// DungeonId corresponds to the JSON schema field "dungeonId".
+	DungeonId int `json:"dungeonId" yaml:"dungeonId" mapstructure:"dungeonId"`
+
 	// MaxChallenageBonus corresponds to the JSON schema field "maxChallenageBonus".
 	MaxChallenageBonus string `json:"maxChallenageBonus" yaml:"maxChallenageBonus" mapstructure:"maxChallenageBonus"`
 
@@ -1592,6 +1595,9 @@ func (j *DungeonInvestData) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["curInvest"]; !ok || v == nil {
 		return fmt.Errorf("field curInvest in DungeonInvestData: required")
+	}
+	if v, ok := raw["dungeonId"]; !ok || v == nil {
+		return fmt.Errorf("field dungeonId in DungeonInvestData: required")
 	}
 	if v, ok := raw["maxChallenageBonus"]; !ok || v == nil {
 		return fmt.Errorf("field maxChallenageBonus in DungeonInvestData: required")
