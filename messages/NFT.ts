@@ -145,7 +145,7 @@ export interface NFT {
     /**
      * NFT address
      */
-    address: string;
+    address: string; // address
 
     /**
      * product Id
@@ -218,46 +218,28 @@ export interface GetUserNFTsOutput {
 }
 
 
-/** 
- * 更新用户的NFT
- * 可能是添加或者数量变更.
- */
-export interface UpdateUserNFT {
+export interface GetUserExternalNFTsInput {
+    userId: string;
+
+    // 过滤的资产地址
+    filterByAssetAddress?: string;
+}
+
+export interface GetUserExternalNFTsOutput {
     /**
      * 消息版本号
      */
     etag: integer;
 
     /**
-     *  归属用户id
+     * user all nfts
      */
-    userId: string;
+    nfts: NFT[];
 
     /**
-     * 来源坐标
-     * 当捡取时携带且不为0
+     * NFT放置过期时间表
      */
-    fromLandId: integer;
-
-    /**
-     * 区块链交易hash
-     */
-    txn?: string;
-
-    /**
-     * 接收NFT的用户钱包地址
-     */
-    recipientBlockchainAddress?: string;
-
-    /**
-     * 发送NFT的用户钱包地址
-     */
-    senderBlockchainAddress?: string;
-
-    /**
-     * NFT信息
-     */
-    nft: NFT;
+    placeableTimeouts: NFTPlaceableTimeout[];
 }
 
 export interface RecipeInfo {

@@ -178,3 +178,12 @@ export enum NFTTrait_Type {
     MysteryBox = 'MysteryBox', // 神秘宝箱
     PetEgg = 'PetEgg', // 宠物蛋
 }
+
+
+export enum ExternalTotemTraitTypes {
+    rarity = 'rarity',
+}
+
+export enum ExternalNFT_Address {
+    Totem = '0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924',
+}

@@ -82,6 +82,21 @@ export enum Web3ServiceAction {
 
     // 
     ExecGameMessage = 'ExecGameMessage',
+
+    // 获取用户所有外部NFT
+    GetUserExternalNFTs = 'GetUserExternalNFTs',
+
+    // 图腾投资协议
+    GetAllDungeonInvestData = 'GetAllDungeonInvestData',
+    GetAllTotemInvestData = 'GetAllTotemInvestData',
+    EstimateInvestDungeon = 'EstimateInvestDungeon',
+    InvestDungeon = 'InvestDungeon',
+    EstimateDivestDungeon = 'EstimateDivestDungeon',
+    DivestDungeon = 'DivestDungeon',
+    HavestDungeonInvestReward = 'HavestDungeonInvestReward',
+    GetInvestHavestLogs = 'GetInvestHavestLogs',
+    DungeonStart = 'DungeonStart',
+    DistributeDungeonBonus = 'DistributeDungeonBonus',
 }
 
 export enum SceneDynamicServiceAction {
@@ -99,11 +114,6 @@ export enum SubscriptionEvent {
     MultiRecyclingEvent = 'MultiRecyclingEvent',
     // 更新建造物信息事件
     MultiBuildUpdateEvent = 'MultiBuildUpdateEvent',
-
-    // 用户NFT变更
-    // 删除
-    // 增加都是这个协议
-    UpdateUserNFT = 'UpdateUserNFT',
 
     // 批量用户NFT变更
     MultiUpdateUserNFT = 'MultiUpdateUserNFT',
@@ -147,6 +157,10 @@ export enum SubscriptionEvent {
     MintNFTWithAttributes = 'MintNFTWithAttributes',
 
     BatchTransferNFT = 'BatchTransferNFT',
+
+    // 更新图腾投资信息
+    UpdateTotemInvestData = 'UpdateTotemInvestData',
+    DungeonStartCallback = 'DungeonStartCallback',
 }
 
 export enum PVPSubscriptionEvent {
