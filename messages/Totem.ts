@@ -4,7 +4,7 @@
 type Int32 = number;
 type integer = Int32;
 
-export interface DungeonStart {
+export interface DungeonPVEPStart {
     appId: string;
 
     dungeonId: string;
@@ -12,7 +12,7 @@ export interface DungeonStart {
     userIds: string[];
 }
 
-export interface DungeonStartCallback {
+export interface DungeonStartPVEPCallback {
     appId: string;
 
     dungeonId: string;
