@@ -1698,6 +1698,9 @@ type DungeonStartPVEPCallback struct {
 	// FailedUserIds corresponds to the JSON schema field "failedUserIds".
 	FailedUserIds []string `json:"failedUserIds" yaml:"failedUserIds" mapstructure:"failedUserIds"`
 
+	// InvestBonus corresponds to the JSON schema field "investBonus".
+	InvestBonus string `json:"investBonus" yaml:"investBonus" mapstructure:"investBonus"`
+
 	// Success corresponds to the JSON schema field "success".
 	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
@@ -1719,6 +1722,9 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["failedUserIds"]; !ok || v == nil {
 		return fmt.Errorf("field failedUserIds in DungeonStartPVEPCallback: required")
+	}
+	if v, ok := raw["investBonus"]; !ok || v == nil {
+		return fmt.Errorf("field investBonus in DungeonStartPVEPCallback: required")
 	}
 	if v, ok := raw["success"]; !ok || v == nil {
 		return fmt.Errorf("field success in DungeonStartPVEPCallback: required")
@@ -1963,6 +1969,9 @@ func (j *UpdateTotemInvestData) UnmarshalJSON(b []byte) error {
 	}
 	if v, ok := raw["data"]; !ok || v == nil {
 		return fmt.Errorf("field data in UpdateTotemInvestData: required")
+	}
+	if v, ok := raw["userId"]; !ok || v == nil {
+		return fmt.Errorf("field userId in UpdateTotemInvestData: required")
 	}
 	type Plain UpdateTotemInvestData
 	var plain Plain
@@ -6366,6 +6375,9 @@ type UnloadEquipment struct {
 type UpdateTotemInvestData struct {
 	// Data corresponds to the JSON schema field "data".
 	Data TotemInvestData `json:"data" yaml:"data" mapstructure:"data"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
 type UpdateUpcomingUses struct {
