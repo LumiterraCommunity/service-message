@@ -95,8 +95,6 @@ export enum Web3ServiceAction {
     DivestDungeon = 'DivestDungeon',
     HavestDungeonInvestReward = 'HavestDungeonInvestReward',
     GetInvestHavestLogs = 'GetInvestHavestLogs',
-    DungeonStart = 'DungeonStart',
-    DistributeDungeonBonus = 'DistributeDungeonBonus',
 }
 
 export enum SceneDynamicServiceAction {
@@ -160,7 +158,9 @@ export enum SubscriptionEvent {
 
     // 更新图腾投资信息
     UpdateTotemInvestData = 'UpdateTotemInvestData',
+    DungeonStart = 'DungeonStart',
     DungeonStartCallback = 'DungeonStartCallback',
+    DistributeDungeonBonus = 'DistributeDungeonBonus',
 }
 
 export enum PVPSubscriptionEvent {

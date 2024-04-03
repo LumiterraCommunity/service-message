@@ -104,14 +104,14 @@ export interface GetUserAllTotemInvestDataOutput {
     investDatas: TotemInvestData[];
 }
 
+// 
 export interface EstimateInvestDungeonInput {
     // 副本id
     dungeonId: integer;
     // 图腾id
     totemNFTId: string;
-
+    // 用户id
     userId: string;
-
     // 投资金额
     amount: string;
 }
