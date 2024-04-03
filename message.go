@@ -6294,6 +6294,8 @@ const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
+const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
+const SubscriptionEventDungeonStart SubscriptionEvent = "DungeonStart"
 const SubscriptionEventDungeonStartCallback SubscriptionEvent = "DungeonStartCallback"
 const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
@@ -6498,9 +6500,7 @@ type Web3ServiceAction string
 const Web3ServiceActionCheckMintNFTWithAttributes Web3ServiceAction = "CheckMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiBatchBurnNFT Web3ServiceAction = "CheckMultiBatchBurnNFT"
 const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUAUSD"
-const Web3ServiceActionDistributeDungeonBonus Web3ServiceAction = "DistributeDungeonBonus"
 const Web3ServiceActionDivestDungeon Web3ServiceAction = "DivestDungeon"
-const Web3ServiceActionDungeonStart Web3ServiceAction = "DungeonStart"
 const Web3ServiceActionEstimateDivestDungeon Web3ServiceAction = "EstimateDivestDungeon"
 const Web3ServiceActionEstimateInvestDungeon Web3ServiceAction = "EstimateInvestDungeon"
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
@@ -6734,6 +6734,8 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"BatchMintNFT",
 	"BatchTransferNFT",
 	"CloseServer",
+	"DistributeDungeonBonus",
+	"DungeonStart",
 	"DungeonStartCallback",
 	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
@@ -6758,9 +6760,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"CheckMintNFTWithAttributes",
 	"CheckMultiBatchBurnNFT",
 	"CheckMultiUseLUAUSD",
-	"DistributeDungeonBonus",
 	"DivestDungeon",
-	"DungeonStart",
 	"EstimateDivestDungeon",
 	"EstimateInvestDungeon",
 	"ExecGameMessage",
