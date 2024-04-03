@@ -17,6 +17,10 @@ export interface DungeonStartPVEPCallback {
 
     dungeonId: integer;
 
+    // 投资人获得的收益
+    investBonus: string;
+
+    // 投资人给到挑战者的收益
     challengeBonus: string;
 
     success: boolean;
@@ -87,6 +91,7 @@ export interface TotemInvestData {
 }
 
 export interface UpdateTotemInvestData {
+    userId: string;
     data: TotemInvestData;
 }
 
