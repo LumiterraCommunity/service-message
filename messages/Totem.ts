@@ -31,7 +31,7 @@ export interface DungeonStartPVEPCallback {
 export interface DistributeDungeonBonus {
     appId: string;
     // 结算id
-    bonusId: string;
+    bonusId: integer;
     userId: string;
     // 领取金额
     amount: string;
