@@ -6295,8 +6295,8 @@ const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
 const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
-const SubscriptionEventDungeonStart SubscriptionEvent = "DungeonStart"
-const SubscriptionEventDungeonStartCallback SubscriptionEvent = "DungeonStartCallback"
+const SubscriptionEventDungeonPVEPStart SubscriptionEvent = "DungeonPVEPStart"
+const SubscriptionEventDungeonStartPVEPCallback SubscriptionEvent = "DungeonStartPVEPCallback"
 const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
@@ -6735,8 +6735,8 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"BatchTransferNFT",
 	"CloseServer",
 	"DistributeDungeonBonus",
-	"DungeonStart",
-	"DungeonStartCallback",
+	"DungeonPVEPStart",
+	"DungeonStartPVEPCallback",
 	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
