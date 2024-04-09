@@ -158,8 +158,8 @@ export enum SubscriptionEvent {
 
     // 更新图腾投资信息
     UpdateTotemInvestData = 'UpdateTotemInvestData',
-    DungeonStart = 'DungeonStart',
-    DungeonStartCallback = 'DungeonStartCallback',
+    DungeonPVEPStart = 'DungeonPVEPStart',
+    DungeonStartPVEPCallback = 'DungeonStartPVEPCallback',
     DistributeDungeonBonus = 'DistributeDungeonBonus',
 }
 
