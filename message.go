@@ -1297,7 +1297,7 @@ type DistributeDungeonBonus struct {
 	AppId string `json:"appId" yaml:"appId" mapstructure:"appId"`
 
 	// BonusId corresponds to the JSON schema field "bonusId".
-	BonusId string `json:"bonusId" yaml:"bonusId" mapstructure:"bonusId"`
+	BonusId int `json:"bonusId" yaml:"bonusId" mapstructure:"bonusId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
