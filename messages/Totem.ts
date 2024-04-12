@@ -61,6 +61,13 @@ export interface DungeonInvestData {
     totemDRadio: integer;
     totemERadio: integer;
 
+    // 各个图腾的投资数量
+    totemAAmount: integer;
+    totemBAmount: integer;
+    totemCAmount: integer;
+    totemDAmount: integer;
+    totemEAmount: integer;
+
     // 各个图腾投资奖励系数
     totemARewardBoostPrecent: integer;
     totemBRewardBoostPrecent: integer;
