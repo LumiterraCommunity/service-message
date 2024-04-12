@@ -1551,12 +1551,18 @@ type DungeonInvestData struct {
 	// TotalRewardLP corresponds to the JSON schema field "totalRewardLP".
 	TotalRewardLP string `json:"totalRewardLP" yaml:"totalRewardLP" mapstructure:"totalRewardLP"`
 
+	// TotemAAmount corresponds to the JSON schema field "totemAAmount".
+	TotemAAmount int `json:"totemAAmount" yaml:"totemAAmount" mapstructure:"totemAAmount"`
+
 	// TotemARadio corresponds to the JSON schema field "totemARadio".
 	TotemARadio int `json:"totemARadio" yaml:"totemARadio" mapstructure:"totemARadio"`
 
 	// TotemARewardBoostPrecent corresponds to the JSON schema field
 	// "totemARewardBoostPrecent".
 	TotemARewardBoostPrecent int `json:"totemARewardBoostPrecent" yaml:"totemARewardBoostPrecent" mapstructure:"totemARewardBoostPrecent"`
+
+	// TotemBAmount corresponds to the JSON schema field "totemBAmount".
+	TotemBAmount int `json:"totemBAmount" yaml:"totemBAmount" mapstructure:"totemBAmount"`
 
 	// TotemBRadio corresponds to the JSON schema field "totemBRadio".
 	TotemBRadio int `json:"totemBRadio" yaml:"totemBRadio" mapstructure:"totemBRadio"`
@@ -1565,6 +1571,9 @@ type DungeonInvestData struct {
 	// "totemBRewardBoostPrecent".
 	TotemBRewardBoostPrecent int `json:"totemBRewardBoostPrecent" yaml:"totemBRewardBoostPrecent" mapstructure:"totemBRewardBoostPrecent"`
 
+	// TotemCAmount corresponds to the JSON schema field "totemCAmount".
+	TotemCAmount int `json:"totemCAmount" yaml:"totemCAmount" mapstructure:"totemCAmount"`
+
 	// TotemCRadio corresponds to the JSON schema field "totemCRadio".
 	TotemCRadio int `json:"totemCRadio" yaml:"totemCRadio" mapstructure:"totemCRadio"`
 
@@ -1572,12 +1581,18 @@ type DungeonInvestData struct {
 	// "totemCRewardBoostPrecent".
 	TotemCRewardBoostPrecent int `json:"totemCRewardBoostPrecent" yaml:"totemCRewardBoostPrecent" mapstructure:"totemCRewardBoostPrecent"`
 
+	// TotemDAmount corresponds to the JSON schema field "totemDAmount".
+	TotemDAmount int `json:"totemDAmount" yaml:"totemDAmount" mapstructure:"totemDAmount"`
+
 	// TotemDRadio corresponds to the JSON schema field "totemDRadio".
 	TotemDRadio int `json:"totemDRadio" yaml:"totemDRadio" mapstructure:"totemDRadio"`
 
 	// TotemDRewardBoostPrecent corresponds to the JSON schema field
 	// "totemDRewardBoostPrecent".
 	TotemDRewardBoostPrecent int `json:"totemDRewardBoostPrecent" yaml:"totemDRewardBoostPrecent" mapstructure:"totemDRewardBoostPrecent"`
+
+	// TotemEAmount corresponds to the JSON schema field "totemEAmount".
+	TotemEAmount int `json:"totemEAmount" yaml:"totemEAmount" mapstructure:"totemEAmount"`
 
 	// TotemERadio corresponds to the JSON schema field "totemERadio".
 	TotemERadio int `json:"totemERadio" yaml:"totemERadio" mapstructure:"totemERadio"`
@@ -1611,11 +1626,17 @@ func (j *DungeonInvestData) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["totalRewardLP"]; !ok || v == nil {
 		return fmt.Errorf("field totalRewardLP in DungeonInvestData: required")
 	}
+	if v, ok := raw["totemAAmount"]; !ok || v == nil {
+		return fmt.Errorf("field totemAAmount in DungeonInvestData: required")
+	}
 	if v, ok := raw["totemARadio"]; !ok || v == nil {
 		return fmt.Errorf("field totemARadio in DungeonInvestData: required")
 	}
 	if v, ok := raw["totemARewardBoostPrecent"]; !ok || v == nil {
 		return fmt.Errorf("field totemARewardBoostPrecent in DungeonInvestData: required")
+	}
+	if v, ok := raw["totemBAmount"]; !ok || v == nil {
+		return fmt.Errorf("field totemBAmount in DungeonInvestData: required")
 	}
 	if v, ok := raw["totemBRadio"]; !ok || v == nil {
 		return fmt.Errorf("field totemBRadio in DungeonInvestData: required")
@@ -1623,17 +1644,26 @@ func (j *DungeonInvestData) UnmarshalJSON(b []byte) error {
 	if v, ok := raw["totemBRewardBoostPrecent"]; !ok || v == nil {
 		return fmt.Errorf("field totemBRewardBoostPrecent in DungeonInvestData: required")
 	}
+	if v, ok := raw["totemCAmount"]; !ok || v == nil {
+		return fmt.Errorf("field totemCAmount in DungeonInvestData: required")
+	}
 	if v, ok := raw["totemCRadio"]; !ok || v == nil {
 		return fmt.Errorf("field totemCRadio in DungeonInvestData: required")
 	}
 	if v, ok := raw["totemCRewardBoostPrecent"]; !ok || v == nil {
 		return fmt.Errorf("field totemCRewardBoostPrecent in DungeonInvestData: required")
 	}
+	if v, ok := raw["totemDAmount"]; !ok || v == nil {
+		return fmt.Errorf("field totemDAmount in DungeonInvestData: required")
+	}
 	if v, ok := raw["totemDRadio"]; !ok || v == nil {
 		return fmt.Errorf("field totemDRadio in DungeonInvestData: required")
 	}
 	if v, ok := raw["totemDRewardBoostPrecent"]; !ok || v == nil {
 		return fmt.Errorf("field totemDRewardBoostPrecent in DungeonInvestData: required")
+	}
+	if v, ok := raw["totemEAmount"]; !ok || v == nil {
+		return fmt.Errorf("field totemEAmount in DungeonInvestData: required")
 	}
 	if v, ok := raw["totemERadio"]; !ok || v == nil {
 		return fmt.Errorf("field totemERadio in DungeonInvestData: required")
