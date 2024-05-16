@@ -95,6 +95,13 @@ export enum Web3ServiceAction {
     DivestDungeon = 'DivestDungeon',
     HavestDungeonInvestReward = 'HavestDungeonInvestReward',
     GetInvestHavestLogs = 'GetInvestHavestLogs',
+
+    // Task任务协议
+    FetchTaskPools = 'FetchTaskPools',
+    MintTaskTicket = 'MintTaskTicket',
+    DistributeLUAUSD = 'DistributeLUAUSD',
+    DistributeLUAG1 = 'DistributeLUAG1',
+    FetchTaskUseNFTSupplyList = 'FetchTaskUseNFTSupplyList',
 }
 
 export enum SceneDynamicServiceAction {

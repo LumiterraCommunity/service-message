@@ -20,7 +20,7 @@ export interface TaskPool {
     basicBonus: string;
 
     // 浮动奖励值比例
-    floatBonusPrecent: string;
+    floatBonusPrecent: integer;
 
     // luag mint price
     luag1MintPrice: string;
@@ -28,11 +28,22 @@ export interface TaskPool {
 
     refreshNFTId: string;
 
-    // 是否是免费池
-    isFreePool: boolean;
+    // 专精类型
+    talent: integer;
+    levelRangeIdx: integer;
+    // 池子类型
+    type: integer;
 
     ticketExpireTime: integer;
     poolExpireTime: integer;
+}
+
+export interface FetchTaskPoolsInput {
+    timestamp: integer;
+}
+
+export interface FetchTaskPoolsOutput {
+    taskPools: TaskPool[];
 }
 
 export interface MintTaskTicketInput {
@@ -44,12 +55,15 @@ export interface MintTaskTicketInput {
 
     // 票数
     amount: integer;
+
+    // 防止重复提交
+    mintId: string; 
 }
 
 export interface MintTaskTicketOutput {
-    gameMessageId: string;
     success: boolean;
     reason: string;
+    gameMessageId: string;
 }
 
 export interface DistributeLUAUSDInput {
@@ -60,12 +74,16 @@ export interface DistributeLUAUSDInput {
     taskPoolId: string;
 
     amount: string;
+
+    // 防止重复提交
+    taskId: string;
 }
 
 export interface DistributeLUAUSDOutput {
-    gameMessageId: string;
     success: boolean;
     reason: string;
+
+    gameMessageId: string;
 }
 
 export interface DistributeLUAG1Input {
@@ -76,17 +94,19 @@ export interface DistributeLUAG1Input {
     taskPoolId: string;
 
     amount: integer;
+
+    // 防止重复提交
+    taskId: string;
 }
 
 export interface DistributeLUAG1Output {
-    gameMessageId: string;
     success: boolean;
     reason: string;
+    gameMessageId: string;
 }
 
 export interface NFTSupply {
     itemId: string;
-    tokenId: string;
     supply: integer;
 }
 export interface FetchTaskUseNFTSupplyListInput { }
