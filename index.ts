@@ -16,3 +16,4 @@ export * from './messages/Metx';
 export * from './messages/SceneDynamicServer';
 export * from './messages/GameMessage';
 export * from './messages/Totem';
+export * from './messages/Task';
