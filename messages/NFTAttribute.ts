@@ -85,6 +85,8 @@ export enum NFTTraitTypes {
     // 宠物蛋
     PetName = 'Pet Name',
     AbilityList = 'Abilities',
+
+    ExpireTime = 'Expire Time',
 }
 
 // Head
@@ -177,6 +179,7 @@ export enum NFTTrait_Type {
     Wearable = 'Wearable', // 可穿戴
     MysteryBox = 'MysteryBox', // 神秘宝箱
     PetEgg = 'PetEgg', // 宠物蛋
+    TaskTicket = 'TaskTicket', // 任务券
 }
 
 export enum ExternalTotemTraitTypes {
