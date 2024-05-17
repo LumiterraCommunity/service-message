@@ -6579,6 +6579,9 @@ type TaskPool struct {
 	// RefreshNFTId corresponds to the JSON schema field "refreshNFTId".
 	RefreshNFTId string `json:"refreshNFTId" yaml:"refreshNFTId" mapstructure:"refreshNFTId"`
 
+	// RefreshNFTItemId corresponds to the JSON schema field "refreshNFTItemId".
+	RefreshNFTItemId string `json:"refreshNFTItemId" yaml:"refreshNFTItemId" mapstructure:"refreshNFTItemId"`
+
 	// RemainBonus corresponds to the JSON schema field "remainBonus".
 	RemainBonus string `json:"remainBonus" yaml:"remainBonus" mapstructure:"remainBonus"`
 
@@ -6627,6 +6630,9 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["refreshNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field refreshNFTId in TaskPool: required")
+	}
+	if _, ok := raw["refreshNFTItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field refreshNFTItemId in TaskPool: required")
 	}
 	if _, ok := raw["remainBonus"]; raw != nil && !ok {
 		return fmt.Errorf("field remainBonus in TaskPool: required")
