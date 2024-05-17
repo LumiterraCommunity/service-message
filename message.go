@@ -4606,6 +4606,7 @@ const NFTTraitTypePetEgg NFTTraitType = "PetEgg"
 const NFTTraitTypePlaceable NFTTraitType = "Placeable"
 const NFTTraitTypeSpear NFTTraitType = "Spear"
 const NFTTraitTypeSword NFTTraitType = "Sword"
+const NFTTraitTypeTaskTicket NFTTraitType = "TaskTicket"
 const NFTTraitTypeWearable NFTTraitType = "Wearable"
 
 var enumValues_NFTTraitType = []interface{}{
@@ -4623,6 +4624,7 @@ var enumValues_NFTTraitType = []interface{}{
 	"Placeable",
 	"Spear",
 	"Sword",
+	"TaskTicket",
 	"Wearable",
 }
 
@@ -4657,6 +4659,7 @@ const NFTTraitTypesCritDamage NFTTraitTypes = "Crit Damage"
 const NFTTraitTypesCritPoints NFTTraitTypes = "Crit Points"
 const NFTTraitTypesDefence NFTTraitTypes = "Defence"
 const NFTTraitTypesDodgePoints NFTTraitTypes = "Dodge Points"
+const NFTTraitTypesExpireTime NFTTraitTypes = "Expire Time"
 const NFTTraitTypesFertilize NFTTraitTypes = "Fertilize"
 const NFTTraitTypesGender NFTTraitTypes = "Gender"
 const NFTTraitTypesGetBuff NFTTraitTypes = "Get Buff"
@@ -4688,6 +4691,7 @@ var enumValues_NFTTraitTypes = []interface{}{
 	"Crit Points",
 	"Defence",
 	"Dodge Points",
+	"Expire Time",
 	"Fertilize",
 	"Gender",
 	"Get Buff",
