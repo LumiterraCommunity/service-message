@@ -26,6 +26,7 @@ export interface TaskPool {
     luag1MintPrice: string;
     luag1TokenTotal: integer;
 
+    refreshNFTItemId: string;
     refreshNFTId: string;
 
     // 专精类型
