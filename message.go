@@ -6562,6 +6562,9 @@ type TaskPool struct {
 	// BasicTotalBonus corresponds to the JSON schema field "basicTotalBonus".
 	BasicTotalBonus string `json:"basicTotalBonus" yaml:"basicTotalBonus" mapstructure:"basicTotalBonus"`
 
+	// Created corresponds to the JSON schema field "created".
+	Created bool `json:"created" yaml:"created" mapstructure:"created"`
+
 	// FloatBonusPrecent corresponds to the JSON schema field "floatBonusPrecent".
 	FloatBonusPrecent int `json:"floatBonusPrecent" yaml:"floatBonusPrecent" mapstructure:"floatBonusPrecent"`
 
@@ -6613,6 +6616,9 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["basicTotalBonus"]; raw != nil && !ok {
 		return fmt.Errorf("field basicTotalBonus in TaskPool: required")
+	}
+	if _, ok := raw["created"]; raw != nil && !ok {
+		return fmt.Errorf("field created in TaskPool: required")
 	}
 	if _, ok := raw["floatBonusPrecent"]; raw != nil && !ok {
 		return fmt.Errorf("field floatBonusPrecent in TaskPool: required")
