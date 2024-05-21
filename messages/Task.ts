@@ -37,6 +37,8 @@ export interface TaskPool {
 
     ticketExpireTime: integer;
     poolExpireTime: integer;
+
+    created: boolean;
 }
 
 export interface FetchTaskPoolsInput {
@@ -58,7 +60,7 @@ export interface MintTaskTicketInput {
     amount: integer;
 
     // 防止重复提交
-    mintId: string; 
+    mintId: string;
 }
 
 export interface MintTaskTicketOutput {
