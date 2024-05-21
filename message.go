@@ -6598,6 +6598,9 @@ type TaskPool struct {
 	// TicketExpireTime corresponds to the JSON schema field "ticketExpireTime".
 	TicketExpireTime int `json:"ticketExpireTime" yaml:"ticketExpireTime" mapstructure:"ticketExpireTime"`
 
+	// TicketMintKPrecent corresponds to the JSON schema field "ticketMintKPrecent".
+	TicketMintKPrecent int `json:"ticketMintKPrecent" yaml:"ticketMintKPrecent" mapstructure:"ticketMintKPrecent"`
+
 	// TopTotalBonus corresponds to the JSON schema field "topTotalBonus".
 	TopTotalBonus string `json:"topTotalBonus" yaml:"topTotalBonus" mapstructure:"topTotalBonus"`
 
@@ -6652,6 +6655,9 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["ticketExpireTime"]; raw != nil && !ok {
 		return fmt.Errorf("field ticketExpireTime in TaskPool: required")
+	}
+	if _, ok := raw["ticketMintKPrecent"]; raw != nil && !ok {
+		return fmt.Errorf("field ticketMintKPrecent in TaskPool: required")
 	}
 	if _, ok := raw["topTotalBonus"]; raw != nil && !ok {
 		return fmt.Errorf("field topTotalBonus in TaskPool: required")
