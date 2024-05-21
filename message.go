@@ -6574,8 +6574,8 @@ type TaskPool struct {
 	// LevelRangeIdx corresponds to the JSON schema field "levelRangeIdx".
 	LevelRangeIdx int `json:"levelRangeIdx" yaml:"levelRangeIdx" mapstructure:"levelRangeIdx"`
 
-	// Luag1MintPrice corresponds to the JSON schema field "luag1MintPrice".
-	Luag1MintPrice string `json:"luag1MintPrice" yaml:"luag1MintPrice" mapstructure:"luag1MintPrice"`
+	// Luag1BasicBonus corresponds to the JSON schema field "luag1BasicBonus".
+	Luag1BasicBonus int `json:"luag1BasicBonus" yaml:"luag1BasicBonus" mapstructure:"luag1BasicBonus"`
 
 	// Luag1TokenTotal corresponds to the JSON schema field "luag1TokenTotal".
 	Luag1TokenTotal int `json:"luag1TokenTotal" yaml:"luag1TokenTotal" mapstructure:"luag1TokenTotal"`
@@ -6595,11 +6595,12 @@ type TaskPool struct {
 	// Talent corresponds to the JSON schema field "talent".
 	Talent int `json:"talent" yaml:"talent" mapstructure:"talent"`
 
+	// TaskTicketMintKPrecent corresponds to the JSON schema field
+	// "taskTicketMintKPrecent".
+	TaskTicketMintKPrecent int `json:"taskTicketMintKPrecent" yaml:"taskTicketMintKPrecent" mapstructure:"taskTicketMintKPrecent"`
+
 	// TicketExpireTime corresponds to the JSON schema field "ticketExpireTime".
 	TicketExpireTime int `json:"ticketExpireTime" yaml:"ticketExpireTime" mapstructure:"ticketExpireTime"`
-
-	// TicketMintKPrecent corresponds to the JSON schema field "ticketMintKPrecent".
-	TicketMintKPrecent int `json:"ticketMintKPrecent" yaml:"ticketMintKPrecent" mapstructure:"ticketMintKPrecent"`
 
 	// TopTotalBonus corresponds to the JSON schema field "topTotalBonus".
 	TopTotalBonus string `json:"topTotalBonus" yaml:"topTotalBonus" mapstructure:"topTotalBonus"`
@@ -6632,8 +6633,8 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["levelRangeIdx"]; raw != nil && !ok {
 		return fmt.Errorf("field levelRangeIdx in TaskPool: required")
 	}
-	if _, ok := raw["luag1MintPrice"]; raw != nil && !ok {
-		return fmt.Errorf("field luag1MintPrice in TaskPool: required")
+	if _, ok := raw["luag1BasicBonus"]; raw != nil && !ok {
+		return fmt.Errorf("field luag1BasicBonus in TaskPool: required")
 	}
 	if _, ok := raw["luag1TokenTotal"]; raw != nil && !ok {
 		return fmt.Errorf("field luag1TokenTotal in TaskPool: required")
@@ -6653,11 +6654,11 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["talent"]; raw != nil && !ok {
 		return fmt.Errorf("field talent in TaskPool: required")
 	}
+	if _, ok := raw["taskTicketMintKPrecent"]; raw != nil && !ok {
+		return fmt.Errorf("field taskTicketMintKPrecent in TaskPool: required")
+	}
 	if _, ok := raw["ticketExpireTime"]; raw != nil && !ok {
 		return fmt.Errorf("field ticketExpireTime in TaskPool: required")
-	}
-	if _, ok := raw["ticketMintKPrecent"]; raw != nil && !ok {
-		return fmt.Errorf("field ticketMintKPrecent in TaskPool: required")
 	}
 	if _, ok := raw["topTotalBonus"]; raw != nil && !ok {
 		return fmt.Errorf("field topTotalBonus in TaskPool: required")
