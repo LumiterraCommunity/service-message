@@ -21,6 +21,8 @@ export interface TaskPool {
 
     // 浮动奖励值比例
     floatBonusPrecent: integer;
+    // 分发奖励值时k值
+    ticketMintKPrecent: integer;
 
     // luag mint price
     luag1MintPrice: string;
