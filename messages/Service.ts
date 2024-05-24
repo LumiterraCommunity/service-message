@@ -68,6 +68,10 @@ export enum Web3ServiceAction {
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
 
+    GetUserOnchainNFTs = 'GetUserOnchainNFTs',
+    GetUserOffchainNFTs = 'GetUserOffchainNFTs',
+    MoveNFTsToOnchain = 'MoveNFTsToOnchain',
+
     // 批量检测用户是否可以消耗指定的NFT
     CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',
 
@@ -122,14 +126,15 @@ export enum SubscriptionEvent {
 
     // 批量用户NFT变更
     MultiUpdateUserNFT = 'MultiUpdateUserNFT',
+    // MultiUpdateUserOffchainNFT
+    MultiUpdateUserOffchainNFT = 'MultiUpdateUserOffchainNFT',
+    MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
 
     // 穿装备
     UseEquipment = 'UseEquipment',
 
     // 卸下装备
     UnloadEquipment = 'UnloadEquipment',
-
-    // MarketplaceTrade = 'MarketplaceTrade',
 
     // 角色死亡
     PlayerDeath = 'PlayerDeath',
@@ -139,9 +144,6 @@ export enum SubscriptionEvent {
 
     // 角色击杀
     PlayerKilled = 'PlayerKilled',
-
-    // 完成问题
-    // FinishQuestion = 'FinishQuestion',
 
     // Scene Dynamic
     UpdateUpcomingUses = 'UpdateUpcomingUses',

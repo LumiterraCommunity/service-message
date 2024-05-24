@@ -185,6 +185,18 @@ export interface GetUserNFTsInput {
     userId: string;
 }
 
+export interface MoveNFTsToOnchainInput {
+    userId: string;
+
+    nftIds: string[];
+}
+
+export interface MoveNFTsToOnchainOutput {
+    gameMessageId: string;
+    success: boolean;
+    reason: string;
+}
+
 export interface GetUserNFTsOutput {
     /**
      * 消息版本号
@@ -197,6 +209,37 @@ export interface GetUserNFTsOutput {
     nfts: NFT[];
 }
 
+export interface GetUserOffchainNFTsInput {
+    userId: string;
+}
+
+export interface GetUserOffchainNFTsOutput {
+    /**
+    * 消息版本号
+    */
+    etag: integer;
+
+    /**
+     * user all nfts
+     */
+    nfts: NFT[];
+}
+
+export interface GetUserOnchainNFTsInput {
+    userId: string;
+}
+
+export interface GetUserOnchainNFTsOutput {
+    /**
+    * 消息版本号
+    */
+    etag: integer;
+
+    /**
+     * user all nfts
+     */
+    nfts: NFT[];
+}
 
 export interface GetUserExternalNFTsInput {
     userId: string;
@@ -265,6 +308,40 @@ export interface MultiUpdateUserNFT {
      * 发送NFT的用户钱包地址
      */
     senderBlockchainAddress?: string;
+
+    /**
+     * NFT信息
+     */
+    nfts: NFT[];
+}
+
+export interface MultiUpdateUserOffchainNFT {
+    /**
+     * 消息版本号
+     */
+    etag: integer;
+
+    /**
+     *  归属用户id
+     */
+    userId: string;
+
+    /**
+     * NFT信息
+     */
+    nfts: NFT[];
+}
+
+export interface MultiUpdateUserOnchainNFT {
+    /**
+     * 消息版本号
+     */
+    etag: integer;
+
+    /**
+     *  归属用户id
+     */
+    userId: string;
 
     /**
      * NFT信息
