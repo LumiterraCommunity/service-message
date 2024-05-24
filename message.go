@@ -3134,6 +3134,110 @@ func (j *GetUserNFTsOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GetUserOffchainNFTsInput struct {
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserOffchainNFTsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetUserOffchainNFTsInput: required")
+	}
+	type Plain GetUserOffchainNFTsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserOffchainNFTsInput(plain)
+	return nil
+}
+
+type GetUserOffchainNFTsOutput struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// user all nfts
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserOffchainNFTsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in GetUserOffchainNFTsOutput: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in GetUserOffchainNFTsOutput: required")
+	}
+	type Plain GetUserOffchainNFTsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserOffchainNFTsOutput(plain)
+	return nil
+}
+
+type GetUserOnchainNFTsInput struct {
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserOnchainNFTsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetUserOnchainNFTsInput: required")
+	}
+	type Plain GetUserOnchainNFTsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserOnchainNFTsInput(plain)
+	return nil
+}
+
+type GetUserOnchainNFTsOutput struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// user all nfts
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserOnchainNFTsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in GetUserOnchainNFTsOutput: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in GetUserOnchainNFTsOutput: required")
+	}
+	type Plain GetUserOnchainNFTsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserOnchainNFTsOutput(plain)
+	return nil
+}
+
 type GetUserRecipesInput struct {
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -4080,6 +4184,70 @@ func (j *MintTaskTicketOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type MoveNFTsToOnchainInput struct {
+	// NftIds corresponds to the JSON schema field "nftIds".
+	NftIds []string `json:"nftIds" yaml:"nftIds" mapstructure:"nftIds"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveNFTsToOnchainInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["nftIds"]; raw != nil && !ok {
+		return fmt.Errorf("field nftIds in MoveNFTsToOnchainInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MoveNFTsToOnchainInput: required")
+	}
+	type Plain MoveNFTsToOnchainInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveNFTsToOnchainInput(plain)
+	return nil
+}
+
+type MoveNFTsToOnchainOutput struct {
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveNFTsToOnchainOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in MoveNFTsToOnchainOutput: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in MoveNFTsToOnchainOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in MoveNFTsToOnchainOutput: required")
+	}
+	type Plain MoveNFTsToOnchainOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveNFTsToOnchainOutput(plain)
+	return nil
+}
+
 type MultiBuildUpdateEvent struct {
 	// 建造物信息
 	BuildDatas []BuildData `json:"buildDatas" yaml:"buildDatas" mapstructure:"buildDatas"`
@@ -4310,6 +4478,76 @@ func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = MultiUpdateUserNFT(plain)
+	return nil
+}
+
+type MultiUpdateUserOffchainNFT struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// NFT信息
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+
+	// 归属用户id
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUpdateUserOffchainNFT) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in MultiUpdateUserOffchainNFT: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in MultiUpdateUserOffchainNFT: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MultiUpdateUserOffchainNFT: required")
+	}
+	type Plain MultiUpdateUserOffchainNFT
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiUpdateUserOffchainNFT(plain)
+	return nil
+}
+
+type MultiUpdateUserOnchainNFT struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// NFT信息
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+
+	// 归属用户id
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUpdateUserOnchainNFT) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in MultiUpdateUserOnchainNFT: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in MultiUpdateUserOnchainNFT: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MultiUpdateUserOnchainNFT: required")
+	}
+	type Plain MultiUpdateUserOnchainNFT
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiUpdateUserOnchainNFT(plain)
 	return nil
 }
 
@@ -6503,6 +6741,8 @@ const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpda
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
 const SubscriptionEventMultiRecyclingEvent SubscriptionEvent = "MultiRecyclingEvent"
 const SubscriptionEventMultiUpdateUserNFT SubscriptionEvent = "MultiUpdateUserNFT"
+const SubscriptionEventMultiUpdateUserOffchainNFT SubscriptionEvent = "MultiUpdateUserOffchainNFT"
+const SubscriptionEventMultiUpdateUserOnchainNFT SubscriptionEvent = "MultiUpdateUserOnchainNFT"
 const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
@@ -6525,6 +6765,8 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"MultiLandDataUpdateEvent",
 	"MultiRecyclingEvent",
 	"MultiUpdateUserNFT",
+	"MultiUpdateUserOffchainNFT",
+	"MultiUpdateUserOnchainNFT",
 	"PlayerDeath",
 	"PlayerKilled",
 	"PlayerReborn",
@@ -7244,12 +7486,15 @@ const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestL
 const Web3ServiceActionGetUserAllTotemInvestData Web3ServiceAction = "GetUserAllTotemInvestData"
 const Web3ServiceActionGetUserExternalNFTs Web3ServiceAction = "GetUserExternalNFTs"
 const Web3ServiceActionGetUserNFTsByUserIdAndAddress Web3ServiceAction = "GetUserNFTsByUserIdAndAddress"
+const Web3ServiceActionGetUserOffchainNFTs Web3ServiceAction = "GetUserOffchainNFTs"
+const Web3ServiceActionGetUserOnchainNFTs Web3ServiceAction = "GetUserOnchainNFTs"
 const Web3ServiceActionGetUserRecipes Web3ServiceAction = "GetUserRecipes"
 const Web3ServiceActionHavestDungeonInvestReward Web3ServiceAction = "HavestDungeonInvestReward"
 const Web3ServiceActionInvestDungeon Web3ServiceAction = "InvestDungeon"
 const Web3ServiceActionLearnUserRecipes Web3ServiceAction = "LearnUserRecipes"
 const Web3ServiceActionMergeByRecipe Web3ServiceAction = "MergeByRecipe"
 const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
+const Web3ServiceActionMoveNFTsToOnchain Web3ServiceAction = "MoveNFTsToOnchain"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"CheckMintNFTWithAttributes",
@@ -7270,12 +7515,15 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"GetUserAllTotemInvestData",
 	"GetUserExternalNFTs",
 	"GetUserNFTsByUserIdAndAddress",
+	"GetUserOffchainNFTs",
+	"GetUserOnchainNFTs",
 	"GetUserRecipes",
 	"HavestDungeonInvestReward",
 	"InvestDungeon",
 	"LearnUserRecipes",
 	"MergeByRecipe",
 	"MintTaskTicket",
+	"MoveNFTsToOnchain",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
