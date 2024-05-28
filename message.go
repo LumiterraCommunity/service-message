@@ -119,6 +119,77 @@ type BatchBurnNFT struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
+type BatchBurnNFTInput struct {
+	// index和itemIds一一对应
+	// 所有数量
+	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// ItemIds corresponds to the JSON schema field "itemIds".
+	ItemIds []string `json:"itemIds,omitempty" yaml:"itemIds,omitempty" mapstructure:"itemIds,omitempty"`
+
+	// NftIds corresponds to the JSON schema field "nftIds".
+	NftIds []string `json:"nftIds,omitempty" yaml:"nftIds,omitempty" mapstructure:"nftIds,omitempty"`
+
+	// 每个用户的消耗备注
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
+	// UniqueId corresponds to the JSON schema field "uniqueId".
+	UniqueId string `json:"uniqueId" yaml:"uniqueId" mapstructure:"uniqueId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchBurnNFTInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amounts"]; raw != nil && !ok {
+		return fmt.Errorf("field amounts in BatchBurnNFTInput: required")
+	}
+	if _, ok := raw["remark"]; raw != nil && !ok {
+		return fmt.Errorf("field remark in BatchBurnNFTInput: required")
+	}
+	if _, ok := raw["uniqueId"]; raw != nil && !ok {
+		return fmt.Errorf("field uniqueId in BatchBurnNFTInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in BatchBurnNFTInput: required")
+	}
+	type Plain BatchBurnNFTInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BatchBurnNFTInput(plain)
+	return nil
+}
+
+type BatchBurnNFTOutput struct {
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in BatchBurnNFTOutput: required")
+	}
+	type Plain BatchBurnNFTOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BatchBurnNFTOutput(plain)
+	return nil
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
@@ -3442,6 +3513,47 @@ func (j *GraphqlServiceAction) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type HandleGameMessageCallback struct {
+	// Executed corresponds to the JSON schema field "executed".
+	Executed bool `json:"executed" yaml:"executed" mapstructure:"executed"`
+
+	// MessageId corresponds to the JSON schema field "messageId".
+	MessageId string `json:"messageId" yaml:"messageId" mapstructure:"messageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *HandleGameMessageCallback) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["executed"]; raw != nil && !ok {
+		return fmt.Errorf("field executed in HandleGameMessageCallback: required")
+	}
+	if _, ok := raw["messageId"]; raw != nil && !ok {
+		return fmt.Errorf("field messageId in HandleGameMessageCallback: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in HandleGameMessageCallback: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in HandleGameMessageCallback: required")
+	}
+	type Plain HandleGameMessageCallback
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = HandleGameMessageCallback(plain)
+	return nil
+}
+
 type HarvestInput struct {
 	// 建造id
 	BuildId int `json:"buildId" yaml:"buildId" mapstructure:"buildId"`
@@ -6736,6 +6848,7 @@ const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
 const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
 const SubscriptionEventDungeonPVEPStart SubscriptionEvent = "DungeonPVEPStart"
 const SubscriptionEventDungeonStartPVEPCallback SubscriptionEvent = "DungeonStartPVEPCallback"
+const SubscriptionEventHandleGameMessageCallback SubscriptionEvent = "HandleGameMessageCallback"
 const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
@@ -6760,6 +6873,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"DistributeDungeonBonus",
 	"DungeonPVEPStart",
 	"DungeonStartPVEPCallback",
+	"HandleGameMessageCallback",
 	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
