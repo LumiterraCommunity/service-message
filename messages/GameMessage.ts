@@ -25,3 +25,16 @@ export interface ExecGameMessageInput {
 export interface ExecGameMessageOutput {
     messageId: string;
 }
+
+export interface HandleGameMessageCallback {
+    messageId: string;
+
+    // 是否执行
+    executed: boolean;
+
+    // 是否成功
+    success: boolean;
+
+    // 失败原因
+    reason: string;
+}

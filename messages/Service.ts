@@ -170,6 +170,9 @@ export enum SubscriptionEvent {
     DungeonPVEPStart = 'DungeonPVEPStart',
     DungeonStartPVEPCallback = 'DungeonStartPVEPCallback',
     DistributeDungeonBonus = 'DistributeDungeonBonus',
+
+    // 处理游戏区块消息的回调事件
+    HandleGameMessageCallback = 'HandleGameMessageCallback',
 }
 
 export enum PVPSubscriptionEvent {

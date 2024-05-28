@@ -429,6 +429,33 @@ export interface BatchBurnNFT {
     remark: string;
 }
 
+export interface BatchBurnNFTInput {
+    uniqueId: string
+
+    userId: string
+
+    nftIds?: string[]
+
+    itemIds?: string[]
+
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
+    amounts: integer[]
+
+    /**
+     * 每个用户的消耗备注
+     */
+    remark: string;
+}
+
+export interface BatchBurnNFTOutput {
+    gameMessageId: string
+}
+
 export interface BatchTransferNFT {
     fromUserId: string
 
