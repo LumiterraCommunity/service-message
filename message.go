@@ -7582,6 +7582,7 @@ func (j *UsingNFT) UnmarshalJSON(b []byte) error {
 
 type Web3ServiceAction string
 
+const Web3ServiceActionBatchBurnNFT Web3ServiceAction = "BatchBurnNFT"
 const Web3ServiceActionCheckMintNFTWithAttributes Web3ServiceAction = "CheckMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiBatchBurnNFT Web3ServiceAction = "CheckMultiBatchBurnNFT"
 const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUAUSD"
@@ -7611,6 +7612,7 @@ const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
 const Web3ServiceActionMoveNFTsToOnchain Web3ServiceAction = "MoveNFTsToOnchain"
 
 var enumValues_Web3ServiceAction = []interface{}{
+	"BatchBurnNFT",
 	"CheckMintNFTWithAttributes",
 	"CheckMultiBatchBurnNFT",
 	"CheckMultiUseLUAUSD",
