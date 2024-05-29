@@ -75,6 +75,9 @@ export enum Web3ServiceAction {
     // 批量检测用户是否可以消耗指定的NFT
     CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',
 
+    // BatchBurnNFT
+    BatchBurnNFT = 'BatchBurnNFT',
+
     // 批量检测用户是否可以消耗指定的LUAUSD
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
 
