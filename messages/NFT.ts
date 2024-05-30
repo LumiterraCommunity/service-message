@@ -454,6 +454,8 @@ export interface BatchBurnNFTInput {
 
 export interface BatchBurnNFTOutput {
     gameMessageId: string
+    success: boolean
+    reason: string
 }
 
 export interface BatchTransferNFT {
