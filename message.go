@@ -170,6 +170,12 @@ func (j *BatchBurnNFTInput) UnmarshalJSON(b []byte) error {
 type BatchBurnNFTOutput struct {
 	// GameMessageId corresponds to the JSON schema field "gameMessageId".
 	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -180,6 +186,12 @@ func (j *BatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
 		return fmt.Errorf("field gameMessageId in BatchBurnNFTOutput: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in BatchBurnNFTOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in BatchBurnNFTOutput: required")
 	}
 	type Plain BatchBurnNFTOutput
 	var plain Plain
