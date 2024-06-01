@@ -1159,6 +1159,35 @@ func (j *DeductUserExpOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type DispatchGameMessage struct {
+	// IsLarge corresponds to the JSON schema field "isLarge".
+	IsLarge bool `json:"isLarge" yaml:"isLarge" mapstructure:"isLarge"`
+
+	// MessageId corresponds to the JSON schema field "messageId".
+	MessageId string `json:"messageId" yaml:"messageId" mapstructure:"messageId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *DispatchGameMessage) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["isLarge"]; raw != nil && !ok {
+		return fmt.Errorf("field isLarge in DispatchGameMessage: required")
+	}
+	if _, ok := raw["messageId"]; raw != nil && !ok {
+		return fmt.Errorf("field messageId in DispatchGameMessage: required")
+	}
+	type Plain DispatchGameMessage
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = DispatchGameMessage(plain)
+	return nil
+}
+
 type DistributeDungeonBonus struct {
 	// Amount corresponds to the JSON schema field "amount".
 	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
@@ -6851,6 +6880,7 @@ const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
+const SubscriptionEventDispatchGameMessage SubscriptionEvent = "DispatchGameMessage"
 const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
 const SubscriptionEventDungeonPVEPStart SubscriptionEvent = "DungeonPVEPStart"
 const SubscriptionEventDungeonStartPVEPCallback SubscriptionEvent = "DungeonStartPVEPCallback"
@@ -6876,6 +6906,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"BatchMintNFT",
 	"BatchTransferNFT",
 	"CloseServer",
+	"DispatchGameMessage",
 	"DistributeDungeonBonus",
 	"DungeonPVEPStart",
 	"DungeonStartPVEPCallback",
