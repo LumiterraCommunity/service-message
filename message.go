@@ -937,6 +937,58 @@ func (j *CheckQuestionAnswerOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type CheckUserRecipeInput struct {
+	// RecipeId corresponds to the JSON schema field "recipeId".
+	RecipeId string `json:"recipeId" yaml:"recipeId" mapstructure:"recipeId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *CheckUserRecipeInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["recipeId"]; raw != nil && !ok {
+		return fmt.Errorf("field recipeId in CheckUserRecipeInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in CheckUserRecipeInput: required")
+	}
+	type Plain CheckUserRecipeInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = CheckUserRecipeInput(plain)
+	return nil
+}
+
+type CheckUserRecipeOutput struct {
+	// HasRecipe corresponds to the JSON schema field "hasRecipe".
+	HasRecipe bool `json:"hasRecipe" yaml:"hasRecipe" mapstructure:"hasRecipe"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *CheckUserRecipeOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["hasRecipe"]; raw != nil && !ok {
+		return fmt.Errorf("field hasRecipe in CheckUserRecipeOutput: required")
+	}
+	type Plain CheckUserRecipeOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = CheckUserRecipeOutput(plain)
+	return nil
+}
+
 type CloseServer struct {
 	// ServerAppId corresponds to the JSON schema field "serverAppId".
 	ServerAppId string `json:"serverAppId" yaml:"serverAppId" mapstructure:"serverAppId"`
@@ -2260,51 +2312,24 @@ func (j *FinishQuestion) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type ForgetUserRecipesInput struct {
-	// RecipeIds corresponds to the JSON schema field "recipeIds".
-	RecipeIds []string `json:"recipeIds" yaml:"recipeIds" mapstructure:"recipeIds"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *ForgetUserRecipesInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["recipeIds"]; raw != nil && !ok {
-		return fmt.Errorf("field recipeIds in ForgetUserRecipesInput: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in ForgetUserRecipesInput: required")
-	}
-	type Plain ForgetUserRecipesInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = ForgetUserRecipesInput(plain)
-	return nil
-}
-
-type ForgetUserRecipesOutput map[string]interface{}
-
 type GameDataServiceAction string
 
+const GameDataServiceActionCheckUserRecipe GameDataServiceAction = "CheckUserRecipe"
 const GameDataServiceActionDeductUserExp GameDataServiceAction = "DeductUserExp"
 const GameDataServiceActionGetPlayerItemSlots GameDataServiceAction = "GetPlayerItemSlots"
 const GameDataServiceActionGetPlayerUsingNftsByUserId GameDataServiceAction = "GetPlayerUsingNftsByUserId"
+const GameDataServiceActionGetUserRecipes GameDataServiceAction = "GetUserRecipes"
 const GameDataServiceActionLandUsingSkill GameDataServiceAction = "LandUsingSkill"
 const GameDataServiceActionMultiGetPlayerInfoByUserId GameDataServiceAction = "MultiGetPlayerInfoByUserId"
 const GameDataServiceActionMultiGetPlayerUsingNftsByUserId GameDataServiceAction = "MultiGetPlayerUsingNftsByUserId"
 const GameDataServiceActionUpgradePlayerItemSlots GameDataServiceAction = "UpgradePlayerItemSlots"
 
 var enumValues_GameDataServiceAction = []interface{}{
+	"CheckUserRecipe",
 	"DeductUserExp",
 	"GetPlayerItemSlots",
 	"GetPlayerUsingNftsByUserId",
+	"GetUserRecipes",
 	"LandUsingSkill",
 	"MultiGetPlayerInfoByUserId",
 	"MultiGetPlayerUsingNftsByUserId",
@@ -4014,37 +4039,6 @@ func (j *LandUsingSkillOutput) UnmarshalJSON(b []byte) error {
 	*j = LandUsingSkillOutput(plain)
 	return nil
 }
-
-type LearnUserRecipesInput struct {
-	// RecipeIds corresponds to the JSON schema field "recipeIds".
-	RecipeIds []string `json:"recipeIds" yaml:"recipeIds" mapstructure:"recipeIds"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *LearnUserRecipesInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["recipeIds"]; raw != nil && !ok {
-		return fmt.Errorf("field recipeIds in LearnUserRecipesInput: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in LearnUserRecipesInput: required")
-	}
-	type Plain LearnUserRecipesInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = LearnUserRecipesInput(plain)
-	return nil
-}
-
-type LearnUserRecipesOutput map[string]interface{}
 
 // 有一些配置表格的数据不希望显示在opensea中, 但是为了方便统一解析。
 // 生成到这个表格中.
@@ -7606,7 +7600,6 @@ const Web3ServiceActionEstimateInvestDungeon Web3ServiceAction = "EstimateInvest
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
 const Web3ServiceActionFetchTaskPools Web3ServiceAction = "FetchTaskPools"
 const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskUseNFTSupplyList"
-const Web3ServiceActionForgetUserRecipes Web3ServiceAction = "ForgetUserRecipes"
 const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeonInvestData"
 const Web3ServiceActionGetGameMessageStatusById Web3ServiceAction = "GetGameMessageStatusById"
 const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestLogs"
@@ -7615,10 +7608,8 @@ const Web3ServiceActionGetUserExternalNFTs Web3ServiceAction = "GetUserExternalN
 const Web3ServiceActionGetUserNFTsByUserIdAndAddress Web3ServiceAction = "GetUserNFTsByUserIdAndAddress"
 const Web3ServiceActionGetUserOffchainNFTs Web3ServiceAction = "GetUserOffchainNFTs"
 const Web3ServiceActionGetUserOnchainNFTs Web3ServiceAction = "GetUserOnchainNFTs"
-const Web3ServiceActionGetUserRecipes Web3ServiceAction = "GetUserRecipes"
 const Web3ServiceActionHavestDungeonInvestReward Web3ServiceAction = "HavestDungeonInvestReward"
 const Web3ServiceActionInvestDungeon Web3ServiceAction = "InvestDungeon"
-const Web3ServiceActionLearnUserRecipes Web3ServiceAction = "LearnUserRecipes"
 const Web3ServiceActionMergeByRecipe Web3ServiceAction = "MergeByRecipe"
 const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
 const Web3ServiceActionMoveNFTsToOnchain Web3ServiceAction = "MoveNFTsToOnchain"
@@ -7636,7 +7627,6 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"ExecGameMessage",
 	"FetchTaskPools",
 	"FetchTaskUseNFTSupplyList",
-	"ForgetUserRecipes",
 	"GetAllDungeonInvestData",
 	"GetGameMessageStatusById",
 	"GetInvestHavestLogs",
@@ -7645,10 +7635,8 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"GetUserNFTsByUserIdAndAddress",
 	"GetUserOffchainNFTs",
 	"GetUserOnchainNFTs",
-	"GetUserRecipes",
 	"HavestDungeonInvestReward",
 	"InvestDungeon",
-	"LearnUserRecipes",
 	"MergeByRecipe",
 	"MintTaskTicket",
 	"MoveNFTsToOnchain",
