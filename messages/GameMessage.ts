@@ -38,3 +38,8 @@ export interface HandleGameMessageCallback {
     // 失败原因
     reason: string;
 }
+
+export interface DispatchGameMessage {
+    messageId: string;
+    isLarge: boolean;
+}
