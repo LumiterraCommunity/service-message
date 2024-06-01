@@ -169,6 +169,9 @@ export enum SubscriptionEvent {
 
     // 处理游戏区块消息的回调事件
     HandleGameMessageCallback = 'HandleGameMessageCallback',
+
+    // 派发游戏消息
+    DispatchGameMessage = 'DispatchGameMessage',
 }
 
 export enum PVPSubscriptionEvent {
