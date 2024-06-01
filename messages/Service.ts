@@ -50,20 +50,13 @@ export enum GameDataServiceAction {
     MultiGetPlayerUsingNftsByUserId = 'MultiGetPlayerUsingNftsByUserId',
     GetPlayerItemSlots = 'GetPlayerItemSlots',
     UpgradePlayerItemSlots = 'UpgradePlayerItemSlots',
+    CheckUserRecipe = 'CheckUserRecipe',
+    GetUserRecipes = 'GetUserRecipes',
 }
 
 export enum Web3ServiceAction {
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
-
-    // 获取用户已经解锁的图鉴
-    GetUserRecipes = 'GetUserRecipes',
-
-    // 学习用户图鉴
-    LearnUserRecipes = 'LearnUserRecipes',
-
-    // 遗忘用户图鉴
-    ForgetUserRecipes = 'ForgetUserRecipes',
 
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
