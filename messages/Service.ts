@@ -63,7 +63,7 @@ export enum Web3ServiceAction {
 
     GetUserOnchainNFTs = 'GetUserOnchainNFTs',
     GetUserOffchainNFTs = 'GetUserOffchainNFTs',
-    MoveNFTsToOnchain = 'MoveNFTsToOnchain',
+    MoveNFTToOnchain = 'MoveNFTToOnchain',
 
     // 批量检测用户是否可以消耗指定的NFT
     CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',

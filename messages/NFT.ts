@@ -185,13 +185,16 @@ export interface GetUserNFTsInput {
     userId: string;
 }
 
-export interface MoveNFTsToOnchainInput {
+export interface MoveNFTToOnchainInput {
     userId: string;
 
-    nftIds: string[];
+    nftId: string;
+
+    // 转换的数量
+    amount: integer;
 }
 
-export interface MoveNFTsToOnchainOutput {
+export interface MoveNFTToOnchainOutput {
     gameMessageId: string;
     success: boolean;
     reason: string;
