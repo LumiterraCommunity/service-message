@@ -4331,36 +4331,42 @@ func (j *MintTaskTicketOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type MoveNFTsToOnchainInput struct {
-	// NftIds corresponds to the JSON schema field "nftIds".
-	NftIds []string `json:"nftIds" yaml:"nftIds" mapstructure:"nftIds"`
+type MoveNFTToOnchainInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTsToOnchainInput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToOnchainInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["nftIds"]; raw != nil && !ok {
-		return fmt.Errorf("field nftIds in MoveNFTsToOnchainInput: required")
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in MoveNFTToOnchainInput: required")
+	}
+	if _, ok := raw["nftId"]; raw != nil && !ok {
+		return fmt.Errorf("field nftId in MoveNFTToOnchainInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in MoveNFTsToOnchainInput: required")
+		return fmt.Errorf("field userId in MoveNFTToOnchainInput: required")
 	}
-	type Plain MoveNFTsToOnchainInput
+	type Plain MoveNFTToOnchainInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = MoveNFTsToOnchainInput(plain)
+	*j = MoveNFTToOnchainInput(plain)
 	return nil
 }
 
-type MoveNFTsToOnchainOutput struct {
+type MoveNFTToOnchainOutput struct {
 	// GameMessageId corresponds to the JSON schema field "gameMessageId".
 	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
 
@@ -4372,26 +4378,26 @@ type MoveNFTsToOnchainOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTsToOnchainOutput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToOnchainOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
-		return fmt.Errorf("field gameMessageId in MoveNFTsToOnchainOutput: required")
+		return fmt.Errorf("field gameMessageId in MoveNFTToOnchainOutput: required")
 	}
 	if _, ok := raw["reason"]; raw != nil && !ok {
-		return fmt.Errorf("field reason in MoveNFTsToOnchainOutput: required")
+		return fmt.Errorf("field reason in MoveNFTToOnchainOutput: required")
 	}
 	if _, ok := raw["success"]; raw != nil && !ok {
-		return fmt.Errorf("field success in MoveNFTsToOnchainOutput: required")
+		return fmt.Errorf("field success in MoveNFTToOnchainOutput: required")
 	}
-	type Plain MoveNFTsToOnchainOutput
+	type Plain MoveNFTToOnchainOutput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = MoveNFTsToOnchainOutput(plain)
+	*j = MoveNFTToOnchainOutput(plain)
 	return nil
 }
 
@@ -7641,7 +7647,7 @@ const Web3ServiceActionHavestDungeonInvestReward Web3ServiceAction = "HavestDung
 const Web3ServiceActionInvestDungeon Web3ServiceAction = "InvestDungeon"
 const Web3ServiceActionMergeByRecipe Web3ServiceAction = "MergeByRecipe"
 const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
-const Web3ServiceActionMoveNFTsToOnchain Web3ServiceAction = "MoveNFTsToOnchain"
+const Web3ServiceActionMoveNFTToOnchain Web3ServiceAction = "MoveNFTToOnchain"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"BatchBurnNFT",
@@ -7668,7 +7674,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"InvestDungeon",
 	"MergeByRecipe",
 	"MintTaskTicket",
-	"MoveNFTsToOnchain",
+	"MoveNFTToOnchain",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
