@@ -124,7 +124,9 @@ export enum SubscriptionEvent {
     MultiUpdateUserNFT = 'MultiUpdateUserNFT',
     // MultiUpdateUserOffchainNFT
     MultiUpdateUserOffchainNFT = 'MultiUpdateUserOffchainNFT',
-    MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
+
+    // 暂时没用到
+    // MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
 
     // 穿装备
     UseEquipment = 'UseEquipment',
@@ -178,7 +180,6 @@ export enum PVPSubscriptionEvent {
     // PVP 匹配开始
     PVPMatchBegin = 'PVPMatchBegin',
 }
-
 
 export enum LandServiceAction {
     // 请求所有地格数据
