@@ -6896,7 +6896,7 @@ const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpda
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
 const SubscriptionEventMultiRecyclingEvent SubscriptionEvent = "MultiRecyclingEvent"
 const SubscriptionEventMultiUpdateUserNFT SubscriptionEvent = "MultiUpdateUserNFT"
-const SubscriptionEventMultiUpdateUserOffchainNFT SubscriptionEvent = "MultiUpdateUserOffchainNFT"
+const SubscriptionEventMultiUpdateUserOnchainNFT SubscriptionEvent = "MultiUpdateUserOnchainNFT"
 const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
@@ -6921,7 +6921,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"MultiLandDataUpdateEvent",
 	"MultiRecyclingEvent",
 	"MultiUpdateUserNFT",
-	"MultiUpdateUserOffchainNFT",
+	"MultiUpdateUserOnchainNFT",
 	"PlayerDeath",
 	"PlayerKilled",
 	"PlayerReborn",
