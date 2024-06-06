@@ -123,10 +123,10 @@ export enum SubscriptionEvent {
     // 批量用户NFT变更
     MultiUpdateUserNFT = 'MultiUpdateUserNFT',
     // MultiUpdateUserOffchainNFT
-    MultiUpdateUserOffchainNFT = 'MultiUpdateUserOffchainNFT',
-
-    // 暂时没用到
-    // MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
+    // 暂时不需要
+    // MultiUpdateUserOffchainNFT = 'MultiUpdateUserOffchainNFT',
+    // MultiUpdateUserOffchainNFT
+    MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
 
     // 穿装备
     UseEquipment = 'UseEquipment',
