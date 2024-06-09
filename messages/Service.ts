@@ -174,6 +174,8 @@ export enum SubscriptionEvent {
 
     // 派发游戏消息
     DispatchGameMessage = 'DispatchGameMessage',
+
+    AccountMigrate = 'AccountMigrate',
 }
 
 export enum PVPSubscriptionEvent {

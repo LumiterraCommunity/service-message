@@ -7,7 +7,6 @@ export * from "./messages/NFTAttribute";
 export * from "./messages/Service";
 export * from "./messages/Web3";
 export * from "./messages/Recipe";
-export * from './messages/Ditamin';
 export * from './messages/Player';
 export * from './messages/Question';
 export * from './messages/PVP';

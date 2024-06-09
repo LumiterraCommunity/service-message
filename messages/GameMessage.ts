@@ -43,3 +43,8 @@ export interface DispatchGameMessage {
     messageId: string;
     isLarge: boolean;
 }
+
+export interface AccountMigrate {
+    fromAddress: string;
+    toAddress: string;
+}
