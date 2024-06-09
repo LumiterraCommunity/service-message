@@ -7,6 +7,35 @@ import "fmt"
 import "reflect"
 import "time"
 
+type AccountMigrate struct {
+	// FromAddress corresponds to the JSON schema field "fromAddress".
+	FromAddress string `json:"fromAddress" yaml:"fromAddress" mapstructure:"fromAddress"`
+
+	// ToAddress corresponds to the JSON schema field "toAddress".
+	ToAddress string `json:"toAddress" yaml:"toAddress" mapstructure:"toAddress"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *AccountMigrate) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["fromAddress"]; raw != nil && !ok {
+		return fmt.Errorf("field fromAddress in AccountMigrate: required")
+	}
+	if _, ok := raw["toAddress"]; raw != nil && !ok {
+		return fmt.Errorf("field toAddress in AccountMigrate: required")
+	}
+	type Plain AccountMigrate
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = AccountMigrate(plain)
+	return nil
+}
+
 type AppId string
 
 const AppIdGameServiceMain AppId = "game-service-main"
@@ -533,77 +562,6 @@ func (j *BuildOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = BuildOutput(plain)
-	return nil
-}
-
-type BurnDitaminInput struct {
-	// 需要燃烧的ditamin数量
-	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
-
-	// 燃烧的原因
-	Source DitaminBurnSource `json:"source" yaml:"source" mapstructure:"source"`
-
-	// 燃烧的hash id
-	// 用来防止重复燃烧, 每次燃烧调用方需要生成一个txHash. 如果txHash重复, 则不会重复燃烧
-	TxHash string `json:"txHash" yaml:"txHash" mapstructure:"txHash"`
-
-	// 需要燃烧的用户id
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *BurnDitaminInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["amount"]; raw != nil && !ok {
-		return fmt.Errorf("field amount in BurnDitaminInput: required")
-	}
-	if _, ok := raw["source"]; raw != nil && !ok {
-		return fmt.Errorf("field source in BurnDitaminInput: required")
-	}
-	if _, ok := raw["txHash"]; raw != nil && !ok {
-		return fmt.Errorf("field txHash in BurnDitaminInput: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in BurnDitaminInput: required")
-	}
-	type Plain BurnDitaminInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = BurnDitaminInput(plain)
-	return nil
-}
-
-type BurnDitaminOutput struct {
-	// 是否燃烧成功
-	BurnSuccess bool `json:"burnSuccess" yaml:"burnSuccess" mapstructure:"burnSuccess"`
-
-	// 如果燃烧失败, 则返回失败原因, 否则返回空字符串
-	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *BurnDitaminOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["burnSuccess"]; raw != nil && !ok {
-		return fmt.Errorf("field burnSuccess in BurnDitaminOutput: required")
-	}
-	if _, ok := raw["failedReason"]; raw != nil && !ok {
-		return fmt.Errorf("field failedReason in BurnDitaminOutput: required")
-	}
-	type Plain BurnDitaminOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = BurnDitaminOutput(plain)
 	return nil
 }
 
@@ -1378,156 +1336,6 @@ func (j *DistributeLUAUSDOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = DistributeLUAUSDOutput(plain)
-	return nil
-}
-
-type DitaminBurn struct {
-	// ditamin数量
-	DitaminAmount string `json:"ditaminAmount" yaml:"ditaminAmount" mapstructure:"ditaminAmount"`
-
-	// 消息版本号
-	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
-
-	// 生产源
-	Source DitaminBurnSource `json:"source" yaml:"source" mapstructure:"source"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-type DitaminBurnSource string
-
-const DitaminBurnSourceBuild3DrNFT DitaminBurnSource = "build3drNFT"
-const DitaminBurnSourceBuildNFT DitaminBurnSource = "buildNFT"
-const DitaminBurnSourceBuyEnergy DitaminBurnSource = "buyEnergy"
-const DitaminBurnSourceCraft DitaminBurnSource = "craft"
-const DitaminBurnSourceExchange DitaminBurnSource = "exchange"
-
-var enumValues_DitaminBurnSource = []interface{}{
-	"build3drNFT",
-	"buildNFT",
-	"buyEnergy",
-	"craft",
-	"exchange",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *DitaminBurnSource) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_DitaminBurnSource {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_DitaminBurnSource, v)
-	}
-	*j = DitaminBurnSource(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *DitaminBurn) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["ditaminAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field ditaminAmount in DitaminBurn: required")
-	}
-	if _, ok := raw["etag"]; raw != nil && !ok {
-		return fmt.Errorf("field etag in DitaminBurn: required")
-	}
-	if _, ok := raw["source"]; raw != nil && !ok {
-		return fmt.Errorf("field source in DitaminBurn: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in DitaminBurn: required")
-	}
-	type Plain DitaminBurn
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = DitaminBurn(plain)
-	return nil
-}
-
-type DitaminProduce struct {
-	// ditamin数量
-	DitaminAmount string `json:"ditaminAmount" yaml:"ditaminAmount" mapstructure:"ditaminAmount"`
-
-	// 消息版本号
-	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
-
-	// 生产源
-	Source DitaminProduceSource `json:"source" yaml:"source" mapstructure:"source"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-type DitaminProduceSource string
-
-const DitaminProduceSourceAttackFinlish DitaminProduceSource = "attackFinlish"
-const DitaminProduceSourceDeposit DitaminProduceSource = "deposit"
-const DitaminProduceSourceHarvest DitaminProduceSource = "harvest"
-
-var enumValues_DitaminProduceSource = []interface{}{
-	"attackFinlish",
-	"deposit",
-	"harvest",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *DitaminProduceSource) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_DitaminProduceSource {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_DitaminProduceSource, v)
-	}
-	*j = DitaminProduceSource(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *DitaminProduce) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["ditaminAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field ditaminAmount in DitaminProduce: required")
-	}
-	if _, ok := raw["etag"]; raw != nil && !ok {
-		return fmt.Errorf("field etag in DitaminProduce: required")
-	}
-	if _, ok := raw["source"]; raw != nil && !ok {
-		return fmt.Errorf("field source in DitaminProduce: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in DitaminProduce: required")
-	}
-	type Plain DitaminProduce
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = DitaminProduce(plain)
 	return nil
 }
 
@@ -6882,6 +6690,7 @@ func (j *StartServerOutput) UnmarshalJSON(b []byte) error {
 
 type SubscriptionEvent string
 
+const SubscriptionEventAccountMigrate SubscriptionEvent = "AccountMigrate"
 const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
@@ -6907,6 +6716,7 @@ const SubscriptionEventUseEquipment SubscriptionEvent = "UseEquipment"
 const SubscriptionEventUseLUAUSD SubscriptionEvent = "UseLUAUSD"
 
 var enumValues_SubscriptionEvent = []interface{}{
+	"AccountMigrate",
 	"BatchBurnNFT",
 	"BatchMintNFT",
 	"BatchTransferNFT",
