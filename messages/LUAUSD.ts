@@ -16,12 +16,10 @@ export interface UseLUAUSD {
     userId: string;
 
     /**
-     * 和userId一一对应
-     * 所有数量
-     * @items.type integer
-     * @items.minimum 0
+     * 消耗的金额
+     * decimal 18
      */
-    amounts: integer;
+    amount: string;
 
     /**
      * 每个用户的消耗备注
