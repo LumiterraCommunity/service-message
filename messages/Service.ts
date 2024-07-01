@@ -65,6 +65,14 @@ export enum Web3ServiceAction {
     GetUserOffchainNFTs = 'GetUserOffchainNFTs',
     MoveNFTToOnchain = 'MoveNFTToOnchain',
 
+    // 获取用户所有外部NFT
+    GetUserExternalNFTs = 'GetUserExternalNFTs',
+    GetUserRoninchainNFTs = 'GetUserRoninchainNFTs',
+
+    GetRoninNFTMoveLogs = 'GetRoninNFTMoveLogs',
+    MoveRoninchainToGame = 'MoveRoninchainToGame',
+    MoveNFTToRoninchain = 'MoveNFTToRoninchain',
+
     // 批量检测用户是否可以消耗指定的NFT
     CheckMultiBatchBurnNFT = 'CheckMultiBatchBurnNFT',
 
@@ -82,9 +90,6 @@ export enum Web3ServiceAction {
 
     // 
     ExecGameMessage = 'ExecGameMessage',
-
-    // 获取用户所有外部NFT
-    GetUserExternalNFTs = 'GetUserExternalNFTs',
 
     // 图腾投资协议
     GetAllDungeonInvestData = 'GetAllDungeonInvestData',
@@ -127,6 +132,8 @@ export enum SubscriptionEvent {
     // MultiUpdateUserOffchainNFT = 'MultiUpdateUserOffchainNFT',
     // MultiUpdateUserOffchainNFT
     MultiUpdateUserOnchainNFT = 'MultiUpdateUserOnchainNFT',
+
+    MultiUpdateUserRoninchainNFT = 'MultiUpdateUserRoninchainNFT',
 
     // 穿装备
     UseEquipment = 'UseEquipment',

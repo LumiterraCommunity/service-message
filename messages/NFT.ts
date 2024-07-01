@@ -200,6 +200,52 @@ export interface MoveNFTToOnchainOutput {
     reason: string;
 }
 
+export interface MoveNFTToRoninchainInput {
+    userId: string;
+
+    nftId: string;
+
+    // 转换的数量
+    amount: integer;
+}
+
+export interface MoveNFTToRoninchainOutput {
+    gameMessageId: string;
+    success: boolean;
+    reason: string;
+}
+
+export interface MoveRoninchainToGameInput {
+    userId: string;
+
+    nftId: string;
+
+    // 转换的数量
+    amount: integer;
+}
+
+export interface MoveRoninchainToGameOutput {
+    gameMessageId: string;
+    success: boolean;
+    reason: string;
+}
+
+export interface GetRoninNFTMoveLogsInput {
+    userId: string;
+}
+
+export interface NFTMoveLog {
+    nftId: string;
+    amount: integer;
+    txHash: string;
+    status: integer;
+    error: string;
+}
+
+export interface GetRoninNFTMoveLogsOutput {
+    logs: NFTMoveLog[];
+}
+
 export interface GetUserNFTsOutput {
     /**
      * 消息版本号
@@ -233,6 +279,22 @@ export interface GetUserOnchainNFTsInput {
 }
 
 export interface GetUserOnchainNFTsOutput {
+    /**
+    * 消息版本号
+    */
+    etag: integer;
+
+    /**
+     * user all nfts
+     */
+    nfts: NFT[];
+}
+
+export interface GetUserRoninchainNFTsInput {
+    userId: string;
+}
+
+export interface GetUserRoninchainNFTsOutput {
     /**
     * 消息版本号
     */
@@ -336,6 +398,23 @@ export interface MultiUpdateUserOffchainNFT {
 }
 
 export interface MultiUpdateUserOnchainNFT {
+    /**
+     * 消息版本号
+     */
+    etag: integer;
+
+    /**
+     *  归属用户id
+     */
+    userId: string;
+
+    /**
+     * NFT信息
+     */
+    nfts: NFT[];
+}
+
+export interface MultiUpdateUserRoninchainNFT {
     /**
      * 消息版本号
      */
