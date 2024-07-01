@@ -2824,6 +2824,52 @@ func (j *GetQuestionsByTypesRandomOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GetRoninNFTMoveLogsInput struct {
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetRoninNFTMoveLogsInput: required")
+	}
+	type Plain GetRoninNFTMoveLogsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetRoninNFTMoveLogsInput(plain)
+	return nil
+}
+
+type GetRoninNFTMoveLogsOutput struct {
+	// Logs corresponds to the JSON schema field "logs".
+	Logs []NFTMoveLog `json:"logs" yaml:"logs" mapstructure:"logs"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["logs"]; raw != nil && !ok {
+		return fmt.Errorf("field logs in GetRoninNFTMoveLogsOutput: required")
+	}
+	type Plain GetRoninNFTMoveLogsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetRoninNFTMoveLogsOutput(plain)
+	return nil
+}
+
 type GetUserAllTotemInvestDataInput struct {
 	// DungeonId corresponds to the JSON schema field "dungeonId".
 	DungeonId *float64 `json:"dungeonId,omitempty" yaml:"dungeonId,omitempty" mapstructure:"dungeonId,omitempty"`
@@ -3226,6 +3272,58 @@ func (j *GetUserRecipesOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserRecipesOutput(plain)
+	return nil
+}
+
+type GetUserRoninchainNFTsInput struct {
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserRoninchainNFTsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetUserRoninchainNFTsInput: required")
+	}
+	type Plain GetUserRoninchainNFTsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserRoninchainNFTsInput(plain)
+	return nil
+}
+
+type GetUserRoninchainNFTsOutput struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// user all nfts
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserRoninchainNFTsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in GetUserRoninchainNFTsOutput: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in GetUserRoninchainNFTsOutput: required")
+	}
+	type Plain GetUserRoninchainNFTsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserRoninchainNFTsOutput(plain)
 	return nil
 }
 
@@ -4209,6 +4307,146 @@ func (j *MoveNFTToOnchainOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type MoveNFTToRoninchainInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveNFTToRoninchainInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in MoveNFTToRoninchainInput: required")
+	}
+	if _, ok := raw["nftId"]; raw != nil && !ok {
+		return fmt.Errorf("field nftId in MoveNFTToRoninchainInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MoveNFTToRoninchainInput: required")
+	}
+	type Plain MoveNFTToRoninchainInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveNFTToRoninchainInput(plain)
+	return nil
+}
+
+type MoveNFTToRoninchainOutput struct {
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveNFTToRoninchainOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in MoveNFTToRoninchainOutput: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in MoveNFTToRoninchainOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in MoveNFTToRoninchainOutput: required")
+	}
+	type Plain MoveNFTToRoninchainOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveNFTToRoninchainOutput(plain)
+	return nil
+}
+
+type MoveRoninchainToGameInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveRoninchainToGameInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in MoveRoninchainToGameInput: required")
+	}
+	if _, ok := raw["nftId"]; raw != nil && !ok {
+		return fmt.Errorf("field nftId in MoveRoninchainToGameInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MoveRoninchainToGameInput: required")
+	}
+	type Plain MoveRoninchainToGameInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveRoninchainToGameInput(plain)
+	return nil
+}
+
+type MoveRoninchainToGameOutput struct {
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MoveRoninchainToGameOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in MoveRoninchainToGameOutput: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in MoveRoninchainToGameOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in MoveRoninchainToGameOutput: required")
+	}
+	type Plain MoveRoninchainToGameOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MoveRoninchainToGameOutput(plain)
+	return nil
+}
+
 type MultiBuildUpdateEvent struct {
 	// 建造物信息
 	BuildDatas []BuildData `json:"buildDatas" yaml:"buildDatas" mapstructure:"buildDatas"`
@@ -4512,6 +4750,41 @@ func (j *MultiUpdateUserOnchainNFT) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type MultiUpdateUserRoninchainNFT struct {
+	// 消息版本号
+	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
+
+	// NFT信息
+	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
+
+	// 归属用户id
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUpdateUserRoninchainNFT) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["etag"]; raw != nil && !ok {
+		return fmt.Errorf("field etag in MultiUpdateUserRoninchainNFT: required")
+	}
+	if _, ok := raw["nfts"]; raw != nil && !ok {
+		return fmt.Errorf("field nfts in MultiUpdateUserRoninchainNFT: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MultiUpdateUserRoninchainNFT: required")
+	}
+	type Plain MultiUpdateUserRoninchainNFT
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiUpdateUserRoninchainNFT(plain)
+	return nil
+}
+
 type NFT struct {
 	// NFT address
 	Address string `json:"address" yaml:"address" mapstructure:"address"`
@@ -4648,6 +4921,53 @@ func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = NFTMetadata(plain)
+	return nil
+}
+
+type NFTMoveLog struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// Error corresponds to the JSON schema field "error".
+	Error string `json:"error" yaml:"error" mapstructure:"error"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
+
+	// Status corresponds to the JSON schema field "status".
+	Status int `json:"status" yaml:"status" mapstructure:"status"`
+
+	// TxHash corresponds to the JSON schema field "txHash".
+	TxHash string `json:"txHash" yaml:"txHash" mapstructure:"txHash"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in NFTMoveLog: required")
+	}
+	if _, ok := raw["error"]; raw != nil && !ok {
+		return fmt.Errorf("field error in NFTMoveLog: required")
+	}
+	if _, ok := raw["nftId"]; raw != nil && !ok {
+		return fmt.Errorf("field nftId in NFTMoveLog: required")
+	}
+	if _, ok := raw["status"]; raw != nil && !ok {
+		return fmt.Errorf("field status in NFTMoveLog: required")
+	}
+	if _, ok := raw["txHash"]; raw != nil && !ok {
+		return fmt.Errorf("field txHash in NFTMoveLog: required")
+	}
+	type Plain NFTMoveLog
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = NFTMoveLog(plain)
 	return nil
 }
 
@@ -6706,6 +7026,7 @@ const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDa
 const SubscriptionEventMultiRecyclingEvent SubscriptionEvent = "MultiRecyclingEvent"
 const SubscriptionEventMultiUpdateUserNFT SubscriptionEvent = "MultiUpdateUserNFT"
 const SubscriptionEventMultiUpdateUserOnchainNFT SubscriptionEvent = "MultiUpdateUserOnchainNFT"
+const SubscriptionEventMultiUpdateUserRoninchainNFT SubscriptionEvent = "MultiUpdateUserRoninchainNFT"
 const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
@@ -6732,6 +7053,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"MultiRecyclingEvent",
 	"MultiUpdateUserNFT",
 	"MultiUpdateUserOnchainNFT",
+	"MultiUpdateUserRoninchainNFT",
 	"PlayerDeath",
 	"PlayerKilled",
 	"PlayerReborn",
@@ -7448,16 +7770,20 @@ const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskU
 const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeonInvestData"
 const Web3ServiceActionGetGameMessageStatusById Web3ServiceAction = "GetGameMessageStatusById"
 const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestLogs"
+const Web3ServiceActionGetRoninNFTMoveLogs Web3ServiceAction = "GetRoninNFTMoveLogs"
 const Web3ServiceActionGetUserAllTotemInvestData Web3ServiceAction = "GetUserAllTotemInvestData"
 const Web3ServiceActionGetUserExternalNFTs Web3ServiceAction = "GetUserExternalNFTs"
 const Web3ServiceActionGetUserNFTsByUserIdAndAddress Web3ServiceAction = "GetUserNFTsByUserIdAndAddress"
 const Web3ServiceActionGetUserOffchainNFTs Web3ServiceAction = "GetUserOffchainNFTs"
 const Web3ServiceActionGetUserOnchainNFTs Web3ServiceAction = "GetUserOnchainNFTs"
+const Web3ServiceActionGetUserRoninchainNFTs Web3ServiceAction = "GetUserRoninchainNFTs"
 const Web3ServiceActionHavestDungeonInvestReward Web3ServiceAction = "HavestDungeonInvestReward"
 const Web3ServiceActionInvestDungeon Web3ServiceAction = "InvestDungeon"
 const Web3ServiceActionMergeByRecipe Web3ServiceAction = "MergeByRecipe"
 const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
 const Web3ServiceActionMoveNFTToOnchain Web3ServiceAction = "MoveNFTToOnchain"
+const Web3ServiceActionMoveNFTToRoninchain Web3ServiceAction = "MoveNFTToRoninchain"
+const Web3ServiceActionMoveRoninchainToGame Web3ServiceAction = "MoveRoninchainToGame"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"BatchBurnNFT",
@@ -7475,16 +7801,20 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"GetAllDungeonInvestData",
 	"GetGameMessageStatusById",
 	"GetInvestHavestLogs",
+	"GetRoninNFTMoveLogs",
 	"GetUserAllTotemInvestData",
 	"GetUserExternalNFTs",
 	"GetUserNFTsByUserIdAndAddress",
 	"GetUserOffchainNFTs",
 	"GetUserOnchainNFTs",
+	"GetUserRoninchainNFTs",
 	"HavestDungeonInvestReward",
 	"InvestDungeon",
 	"MergeByRecipe",
 	"MintTaskTicket",
 	"MoveNFTToOnchain",
+	"MoveNFTToRoninchain",
+	"MoveRoninchainToGame",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
