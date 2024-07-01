@@ -7211,9 +7211,9 @@ func (j *UseEquipment) UnmarshalJSON(b []byte) error {
 }
 
 type UseLUAUSD struct {
-	// 和userId一一对应
-	// 所有数量
-	Amounts int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+	// 消耗的金额
+	// decimal 18
+	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
 
 	// 每个用户的消耗备注
 	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
@@ -7228,8 +7228,8 @@ func (j *UseLUAUSD) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["amounts"]; raw != nil && !ok {
-		return fmt.Errorf("field amounts in UseLUAUSD: required")
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in UseLUAUSD: required")
 	}
 	if _, ok := raw["remark"]; raw != nil && !ok {
 		return fmt.Errorf("field remark in UseLUAUSD: required")
