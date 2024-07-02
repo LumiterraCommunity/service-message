@@ -232,11 +232,15 @@ export interface MoveRoninchainToGameOutput {
 
 export interface GetRoninNFTMoveLogsInput {
     userId: string;
+    beginIdx: integer; // 从多少条开始获取
+    num: integer;      // 一次拿多少条记录
 }
 
 export interface NFTMoveLog {
     nftId: string;
+    itemId: integer; //cid
     amount: integer;
+    action: string; // moveToChain | moveToGame
     txHash: string;
     status: integer;
     error: string;
@@ -244,6 +248,7 @@ export interface NFTMoveLog {
 
 export interface GetRoninNFTMoveLogsOutput {
     logs: NFTMoveLog[];
+    logsCount: integer;
 }
 
 export interface GetUserNFTsOutput {
@@ -668,4 +673,3 @@ export interface MultiGetPlayerUsingNftsByUserIdInput {
 export interface MultiGetPlayerUsingNftsByUserIdOutput {
     UserUsingNfts: UserUsingNft[];
 }
-
