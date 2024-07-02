@@ -2825,6 +2825,12 @@ func (j *GetQuestionsByTypesRandomOutput) UnmarshalJSON(b []byte) error {
 }
 
 type GetRoninNFTMoveLogsInput struct {
+	// BeginIdx corresponds to the JSON schema field "beginIdx".
+	BeginIdx int `json:"beginIdx" yaml:"beginIdx" mapstructure:"beginIdx"`
+
+	// Num corresponds to the JSON schema field "num".
+	Num int `json:"num" yaml:"num" mapstructure:"num"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -2834,6 +2840,12 @@ func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if _, ok := raw["beginIdx"]; raw != nil && !ok {
+		return fmt.Errorf("field beginIdx in GetRoninNFTMoveLogsInput: required")
+	}
+	if _, ok := raw["num"]; raw != nil && !ok {
+		return fmt.Errorf("field num in GetRoninNFTMoveLogsInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in GetRoninNFTMoveLogsInput: required")
@@ -2850,6 +2862,9 @@ func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
 type GetRoninNFTMoveLogsOutput struct {
 	// Logs corresponds to the JSON schema field "logs".
 	Logs []NFTMoveLog `json:"logs" yaml:"logs" mapstructure:"logs"`
+
+	// LogsCount corresponds to the JSON schema field "logsCount".
+	LogsCount int `json:"logsCount" yaml:"logsCount" mapstructure:"logsCount"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -2860,6 +2875,9 @@ func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["logs"]; raw != nil && !ok {
 		return fmt.Errorf("field logs in GetRoninNFTMoveLogsOutput: required")
+	}
+	if _, ok := raw["logsCount"]; raw != nil && !ok {
+		return fmt.Errorf("field logsCount in GetRoninNFTMoveLogsOutput: required")
 	}
 	type Plain GetRoninNFTMoveLogsOutput
 	var plain Plain
@@ -4925,11 +4943,17 @@ func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
 }
 
 type NFTMoveLog struct {
+	// Action corresponds to the JSON schema field "action".
+	Action string `json:"action" yaml:"action" mapstructure:"action"`
+
 	// Amount corresponds to the JSON schema field "amount".
 	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
 
 	// Error corresponds to the JSON schema field "error".
 	Error string `json:"error" yaml:"error" mapstructure:"error"`
+
+	// ItemId corresponds to the JSON schema field "itemId".
+	ItemId int `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
 
 	// NftId corresponds to the JSON schema field "nftId".
 	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
@@ -4947,11 +4971,17 @@ func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if _, ok := raw["action"]; raw != nil && !ok {
+		return fmt.Errorf("field action in NFTMoveLog: required")
+	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
 		return fmt.Errorf("field amount in NFTMoveLog: required")
 	}
 	if _, ok := raw["error"]; raw != nil && !ok {
 		return fmt.Errorf("field error in NFTMoveLog: required")
+	}
+	if _, ok := raw["itemId"]; raw != nil && !ok {
+		return fmt.Errorf("field itemId in NFTMoveLog: required")
 	}
 	if _, ok := raw["nftId"]; raw != nil && !ok {
 		return fmt.Errorf("field nftId in NFTMoveLog: required")
