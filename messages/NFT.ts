@@ -244,7 +244,7 @@ export interface NFTMoveLog {
     txHash: string;
     createdAt: integer;
     exectedAt: integer;
-    status: integer;
+    status: integer; // 1,2,3 // pending | success | failed
     error: string;
 }
 
