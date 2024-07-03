@@ -4949,8 +4949,14 @@ type NFTMoveLog struct {
 	// Amount corresponds to the JSON schema field "amount".
 	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
 
+	// CreatedAt corresponds to the JSON schema field "createdAt".
+	CreatedAt int `json:"createdAt" yaml:"createdAt" mapstructure:"createdAt"`
+
 	// Error corresponds to the JSON schema field "error".
 	Error string `json:"error" yaml:"error" mapstructure:"error"`
+
+	// ExectedAt corresponds to the JSON schema field "exectedAt".
+	ExectedAt int `json:"exectedAt" yaml:"exectedAt" mapstructure:"exectedAt"`
 
 	// ItemId corresponds to the JSON schema field "itemId".
 	ItemId int `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
@@ -4977,8 +4983,14 @@ func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["amount"]; raw != nil && !ok {
 		return fmt.Errorf("field amount in NFTMoveLog: required")
 	}
+	if _, ok := raw["createdAt"]; raw != nil && !ok {
+		return fmt.Errorf("field createdAt in NFTMoveLog: required")
+	}
 	if _, ok := raw["error"]; raw != nil && !ok {
 		return fmt.Errorf("field error in NFTMoveLog: required")
+	}
+	if _, ok := raw["exectedAt"]; raw != nil && !ok {
+		return fmt.Errorf("field exectedAt in NFTMoveLog: required")
 	}
 	if _, ok := raw["itemId"]; raw != nil && !ok {
 		return fmt.Errorf("field itemId in NFTMoveLog: required")
