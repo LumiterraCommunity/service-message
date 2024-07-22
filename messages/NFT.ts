@@ -243,6 +243,7 @@ export interface NFTMoveLog {
     amount: integer;
     action: string; // moveToChain | moveToGame
     txHash: string;
+    startAt: integer;
     createdAt: integer;
     exectedAt: integer;
     status: integer; // 1,2,3 // pending | success | failed
