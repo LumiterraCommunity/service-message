@@ -2223,55 +2223,6 @@ func (j *GameServiceRankAction) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type GerUserMintOnChainCountInput struct {
-	// Timestamp corresponds to the JSON schema field "timestamp".
-	Timestamp *float64 `json:"timestamp,omitempty" yaml:"timestamp,omitempty" mapstructure:"timestamp,omitempty"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GerUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in GerUserMintOnChainCountInput: required")
-	}
-	type Plain GerUserMintOnChainCountInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GerUserMintOnChainCountInput(plain)
-	return nil
-}
-
-type GerUserMintOnChainCountOutput struct {
-	// MintOnChainCount corresponds to the JSON schema field "mintOnChainCount".
-	MintOnChainCount int `json:"mintOnChainCount" yaml:"mintOnChainCount" mapstructure:"mintOnChainCount"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GerUserMintOnChainCountOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["mintOnChainCount"]; raw != nil && !ok {
-		return fmt.Errorf("field mintOnChainCount in GerUserMintOnChainCountOutput: required")
-	}
-	type Plain GerUserMintOnChainCountOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GerUserMintOnChainCountOutput(plain)
-	return nil
-}
-
 type GetAllBuildDataInput struct {
 	// 地图id 为多地图准备
 	MapId int `json:"mapId" yaml:"mapId" mapstructure:"mapId"`
@@ -3121,6 +3072,55 @@ func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserIdByAddressOutput(plain)
+	return nil
+}
+
+type GetUserMintOnChainCountInput struct {
+	// Timestamp corresponds to the JSON schema field "timestamp".
+	Timestamp *float64 `json:"timestamp,omitempty" yaml:"timestamp,omitempty" mapstructure:"timestamp,omitempty"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetUserMintOnChainCountInput: required")
+	}
+	type Plain GetUserMintOnChainCountInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserMintOnChainCountInput(plain)
+	return nil
+}
+
+type GetUserMintOnChainCountOutput struct {
+	// MintOnChainCount corresponds to the JSON schema field "mintOnChainCount".
+	MintOnChainCount int `json:"mintOnChainCount" yaml:"mintOnChainCount" mapstructure:"mintOnChainCount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserMintOnChainCountOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["mintOnChainCount"]; raw != nil && !ok {
+		return fmt.Errorf("field mintOnChainCount in GetUserMintOnChainCountOutput: required")
+	}
+	type Plain GetUserMintOnChainCountOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserMintOnChainCountOutput(plain)
 	return nil
 }
 
@@ -7952,6 +7952,7 @@ const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestL
 const Web3ServiceActionGetRoninNFTMoveLogs Web3ServiceAction = "GetRoninNFTMoveLogs"
 const Web3ServiceActionGetUserAllTotemInvestData Web3ServiceAction = "GetUserAllTotemInvestData"
 const Web3ServiceActionGetUserExternalNFTs Web3ServiceAction = "GetUserExternalNFTs"
+const Web3ServiceActionGetUserMintOnChainCount Web3ServiceAction = "GetUserMintOnChainCount"
 const Web3ServiceActionGetUserNFTsByUserIdAndAddress Web3ServiceAction = "GetUserNFTsByUserIdAndAddress"
 const Web3ServiceActionGetUserOffchainNFTs Web3ServiceAction = "GetUserOffchainNFTs"
 const Web3ServiceActionGetUserOnchainNFTs Web3ServiceAction = "GetUserOnchainNFTs"
@@ -7983,6 +7984,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"GetRoninNFTMoveLogs",
 	"GetUserAllTotemInvestData",
 	"GetUserExternalNFTs",
+	"GetUserMintOnChainCount",
 	"GetUserNFTsByUserIdAndAddress",
 	"GetUserOffchainNFTs",
 	"GetUserOnchainNFTs",
