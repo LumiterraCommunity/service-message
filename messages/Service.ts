@@ -61,6 +61,7 @@ export enum Web3ServiceAction {
 
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
+    GetUserMintOnChainCount = 'GetUserMintOnChainCount',
 
     GetUserOnchainNFTs = 'GetUserOnchainNFTs',
     GetUserOffchainNFTs = 'GetUserOffchainNFTs',
