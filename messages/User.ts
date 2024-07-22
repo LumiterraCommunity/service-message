@@ -58,3 +58,10 @@ export interface GetUserTrackOutput {
     ditamin_amount: integer,
 }
 
+export interface GetUserReputationScoreInput {
+    userId: string;
+}
+
+export interface GetUserReputationScoreOutput {
+    reputationScore: integer;
+}

@@ -5,6 +5,7 @@ export enum AppId {
     "land-service" = 'web3-service',
     "game-service-main" = 'game-service-main',
     "scene-dynamic-service" = 'scene-dynamic-service',
+    "game-service-rank" = "game-service-rank",
 }
 
 export enum GraphqlServiceAction {
@@ -111,6 +112,10 @@ export enum Web3ServiceAction {
 
 export enum SceneDynamicServiceAction {
     StartServer = "StartServer"
+}
+
+export enum GameServiceRankAction {
+    GetUserReputationScore = "GetUserReputationScore"
 }
 
 /**
