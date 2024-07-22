@@ -68,7 +68,7 @@ export interface GetUserReputationScoreOutput {
 
 export interface GetUserMintOnChainCountInput {
     userId: string;
-    timestamp?: integer; // unix timestamp default is now
+    timestamp: integer; // unix timestamp default is now
 }
 
 export interface GetUserMintOnChainCountOutput {
