@@ -2223,6 +2223,55 @@ func (j *GameServiceRankAction) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GerUserMintOnChainCountInput struct {
+	// Timestamp corresponds to the JSON schema field "timestamp".
+	Timestamp *float64 `json:"timestamp,omitempty" yaml:"timestamp,omitempty" mapstructure:"timestamp,omitempty"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GerUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GerUserMintOnChainCountInput: required")
+	}
+	type Plain GerUserMintOnChainCountInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GerUserMintOnChainCountInput(plain)
+	return nil
+}
+
+type GerUserMintOnChainCountOutput struct {
+	// MintOnChainCount corresponds to the JSON schema field "mintOnChainCount".
+	MintOnChainCount int `json:"mintOnChainCount" yaml:"mintOnChainCount" mapstructure:"mintOnChainCount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GerUserMintOnChainCountOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["mintOnChainCount"]; raw != nil && !ok {
+		return fmt.Errorf("field mintOnChainCount in GerUserMintOnChainCountOutput: required")
+	}
+	type Plain GerUserMintOnChainCountOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GerUserMintOnChainCountOutput(plain)
+	return nil
+}
+
 type GetAllBuildDataInput struct {
 	// 地图id 为多地图准备
 	MapId int `json:"mapId" yaml:"mapId" mapstructure:"mapId"`
