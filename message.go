@@ -5095,6 +5095,9 @@ type NFTMoveLog struct {
 	// NftId corresponds to the JSON schema field "nftId".
 	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
 
+	// StartAt corresponds to the JSON schema field "startAt".
+	StartAt int `json:"startAt" yaml:"startAt" mapstructure:"startAt"`
+
 	// Status corresponds to the JSON schema field "status".
 	Status int `json:"status" yaml:"status" mapstructure:"status"`
 
@@ -5128,6 +5131,9 @@ func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["nftId"]; raw != nil && !ok {
 		return fmt.Errorf("field nftId in NFTMoveLog: required")
+	}
+	if _, ok := raw["startAt"]; raw != nil && !ok {
+		return fmt.Errorf("field startAt in NFTMoveLog: required")
 	}
 	if _, ok := raw["status"]; raw != nil && !ok {
 		return fmt.Errorf("field status in NFTMoveLog: required")
