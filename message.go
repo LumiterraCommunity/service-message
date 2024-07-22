@@ -2861,6 +2861,9 @@ type GetRoninNFTMoveLogsInput struct {
 	// Num corresponds to the JSON schema field "num".
 	Num int `json:"num" yaml:"num" mapstructure:"num"`
 
+	// Status corresponds to the JSON schema field "status".
+	Status int `json:"status" yaml:"status" mapstructure:"status"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -2876,6 +2879,9 @@ func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["num"]; raw != nil && !ok {
 		return fmt.Errorf("field num in GetRoninNFTMoveLogsInput: required")
+	}
+	if _, ok := raw["status"]; raw != nil && !ok {
+		return fmt.Errorf("field status in GetRoninNFTMoveLogsInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in GetRoninNFTMoveLogsInput: required")
