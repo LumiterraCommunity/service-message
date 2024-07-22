@@ -3077,7 +3077,7 @@ func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
 
 type GetUserMintOnChainCountInput struct {
 	// Timestamp corresponds to the JSON schema field "timestamp".
-	Timestamp *float64 `json:"timestamp,omitempty" yaml:"timestamp,omitempty" mapstructure:"timestamp,omitempty"`
+	Timestamp int `json:"timestamp" yaml:"timestamp" mapstructure:"timestamp"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -3088,6 +3088,9 @@ func (j *GetUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if _, ok := raw["timestamp"]; raw != nil && !ok {
+		return fmt.Errorf("field timestamp in GetUserMintOnChainCountInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in GetUserMintOnChainCountInput: required")
