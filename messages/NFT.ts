@@ -232,13 +232,14 @@ export interface MoveRoninchainToGameOutput {
 
 export interface GetRoninNFTMoveLogsInput {
     userId: string;
+    status: integer; // 1,2,3 // pending | success | failed
     beginIdx: integer; // 从多少条开始获取
     num: integer;      // 一次拿多少条记录
 }
 
 export interface NFTMoveLog {
     nftId: string;
-    itemId: integer; //cid
+    itemId: integer; // cid
     amount: integer;
     action: string; // moveToChain | moveToGame
     txHash: string;
