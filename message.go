@@ -39,6 +39,7 @@ func (j *AccountMigrate) UnmarshalJSON(b []byte) error {
 type AppId string
 
 const AppIdGameServiceMain AppId = "game-service-main"
+const AppIdGameServiceRank AppId = "game-service-rank"
 const AppIdGraphqlService AppId = "graphql-service"
 const AppIdPvpService AppId = "pvp-service"
 const AppIdSceneDynamicService AppId = "scene-dynamic-service"
@@ -46,6 +47,7 @@ const AppIdWeb3Service AppId = "web3-service"
 
 var enumValues_AppId = []interface{}{
 	"game-service-main",
+	"game-service-rank",
 	"graphql-service",
 	"pvp-service",
 	"scene-dynamic-service",
@@ -2193,6 +2195,34 @@ func (j *GameDataServiceAction) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GameServiceRankAction string
+
+const GameServiceRankActionGetUserReputationScore GameServiceRankAction = "GetUserReputationScore"
+
+var enumValues_GameServiceRankAction = []interface{}{
+	"GetUserReputationScore",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GameServiceRankAction) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_GameServiceRankAction {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_GameServiceRankAction, v)
+	}
+	*j = GameServiceRankAction(v)
+	return nil
+}
+
 type GetAllBuildDataInput struct {
 	// 地图id 为多地图准备
 	MapId int `json:"mapId" yaml:"mapId" mapstructure:"mapId"`
@@ -3290,6 +3320,52 @@ func (j *GetUserRecipesOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserRecipesOutput(plain)
+	return nil
+}
+
+type GetUserReputationScoreInput struct {
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserReputationScoreInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in GetUserReputationScoreInput: required")
+	}
+	type Plain GetUserReputationScoreInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserReputationScoreInput(plain)
+	return nil
+}
+
+type GetUserReputationScoreOutput struct {
+	// ReputationScore corresponds to the JSON schema field "reputationScore".
+	ReputationScore int `json:"reputationScore" yaml:"reputationScore" mapstructure:"reputationScore"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetUserReputationScoreOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["reputationScore"]; raw != nil && !ok {
+		return fmt.Errorf("field reputationScore in GetUserReputationScoreOutput: required")
+	}
+	type Plain GetUserReputationScoreOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetUserReputationScoreOutput(plain)
 	return nil
 }
 
