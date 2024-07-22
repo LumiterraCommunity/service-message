@@ -65,3 +65,12 @@ export interface GetUserReputationScoreInput {
 export interface GetUserReputationScoreOutput {
     reputationScore: integer;
 }
+
+export interface GerUserMintOnChainCountInput {
+    userId: string;
+    timestamp?: integer; // unix timestamp default is now
+}
+
+export interface GerUserMintOnChainCountOutput {
+    mintOnChainCount: integer;
+}
