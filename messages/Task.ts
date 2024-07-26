@@ -25,10 +25,12 @@ export interface TaskPool {
     taskTicketMintKPrecent: integer;
 
 
-    // 抽奖票奖励cid
+    // 抽奖卷奖励cid
     raffleTicketItemId: string;
     // 抽奖任务票cid
     raffleTaskTicketItemId: string;
+    // 抽奖任务票NFTId
+    raffleTaskTicketNFTId: string;
     // 抽奖票总奖励数
     raffleTicketTotal: integer;
     // 抽奖票基数
