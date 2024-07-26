@@ -104,6 +104,7 @@ export enum Web3ServiceAction {
     GetInvestHavestLogs = 'GetInvestHavestLogs',
 
     // Task任务协议
+    FetchDungeonExtraDropPools = 'FetchDungeonExtraDropPools',
     FetchTaskPools = 'FetchTaskPools',
     MintTaskTicket = 'MintTaskTicket',
     DistributeLUAUSD = 'DistributeLUAUSD',

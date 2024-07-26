@@ -24,6 +24,16 @@ export interface TaskPool {
     // 分发奖励值时k值
     taskTicketMintKPrecent: integer;
 
+
+    // 抽奖票奖励cid
+    raffleTicketItemId: string;
+    // 抽奖任务票cid
+    raffleTaskTicketItemId: string;
+    // 抽奖票总奖励数
+    raffleTicketTotal: integer;
+    // 抽奖票基数
+    raffleTicketBase: integer;
+
     // luag mint price
     luag1BasicBonus: integer;
     luag1TokenTotal: integer;
@@ -58,8 +68,16 @@ export interface MintTaskTicketInput {
     // 任务池id
     taskPoolId: string;
 
-    // 票数
-    amount: integer;
+    // 任务票NFT Id
+    itemIds: string[];
+
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
+    amounts: integer[];
 
     // 防止重复提交
     mintId: string;
