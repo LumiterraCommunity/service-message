@@ -1417,6 +1417,65 @@ func (j *DivestDungeonOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type DungeonExtraDropPool struct {
+	// Created corresponds to the JSON schema field "created".
+	Created bool `json:"created" yaml:"created" mapstructure:"created"`
+
+	// Id corresponds to the JSON schema field "id".
+	Id string `json:"id" yaml:"id" mapstructure:"id"`
+
+	// LevelRangeIdx corresponds to the JSON schema field "levelRangeIdx".
+	LevelRangeIdx int `json:"levelRangeIdx" yaml:"levelRangeIdx" mapstructure:"levelRangeIdx"`
+
+	// RaffleTicketTotal corresponds to the JSON schema field "raffleTicketTotal".
+	RaffleTicketTotal int `json:"raffleTicketTotal" yaml:"raffleTicketTotal" mapstructure:"raffleTicketTotal"`
+
+	// Talent corresponds to the JSON schema field "talent".
+	Talent int `json:"talent" yaml:"talent" mapstructure:"talent"`
+
+	// TicketNFTId corresponds to the JSON schema field "ticketNFTId".
+	TicketNFTId string `json:"ticketNFTId" yaml:"ticketNFTId" mapstructure:"ticketNFTId"`
+
+	// TicketNFTItemId corresponds to the JSON schema field "ticketNFTItemId".
+	TicketNFTItemId string `json:"ticketNFTItemId" yaml:"ticketNFTItemId" mapstructure:"ticketNFTItemId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *DungeonExtraDropPool) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["created"]; raw != nil && !ok {
+		return fmt.Errorf("field created in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["id"]; raw != nil && !ok {
+		return fmt.Errorf("field id in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["levelRangeIdx"]; raw != nil && !ok {
+		return fmt.Errorf("field levelRangeIdx in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["raffleTicketTotal"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketTotal in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["talent"]; raw != nil && !ok {
+		return fmt.Errorf("field talent in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["ticketNFTId"]; raw != nil && !ok {
+		return fmt.Errorf("field ticketNFTId in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["ticketNFTItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field ticketNFTItemId in DungeonExtraDropPool: required")
+	}
+	type Plain DungeonExtraDropPool
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = DungeonExtraDropPool(plain)
+	return nil
+}
+
 type DungeonInvestData struct {
 	// CurInvest corresponds to the JSON schema field "curInvest".
 	CurInvest string `json:"curInvest" yaml:"curInvest" mapstructure:"curInvest"`
@@ -2018,6 +2077,52 @@ func (j *ExternalTotemTraitTypes) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_ExternalTotemTraitTypes, v)
 	}
 	*j = ExternalTotemTraitTypes(v)
+	return nil
+}
+
+type FetchDungeonExtraDropPoolsInput struct {
+	// Timestamp corresponds to the JSON schema field "timestamp".
+	Timestamp int `json:"timestamp" yaml:"timestamp" mapstructure:"timestamp"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *FetchDungeonExtraDropPoolsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["timestamp"]; raw != nil && !ok {
+		return fmt.Errorf("field timestamp in FetchDungeonExtraDropPoolsInput: required")
+	}
+	type Plain FetchDungeonExtraDropPoolsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = FetchDungeonExtraDropPoolsInput(plain)
+	return nil
+}
+
+type FetchDungeonExtraDropPoolsOutput struct {
+	// Pools corresponds to the JSON schema field "pools".
+	Pools []DungeonExtraDropPool `json:"pools" yaml:"pools" mapstructure:"pools"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *FetchDungeonExtraDropPoolsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["pools"]; raw != nil && !ok {
+		return fmt.Errorf("field pools in FetchDungeonExtraDropPoolsOutput: required")
+	}
+	type Plain FetchDungeonExtraDropPoolsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = FetchDungeonExtraDropPoolsOutput(plain)
 	return nil
 }
 
@@ -4314,8 +4419,12 @@ func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
 }
 
 type MintTaskTicketInput struct {
-	// Amount corresponds to the JSON schema field "amount".
-	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+	// index和itemIds一一对应
+	// 所有数量
+	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// ItemIds corresponds to the JSON schema field "itemIds".
+	ItemIds []string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
 
 	// MintId corresponds to the JSON schema field "mintId".
 	MintId string `json:"mintId" yaml:"mintId" mapstructure:"mintId"`
@@ -4333,8 +4442,11 @@ func (j *MintTaskTicketInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["amount"]; raw != nil && !ok {
-		return fmt.Errorf("field amount in MintTaskTicketInput: required")
+	if _, ok := raw["amounts"]; raw != nil && !ok {
+		return fmt.Errorf("field amounts in MintTaskTicketInput: required")
+	}
+	if _, ok := raw["itemIds"]; raw != nil && !ok {
+		return fmt.Errorf("field itemIds in MintTaskTicketInput: required")
 	}
 	if _, ok := raw["mintId"]; raw != nil && !ok {
 		return fmt.Errorf("field mintId in MintTaskTicketInput: required")
@@ -7294,6 +7406,19 @@ type TaskPool struct {
 	// PoolExpireTime corresponds to the JSON schema field "poolExpireTime".
 	PoolExpireTime int `json:"poolExpireTime" yaml:"poolExpireTime" mapstructure:"poolExpireTime"`
 
+	// RaffleTaskTicketItemId corresponds to the JSON schema field
+	// "raffleTaskTicketItemId".
+	RaffleTaskTicketItemId string `json:"raffleTaskTicketItemId" yaml:"raffleTaskTicketItemId" mapstructure:"raffleTaskTicketItemId"`
+
+	// RaffleTicketBase corresponds to the JSON schema field "raffleTicketBase".
+	RaffleTicketBase int `json:"raffleTicketBase" yaml:"raffleTicketBase" mapstructure:"raffleTicketBase"`
+
+	// RaffleTicketItemId corresponds to the JSON schema field "raffleTicketItemId".
+	RaffleTicketItemId string `json:"raffleTicketItemId" yaml:"raffleTicketItemId" mapstructure:"raffleTicketItemId"`
+
+	// RaffleTicketTotal corresponds to the JSON schema field "raffleTicketTotal".
+	RaffleTicketTotal int `json:"raffleTicketTotal" yaml:"raffleTicketTotal" mapstructure:"raffleTicketTotal"`
+
 	// RefreshNFTId corresponds to the JSON schema field "refreshNFTId".
 	RefreshNFTId string `json:"refreshNFTId" yaml:"refreshNFTId" mapstructure:"refreshNFTId"`
 
@@ -7352,6 +7477,18 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["poolExpireTime"]; raw != nil && !ok {
 		return fmt.Errorf("field poolExpireTime in TaskPool: required")
+	}
+	if _, ok := raw["raffleTaskTicketItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTaskTicketItemId in TaskPool: required")
+	}
+	if _, ok := raw["raffleTicketBase"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketBase in TaskPool: required")
+	}
+	if _, ok := raw["raffleTicketItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketItemId in TaskPool: required")
+	}
+	if _, ok := raw["raffleTicketTotal"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketTotal in TaskPool: required")
 	}
 	if _, ok := raw["refreshNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field refreshNFTId in TaskPool: required")
@@ -7947,6 +8084,7 @@ const Web3ServiceActionDivestDungeon Web3ServiceAction = "DivestDungeon"
 const Web3ServiceActionEstimateDivestDungeon Web3ServiceAction = "EstimateDivestDungeon"
 const Web3ServiceActionEstimateInvestDungeon Web3ServiceAction = "EstimateInvestDungeon"
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
+const Web3ServiceActionFetchDungeonExtraDropPools Web3ServiceAction = "FetchDungeonExtraDropPools"
 const Web3ServiceActionFetchTaskPools Web3ServiceAction = "FetchTaskPools"
 const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskUseNFTSupplyList"
 const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeonInvestData"
@@ -7979,6 +8117,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"EstimateDivestDungeon",
 	"EstimateInvestDungeon",
 	"ExecGameMessage",
+	"FetchDungeonExtraDropPools",
 	"FetchTaskPools",
 	"FetchTaskUseNFTSupplyList",
 	"GetAllDungeonInvestData",
