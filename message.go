@@ -7410,6 +7410,10 @@ type TaskPool struct {
 	// "raffleTaskTicketItemId".
 	RaffleTaskTicketItemId string `json:"raffleTaskTicketItemId" yaml:"raffleTaskTicketItemId" mapstructure:"raffleTaskTicketItemId"`
 
+	// RaffleTaskTicketNFTId corresponds to the JSON schema field
+	// "raffleTaskTicketNFTId".
+	RaffleTaskTicketNFTId string `json:"raffleTaskTicketNFTId" yaml:"raffleTaskTicketNFTId" mapstructure:"raffleTaskTicketNFTId"`
+
 	// RaffleTicketBase corresponds to the JSON schema field "raffleTicketBase".
 	RaffleTicketBase int `json:"raffleTicketBase" yaml:"raffleTicketBase" mapstructure:"raffleTicketBase"`
 
@@ -7480,6 +7484,9 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["raffleTaskTicketItemId"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTaskTicketItemId in TaskPool: required")
+	}
+	if _, ok := raw["raffleTaskTicketNFTId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTaskTicketNFTId in TaskPool: required")
 	}
 	if _, ok := raw["raffleTicketBase"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTicketBase in TaskPool: required")
