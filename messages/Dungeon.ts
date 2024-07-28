@@ -9,8 +9,8 @@ export interface DungeonExtraDropPool {
 
     // 奖票数量
     raffleTicketTotal: integer;
-    ticketNFTId: string;
-    ticketNFTItemId: string;
+    raffleTicketNFTId: string;
+    raffleTicketNFTItemId: string;
 
     // 专精类型
     talent: integer;
@@ -25,4 +25,14 @@ export interface FetchDungeonExtraDropPoolsInput {
 
 export interface FetchDungeonExtraDropPoolsOutput {
     pools: DungeonExtraDropPool[];
+}
+
+export interface RaffleDrawInput {
+    userId: string;
+    raffleTicketNFTId: string;
+    amount: integer;
+}
+
+export interface RaffleDrawOutput {
+
 }

@@ -391,6 +391,11 @@ export interface MultiUpdateUserNFT {
 
 export interface MultiUpdateUserOffchainNFT {
     /**
+     * 是否来源抽奖
+     */
+    isFromRaffle?: boolean;
+
+    /**
      * 消息版本号
      */
     etag: integer;

@@ -110,6 +110,9 @@ export enum Web3ServiceAction {
     DistributeLUAUSD = 'DistributeLUAUSD',
     DistributeLUAG1 = 'DistributeLUAG1',
     FetchTaskUseNFTSupplyList = 'FetchTaskUseNFTSupplyList',
+
+    // 抽奖
+    RaffleDraw = 'RaffleDraw',
 }
 
 export enum SceneDynamicServiceAction {
