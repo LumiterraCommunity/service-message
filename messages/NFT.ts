@@ -346,6 +346,9 @@ export interface RecipeInfo {
     name: string;
 }
 
+export enum MultiUpdateUserNFTFromType {
+    raffle = 'raffle'
+}
 export interface MultiUpdateUserNFT {
     /**
      * 消息版本号
@@ -357,11 +360,7 @@ export interface MultiUpdateUserNFT {
      */
     userId: string;
 
-    /**
-     * 来源坐标
-     * 当捡取时携带且不为0
-     */
-    fromLandId: integer;
+    fromType?: MultiUpdateUserNFTFromType;
 
     /**
      * 来源合成图鉴
@@ -390,11 +389,6 @@ export interface MultiUpdateUserNFT {
 }
 
 export interface MultiUpdateUserOffchainNFT {
-    /**
-     * 是否来源抽奖
-     */
-    isFromRaffle?: boolean;
-
     /**
      * 消息版本号
      */
