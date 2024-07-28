@@ -7002,6 +7002,9 @@ type RaffleDrawLog struct {
 	// BlockTime corresponds to the JSON schema field "blockTime".
 	BlockTime int `json:"blockTime" yaml:"blockTime" mapstructure:"blockTime"`
 
+	// PlayerName corresponds to the JSON schema field "playerName".
+	PlayerName string `json:"playerName" yaml:"playerName" mapstructure:"playerName"`
+
 	// RaffleTicketNFTId corresponds to the JSON schema field "raffleTicketNFTId".
 	RaffleTicketNFTId string `json:"raffleTicketNFTId" yaml:"raffleTicketNFTId" mapstructure:"raffleTicketNFTId"`
 
@@ -7015,6 +7018,9 @@ type RaffleDrawLog struct {
 
 	// ResultItemIds corresponds to the JSON schema field "resultItemIds".
 	ResultItemIds []string `json:"resultItemIds" yaml:"resultItemIds" mapstructure:"resultItemIds"`
+
+	// TxHash corresponds to the JSON schema field "txHash".
+	TxHash string `json:"txHash" yaml:"txHash" mapstructure:"txHash"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -7032,6 +7038,9 @@ func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["blockTime"]; raw != nil && !ok {
 		return fmt.Errorf("field blockTime in RaffleDrawLog: required")
 	}
+	if _, ok := raw["playerName"]; raw != nil && !ok {
+		return fmt.Errorf("field playerName in RaffleDrawLog: required")
+	}
 	if _, ok := raw["raffleTicketNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTicketNFTId in RaffleDrawLog: required")
 	}
@@ -7043,6 +7052,9 @@ func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["resultItemIds"]; raw != nil && !ok {
 		return fmt.Errorf("field resultItemIds in RaffleDrawLog: required")
+	}
+	if _, ok := raw["txHash"]; raw != nil && !ok {
+		return fmt.Errorf("field txHash in RaffleDrawLog: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in RaffleDrawLog: required")
