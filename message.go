@@ -2198,6 +2198,67 @@ func (j *FetchTaskUseNFTSupplyListOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type FindRaffleRrawLogsInput struct {
+	// BeginIdx corresponds to the JSON schema field "beginIdx".
+	BeginIdx int `json:"beginIdx" yaml:"beginIdx" mapstructure:"beginIdx"`
+
+	// Num corresponds to the JSON schema field "num".
+	Num int `json:"num" yaml:"num" mapstructure:"num"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId *string `json:"userId,omitempty" yaml:"userId,omitempty" mapstructure:"userId,omitempty"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *FindRaffleRrawLogsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["beginIdx"]; raw != nil && !ok {
+		return fmt.Errorf("field beginIdx in FindRaffleRrawLogsInput: required")
+	}
+	if _, ok := raw["num"]; raw != nil && !ok {
+		return fmt.Errorf("field num in FindRaffleRrawLogsInput: required")
+	}
+	type Plain FindRaffleRrawLogsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = FindRaffleRrawLogsInput(plain)
+	return nil
+}
+
+type FindRaffleRrawLogsOutput struct {
+	// Logs corresponds to the JSON schema field "logs".
+	Logs []RaffleDrawLog `json:"logs" yaml:"logs" mapstructure:"logs"`
+
+	// LogsCount corresponds to the JSON schema field "logsCount".
+	LogsCount int `json:"logsCount" yaml:"logsCount" mapstructure:"logsCount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *FindRaffleRrawLogsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["logs"]; raw != nil && !ok {
+		return fmt.Errorf("field logs in FindRaffleRrawLogsOutput: required")
+	}
+	if _, ok := raw["logsCount"]; raw != nil && !ok {
+		return fmt.Errorf("field logsCount in FindRaffleRrawLogsOutput: required")
+	}
+	type Plain FindRaffleRrawLogsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = FindRaffleRrawLogsOutput(plain)
+	return nil
+}
+
 type FinishQuestion struct {
 	// DiffcultyChange corresponds to the JSON schema field "diffcultyChange".
 	DiffcultyChange float64 `json:"diffcultyChange" yaml:"diffcultyChange" mapstructure:"diffcultyChange"`
@@ -4898,9 +4959,6 @@ type MultiUpdateUserNFT struct {
 	// 来源合成图鉴
 	FromRecipeInfo *RecipeInfo `json:"fromRecipeInfo,omitempty" yaml:"fromRecipeInfo,omitempty" mapstructure:"fromRecipeInfo,omitempty"`
 
-	// FromType corresponds to the JSON schema field "fromType".
-	FromType *MultiUpdateUserNFTFromType `json:"fromType,omitempty" yaml:"fromType,omitempty" mapstructure:"fromType,omitempty"`
-
 	// NFT信息
 	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
 
@@ -4920,34 +4978,6 @@ type MultiUpdateUserNFT struct {
 type MultiUpdateUserNFTFromType string
 
 const MultiUpdateUserNFTFromTypeRaffle MultiUpdateUserNFTFromType = "raffle"
-
-type MultiUpdateUserNFTFromType_1 string
-
-const MultiUpdateUserNFTFromType_1_Raffle MultiUpdateUserNFTFromType_1 = "raffle"
-
-var enumValues_MultiUpdateUserNFTFromType_1 = []interface{}{
-	"raffle",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserNFTFromType_1) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_MultiUpdateUserNFTFromType_1 {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_MultiUpdateUserNFTFromType_1, v)
-	}
-	*j = MultiUpdateUserNFTFromType_1(v)
-	return nil
-}
 
 var enumValues_MultiUpdateUserNFTFromType = []interface{}{
 	"raffle",
@@ -6907,6 +6937,29 @@ func (j *Question) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type RaffleDrawEvent struct {
+	// Log corresponds to the JSON schema field "log".
+	Log RaffleDrawLog `json:"log" yaml:"log" mapstructure:"log"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *RaffleDrawEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["log"]; raw != nil && !ok {
+		return fmt.Errorf("field log in RaffleDrawEvent: required")
+	}
+	type Plain RaffleDrawEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = RaffleDrawEvent(plain)
+	return nil
+}
+
 type RaffleDrawInput struct {
 	// Amount corresponds to the JSON schema field "amount".
 	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
@@ -6939,6 +6992,60 @@ func (j *RaffleDrawInput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = RaffleDrawInput(plain)
+	return nil
+}
+
+type RaffleDrawLog struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// BlockTime corresponds to the JSON schema field "blockTime".
+	BlockTime int `json:"blockTime" yaml:"blockTime" mapstructure:"blockTime"`
+
+	// RaffleTicketNFTId corresponds to the JSON schema field "raffleTicketNFTId".
+	RaffleTicketNFTId string `json:"raffleTicketNFTId" yaml:"raffleTicketNFTId" mapstructure:"raffleTicketNFTId"`
+
+	// index和itemIds一一对应
+	// 所有数量
+	ResultAmounts []int `json:"resultAmounts" yaml:"resultAmounts" mapstructure:"resultAmounts"`
+
+	// ResultItemIds corresponds to the JSON schema field "resultItemIds".
+	ResultItemIds []string `json:"resultItemIds" yaml:"resultItemIds" mapstructure:"resultItemIds"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in RaffleDrawLog: required")
+	}
+	if _, ok := raw["blockTime"]; raw != nil && !ok {
+		return fmt.Errorf("field blockTime in RaffleDrawLog: required")
+	}
+	if _, ok := raw["raffleTicketNFTId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketNFTId in RaffleDrawLog: required")
+	}
+	if _, ok := raw["resultAmounts"]; raw != nil && !ok {
+		return fmt.Errorf("field resultAmounts in RaffleDrawLog: required")
+	}
+	if _, ok := raw["resultItemIds"]; raw != nil && !ok {
+		return fmt.Errorf("field resultItemIds in RaffleDrawLog: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in RaffleDrawLog: required")
+	}
+	type Plain RaffleDrawLog
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = RaffleDrawLog(plain)
 	return nil
 }
 
@@ -7414,6 +7521,7 @@ const SubscriptionEventMultiUpdateUserRoninchainNFT SubscriptionEvent = "MultiUp
 const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
+const SubscriptionEventRaffleDrawEvent SubscriptionEvent = "RaffleDrawEvent"
 const SubscriptionEventUnloadEquipment SubscriptionEvent = "UnloadEquipment"
 const SubscriptionEventUpdateTotemInvestData SubscriptionEvent = "UpdateTotemInvestData"
 const SubscriptionEventUpdateUpcomingUses SubscriptionEvent = "UpdateUpcomingUses"
@@ -7441,6 +7549,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"PlayerDeath",
 	"PlayerKilled",
 	"PlayerReborn",
+	"RaffleDrawEvent",
 	"UnloadEquipment",
 	"UpdateTotemInvestData",
 	"UpdateUpcomingUses",
@@ -8184,6 +8293,7 @@ const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
 const Web3ServiceActionFetchDungeonExtraDropPools Web3ServiceAction = "FetchDungeonExtraDropPools"
 const Web3ServiceActionFetchTaskPools Web3ServiceAction = "FetchTaskPools"
 const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskUseNFTSupplyList"
+const Web3ServiceActionFindRaffleRrawLogs Web3ServiceAction = "FindRaffleRrawLogs"
 const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeonInvestData"
 const Web3ServiceActionGetGameMessageStatusById Web3ServiceAction = "GetGameMessageStatusById"
 const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestLogs"
@@ -8218,6 +8328,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"FetchDungeonExtraDropPools",
 	"FetchTaskPools",
 	"FetchTaskUseNFTSupplyList",
+	"FindRaffleRrawLogs",
 	"GetAllDungeonInvestData",
 	"GetGameMessageStatusById",
 	"GetInvestHavestLogs",
