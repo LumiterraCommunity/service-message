@@ -4895,12 +4895,11 @@ type MultiUpdateUserNFT struct {
 	// 消息版本号
 	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
 
-	// 来源坐标
-	// 当捡取时携带且不为0
-	FromLandId int `json:"fromLandId" yaml:"fromLandId" mapstructure:"fromLandId"`
-
 	// 来源合成图鉴
 	FromRecipeInfo *RecipeInfo `json:"fromRecipeInfo,omitempty" yaml:"fromRecipeInfo,omitempty" mapstructure:"fromRecipeInfo,omitempty"`
+
+	// FromType corresponds to the JSON schema field "fromType".
+	FromType *MultiUpdateUserNFTFromType `json:"fromType,omitempty" yaml:"fromType,omitempty" mapstructure:"fromType,omitempty"`
 
 	// NFT信息
 	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
@@ -4918,6 +4917,62 @@ type MultiUpdateUserNFT struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
+type MultiUpdateUserNFTFromType string
+
+const MultiUpdateUserNFTFromTypeRaffle MultiUpdateUserNFTFromType = "raffle"
+
+type MultiUpdateUserNFTFromType_1 string
+
+const MultiUpdateUserNFTFromType_1_Raffle MultiUpdateUserNFTFromType_1 = "raffle"
+
+var enumValues_MultiUpdateUserNFTFromType_1 = []interface{}{
+	"raffle",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUpdateUserNFTFromType_1) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_MultiUpdateUserNFTFromType_1 {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_MultiUpdateUserNFTFromType_1, v)
+	}
+	*j = MultiUpdateUserNFTFromType_1(v)
+	return nil
+}
+
+var enumValues_MultiUpdateUserNFTFromType = []interface{}{
+	"raffle",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiUpdateUserNFTFromType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_MultiUpdateUserNFTFromType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_MultiUpdateUserNFTFromType, v)
+	}
+	*j = MultiUpdateUserNFTFromType(v)
+	return nil
+}
+
 // UnmarshalJSON implements json.Unmarshaler.
 func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
@@ -4926,9 +4981,6 @@ func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
 		return fmt.Errorf("field etag in MultiUpdateUserNFT: required")
-	}
-	if _, ok := raw["fromLandId"]; raw != nil && !ok {
-		return fmt.Errorf("field fromLandId in MultiUpdateUserNFT: required")
 	}
 	if _, ok := raw["nfts"]; raw != nil && !ok {
 		return fmt.Errorf("field nfts in MultiUpdateUserNFT: required")
@@ -4948,9 +5000,6 @@ func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 type MultiUpdateUserOffchainNFT struct {
 	// 消息版本号
 	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
-
-	// 是否来源抽奖
-	IsFromRaffle *bool `json:"isFromRaffle,omitempty" yaml:"isFromRaffle,omitempty" mapstructure:"isFromRaffle,omitempty"`
 
 	// NFT信息
 	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
