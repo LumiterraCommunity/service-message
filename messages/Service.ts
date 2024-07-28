@@ -58,6 +58,7 @@ export enum GameDataServiceAction {
 export enum Web3ServiceAction {
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
+    FindRaffleRrawLogs = 'FindRaffleRrawLogs',
 
     // 根据用户的id跟钱包地址获取用户所有的NFTs
     GetUserNFTsByUserIdAndAddress = 'GetUserNFTsByUserIdAndAddress',
@@ -193,6 +194,8 @@ export enum SubscriptionEvent {
     DispatchGameMessage = 'DispatchGameMessage',
 
     AccountMigrate = 'AccountMigrate',
+
+    RaffleDrawEvent = 'RaffleDrawEvent'
 }
 
 export enum PVPSubscriptionEvent {

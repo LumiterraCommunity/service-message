@@ -360,8 +360,6 @@ export interface MultiUpdateUserNFT {
      */
     userId: string;
 
-    fromType?: MultiUpdateUserNFTFromType;
-
     /**
      * 来源合成图鉴
      */
