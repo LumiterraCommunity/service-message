@@ -29,8 +29,10 @@ export interface FetchDungeonExtraDropPoolsOutput {
 
 export interface RaffleDrawLog {
     userId: string;
+    playerName: string;
     raffleTicketNFTId: string;
     raffleTicketNFTItemId: string;
+    txHash: string;
     amount: integer;
 
     blockTime: integer;

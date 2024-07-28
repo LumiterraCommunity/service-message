@@ -109,7 +109,6 @@ export interface MultiGetPlayerInfoByUserIdOutput {
     playerInfos: PlayerInfo[];
 }
 
-
 export interface PlayerItemSlot {
     // item socket postion
     position: integer;
