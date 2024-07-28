@@ -7005,6 +7005,10 @@ type RaffleDrawLog struct {
 	// RaffleTicketNFTId corresponds to the JSON schema field "raffleTicketNFTId".
 	RaffleTicketNFTId string `json:"raffleTicketNFTId" yaml:"raffleTicketNFTId" mapstructure:"raffleTicketNFTId"`
 
+	// RaffleTicketNFTItemId corresponds to the JSON schema field
+	// "raffleTicketNFTItemId".
+	RaffleTicketNFTItemId string `json:"raffleTicketNFTItemId" yaml:"raffleTicketNFTItemId" mapstructure:"raffleTicketNFTItemId"`
+
 	// index和itemIds一一对应
 	// 所有数量
 	ResultAmounts []int `json:"resultAmounts" yaml:"resultAmounts" mapstructure:"resultAmounts"`
@@ -7030,6 +7034,9 @@ func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["raffleTicketNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTicketNFTId in RaffleDrawLog: required")
+	}
+	if _, ok := raw["raffleTicketNFTItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketNFTItemId in RaffleDrawLog: required")
 	}
 	if _, ok := raw["resultAmounts"]; raw != nil && !ok {
 		return fmt.Errorf("field resultAmounts in RaffleDrawLog: required")
