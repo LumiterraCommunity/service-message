@@ -1427,17 +1427,18 @@ type DungeonExtraDropPool struct {
 	// LevelRangeIdx corresponds to the JSON schema field "levelRangeIdx".
 	LevelRangeIdx int `json:"levelRangeIdx" yaml:"levelRangeIdx" mapstructure:"levelRangeIdx"`
 
+	// RaffleTicketNFTId corresponds to the JSON schema field "raffleTicketNFTId".
+	RaffleTicketNFTId string `json:"raffleTicketNFTId" yaml:"raffleTicketNFTId" mapstructure:"raffleTicketNFTId"`
+
+	// RaffleTicketNFTItemId corresponds to the JSON schema field
+	// "raffleTicketNFTItemId".
+	RaffleTicketNFTItemId string `json:"raffleTicketNFTItemId" yaml:"raffleTicketNFTItemId" mapstructure:"raffleTicketNFTItemId"`
+
 	// RaffleTicketTotal corresponds to the JSON schema field "raffleTicketTotal".
 	RaffleTicketTotal int `json:"raffleTicketTotal" yaml:"raffleTicketTotal" mapstructure:"raffleTicketTotal"`
 
 	// Talent corresponds to the JSON schema field "talent".
 	Talent int `json:"talent" yaml:"talent" mapstructure:"talent"`
-
-	// TicketNFTId corresponds to the JSON schema field "ticketNFTId".
-	TicketNFTId string `json:"ticketNFTId" yaml:"ticketNFTId" mapstructure:"ticketNFTId"`
-
-	// TicketNFTItemId corresponds to the JSON schema field "ticketNFTItemId".
-	TicketNFTItemId string `json:"ticketNFTItemId" yaml:"ticketNFTItemId" mapstructure:"ticketNFTItemId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -1455,17 +1456,17 @@ func (j *DungeonExtraDropPool) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["levelRangeIdx"]; raw != nil && !ok {
 		return fmt.Errorf("field levelRangeIdx in DungeonExtraDropPool: required")
 	}
+	if _, ok := raw["raffleTicketNFTId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketNFTId in DungeonExtraDropPool: required")
+	}
+	if _, ok := raw["raffleTicketNFTItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketNFTItemId in DungeonExtraDropPool: required")
+	}
 	if _, ok := raw["raffleTicketTotal"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTicketTotal in DungeonExtraDropPool: required")
 	}
 	if _, ok := raw["talent"]; raw != nil && !ok {
 		return fmt.Errorf("field talent in DungeonExtraDropPool: required")
-	}
-	if _, ok := raw["ticketNFTId"]; raw != nil && !ok {
-		return fmt.Errorf("field ticketNFTId in DungeonExtraDropPool: required")
-	}
-	if _, ok := raw["ticketNFTItemId"]; raw != nil && !ok {
-		return fmt.Errorf("field ticketNFTItemId in DungeonExtraDropPool: required")
 	}
 	type Plain DungeonExtraDropPool
 	var plain Plain
@@ -4948,6 +4949,9 @@ type MultiUpdateUserOffchainNFT struct {
 	// 消息版本号
 	Etag int `json:"etag" yaml:"etag" mapstructure:"etag"`
 
+	// 是否来源抽奖
+	IsFromRaffle *bool `json:"isFromRaffle,omitempty" yaml:"isFromRaffle,omitempty" mapstructure:"isFromRaffle,omitempty"`
+
 	// NFT信息
 	Nfts []NFT `json:"nfts" yaml:"nfts" mapstructure:"nfts"`
 
@@ -6854,6 +6858,43 @@ func (j *Question) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type RaffleDrawInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount int `json:"amount" yaml:"amount" mapstructure:"amount"`
+
+	// RaffleTicketNFTId corresponds to the JSON schema field "raffleTicketNFTId".
+	RaffleTicketNFTId string `json:"raffleTicketNFTId" yaml:"raffleTicketNFTId" mapstructure:"raffleTicketNFTId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *RaffleDrawInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in RaffleDrawInput: required")
+	}
+	if _, ok := raw["raffleTicketNFTId"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTicketNFTId in RaffleDrawInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in RaffleDrawInput: required")
+	}
+	type Plain RaffleDrawInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = RaffleDrawInput(plain)
+	return nil
+}
+
+type RaffleDrawOutput map[string]interface{}
+
 type RecipeInfo struct {
 	// 图鉴id
 	Id string `json:"id" yaml:"id" mapstructure:"id"`
@@ -8112,6 +8153,7 @@ const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
 const Web3ServiceActionMoveNFTToOnchain Web3ServiceAction = "MoveNFTToOnchain"
 const Web3ServiceActionMoveNFTToRoninchain Web3ServiceAction = "MoveNFTToRoninchain"
 const Web3ServiceActionMoveRoninchainToGame Web3ServiceAction = "MoveRoninchainToGame"
+const Web3ServiceActionRaffleDraw Web3ServiceAction = "RaffleDraw"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"BatchBurnNFT",
@@ -8145,6 +8187,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"MoveNFTToOnchain",
 	"MoveNFTToRoninchain",
 	"MoveRoninchainToGame",
+	"RaffleDraw",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
