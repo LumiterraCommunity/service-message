@@ -7468,7 +7468,7 @@ func (j *SmapleNFT) UnmarshalJSON(b []byte) error {
 
 type StartServerInput struct {
 	// AgentCPU corresponds to the JSON schema field "agentCPU".
-	AgentCPU string `json:"agentCPU" yaml:"agentCPU" mapstructure:"agentCPU"`
+	AgentCPU int `json:"agentCPU" yaml:"agentCPU" mapstructure:"agentCPU"`
 
 	// Args corresponds to the JSON schema field "args".
 	Args string `json:"args" yaml:"args" mapstructure:"args"`
@@ -7477,7 +7477,7 @@ type StartServerInput struct {
 	Envs string `json:"envs" yaml:"envs" mapstructure:"envs"`
 
 	// SceneCPU corresponds to the JSON schema field "sceneCPU".
-	SceneCPU string `json:"sceneCPU" yaml:"sceneCPU" mapstructure:"sceneCPU"`
+	SceneCPU int `json:"sceneCPU" yaml:"sceneCPU" mapstructure:"sceneCPU"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
