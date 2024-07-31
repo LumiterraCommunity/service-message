@@ -17,6 +17,7 @@ export interface CloseServer {
 export interface StartServerInput {
     args: string;
     envs: string;
+    cpu: string;
 }
 
 export interface StartServerOutput {
