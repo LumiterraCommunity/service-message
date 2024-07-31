@@ -7467,14 +7467,17 @@ func (j *SmapleNFT) UnmarshalJSON(b []byte) error {
 }
 
 type StartServerInput struct {
+	// AgentCPU corresponds to the JSON schema field "agentCPU".
+	AgentCPU string `json:"agentCPU" yaml:"agentCPU" mapstructure:"agentCPU"`
+
 	// Args corresponds to the JSON schema field "args".
 	Args string `json:"args" yaml:"args" mapstructure:"args"`
 
-	// Cpu corresponds to the JSON schema field "cpu".
-	Cpu string `json:"cpu" yaml:"cpu" mapstructure:"cpu"`
-
 	// Envs corresponds to the JSON schema field "envs".
 	Envs string `json:"envs" yaml:"envs" mapstructure:"envs"`
+
+	// SceneCPU corresponds to the JSON schema field "sceneCPU".
+	SceneCPU string `json:"sceneCPU" yaml:"sceneCPU" mapstructure:"sceneCPU"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -7483,14 +7486,17 @@ func (j *StartServerInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if _, ok := raw["agentCPU"]; raw != nil && !ok {
+		return fmt.Errorf("field agentCPU in StartServerInput: required")
+	}
 	if _, ok := raw["args"]; raw != nil && !ok {
 		return fmt.Errorf("field args in StartServerInput: required")
 	}
-	if _, ok := raw["cpu"]; raw != nil && !ok {
-		return fmt.Errorf("field cpu in StartServerInput: required")
-	}
 	if _, ok := raw["envs"]; raw != nil && !ok {
 		return fmt.Errorf("field envs in StartServerInput: required")
+	}
+	if _, ok := raw["sceneCPU"]; raw != nil && !ok {
+		return fmt.Errorf("field sceneCPU in StartServerInput: required")
 	}
 	type Plain StartServerInput
 	var plain Plain
