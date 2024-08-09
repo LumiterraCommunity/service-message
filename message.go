@@ -7536,12 +7536,70 @@ const SubscriptionEventAccountMigrate SubscriptionEvent = "AccountMigrate"
 const SubscriptionEventBatchBurnNFT SubscriptionEvent = "BatchBurnNFT"
 const SubscriptionEventBatchMintNFT SubscriptionEvent = "BatchMintNFT"
 const SubscriptionEventBatchTransferNFT SubscriptionEvent = "BatchTransferNFT"
+
+type SubscriptionEventChannel string
+
+type SubscriptionEventChannel2 string
+
+const SubscriptionEventChannel2_HandleGameMessageCallback SubscriptionEventChannel2 = "HandleGameMessageCallback"
+
+var enumValues_SubscriptionEventChannel2 = []interface{}{
+	"HandleGameMessageCallback",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *SubscriptionEventChannel2) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_SubscriptionEventChannel2 {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_SubscriptionEventChannel2, v)
+	}
+	*j = SubscriptionEventChannel2(v)
+	return nil
+}
+
+const SubscriptionEventChannelPubsub SubscriptionEventChannel = "pubsub"
+const SubscriptionEventChannelPubsub2 SubscriptionEventChannel = "pubsub2"
+
+var enumValues_SubscriptionEventChannel = []interface{}{
+	"pubsub",
+	"pubsub2",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *SubscriptionEventChannel) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_SubscriptionEventChannel {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_SubscriptionEventChannel, v)
+	}
+	*j = SubscriptionEventChannel(v)
+	return nil
+}
+
 const SubscriptionEventCloseServer SubscriptionEvent = "CloseServer"
 const SubscriptionEventDispatchGameMessage SubscriptionEvent = "DispatchGameMessage"
 const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
 const SubscriptionEventDungeonPVEPStart SubscriptionEvent = "DungeonPVEPStart"
 const SubscriptionEventDungeonStartPVEPCallback SubscriptionEvent = "DungeonStartPVEPCallback"
-const SubscriptionEventHandleGameMessageCallback SubscriptionEvent = "HandleGameMessageCallback"
 const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
@@ -7569,7 +7627,6 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"DistributeDungeonBonus",
 	"DungeonPVEPStart",
 	"DungeonStartPVEPCallback",
-	"HandleGameMessageCallback",
 	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
