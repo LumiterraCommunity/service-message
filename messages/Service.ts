@@ -124,6 +124,11 @@ export enum GameServiceRankAction {
     GetUserReputationScore = "GetUserReputationScore"
 }
 
+export enum SubscriptionEventChannel {
+    channel1 = 'pubsub',
+    channel2 = 'pubsub2',
+}
+
 /**
  * 所有订阅事件.
  * 返回发送和接收的结构体同名
@@ -187,15 +192,17 @@ export enum SubscriptionEvent {
     DungeonStartPVEPCallback = 'DungeonStartPVEPCallback',
     DistributeDungeonBonus = 'DistributeDungeonBonus',
 
-    // 处理游戏区块消息的回调事件
-    HandleGameMessageCallback = 'HandleGameMessageCallback',
-
     // 派发游戏消息
     DispatchGameMessage = 'DispatchGameMessage',
 
     AccountMigrate = 'AccountMigrate',
 
     RaffleDrawEvent = 'RaffleDrawEvent'
+}
+
+export enum SubscriptionEventChannel2 {
+    // 处理游戏区块消息的回调事件
+    HandleGameMessageCallback = 'HandleGameMessageCallback',
 }
 
 export enum PVPSubscriptionEvent {
