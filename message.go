@@ -257,6 +257,52 @@ func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type BatchGetGameMessageStatusInput struct {
+	// MessageIds corresponds to the JSON schema field "messageIds".
+	MessageIds []string `json:"messageIds" yaml:"messageIds" mapstructure:"messageIds"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchGetGameMessageStatusInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["messageIds"]; raw != nil && !ok {
+		return fmt.Errorf("field messageIds in BatchGetGameMessageStatusInput: required")
+	}
+	type Plain BatchGetGameMessageStatusInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BatchGetGameMessageStatusInput(plain)
+	return nil
+}
+
+type BatchGetGameMessageStatusOutput struct {
+	// Results corresponds to the JSON schema field "results".
+	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchGetGameMessageStatusOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["results"]; raw != nil && !ok {
+		return fmt.Errorf("field results in BatchGetGameMessageStatusOutput: required")
+	}
+	type Plain BatchGetGameMessageStatusOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BatchGetGameMessageStatusOutput(plain)
+	return nil
+}
+
 type BatchMintNFT struct {
 	// index和itemIds一一对应
 	// 所有数量
@@ -8369,6 +8415,7 @@ func (j *UsingNFT) UnmarshalJSON(b []byte) error {
 type Web3ServiceAction string
 
 const Web3ServiceActionBatchBurnNFT Web3ServiceAction = "BatchBurnNFT"
+const Web3ServiceActionBatchGetGameMessageStatus Web3ServiceAction = "BatchGetGameMessageStatus"
 const Web3ServiceActionCheckMintNFTWithAttributes Web3ServiceAction = "CheckMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiBatchBurnNFT Web3ServiceAction = "CheckMultiBatchBurnNFT"
 const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUAUSD"
@@ -8404,6 +8451,7 @@ const Web3ServiceActionRaffleDraw Web3ServiceAction = "RaffleDraw"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"BatchBurnNFT",
+	"BatchGetGameMessageStatus",
 	"CheckMintNFTWithAttributes",
 	"CheckMultiBatchBurnNFT",
 	"CheckMultiUseLUAUSD",
