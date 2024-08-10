@@ -8,6 +8,14 @@ export interface GetGameMessageStatusByIdOutput {
     reason: string;
 }
 
+export interface BatchGetGameMessageStatusInput {
+    messageIds: string[];
+}
+
+export interface BatchGetGameMessageStatusOutput {
+    results: boolean[];
+}
+
 export interface ExecGameMessageInput {
     eventId: string;
 

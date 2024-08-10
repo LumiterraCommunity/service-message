@@ -90,7 +90,8 @@ export enum Web3ServiceAction {
 
     // 
     GetGameMessageStatusById = 'GetGameMessageStatusById',
-
+    BatchGetGameMessageStatus = 'BatchGetGameMessageStatus',
+    
     // 
     ExecGameMessage = 'ExecGameMessage',
 
