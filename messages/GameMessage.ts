@@ -12,8 +12,14 @@ export interface BatchGetGameMessageStatusInput {
     messageIds: string[];
 }
 
+export interface GameMessageResult {
+    messageId: string;
+    executed: boolean;
+    success: boolean;
+    reason: string;
+}
 export interface BatchGetGameMessageStatusOutput {
-    results: boolean[];
+    results: GameMessageResult[];
 }
 
 export interface ExecGameMessageInput {
