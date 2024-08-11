@@ -282,7 +282,7 @@ func (j *BatchGetGameMessageStatusInput) UnmarshalJSON(b []byte) error {
 
 type BatchGetGameMessageStatusOutput struct {
 	// Results corresponds to the JSON schema field "results".
-	Results []bool `json:"results" yaml:"results" mapstructure:"results"`
+	Results []GameMessageResult `json:"results" yaml:"results" mapstructure:"results"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -2405,6 +2405,47 @@ func (j *GameDataServiceAction) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_GameDataServiceAction, v)
 	}
 	*j = GameDataServiceAction(v)
+	return nil
+}
+
+type GameMessageResult struct {
+	// Executed corresponds to the JSON schema field "executed".
+	Executed bool `json:"executed" yaml:"executed" mapstructure:"executed"`
+
+	// MessageId corresponds to the JSON schema field "messageId".
+	MessageId string `json:"messageId" yaml:"messageId" mapstructure:"messageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GameMessageResult) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["executed"]; raw != nil && !ok {
+		return fmt.Errorf("field executed in GameMessageResult: required")
+	}
+	if _, ok := raw["messageId"]; raw != nil && !ok {
+		return fmt.Errorf("field messageId in GameMessageResult: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in GameMessageResult: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in GameMessageResult: required")
+	}
+	type Plain GameMessageResult
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GameMessageResult(plain)
 	return nil
 }
 
