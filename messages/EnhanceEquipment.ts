@@ -60,7 +60,8 @@ export interface EnhanceEquipmentLog {
     finishTime: number;
 
     totem: WorldTotemData;
-
+    userId: string;
+    userName: string;
     enhanceEquipmentNFTId: string; // 强化的装备
     enhanceEquipmentItemId: integer;// 强化的装备cid
     fromAvatarNftId: string;//继承的装备nftId
