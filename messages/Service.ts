@@ -53,9 +53,15 @@ export enum GameDataServiceAction {
     UpgradePlayerItemSlots = 'UpgradePlayerItemSlots',
     CheckUserRecipe = 'CheckUserRecipe',
     GetUserRecipes = 'GetUserRecipes',
+    GetWorldTotemData = "GetWorldTotemData",
 }
 
 export enum Web3ServiceAction {
+    // 装备强化
+    EnhanceEquipment = "EnhanceEquipment",
+    ExtractEquipment = "ExtractEquipment",
+    EnhanceEquipmentLog = "EnhanceEquipmentLog",
+
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
     FindRaffleRrawLogs = 'FindRaffleRrawLogs',
@@ -91,7 +97,7 @@ export enum Web3ServiceAction {
     // 
     GetGameMessageStatusById = 'GetGameMessageStatusById',
     BatchGetGameMessageStatus = 'BatchGetGameMessageStatus',
-    
+
     // 
     ExecGameMessage = 'ExecGameMessage',
 

@@ -18,73 +18,91 @@ export enum EnhanceEquipmentDeductionStatus {
 }
 
 
-// 强化提升-属性值变动
-export interface EnhanceEquipmentItem {
-    itemId: string;
-    name: string;
-    origin: number;
-    value: number;
-}
-
-
 // 执行强化
-export interface EnhanceEquipment2QueueInput {
+export interface EnhanceEquipmentInput {
     userId: string;
     totemId: string;
     totemNftId: string;
     avatarNftId: string;
     fromAvatarNftId: string;
-    sceneAppId: string;
     useProtectiveStone: boolean;
+    sceneAppId: string;
 }
 
-export interface EnhanceEquipment2QueueOutput {
+export interface EnhanceEquipmentOutput {
     success: boolean;
     failedReason: string;
 }
 
 
-// 领取装备
+// 领取强化完成装备
 export interface ExtractEquipmentInput {
     userId: string;
-    avatarNftId: string;
-    enhanceEquipmentId: string;
+    actionId: string;
 }
-
-
 export interface ExtractEquipmentOutput {
     success: boolean;
     failedReason: string;
+    actionId: string;
 }
 
 
-
-// 强化日志队列
-export interface EnhanceEquipmentPendingLogInput {
-    userId: string;
-    index: integer;
-    limit: integer;
+// 强化提升-属性值变动
+export interface AttribbuteChangeData {
+    type: string;
+    before: integer;
+    after: integer;
 }
 
 export interface EnhanceEquipmentLog {
-    enhanceEquipmentNFTId: string;
     actionId: string;
     status: string;
     finishTime: number;
-    avatarNftId: string;
-    totemNftId: string;
-    totemId: string;
+
+    totem: WorldTotemData;
+
+    enhanceEquipmentNFTId: string; // 强化的装备
+    enhanceEquipmentItemId: integer;// 强化的装备cid
+    fromAvatarNftId: string;//继承的装备nftId
+    fromAvatarItemId: integer;//继承的装备cid
     enhanceLevel: integer;
     originLevel: integer;
     useProtectiveStone: boolean;
-    successProbability: number;
+
     // 装备的属性变动
-    itemsDiff: EnhanceEquipmentItem[];
+    AttributeList: AttribbuteChangeData[];
 }
 
-export interface EnhanceEquipmentPendingLogOutput {
-    logs: EnhanceEquipmentLog[];
-    total: integer;
+// 强化日志队列
+export interface EnhanceEquipmentLogInput {
+    userId: string;
     index: integer;
+    num: integer;
 }
 
+export interface EnhanceEquipmentLogOutput {
+    logs: EnhanceEquipmentLog[];
+    logsCount: integer;
+}
+
+
+export interface WorldTotemData {
+    owner: string;
+    ownerName: string;
+    nftId: string;
+    itemId: integer;
+    energy: integer; // 当前能量 >0 可使用
+    price: string;   // 强化单价ethWei
+    sceneAppId: string;
+    successProbability: number;
+}
+
+
+// 查询游戏中世界图腾数据
+export interface GetWorldTotemDataInput {
+    totemNftId: string;
+}
+export interface GetWorldTotemDataOutput {
+    exist: boolean;
+    totem: WorldTotemData;
+}
