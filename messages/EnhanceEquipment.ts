@@ -76,6 +76,7 @@ export interface EnhanceEquipmentLog {
 // 强化日志队列
 export interface EnhanceEquipmentLogInput {
     userId: string;
+    totemNftId: string;
     index: integer;
     num: integer;
 }
