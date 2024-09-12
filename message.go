@@ -1932,6 +1932,9 @@ type EnhanceEquipmentLogInput struct {
 	// Num corresponds to the JSON schema field "num".
 	Num int `json:"num" yaml:"num" mapstructure:"num"`
 
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -1947,6 +1950,9 @@ func (j *EnhanceEquipmentLogInput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["num"]; raw != nil && !ok {
 		return fmt.Errorf("field num in EnhanceEquipmentLogInput: required")
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in EnhanceEquipmentLogInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in EnhanceEquipmentLogInput: required")
