@@ -48,7 +48,7 @@ export interface ExtractEquipmentOutput {
 
 
 // 强化提升-属性值变动
-export interface AttribbuteChangeData {
+export interface AttributeChangeData {
     type: string;
     before: integer;
     after: integer;
@@ -70,7 +70,7 @@ export interface EnhanceEquipmentLog {
     useProtectiveStone: boolean;
 
     // 装备的属性变动
-    AttributeList: AttribbuteChangeData[];
+    AttributeList: AttributeChangeData[];
 }
 
 // 强化日志队列
