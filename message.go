@@ -1923,6 +1923,12 @@ type EnhanceEquipmentLog struct {
 
 	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
 	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+
+	// UserName corresponds to the JSON schema field "userName".
+	UserName string `json:"userName" yaml:"userName" mapstructure:"userName"`
 }
 
 type EnhanceEquipmentLogInput struct {
@@ -2036,6 +2042,12 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
 		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["userName"]; raw != nil && !ok {
+		return fmt.Errorf("field userName in EnhanceEquipmentLog: required")
 	}
 	type Plain EnhanceEquipmentLog
 	var plain Plain
