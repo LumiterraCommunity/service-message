@@ -74,7 +74,7 @@ func (j *AppId) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type AttribbuteChangeData struct {
+type AttributeChangeData struct {
 	// After corresponds to the JSON schema field "after".
 	After int `json:"after" yaml:"after" mapstructure:"after"`
 
@@ -86,26 +86,26 @@ type AttribbuteChangeData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *AttribbuteChangeData) UnmarshalJSON(b []byte) error {
+func (j *AttributeChangeData) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["after"]; raw != nil && !ok {
-		return fmt.Errorf("field after in AttribbuteChangeData: required")
+		return fmt.Errorf("field after in AttributeChangeData: required")
 	}
 	if _, ok := raw["before"]; raw != nil && !ok {
-		return fmt.Errorf("field before in AttribbuteChangeData: required")
+		return fmt.Errorf("field before in AttributeChangeData: required")
 	}
 	if _, ok := raw["type"]; raw != nil && !ok {
-		return fmt.Errorf("field type in AttribbuteChangeData: required")
+		return fmt.Errorf("field type in AttributeChangeData: required")
 	}
-	type Plain AttribbuteChangeData
+	type Plain AttributeChangeData
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = AttribbuteChangeData(plain)
+	*j = AttributeChangeData(plain)
 	return nil
 }
 
@@ -1887,7 +1887,7 @@ func (j *EnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
 
 type EnhanceEquipmentLog struct {
 	// AttributeList corresponds to the JSON schema field "AttributeList".
-	AttributeList []AttribbuteChangeData `json:"AttributeList" yaml:"AttributeList" mapstructure:"AttributeList"`
+	AttributeList []AttributeChangeData `json:"AttributeList" yaml:"AttributeList" mapstructure:"AttributeList"`
 
 	// ActionId corresponds to the JSON schema field "actionId".
 	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
