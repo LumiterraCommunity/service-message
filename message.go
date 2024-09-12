@@ -74,6 +74,41 @@ func (j *AppId) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type AttribbuteChangeData struct {
+	// After corresponds to the JSON schema field "after".
+	After int `json:"after" yaml:"after" mapstructure:"after"`
+
+	// Before corresponds to the JSON schema field "before".
+	Before int `json:"before" yaml:"before" mapstructure:"before"`
+
+	// Type corresponds to the JSON schema field "type".
+	Type string `json:"type" yaml:"type" mapstructure:"type"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *AttribbuteChangeData) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["after"]; raw != nil && !ok {
+		return fmt.Errorf("field after in AttribbuteChangeData: required")
+	}
+	if _, ok := raw["before"]; raw != nil && !ok {
+		return fmt.Errorf("field before in AttribbuteChangeData: required")
+	}
+	if _, ok := raw["type"]; raw != nil && !ok {
+		return fmt.Errorf("field type in AttribbuteChangeData: required")
+	}
+	type Plain AttribbuteChangeData
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = AttribbuteChangeData(plain)
+	return nil
+}
+
 type Auth struct {
 	// AccessToken corresponds to the JSON schema field "accessToken".
 	AccessToken string `json:"accessToken" yaml:"accessToken" mapstructure:"accessToken"`
@@ -1759,94 +1794,6 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type EnhanceEquipment2QueueInput struct {
-	// AvatarNftId corresponds to the JSON schema field "avatarNftId".
-	AvatarNftId string `json:"avatarNftId" yaml:"avatarNftId" mapstructure:"avatarNftId"`
-
-	// FromAvatarNftId corresponds to the JSON schema field "fromAvatarNftId".
-	FromAvatarNftId string `json:"fromAvatarNftId" yaml:"fromAvatarNftId" mapstructure:"fromAvatarNftId"`
-
-	// SceneAppId corresponds to the JSON schema field "sceneAppId".
-	SceneAppId string `json:"sceneAppId" yaml:"sceneAppId" mapstructure:"sceneAppId"`
-
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
-
-	// TotemNftId corresponds to the JSON schema field "totemNftId".
-	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
-
-	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
-	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipment2QueueInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["avatarNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field avatarNftId in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["fromAvatarNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field fromAvatarNftId in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["sceneAppId"]; raw != nil && !ok {
-		return fmt.Errorf("field sceneAppId in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["totemId"]; raw != nil && !ok {
-		return fmt.Errorf("field totemId in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["totemNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field totemNftId in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
-		return fmt.Errorf("field useProtectiveStone in EnhanceEquipment2QueueInput: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in EnhanceEquipment2QueueInput: required")
-	}
-	type Plain EnhanceEquipment2QueueInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = EnhanceEquipment2QueueInput(plain)
-	return nil
-}
-
-type EnhanceEquipment2QueueOutput struct {
-	// FailedReason corresponds to the JSON schema field "failedReason".
-	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
-
-	// Success corresponds to the JSON schema field "success".
-	Success bool `json:"success" yaml:"success" mapstructure:"success"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipment2QueueOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["failedReason"]; raw != nil && !ok {
-		return fmt.Errorf("field failedReason in EnhanceEquipment2QueueOutput: required")
-	}
-	if _, ok := raw["success"]; raw != nil && !ok {
-		return fmt.Errorf("field success in EnhanceEquipment2QueueOutput: required")
-	}
-	type Plain EnhanceEquipment2QueueOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = EnhanceEquipment2QueueOutput(plain)
-	return nil
-}
-
 type EnhanceEquipmentDeductionStatus string
 
 const EnhanceEquipmentDeductionStatusFailed EnhanceEquipmentDeductionStatus = "failed"
@@ -1879,53 +1826,75 @@ func (j *EnhanceEquipmentDeductionStatus) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type EnhanceEquipmentItem struct {
-	// ItemId corresponds to the JSON schema field "itemId".
-	ItemId string `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
+type EnhanceEquipmentInput struct {
+	// AvatarNftId corresponds to the JSON schema field "avatarNftId".
+	AvatarNftId string `json:"avatarNftId" yaml:"avatarNftId" mapstructure:"avatarNftId"`
 
-	// Name corresponds to the JSON schema field "name".
-	Name string `json:"name" yaml:"name" mapstructure:"name"`
+	// FromAvatarNftId corresponds to the JSON schema field "fromAvatarNftId".
+	FromAvatarNftId string `json:"fromAvatarNftId" yaml:"fromAvatarNftId" mapstructure:"fromAvatarNftId"`
 
-	// Origin corresponds to the JSON schema field "origin".
-	Origin float64 `json:"origin" yaml:"origin" mapstructure:"origin"`
+	// SceneAppId corresponds to the JSON schema field "sceneAppId".
+	SceneAppId string `json:"sceneAppId" yaml:"sceneAppId" mapstructure:"sceneAppId"`
 
-	// Value corresponds to the JSON schema field "value".
-	Value float64 `json:"value" yaml:"value" mapstructure:"value"`
+	// TotemId corresponds to the JSON schema field "totemId".
+	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
+
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
+	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentItem) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["itemId"]; raw != nil && !ok {
-		return fmt.Errorf("field itemId in EnhanceEquipmentItem: required")
+	if _, ok := raw["avatarNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field avatarNftId in EnhanceEquipmentInput: required")
 	}
-	if _, ok := raw["name"]; raw != nil && !ok {
-		return fmt.Errorf("field name in EnhanceEquipmentItem: required")
+	if _, ok := raw["fromAvatarNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field fromAvatarNftId in EnhanceEquipmentInput: required")
 	}
-	if _, ok := raw["origin"]; raw != nil && !ok {
-		return fmt.Errorf("field origin in EnhanceEquipmentItem: required")
+	if _, ok := raw["sceneAppId"]; raw != nil && !ok {
+		return fmt.Errorf("field sceneAppId in EnhanceEquipmentInput: required")
 	}
-	if _, ok := raw["value"]; raw != nil && !ok {
-		return fmt.Errorf("field value in EnhanceEquipmentItem: required")
+	if _, ok := raw["totemId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemId in EnhanceEquipmentInput: required")
 	}
-	type Plain EnhanceEquipmentItem
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in EnhanceEquipmentInput: required")
+	}
+	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
+		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in EnhanceEquipmentInput: required")
+	}
+	type Plain EnhanceEquipmentInput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = EnhanceEquipmentItem(plain)
+	*j = EnhanceEquipmentInput(plain)
 	return nil
 }
 
 type EnhanceEquipmentLog struct {
+	// AttributeList corresponds to the JSON schema field "AttributeList".
+	AttributeList []AttribbuteChangeData `json:"AttributeList" yaml:"AttributeList" mapstructure:"AttributeList"`
+
 	// ActionId corresponds to the JSON schema field "actionId".
 	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
 
-	// AvatarNftId corresponds to the JSON schema field "avatarNftId".
-	AvatarNftId string `json:"avatarNftId" yaml:"avatarNftId" mapstructure:"avatarNftId"`
+	// EnhanceEquipmentItemId corresponds to the JSON schema field
+	// "enhanceEquipmentItemId".
+	EnhanceEquipmentItemId int `json:"enhanceEquipmentItemId" yaml:"enhanceEquipmentItemId" mapstructure:"enhanceEquipmentItemId"`
 
 	// EnhanceEquipmentNFTId corresponds to the JSON schema field
 	// "enhanceEquipmentNFTId".
@@ -1937,8 +1906,11 @@ type EnhanceEquipmentLog struct {
 	// FinishTime corresponds to the JSON schema field "finishTime".
 	FinishTime float64 `json:"finishTime" yaml:"finishTime" mapstructure:"finishTime"`
 
-	// ItemsDiff corresponds to the JSON schema field "itemsDiff".
-	ItemsDiff []EnhanceEquipmentItem `json:"itemsDiff" yaml:"itemsDiff" mapstructure:"itemsDiff"`
+	// FromAvatarItemId corresponds to the JSON schema field "fromAvatarItemId".
+	FromAvatarItemId int `json:"fromAvatarItemId" yaml:"fromAvatarItemId" mapstructure:"fromAvatarItemId"`
+
+	// FromAvatarNftId corresponds to the JSON schema field "fromAvatarNftId".
+	FromAvatarNftId string `json:"fromAvatarNftId" yaml:"fromAvatarNftId" mapstructure:"fromAvatarNftId"`
 
 	// OriginLevel corresponds to the JSON schema field "originLevel".
 	OriginLevel int `json:"originLevel" yaml:"originLevel" mapstructure:"originLevel"`
@@ -1946,17 +1918,75 @@ type EnhanceEquipmentLog struct {
 	// Status corresponds to the JSON schema field "status".
 	Status string `json:"status" yaml:"status" mapstructure:"status"`
 
-	// SuccessProbability corresponds to the JSON schema field "successProbability".
-	SuccessProbability float64 `json:"successProbability" yaml:"successProbability" mapstructure:"successProbability"`
-
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
-
-	// TotemNftId corresponds to the JSON schema field "totemNftId".
-	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+	// Totem corresponds to the JSON schema field "totem".
+	Totem WorldTotemData `json:"totem" yaml:"totem" mapstructure:"totem"`
 
 	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
 	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
+}
+
+type EnhanceEquipmentLogInput struct {
+	// Index corresponds to the JSON schema field "index".
+	Index int `json:"index" yaml:"index" mapstructure:"index"`
+
+	// Num corresponds to the JSON schema field "num".
+	Num int `json:"num" yaml:"num" mapstructure:"num"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentLogInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["index"]; raw != nil && !ok {
+		return fmt.Errorf("field index in EnhanceEquipmentLogInput: required")
+	}
+	if _, ok := raw["num"]; raw != nil && !ok {
+		return fmt.Errorf("field num in EnhanceEquipmentLogInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in EnhanceEquipmentLogInput: required")
+	}
+	type Plain EnhanceEquipmentLogInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = EnhanceEquipmentLogInput(plain)
+	return nil
+}
+
+type EnhanceEquipmentLogOutput struct {
+	// Logs corresponds to the JSON schema field "logs".
+	Logs []EnhanceEquipmentLog `json:"logs" yaml:"logs" mapstructure:"logs"`
+
+	// LogsCount corresponds to the JSON schema field "logsCount".
+	LogsCount int `json:"logsCount" yaml:"logsCount" mapstructure:"logsCount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentLogOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["logs"]; raw != nil && !ok {
+		return fmt.Errorf("field logs in EnhanceEquipmentLogOutput: required")
+	}
+	if _, ok := raw["logsCount"]; raw != nil && !ok {
+		return fmt.Errorf("field logsCount in EnhanceEquipmentLogOutput: required")
+	}
+	type Plain EnhanceEquipmentLogOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = EnhanceEquipmentLogOutput(plain)
+	return nil
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -1965,11 +1995,14 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if _, ok := raw["AttributeList"]; raw != nil && !ok {
+		return fmt.Errorf("field AttributeList in EnhanceEquipmentLog: required")
+	}
 	if _, ok := raw["actionId"]; raw != nil && !ok {
 		return fmt.Errorf("field actionId in EnhanceEquipmentLog: required")
 	}
-	if _, ok := raw["avatarNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field avatarNftId in EnhanceEquipmentLog: required")
+	if _, ok := raw["enhanceEquipmentItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field enhanceEquipmentItemId in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["enhanceEquipmentNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceEquipmentNFTId in EnhanceEquipmentLog: required")
@@ -1980,8 +2013,11 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["finishTime"]; raw != nil && !ok {
 		return fmt.Errorf("field finishTime in EnhanceEquipmentLog: required")
 	}
-	if _, ok := raw["itemsDiff"]; raw != nil && !ok {
-		return fmt.Errorf("field itemsDiff in EnhanceEquipmentLog: required")
+	if _, ok := raw["fromAvatarItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field fromAvatarItemId in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["fromAvatarNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field fromAvatarNftId in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["originLevel"]; raw != nil && !ok {
 		return fmt.Errorf("field originLevel in EnhanceEquipmentLog: required")
@@ -1989,14 +2025,8 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["status"]; raw != nil && !ok {
 		return fmt.Errorf("field status in EnhanceEquipmentLog: required")
 	}
-	if _, ok := raw["successProbability"]; raw != nil && !ok {
-		return fmt.Errorf("field successProbability in EnhanceEquipmentLog: required")
-	}
-	if _, ok := raw["totemId"]; raw != nil && !ok {
-		return fmt.Errorf("field totemId in EnhanceEquipmentLog: required")
-	}
-	if _, ok := raw["totemNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field totemNftId in EnhanceEquipmentLog: required")
+	if _, ok := raw["totem"]; raw != nil && !ok {
+		return fmt.Errorf("field totem in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
 		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentLog: required")
@@ -2010,73 +2040,32 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type EnhanceEquipmentPendingLogInput struct {
-	// Index corresponds to the JSON schema field "index".
-	Index int `json:"index" yaml:"index" mapstructure:"index"`
+type EnhanceEquipmentOutput struct {
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
 
-	// Limit corresponds to the JSON schema field "limit".
-	Limit int `json:"limit" yaml:"limit" mapstructure:"limit"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentPendingLogInput) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["index"]; raw != nil && !ok {
-		return fmt.Errorf("field index in EnhanceEquipmentPendingLogInput: required")
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in EnhanceEquipmentOutput: required")
 	}
-	if _, ok := raw["limit"]; raw != nil && !ok {
-		return fmt.Errorf("field limit in EnhanceEquipmentPendingLogInput: required")
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in EnhanceEquipmentOutput: required")
 	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in EnhanceEquipmentPendingLogInput: required")
-	}
-	type Plain EnhanceEquipmentPendingLogInput
+	type Plain EnhanceEquipmentOutput
 	var plain Plain
 	if err := json.Unmarshal(b, &plain); err != nil {
 		return err
 	}
-	*j = EnhanceEquipmentPendingLogInput(plain)
-	return nil
-}
-
-type EnhanceEquipmentPendingLogOutput struct {
-	// Index corresponds to the JSON schema field "index".
-	Index int `json:"index" yaml:"index" mapstructure:"index"`
-
-	// Logs corresponds to the JSON schema field "logs".
-	Logs []EnhanceEquipmentLog `json:"logs" yaml:"logs" mapstructure:"logs"`
-
-	// Total corresponds to the JSON schema field "total".
-	Total int `json:"total" yaml:"total" mapstructure:"total"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentPendingLogOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["index"]; raw != nil && !ok {
-		return fmt.Errorf("field index in EnhanceEquipmentPendingLogOutput: required")
-	}
-	if _, ok := raw["logs"]; raw != nil && !ok {
-		return fmt.Errorf("field logs in EnhanceEquipmentPendingLogOutput: required")
-	}
-	if _, ok := raw["total"]; raw != nil && !ok {
-		return fmt.Errorf("field total in EnhanceEquipmentPendingLogOutput: required")
-	}
-	type Plain EnhanceEquipmentPendingLogOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = EnhanceEquipmentPendingLogOutput(plain)
+	*j = EnhanceEquipmentOutput(plain)
 	return nil
 }
 
@@ -2483,11 +2472,8 @@ func (j *ExternalTotemTraitTypes) UnmarshalJSON(b []byte) error {
 }
 
 type ExtractEquipmentInput struct {
-	// AvatarNftId corresponds to the JSON schema field "avatarNftId".
-	AvatarNftId string `json:"avatarNftId" yaml:"avatarNftId" mapstructure:"avatarNftId"`
-
-	// EnhanceEquipmentId corresponds to the JSON schema field "enhanceEquipmentId".
-	EnhanceEquipmentId string `json:"enhanceEquipmentId" yaml:"enhanceEquipmentId" mapstructure:"enhanceEquipmentId"`
+	// ActionId corresponds to the JSON schema field "actionId".
+	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
 
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -2499,11 +2485,8 @@ func (j *ExtractEquipmentInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
-	if _, ok := raw["avatarNftId"]; raw != nil && !ok {
-		return fmt.Errorf("field avatarNftId in ExtractEquipmentInput: required")
-	}
-	if _, ok := raw["enhanceEquipmentId"]; raw != nil && !ok {
-		return fmt.Errorf("field enhanceEquipmentId in ExtractEquipmentInput: required")
+	if _, ok := raw["actionId"]; raw != nil && !ok {
+		return fmt.Errorf("field actionId in ExtractEquipmentInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in ExtractEquipmentInput: required")
@@ -2518,6 +2501,9 @@ func (j *ExtractEquipmentInput) UnmarshalJSON(b []byte) error {
 }
 
 type ExtractEquipmentOutput struct {
+	// ActionId corresponds to the JSON schema field "actionId".
+	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
+
 	// FailedReason corresponds to the JSON schema field "failedReason".
 	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
 
@@ -2530,6 +2516,9 @@ func (j *ExtractEquipmentOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if _, ok := raw["actionId"]; raw != nil && !ok {
+		return fmt.Errorf("field actionId in ExtractEquipmentOutput: required")
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
 		return fmt.Errorf("field failedReason in ExtractEquipmentOutput: required")
@@ -2790,6 +2779,7 @@ const GameDataServiceActionDeductUserExp GameDataServiceAction = "DeductUserExp"
 const GameDataServiceActionGetPlayerItemSlots GameDataServiceAction = "GetPlayerItemSlots"
 const GameDataServiceActionGetPlayerUsingNftsByUserId GameDataServiceAction = "GetPlayerUsingNftsByUserId"
 const GameDataServiceActionGetUserRecipes GameDataServiceAction = "GetUserRecipes"
+const GameDataServiceActionGetWorldTotemData GameDataServiceAction = "GetWorldTotemData"
 const GameDataServiceActionLandUsingSkill GameDataServiceAction = "LandUsingSkill"
 const GameDataServiceActionMultiGetPlayerInfoByUserId GameDataServiceAction = "MultiGetPlayerInfoByUserId"
 const GameDataServiceActionMultiGetPlayerUsingNftsByUserId GameDataServiceAction = "MultiGetPlayerUsingNftsByUserId"
@@ -2801,6 +2791,7 @@ var enumValues_GameDataServiceAction = []interface{}{
 	"GetPlayerItemSlots",
 	"GetPlayerUsingNftsByUserId",
 	"GetUserRecipes",
+	"GetWorldTotemData",
 	"LandUsingSkill",
 	"MultiGetPlayerInfoByUserId",
 	"MultiGetPlayerUsingNftsByUserId",
@@ -4265,6 +4256,58 @@ func (j *GetUserWeb3ProfileOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetUserWeb3ProfileOutput(plain)
+	return nil
+}
+
+type GetWorldTotemDataInput struct {
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetWorldTotemDataInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in GetWorldTotemDataInput: required")
+	}
+	type Plain GetWorldTotemDataInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetWorldTotemDataInput(plain)
+	return nil
+}
+
+type GetWorldTotemDataOutput struct {
+	// Exist corresponds to the JSON schema field "exist".
+	Exist bool `json:"exist" yaml:"exist" mapstructure:"exist"`
+
+	// Totem corresponds to the JSON schema field "totem".
+	Totem WorldTotemData `json:"totem" yaml:"totem" mapstructure:"totem"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetWorldTotemDataOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["exist"]; raw != nil && !ok {
+		return fmt.Errorf("field exist in GetWorldTotemDataOutput: required")
+	}
+	if _, ok := raw["totem"]; raw != nil && !ok {
+		return fmt.Errorf("field totem in GetWorldTotemDataOutput: required")
+	}
+	type Plain GetWorldTotemDataOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetWorldTotemDataOutput(plain)
 	return nil
 }
 
@@ -8882,9 +8925,12 @@ const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUA
 const Web3ServiceActionDistributeLUAG1 Web3ServiceAction = "DistributeLUAG1"
 const Web3ServiceActionDistributeLUAUSD Web3ServiceAction = "DistributeLUAUSD"
 const Web3ServiceActionDivestDungeon Web3ServiceAction = "DivestDungeon"
+const Web3ServiceActionEnhanceEquipment Web3ServiceAction = "EnhanceEquipment"
+const Web3ServiceActionEnhanceEquipmentLog Web3ServiceAction = "EnhanceEquipmentLog"
 const Web3ServiceActionEstimateDivestDungeon Web3ServiceAction = "EstimateDivestDungeon"
 const Web3ServiceActionEstimateInvestDungeon Web3ServiceAction = "EstimateInvestDungeon"
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
+const Web3ServiceActionExtractEquipment Web3ServiceAction = "ExtractEquipment"
 const Web3ServiceActionFetchDungeonExtraDropPools Web3ServiceAction = "FetchDungeonExtraDropPools"
 const Web3ServiceActionFetchTaskPools Web3ServiceAction = "FetchTaskPools"
 const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskUseNFTSupplyList"
@@ -8918,9 +8964,12 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"DistributeLUAG1",
 	"DistributeLUAUSD",
 	"DivestDungeon",
+	"EnhanceEquipment",
+	"EnhanceEquipmentLog",
 	"EstimateDivestDungeon",
 	"EstimateInvestDungeon",
 	"ExecGameMessage",
+	"ExtractEquipment",
 	"FetchDungeonExtraDropPools",
 	"FetchTaskPools",
 	"FetchTaskUseNFTSupplyList",
@@ -8963,5 +9012,70 @@ func (j *Web3ServiceAction) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_Web3ServiceAction, v)
 	}
 	*j = Web3ServiceAction(v)
+	return nil
+}
+
+type WorldTotemData struct {
+	// Energy corresponds to the JSON schema field "energy".
+	Energy int `json:"energy" yaml:"energy" mapstructure:"energy"`
+
+	// ItemId corresponds to the JSON schema field "itemId".
+	ItemId int `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
+
+	// NftId corresponds to the JSON schema field "nftId".
+	NftId string `json:"nftId" yaml:"nftId" mapstructure:"nftId"`
+
+	// Owner corresponds to the JSON schema field "owner".
+	Owner string `json:"owner" yaml:"owner" mapstructure:"owner"`
+
+	// OwnerName corresponds to the JSON schema field "ownerName".
+	OwnerName string `json:"ownerName" yaml:"ownerName" mapstructure:"ownerName"`
+
+	// Price corresponds to the JSON schema field "price".
+	Price string `json:"price" yaml:"price" mapstructure:"price"`
+
+	// SceneAppId corresponds to the JSON schema field "sceneAppId".
+	SceneAppId string `json:"sceneAppId" yaml:"sceneAppId" mapstructure:"sceneAppId"`
+
+	// SuccessProbability corresponds to the JSON schema field "successProbability".
+	SuccessProbability float64 `json:"successProbability" yaml:"successProbability" mapstructure:"successProbability"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["energy"]; raw != nil && !ok {
+		return fmt.Errorf("field energy in WorldTotemData: required")
+	}
+	if _, ok := raw["itemId"]; raw != nil && !ok {
+		return fmt.Errorf("field itemId in WorldTotemData: required")
+	}
+	if _, ok := raw["nftId"]; raw != nil && !ok {
+		return fmt.Errorf("field nftId in WorldTotemData: required")
+	}
+	if _, ok := raw["owner"]; raw != nil && !ok {
+		return fmt.Errorf("field owner in WorldTotemData: required")
+	}
+	if _, ok := raw["ownerName"]; raw != nil && !ok {
+		return fmt.Errorf("field ownerName in WorldTotemData: required")
+	}
+	if _, ok := raw["price"]; raw != nil && !ok {
+		return fmt.Errorf("field price in WorldTotemData: required")
+	}
+	if _, ok := raw["sceneAppId"]; raw != nil && !ok {
+		return fmt.Errorf("field sceneAppId in WorldTotemData: required")
+	}
+	if _, ok := raw["successProbability"]; raw != nil && !ok {
+		return fmt.Errorf("field successProbability in WorldTotemData: required")
+	}
+	type Plain WorldTotemData
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemData(plain)
 	return nil
 }
