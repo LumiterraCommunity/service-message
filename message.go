@@ -1904,7 +1904,7 @@ type EnhanceEquipmentLog struct {
 	EnhanceLevel int `json:"enhanceLevel" yaml:"enhanceLevel" mapstructure:"enhanceLevel"`
 
 	// FinishTime corresponds to the JSON schema field "finishTime".
-	FinishTime float64 `json:"finishTime" yaml:"finishTime" mapstructure:"finishTime"`
+	FinishTime int `json:"finishTime" yaml:"finishTime" mapstructure:"finishTime"`
 
 	// FromAvatarItemId corresponds to the JSON schema field "fromAvatarItemId".
 	FromAvatarItemId int `json:"fromAvatarItemId" yaml:"fromAvatarItemId" mapstructure:"fromAvatarItemId"`
