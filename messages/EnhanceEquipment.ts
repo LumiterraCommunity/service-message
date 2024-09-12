@@ -57,7 +57,7 @@ export interface AttributeChangeData {
 export interface EnhanceEquipmentLog {
     actionId: string;
     status: string;
-    finishTime: number;
+    finishTime: integer;
 
     totem: WorldTotemData;
     userId: string;
