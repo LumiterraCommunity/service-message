@@ -61,6 +61,9 @@ export enum Web3ServiceAction {
     EnhanceEquipment = "EnhanceEquipment",
     ExtractEquipment = "ExtractEquipment",
     EnhanceEquipmentLog = "EnhanceEquipmentLog",
+    MultiGetWorldTotemPool = "MultiGetWorldTotemPool",
+    WorldTotemPoolDeposit = "WorldTotemPoolDeposit",
+    WorldTotemPoolRedemption = "WorldTotemPoolRedemption",
 
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
@@ -90,6 +93,9 @@ export enum Web3ServiceAction {
 
     // 批量检测用户是否可以消耗指定的LUAUSD
     CheckMultiUseLUAUSD = 'CheckMultiUseLUAUSD',
+
+    // 转移LUA 支持同步支持系统回收(fromUserId -> toUserId )
+    TransferLUA = 'TransferLUA',
 
     // 检测自定义NFT属性铸造
     CheckMintNFTWithAttributes = 'CheckMintNFTWithAttributes',
@@ -141,6 +147,14 @@ export enum SubscriptionEventChannel {
  * 返回发送和接收的结构体同名
  */
 export enum SubscriptionEvent {
+    // 玩家强化装备事件
+    EnhanceEquipmentEvent = 'EnhanceEquipmentEvent',
+    // 更新世界图腾奖金池和强化收益事件
+    WorldTotemPoolUpdateEvent = 'WorldTotemPoolUpdateEvent',
+    // 玩家回收世界图腾
+    RecycleWorldTotemEvent = 'RecycleWorldTotemEvent',
+
+
     // 批量更新地格信息事件
     MultiLandDataUpdateEvent = 'MultiLandDataUpdateEvent',
     // 拆除建筑物事件

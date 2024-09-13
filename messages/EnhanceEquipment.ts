@@ -21,7 +21,7 @@ export enum EnhanceEquipmentDeductionStatus {
 // 执行强化
 export interface EnhanceEquipmentInput {
     userId: string;
-    totemId: string;
+    totemOwner: string;
     totemNftId: string;
     avatarNftId: string;
     fromAvatarNftId: string;
@@ -32,7 +32,14 @@ export interface EnhanceEquipmentInput {
 export interface EnhanceEquipmentOutput {
     success: boolean;
     failedReason: string;
+    awardAmount: string; // 中奖金额（ethWei）
 }
+
+// dapr 强化装备事件
+export interface EnhanceEquipmentEvent {
+    data: EnhanceEquipmentLog;
+}
+
 
 
 // 领取强化完成装备
@@ -61,6 +68,9 @@ export interface EnhanceEquipmentLog {
     finishTime: integer;
 
     totem: WorldTotemData;
+    totemOwnerExpense: string; // 图腾主人拿走的手续费(price*0.7)（ethWei）
+    totemPoolAmount: string;   // 进入奖金池的金额(price*0.3)（ethWei）
+
     userId: string;
     userName: string;
     enhanceEquipmentNFTId: string; // 强化的装备
@@ -81,6 +91,7 @@ export interface EnhanceEquipmentLogInput {
     totemNftId: string;
     index: integer;
     num: integer;
+    filterExtract: boolean;
 }
 
 export interface EnhanceEquipmentLogOutput {
@@ -102,11 +113,71 @@ export interface WorldTotemData {
 }
 
 
-// 查询游戏中世界图腾数据
+// 查询游戏中世界图腾数据(web3->main)
 export interface GetWorldTotemDataInput {
+    totemOwner: string;
     totemNftId: string;
 }
 export interface GetWorldTotemDataOutput {
     exist: boolean;
     totem: WorldTotemData;
+}
+
+// 世界图腾奖金池数据
+export interface WorldTotemPool {
+    totemOwner: string;
+    totemNftId: string;
+    total: string;          //奖金池总金额（ethWei）
+    principal: string;      //本金（ethWei）
+    enhanceIncome: string;  //强化收益
+}
+
+// dapr invoke get 某个图腾  奖金池数据 & 强化收益统计(cli->web3)
+export interface MultiGetWorldTotemPoolInput {
+    /**
+     * userId[] 和 totemNftId[] 下标一一匹配
+    */
+    totemOwnerIds: string[];
+    totemNftIds: string[];
+}
+export interface MultiGetWorldTotemPoolOutput {
+    success: boolean;
+    failedReason: string;
+    poolList: WorldTotemPool[];
+}
+
+// dapr 更新世界图腾奖金池和强化收益事件
+export interface WorldTotemPoolUpdateEvent {
+    pool: WorldTotemPool;
+}
+
+
+// dapr invoke 某个图腾 存放本金(cli->web3)
+export interface WorldTotemPoolDepositInput {
+    totemOwnerId: string;
+    totemNftId: string;
+    depositAmount: string; //存放本金（ethWei）
+}
+export interface WorldTotemPoolDepositOutput {
+    success: boolean;
+    failedReason: string;
+    poolData: WorldTotemPool;
+}
+
+// dapr invoke 某个图腾 赎回本金(cli->web3)
+export interface WorldTotemPoolRedemptionInput {
+    totemOwnerId: string;
+    totemNftId: string;
+    redemptionAll: boolean; // 赎回全部
+    redemptionAmount: string;  // 赎回多少本金（ethWei）
+}
+export interface WorldTotemPoolRedemptionOutput {
+    success: boolean;
+    failedReason: string;
+}
+
+//  玩家回收世界图腾
+export interface RecycleWorldTotemEvent {
+    totemOwnerId: string;
+    totemNftId: string;
 }
