@@ -1826,6 +1826,29 @@ func (j *EnhanceEquipmentDeductionStatus) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type EnhanceEquipmentEvent struct {
+	// Data corresponds to the JSON schema field "data".
+	Data EnhanceEquipmentLog `json:"data" yaml:"data" mapstructure:"data"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["data"]; raw != nil && !ok {
+		return fmt.Errorf("field data in EnhanceEquipmentEvent: required")
+	}
+	type Plain EnhanceEquipmentEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = EnhanceEquipmentEvent(plain)
+	return nil
+}
+
 type EnhanceEquipmentInput struct {
 	// AvatarNftId corresponds to the JSON schema field "avatarNftId".
 	AvatarNftId string `json:"avatarNftId" yaml:"avatarNftId" mapstructure:"avatarNftId"`
@@ -1836,11 +1859,11 @@ type EnhanceEquipmentInput struct {
 	// SceneAppId corresponds to the JSON schema field "sceneAppId".
 	SceneAppId string `json:"sceneAppId" yaml:"sceneAppId" mapstructure:"sceneAppId"`
 
-	// TotemId corresponds to the JSON schema field "totemId".
-	TotemId string `json:"totemId" yaml:"totemId" mapstructure:"totemId"`
-
 	// TotemNftId corresponds to the JSON schema field "totemNftId".
 	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwner corresponds to the JSON schema field "totemOwner".
+	TotemOwner string `json:"totemOwner" yaml:"totemOwner" mapstructure:"totemOwner"`
 
 	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
 	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
@@ -1864,11 +1887,11 @@ func (j *EnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["sceneAppId"]; raw != nil && !ok {
 		return fmt.Errorf("field sceneAppId in EnhanceEquipmentInput: required")
 	}
-	if _, ok := raw["totemId"]; raw != nil && !ok {
-		return fmt.Errorf("field totemId in EnhanceEquipmentInput: required")
-	}
 	if _, ok := raw["totemNftId"]; raw != nil && !ok {
 		return fmt.Errorf("field totemNftId in EnhanceEquipmentInput: required")
+	}
+	if _, ok := raw["totemOwner"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwner in EnhanceEquipmentInput: required")
 	}
 	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
 		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentInput: required")
@@ -1927,6 +1950,12 @@ type EnhanceEquipmentLog struct {
 	// Totem corresponds to the JSON schema field "totem".
 	Totem WorldTotemData `json:"totem" yaml:"totem" mapstructure:"totem"`
 
+	// TotemOwnerExpense corresponds to the JSON schema field "totemOwnerExpense".
+	TotemOwnerExpense string `json:"totemOwnerExpense" yaml:"totemOwnerExpense" mapstructure:"totemOwnerExpense"`
+
+	// TotemPoolAmount corresponds to the JSON schema field "totemPoolAmount".
+	TotemPoolAmount string `json:"totemPoolAmount" yaml:"totemPoolAmount" mapstructure:"totemPoolAmount"`
+
 	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
 	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
 
@@ -1938,6 +1967,9 @@ type EnhanceEquipmentLog struct {
 }
 
 type EnhanceEquipmentLogInput struct {
+	// FilterExtract corresponds to the JSON schema field "filterExtract".
+	FilterExtract bool `json:"filterExtract" yaml:"filterExtract" mapstructure:"filterExtract"`
+
 	// Index corresponds to the JSON schema field "index".
 	Index int `json:"index" yaml:"index" mapstructure:"index"`
 
@@ -1956,6 +1988,9 @@ func (j *EnhanceEquipmentLogInput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if _, ok := raw["filterExtract"]; raw != nil && !ok {
+		return fmt.Errorf("field filterExtract in EnhanceEquipmentLogInput: required")
 	}
 	if _, ok := raw["index"]; raw != nil && !ok {
 		return fmt.Errorf("field index in EnhanceEquipmentLogInput: required")
@@ -2052,6 +2087,12 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["totem"]; raw != nil && !ok {
 		return fmt.Errorf("field totem in EnhanceEquipmentLog: required")
 	}
+	if _, ok := raw["totemOwnerExpense"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerExpense in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["totemPoolAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field totemPoolAmount in EnhanceEquipmentLog: required")
+	}
 	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
 		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentLog: required")
 	}
@@ -2071,6 +2112,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 }
 
 type EnhanceEquipmentOutput struct {
+	// AwardAmount corresponds to the JSON schema field "awardAmount".
+	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
+
 	// FailedReason corresponds to the JSON schema field "failedReason".
 	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
 
@@ -2083,6 +2127,9 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	var raw map[string]interface{}
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
+	}
+	if _, ok := raw["awardAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field awardAmount in EnhanceEquipmentOutput: required")
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
 		return fmt.Errorf("field failedReason in EnhanceEquipmentOutput: required")
@@ -4170,6 +4217,9 @@ func (j *GetUserWeb3ProfileOutput) UnmarshalJSON(b []byte) error {
 type GetWorldTotemDataInput struct {
 	// TotemNftId corresponds to the JSON schema field "totemNftId".
 	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwner corresponds to the JSON schema field "totemOwner".
+	TotemOwner string `json:"totemOwner" yaml:"totemOwner" mapstructure:"totemOwner"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -4180,6 +4230,9 @@ func (j *GetWorldTotemDataInput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["totemNftId"]; raw != nil && !ok {
 		return fmt.Errorf("field totemNftId in GetWorldTotemDataInput: required")
+	}
+	if _, ok := raw["totemOwner"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwner in GetWorldTotemDataInput: required")
 	}
 	type Plain GetWorldTotemDataInput
 	var plain Plain
@@ -5348,6 +5401,70 @@ func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = MultiGetPlayerUsingNftsByUserIdOutput(plain)
+	return nil
+}
+
+type MultiGetWorldTotemPoolInput struct {
+	// TotemNftIds corresponds to the JSON schema field "totemNftIds".
+	TotemNftIds []string `json:"totemNftIds" yaml:"totemNftIds" mapstructure:"totemNftIds"`
+
+	// userId[] 和 totemNftId[] 下标一一匹配
+	TotemOwnerIds []string `json:"totemOwnerIds" yaml:"totemOwnerIds" mapstructure:"totemOwnerIds"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiGetWorldTotemPoolInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["totemNftIds"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftIds in MultiGetWorldTotemPoolInput: required")
+	}
+	if _, ok := raw["totemOwnerIds"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerIds in MultiGetWorldTotemPoolInput: required")
+	}
+	type Plain MultiGetWorldTotemPoolInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiGetWorldTotemPoolInput(plain)
+	return nil
+}
+
+type MultiGetWorldTotemPoolOutput struct {
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// PoolList corresponds to the JSON schema field "poolList".
+	PoolList []WorldTotemPool `json:"poolList" yaml:"poolList" mapstructure:"poolList"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MultiGetWorldTotemPoolOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in MultiGetWorldTotemPoolOutput: required")
+	}
+	if _, ok := raw["poolList"]; raw != nil && !ok {
+		return fmt.Errorf("field poolList in MultiGetWorldTotemPoolOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in MultiGetWorldTotemPoolOutput: required")
+	}
+	type Plain MultiGetWorldTotemPoolOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MultiGetWorldTotemPoolOutput(plain)
 	return nil
 }
 
@@ -7558,6 +7675,35 @@ func (j *RecipeInfo) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type RecycleWorldTotemEvent struct {
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwnerId corresponds to the JSON schema field "totemOwnerId".
+	TotemOwnerId string `json:"totemOwnerId" yaml:"totemOwnerId" mapstructure:"totemOwnerId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *RecycleWorldTotemEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in RecycleWorldTotemEvent: required")
+	}
+	if _, ok := raw["totemOwnerId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerId in RecycleWorldTotemEvent: required")
+	}
+	type Plain RecycleWorldTotemEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = RecycleWorldTotemEvent(plain)
+	return nil
+}
+
 type RecyclingInfo struct {
 	// BuildId corresponds to the JSON schema field "buildId".
 	BuildId int `json:"buildId" yaml:"buildId" mapstructure:"buildId"`
@@ -8059,6 +8205,7 @@ const SubscriptionEventDispatchGameMessage SubscriptionEvent = "DispatchGameMess
 const SubscriptionEventDistributeDungeonBonus SubscriptionEvent = "DistributeDungeonBonus"
 const SubscriptionEventDungeonPVEPStart SubscriptionEvent = "DungeonPVEPStart"
 const SubscriptionEventDungeonStartPVEPCallback SubscriptionEvent = "DungeonStartPVEPCallback"
+const SubscriptionEventEnhanceEquipmentEvent SubscriptionEvent = "EnhanceEquipmentEvent"
 const SubscriptionEventMintNFTWithAttributes SubscriptionEvent = "MintNFTWithAttributes"
 const SubscriptionEventMultiBuildUpdateEvent SubscriptionEvent = "MultiBuildUpdateEvent"
 const SubscriptionEventMultiLandDataUpdateEvent SubscriptionEvent = "MultiLandDataUpdateEvent"
@@ -8070,11 +8217,13 @@ const SubscriptionEventPlayerDeath SubscriptionEvent = "PlayerDeath"
 const SubscriptionEventPlayerKilled SubscriptionEvent = "PlayerKilled"
 const SubscriptionEventPlayerReborn SubscriptionEvent = "PlayerReborn"
 const SubscriptionEventRaffleDrawEvent SubscriptionEvent = "RaffleDrawEvent"
+const SubscriptionEventRecycleWorldTotemEvent SubscriptionEvent = "RecycleWorldTotemEvent"
 const SubscriptionEventUnloadEquipment SubscriptionEvent = "UnloadEquipment"
 const SubscriptionEventUpdateTotemInvestData SubscriptionEvent = "UpdateTotemInvestData"
 const SubscriptionEventUpdateUpcomingUses SubscriptionEvent = "UpdateUpcomingUses"
 const SubscriptionEventUseEquipment SubscriptionEvent = "UseEquipment"
 const SubscriptionEventUseLUAUSD SubscriptionEvent = "UseLUAUSD"
+const SubscriptionEventWorldTotemPoolUpdateEvent SubscriptionEvent = "WorldTotemPoolUpdateEvent"
 
 var enumValues_SubscriptionEvent = []interface{}{
 	"AccountMigrate",
@@ -8086,6 +8235,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"DistributeDungeonBonus",
 	"DungeonPVEPStart",
 	"DungeonStartPVEPCallback",
+	"EnhanceEquipmentEvent",
 	"MintNFTWithAttributes",
 	"MultiBuildUpdateEvent",
 	"MultiLandDataUpdateEvent",
@@ -8097,11 +8247,13 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"PlayerKilled",
 	"PlayerReborn",
 	"RaffleDrawEvent",
+	"RecycleWorldTotemEvent",
 	"UnloadEquipment",
 	"UpdateTotemInvestData",
 	"UpdateUpcomingUses",
 	"UseEquipment",
 	"UseLUAUSD",
+	"WorldTotemPoolUpdateEvent",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -8445,6 +8597,82 @@ func (j *TotemTraitRarity) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_TotemTraitRarity, v)
 	}
 	*j = TotemTraitRarity(v)
+	return nil
+}
+
+type TransferLUAInput struct {
+	// FromUserId corresponds to the JSON schema field "fromUserId".
+	FromUserId string `json:"fromUserId" yaml:"fromUserId" mapstructure:"fromUserId"`
+
+	// 转移备注
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
+	// toUser获得多少lua(ethWei)
+	ToUserGetAmount string `json:"toUserGetAmount" yaml:"toUserGetAmount" mapstructure:"toUserGetAmount"`
+
+	// ToUserId corresponds to the JSON schema field "toUserId".
+	ToUserId string `json:"toUserId" yaml:"toUserId" mapstructure:"toUserId"`
+
+	// fromUser转移多少lua(ethWei)
+	TransferAmount string `json:"transferAmount" yaml:"transferAmount" mapstructure:"transferAmount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TransferLUAInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["fromUserId"]; raw != nil && !ok {
+		return fmt.Errorf("field fromUserId in TransferLUAInput: required")
+	}
+	if _, ok := raw["remark"]; raw != nil && !ok {
+		return fmt.Errorf("field remark in TransferLUAInput: required")
+	}
+	if _, ok := raw["toUserGetAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field toUserGetAmount in TransferLUAInput: required")
+	}
+	if _, ok := raw["toUserId"]; raw != nil && !ok {
+		return fmt.Errorf("field toUserId in TransferLUAInput: required")
+	}
+	if _, ok := raw["transferAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field transferAmount in TransferLUAInput: required")
+	}
+	type Plain TransferLUAInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = TransferLUAInput(plain)
+	return nil
+}
+
+type TransferLUAOutput struct {
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TransferLUAOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in TransferLUAOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in TransferLUAOutput: required")
+	}
+	type Plain TransferLUAOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = TransferLUAOutput(plain)
 	return nil
 }
 
@@ -8899,7 +9127,11 @@ const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
 const Web3ServiceActionMoveNFTToOnchain Web3ServiceAction = "MoveNFTToOnchain"
 const Web3ServiceActionMoveNFTToRoninchain Web3ServiceAction = "MoveNFTToRoninchain"
 const Web3ServiceActionMoveRoninchainToGame Web3ServiceAction = "MoveRoninchainToGame"
+const Web3ServiceActionMultiGetWorldTotemPool Web3ServiceAction = "MultiGetWorldTotemPool"
 const Web3ServiceActionRaffleDraw Web3ServiceAction = "RaffleDraw"
+const Web3ServiceActionTransferLUA Web3ServiceAction = "TransferLUA"
+const Web3ServiceActionWorldTotemPoolDeposit Web3ServiceAction = "WorldTotemPoolDeposit"
+const Web3ServiceActionWorldTotemPoolRedemption Web3ServiceAction = "WorldTotemPoolRedemption"
 
 var enumValues_Web3ServiceAction = []interface{}{
 	"BatchBurnNFT",
@@ -8938,7 +9170,11 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"MoveNFTToOnchain",
 	"MoveNFTToRoninchain",
 	"MoveRoninchainToGame",
+	"MultiGetWorldTotemPool",
 	"RaffleDraw",
+	"TransferLUA",
+	"WorldTotemPoolDeposit",
+	"WorldTotemPoolRedemption",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -9029,5 +9265,215 @@ func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = WorldTotemData(plain)
+	return nil
+}
+
+type WorldTotemPool struct {
+	// EnhanceIncome corresponds to the JSON schema field "enhanceIncome".
+	EnhanceIncome string `json:"enhanceIncome" yaml:"enhanceIncome" mapstructure:"enhanceIncome"`
+
+	// Principal corresponds to the JSON schema field "principal".
+	Principal string `json:"principal" yaml:"principal" mapstructure:"principal"`
+
+	// Total corresponds to the JSON schema field "total".
+	Total string `json:"total" yaml:"total" mapstructure:"total"`
+
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwner corresponds to the JSON schema field "totemOwner".
+	TotemOwner string `json:"totemOwner" yaml:"totemOwner" mapstructure:"totemOwner"`
+}
+
+type WorldTotemPoolDepositInput struct {
+	// DepositAmount corresponds to the JSON schema field "depositAmount".
+	DepositAmount string `json:"depositAmount" yaml:"depositAmount" mapstructure:"depositAmount"`
+
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwnerId corresponds to the JSON schema field "totemOwnerId".
+	TotemOwnerId string `json:"totemOwnerId" yaml:"totemOwnerId" mapstructure:"totemOwnerId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPoolDepositInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["depositAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field depositAmount in WorldTotemPoolDepositInput: required")
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in WorldTotemPoolDepositInput: required")
+	}
+	if _, ok := raw["totemOwnerId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerId in WorldTotemPoolDepositInput: required")
+	}
+	type Plain WorldTotemPoolDepositInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPoolDepositInput(plain)
+	return nil
+}
+
+type WorldTotemPoolDepositOutput struct {
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// PoolData corresponds to the JSON schema field "poolData".
+	PoolData WorldTotemPool `json:"poolData" yaml:"poolData" mapstructure:"poolData"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPoolDepositOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in WorldTotemPoolDepositOutput: required")
+	}
+	if _, ok := raw["poolData"]; raw != nil && !ok {
+		return fmt.Errorf("field poolData in WorldTotemPoolDepositOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in WorldTotemPoolDepositOutput: required")
+	}
+	type Plain WorldTotemPoolDepositOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPoolDepositOutput(plain)
+	return nil
+}
+
+type WorldTotemPoolRedemptionInput struct {
+	// RedemptionAll corresponds to the JSON schema field "redemptionAll".
+	RedemptionAll bool `json:"redemptionAll" yaml:"redemptionAll" mapstructure:"redemptionAll"`
+
+	// RedemptionAmount corresponds to the JSON schema field "redemptionAmount".
+	RedemptionAmount string `json:"redemptionAmount" yaml:"redemptionAmount" mapstructure:"redemptionAmount"`
+
+	// TotemNftId corresponds to the JSON schema field "totemNftId".
+	TotemNftId string `json:"totemNftId" yaml:"totemNftId" mapstructure:"totemNftId"`
+
+	// TotemOwnerId corresponds to the JSON schema field "totemOwnerId".
+	TotemOwnerId string `json:"totemOwnerId" yaml:"totemOwnerId" mapstructure:"totemOwnerId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPoolRedemptionInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["redemptionAll"]; raw != nil && !ok {
+		return fmt.Errorf("field redemptionAll in WorldTotemPoolRedemptionInput: required")
+	}
+	if _, ok := raw["redemptionAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field redemptionAmount in WorldTotemPoolRedemptionInput: required")
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in WorldTotemPoolRedemptionInput: required")
+	}
+	if _, ok := raw["totemOwnerId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerId in WorldTotemPoolRedemptionInput: required")
+	}
+	type Plain WorldTotemPoolRedemptionInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPoolRedemptionInput(plain)
+	return nil
+}
+
+type WorldTotemPoolRedemptionOutput struct {
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPoolRedemptionOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in WorldTotemPoolRedemptionOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in WorldTotemPoolRedemptionOutput: required")
+	}
+	type Plain WorldTotemPoolRedemptionOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPoolRedemptionOutput(plain)
+	return nil
+}
+
+type WorldTotemPoolUpdateEvent struct {
+	// Pool corresponds to the JSON schema field "pool".
+	Pool WorldTotemPool `json:"pool" yaml:"pool" mapstructure:"pool"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPoolUpdateEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["pool"]; raw != nil && !ok {
+		return fmt.Errorf("field pool in WorldTotemPoolUpdateEvent: required")
+	}
+	type Plain WorldTotemPoolUpdateEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPoolUpdateEvent(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *WorldTotemPool) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["enhanceIncome"]; raw != nil && !ok {
+		return fmt.Errorf("field enhanceIncome in WorldTotemPool: required")
+	}
+	if _, ok := raw["principal"]; raw != nil && !ok {
+		return fmt.Errorf("field principal in WorldTotemPool: required")
+	}
+	if _, ok := raw["total"]; raw != nil && !ok {
+		return fmt.Errorf("field total in WorldTotemPool: required")
+	}
+	if _, ok := raw["totemNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field totemNftId in WorldTotemPool: required")
+	}
+	if _, ok := raw["totemOwner"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwner in WorldTotemPool: required")
+	}
+	type Plain WorldTotemPool
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = WorldTotemPool(plain)
 	return nil
 }
