@@ -190,25 +190,3 @@ export enum TotemTrait_Rarity {
     D = 'D',
     E = 'E',
 }
-
-/// 废弃!!!
-// export enum ExternalTotemTraitTypes {
-//     rarity = 'rarity',
-//     type = 'type',
-// }
-
-// export enum ExternalTotemTrait_Type {
-//     Totem = 'Totem',
-// }
-
-// export enum ExternalTotemTrait_Rarity {
-//     A = 'A',
-//     B = 'B',
-//     C = 'C',
-//     D = 'D',
-//     E = 'E',
-// }
-
-// export enum ExternalNFT_Address {
-//     Totem = '0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924',
-// }
