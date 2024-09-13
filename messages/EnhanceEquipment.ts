@@ -57,6 +57,7 @@ export interface AttributeChangeData {
 export interface EnhanceEquipmentLog {
     actionId: string;
     status: string;
+    beginTime: integer;
     finishTime: integer;
 
     totem: WorldTotemData;
@@ -97,6 +98,7 @@ export interface WorldTotemData {
     price: string;   // 强化单价ethWei
     sceneAppId: string;
     successProbability: number;
+    quality: string;
 }
 
 
