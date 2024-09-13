@@ -1895,6 +1895,9 @@ type EnhanceEquipmentLog struct {
 	// AwardAmount corresponds to the JSON schema field "awardAmount".
 	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
 
+	// BeginTime corresponds to the JSON schema field "beginTime".
+	BeginTime int `json:"beginTime" yaml:"beginTime" mapstructure:"beginTime"`
+
 	// EnhanceEquipmentItemId corresponds to the JSON schema field
 	// "enhanceEquipmentItemId".
 	EnhanceEquipmentItemId int `json:"enhanceEquipmentItemId" yaml:"enhanceEquipmentItemId" mapstructure:"enhanceEquipmentItemId"`
@@ -2018,6 +2021,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["awardAmount"]; raw != nil && !ok {
 		return fmt.Errorf("field awardAmount in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["beginTime"]; raw != nil && !ok {
+		return fmt.Errorf("field beginTime in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["enhanceEquipmentItemId"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceEquipmentItemId in EnhanceEquipmentLog: required")
@@ -8974,6 +8980,9 @@ type WorldTotemData struct {
 	// Price corresponds to the JSON schema field "price".
 	Price string `json:"price" yaml:"price" mapstructure:"price"`
 
+	// Quality corresponds to the JSON schema field "quality".
+	Quality string `json:"quality" yaml:"quality" mapstructure:"quality"`
+
 	// SceneAppId corresponds to the JSON schema field "sceneAppId".
 	SceneAppId string `json:"sceneAppId" yaml:"sceneAppId" mapstructure:"sceneAppId"`
 
@@ -9004,6 +9013,9 @@ func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["price"]; raw != nil && !ok {
 		return fmt.Errorf("field price in WorldTotemData: required")
+	}
+	if _, ok := raw["quality"]; raw != nil && !ok {
+		return fmt.Errorf("field quality in WorldTotemData: required")
 	}
 	if _, ok := raw["sceneAppId"]; raw != nil && !ok {
 		return fmt.Errorf("field sceneAppId in WorldTotemData: required")
