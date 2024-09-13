@@ -2373,128 +2373,6 @@ func (j *ExecGameMessageOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type ExternalNFTAddress string
-
-const ExternalNFTAddressA0Xa6Ef0Ad746D1C35D6Ff4D66Ceeae0E596D742924 ExternalNFTAddress = "0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924"
-
-var enumValues_ExternalNFTAddress = []interface{}{
-	"0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *ExternalNFTAddress) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_ExternalNFTAddress {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_ExternalNFTAddress, v)
-	}
-	*j = ExternalNFTAddress(v)
-	return nil
-}
-
-type ExternalTotemTraitRarity string
-
-const ExternalTotemTraitRarityA ExternalTotemTraitRarity = "A"
-const ExternalTotemTraitRarityB ExternalTotemTraitRarity = "B"
-const ExternalTotemTraitRarityC ExternalTotemTraitRarity = "C"
-const ExternalTotemTraitRarityD ExternalTotemTraitRarity = "D"
-const ExternalTotemTraitRarityE ExternalTotemTraitRarity = "E"
-
-var enumValues_ExternalTotemTraitRarity = []interface{}{
-	"A",
-	"B",
-	"C",
-	"D",
-	"E",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *ExternalTotemTraitRarity) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_ExternalTotemTraitRarity {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_ExternalTotemTraitRarity, v)
-	}
-	*j = ExternalTotemTraitRarity(v)
-	return nil
-}
-
-type ExternalTotemTraitType string
-
-const ExternalTotemTraitTypeTotem ExternalTotemTraitType = "Totem"
-
-var enumValues_ExternalTotemTraitType = []interface{}{
-	"Totem",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *ExternalTotemTraitType) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_ExternalTotemTraitType {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_ExternalTotemTraitType, v)
-	}
-	*j = ExternalTotemTraitType(v)
-	return nil
-}
-
-type ExternalTotemTraitTypes string
-
-const ExternalTotemTraitTypesRarity ExternalTotemTraitTypes = "rarity"
-const ExternalTotemTraitTypesType ExternalTotemTraitTypes = "type"
-
-var enumValues_ExternalTotemTraitTypes = []interface{}{
-	"rarity",
-	"type",
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *ExternalTotemTraitTypes) UnmarshalJSON(b []byte) error {
-	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
-		return err
-	}
-	var ok bool
-	for _, expected := range enumValues_ExternalTotemTraitTypes {
-		if reflect.DeepEqual(v, expected) {
-			ok = true
-			break
-		}
-	}
-	if !ok {
-		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_ExternalTotemTraitTypes, v)
-	}
-	*j = ExternalTotemTraitTypes(v)
-	return nil
-}
-
 type ExtractEquipmentInput struct {
 	// ActionId corresponds to the JSON schema field "actionId".
 	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
@@ -6076,6 +5954,7 @@ const NFTTraitTypePlaceable NFTTraitType = "Placeable"
 const NFTTraitTypeSpear NFTTraitType = "Spear"
 const NFTTraitTypeSword NFTTraitType = "Sword"
 const NFTTraitTypeTaskTicket NFTTraitType = "TaskTicket"
+const NFTTraitTypeTotem NFTTraitType = "Totem"
 const NFTTraitTypeWearable NFTTraitType = "Wearable"
 
 var enumValues_NFTTraitType = []interface{}{
@@ -6094,6 +5973,7 @@ var enumValues_NFTTraitType = []interface{}{
 	"Spear",
 	"Sword",
 	"TaskTicket",
+	"Totem",
 	"Wearable",
 }
 
@@ -8523,6 +8403,42 @@ func (j *TotemInvestData) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = TotemInvestData(plain)
+	return nil
+}
+
+type TotemTraitRarity string
+
+const TotemTraitRarityA TotemTraitRarity = "A"
+const TotemTraitRarityB TotemTraitRarity = "B"
+const TotemTraitRarityC TotemTraitRarity = "C"
+const TotemTraitRarityD TotemTraitRarity = "D"
+const TotemTraitRarityE TotemTraitRarity = "E"
+
+var enumValues_TotemTraitRarity = []interface{}{
+	"A",
+	"B",
+	"C",
+	"D",
+	"E",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TotemTraitRarity) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_TotemTraitRarity {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_TotemTraitRarity, v)
+	}
+	*j = TotemTraitRarity(v)
 	return nil
 }
 
