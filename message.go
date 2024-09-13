@@ -1892,6 +1892,9 @@ type EnhanceEquipmentLog struct {
 	// ActionId corresponds to the JSON schema field "actionId".
 	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
 
+	// AwardAmount corresponds to the JSON schema field "awardAmount".
+	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
+
 	// EnhanceEquipmentItemId corresponds to the JSON schema field
 	// "enhanceEquipmentItemId".
 	EnhanceEquipmentItemId int `json:"enhanceEquipmentItemId" yaml:"enhanceEquipmentItemId" mapstructure:"enhanceEquipmentItemId"`
@@ -2012,6 +2015,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["actionId"]; raw != nil && !ok {
 		return fmt.Errorf("field actionId in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["awardAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field awardAmount in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["enhanceEquipmentItemId"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceEquipmentItemId in EnhanceEquipmentLog: required")
