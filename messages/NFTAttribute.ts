@@ -180,18 +180,10 @@ export enum NFTTrait_Type {
     MysteryBox = 'MysteryBox', // 神秘宝箱
     PetEgg = 'PetEgg', // 宠物蛋
     TaskTicket = 'TaskTicket', // 任务券
+    Totem = 'Totem', // 图腾
 }
 
-export enum ExternalTotemTraitTypes {
-    rarity = 'rarity',
-    type = 'type',
-}
-
-export enum ExternalTotemTrait_Type {
-    Totem = 'Totem',
-}
-
-export enum ExternalTotemTrait_Rarity {
+export enum TotemTrait_Rarity {
     A = 'A',
     B = 'B',
     C = 'C',
@@ -199,6 +191,24 @@ export enum ExternalTotemTrait_Rarity {
     E = 'E',
 }
 
-export enum ExternalNFT_Address {
-    Totem = '0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924',
-}
+/// 废弃!!!
+// export enum ExternalTotemTraitTypes {
+//     rarity = 'rarity',
+//     type = 'type',
+// }
+
+// export enum ExternalTotemTrait_Type {
+//     Totem = 'Totem',
+// }
+
+// export enum ExternalTotemTrait_Rarity {
+//     A = 'A',
+//     B = 'B',
+//     C = 'C',
+//     D = 'D',
+//     E = 'E',
+// }
+
+// export enum ExternalNFT_Address {
+//     Totem = '0xa6ef0ad746d1c35d6ff4d66ceeae0e596d742924',
+// }
