@@ -138,7 +138,7 @@ export interface MultiGetWorldTotemPoolInput {
      * userId[] 和 totemNftId[] 下标一一匹配
     */
     totemOwnerIds: string[];
-    totemNftIds: string[];
+    totemNftIds: string[]; 
 }
 export interface MultiGetWorldTotemPoolOutput {
     success: boolean;
