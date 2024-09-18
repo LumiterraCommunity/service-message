@@ -33,6 +33,7 @@ export interface EnhanceEquipmentOutput {
     success: boolean;
     failedReason: string;
     awardAmount: string; // 中奖金额（ethWei）
+    awardStatus: string; // 中奖状态 pending || success 
 }
 
 // dapr 强化装备事件
