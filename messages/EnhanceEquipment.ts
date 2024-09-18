@@ -81,6 +81,7 @@ export interface EnhanceEquipmentLog {
     originLevel: integer;
     useProtectiveStone: boolean;
     awardAmount: string; // 中奖金额（ethWei）
+    awardStatus: string; // 中奖状态 pending || success 
     // 装备的属性变动
     AttributeList: AttributeChangeData[];
 }
