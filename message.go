@@ -2121,6 +2121,9 @@ type EnhanceEquipmentOutput struct {
 	// AwardAmount corresponds to the JSON schema field "awardAmount".
 	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
 
+	// AwardStatus corresponds to the JSON schema field "awardStatus".
+	AwardStatus string `json:"awardStatus" yaml:"awardStatus" mapstructure:"awardStatus"`
+
 	// FailedReason corresponds to the JSON schema field "failedReason".
 	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
 
@@ -2136,6 +2139,9 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["awardAmount"]; raw != nil && !ok {
 		return fmt.Errorf("field awardAmount in EnhanceEquipmentOutput: required")
+	}
+	if _, ok := raw["awardStatus"]; raw != nil && !ok {
+		return fmt.Errorf("field awardStatus in EnhanceEquipmentOutput: required")
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
 		return fmt.Errorf("field failedReason in EnhanceEquipmentOutput: required")
