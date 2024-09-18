@@ -1918,6 +1918,9 @@ type EnhanceEquipmentLog struct {
 	// AwardAmount corresponds to the JSON schema field "awardAmount".
 	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
 
+	// AwardStatus corresponds to the JSON schema field "awardStatus".
+	AwardStatus string `json:"awardStatus" yaml:"awardStatus" mapstructure:"awardStatus"`
+
 	// BeginTime corresponds to the JSON schema field "beginTime".
 	BeginTime int `json:"beginTime" yaml:"beginTime" mapstructure:"beginTime"`
 
@@ -2056,6 +2059,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["awardAmount"]; raw != nil && !ok {
 		return fmt.Errorf("field awardAmount in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["awardStatus"]; raw != nil && !ok {
+		return fmt.Errorf("field awardStatus in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["beginTime"]; raw != nil && !ok {
 		return fmt.Errorf("field beginTime in EnhanceEquipmentLog: required")
