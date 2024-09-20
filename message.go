@@ -1985,6 +1985,10 @@ type EnhanceEquipmentLog struct {
 	// "enhanceEquipmentNFTId".
 	EnhanceEquipmentNFTId string `json:"enhanceEquipmentNFTId" yaml:"enhanceEquipmentNFTId" mapstructure:"enhanceEquipmentNFTId"`
 
+	// EnhanceEquipmentQuality corresponds to the JSON schema field
+	// "enhanceEquipmentQuality".
+	EnhanceEquipmentQuality string `json:"enhanceEquipmentQuality" yaml:"enhanceEquipmentQuality" mapstructure:"enhanceEquipmentQuality"`
+
 	// EnhanceLevel corresponds to the JSON schema field "enhanceLevel".
 	EnhanceLevel int `json:"enhanceLevel" yaml:"enhanceLevel" mapstructure:"enhanceLevel"`
 
@@ -2124,6 +2128,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["enhanceEquipmentNFTId"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceEquipmentNFTId in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["enhanceEquipmentQuality"]; raw != nil && !ok {
+		return fmt.Errorf("field enhanceEquipmentQuality in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["enhanceLevel"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceLevel in EnhanceEquipmentLog: required")
