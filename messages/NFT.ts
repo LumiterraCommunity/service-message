@@ -496,6 +496,23 @@ export interface MintNFTWithAttributes {
     remark: string;
 }
 
+
+export interface MintNFTWithSampleNFT {
+        userId: string
+
+        itemId: string;
+    
+        amount: integer;
+    
+        qualityVal: string;
+    
+        attributes: NFTAttribute[];
+    
+        remark: string;
+
+        tokenId: string;
+}
+
 export interface BatchBurnNFT {
     userId: string
 
