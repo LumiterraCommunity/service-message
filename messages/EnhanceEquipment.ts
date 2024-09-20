@@ -77,12 +77,14 @@ export interface EnhanceEquipmentLog {
 
     userId: string;
     userName: string;
+    enhanceEquipmentQuality: string; // 强化的装备品质
     enhanceEquipmentNFTId: string; // 强化的装备
     enhanceEquipmentItemId: integer;// 强化的装备cid
     fromAvatarNftId: string;//继承的装备nftId
     fromAvatarItemId: integer;//继承的装备cid
     enhanceLevel: integer;
     originLevel: integer;
+
     useProtectiveStone: boolean;
     awardAmount: string; // 中奖金额（ethWei）
     awardStatus: string; // 中奖状态 pending || success 
