@@ -6280,6 +6280,7 @@ const NFTTraitTypesCritDamage NFTTraitTypes = "Crit Damage"
 const NFTTraitTypesCritPoints NFTTraitTypes = "Crit Points"
 const NFTTraitTypesDefence NFTTraitTypes = "Defence"
 const NFTTraitTypesDodgePoints NFTTraitTypes = "Dodge Points"
+const NFTTraitTypesEnhanceLevel NFTTraitTypes = "EnhanceLevel"
 const NFTTraitTypesExpireTime NFTTraitTypes = "Expire Time"
 const NFTTraitTypesFertilize NFTTraitTypes = "Fertilize"
 const NFTTraitTypesGender NFTTraitTypes = "Gender"
@@ -6312,6 +6313,7 @@ var enumValues_NFTTraitTypes = []interface{}{
 	"Crit Points",
 	"Defence",
 	"Dodge Points",
+	"EnhanceLevel",
 	"Expire Time",
 	"Fertilize",
 	"Gender",
