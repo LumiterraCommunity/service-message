@@ -87,6 +87,9 @@ export enum NFTTraitTypes {
     AbilityList = 'Abilities',
 
     ExpireTime = 'Expire Time',
+
+    // 强化装备等级
+    EnhanceLevel = 'EnhanceLevel',
 }
 
 // Head
