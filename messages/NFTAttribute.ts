@@ -90,6 +90,7 @@ export enum NFTTraitTypes {
 
     // 强化装备等级
     EnhanceLevel = 'EnhanceLevel',
+    MaxEnhanceLevel = 'MaxEnhancementLevel',
 }
 
 // Head
