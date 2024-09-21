@@ -6288,6 +6288,7 @@ const NFTTraitTypesGetBuff NFTTraitTypes = "Get Buff"
 const NFTTraitTypesHPRecovery NFTTraitTypes = "HP Recovery"
 const NFTTraitTypesHitPoints NFTTraitTypes = "Hit Points"
 const NFTTraitTypesLearnRecipe NFTTraitTypes = "Learn Recipe"
+const NFTTraitTypesMaxEnhancementLevel NFTTraitTypes = "MaxEnhancementLevel"
 const NFTTraitTypesMaxHP NFTTraitTypes = "MaxHP"
 const NFTTraitTypesMoveSpeed NFTTraitTypes = "Move Speed"
 const NFTTraitTypesOccupyLand NFTTraitTypes = "Occupy Land"
@@ -6321,6 +6322,7 @@ var enumValues_NFTTraitTypes = []interface{}{
 	"HP Recovery",
 	"Hit Points",
 	"Learn Recipe",
+	"MaxEnhancementLevel",
 	"MaxHP",
 	"Move Speed",
 	"Occupy Land",
