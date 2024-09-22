@@ -17,6 +17,19 @@ export enum EnhanceEquipmentDeductionStatus {
     Failed = "failed",
 }
 
+export enum EnhanceEquipmentTotemRaffleStatus {
+    Open = "open",
+    Pending = "pending", // 初始化
+    Close = "close",
+}
+
+export enum EnhanceEquipmentTotemRaffleLogType {
+    Create = "create",
+    Withdraw = "withdraw",
+    Contribute = "contribute",
+    Prize = "prize",
+}
+
 
 // 执行强化
 export interface EnhanceEquipmentInput {
@@ -84,6 +97,7 @@ export interface EnhanceEquipmentLog {
     fromAvatarItemId: integer;//继承的装备cid
     enhanceLevel: integer;
     originLevel: integer;
+    price: string; // 强化单价(ethWei)
 
     useProtectiveStone: boolean;
     awardAmount: string; // 中奖金额（ethWei）
@@ -113,7 +127,7 @@ export interface WorldTotemData {
     nftId: string;
     itemId: integer;
     energy: integer; // 当前能量 >0 可使用
-    price: string;   // 强化单价ethWei
+    priceRatio: integer;   // 强化单价系数(千分比)
     sceneAppId: string;
     successProbability: number;
     quality: string;
