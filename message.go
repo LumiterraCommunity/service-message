@@ -2007,6 +2007,9 @@ type EnhanceEquipmentLog struct {
 	// Price corresponds to the JSON schema field "price".
 	Price string `json:"price" yaml:"price" mapstructure:"price"`
 
+	// RaffleTxHash corresponds to the JSON schema field "raffleTxHash".
+	RaffleTxHash string `json:"raffleTxHash" yaml:"raffleTxHash" mapstructure:"raffleTxHash"`
+
 	// Status corresponds to the JSON schema field "status".
 	Status string `json:"status" yaml:"status" mapstructure:"status"`
 
@@ -2152,6 +2155,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["price"]; raw != nil && !ok {
 		return fmt.Errorf("field price in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["raffleTxHash"]; raw != nil && !ok {
+		return fmt.Errorf("field raffleTxHash in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["status"]; raw != nil && !ok {
 		return fmt.Errorf("field status in EnhanceEquipmentLog: required")
