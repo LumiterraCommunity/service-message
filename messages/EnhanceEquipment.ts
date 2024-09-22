@@ -88,6 +88,8 @@ export interface EnhanceEquipmentLog {
     totemOwnerExpense: string; // 图腾主人拿走的手续费(price*0.7)（ethWei）
     totemPoolAmount: string;   // 进入奖金池的金额(price*0.3)（ethWei）
 
+    raffleTxHash: string; // 抽奖的txHash
+
     userId: string;
     userName: string;
     enhanceEquipmentQuality: string; // 强化的装备品质
