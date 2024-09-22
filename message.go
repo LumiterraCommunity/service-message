@@ -2004,6 +2004,9 @@ type EnhanceEquipmentLog struct {
 	// OriginLevel corresponds to the JSON schema field "originLevel".
 	OriginLevel int `json:"originLevel" yaml:"originLevel" mapstructure:"originLevel"`
 
+	// Price corresponds to the JSON schema field "price".
+	Price string `json:"price" yaml:"price" mapstructure:"price"`
+
 	// Status corresponds to the JSON schema field "status".
 	Status string `json:"status" yaml:"status" mapstructure:"status"`
 
@@ -2147,6 +2150,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["originLevel"]; raw != nil && !ok {
 		return fmt.Errorf("field originLevel in EnhanceEquipmentLog: required")
 	}
+	if _, ok := raw["price"]; raw != nil && !ok {
+		return fmt.Errorf("field price in EnhanceEquipmentLog: required")
+	}
 	if _, ok := raw["status"]; raw != nil && !ok {
 		return fmt.Errorf("field status in EnhanceEquipmentLog: required")
 	}
@@ -2267,6 +2273,72 @@ func (j *EnhanceEquipmentStatus) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentStatus, v)
 	}
 	*j = EnhanceEquipmentStatus(v)
+	return nil
+}
+
+type EnhanceEquipmentTotemRaffleLogType string
+
+const EnhanceEquipmentTotemRaffleLogTypeContribute EnhanceEquipmentTotemRaffleLogType = "contribute"
+const EnhanceEquipmentTotemRaffleLogTypeCreate EnhanceEquipmentTotemRaffleLogType = "create"
+const EnhanceEquipmentTotemRaffleLogTypePrize EnhanceEquipmentTotemRaffleLogType = "prize"
+const EnhanceEquipmentTotemRaffleLogTypeWithdraw EnhanceEquipmentTotemRaffleLogType = "withdraw"
+
+var enumValues_EnhanceEquipmentTotemRaffleLogType = []interface{}{
+	"contribute",
+	"create",
+	"prize",
+	"withdraw",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentTotemRaffleLogType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_EnhanceEquipmentTotemRaffleLogType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentTotemRaffleLogType, v)
+	}
+	*j = EnhanceEquipmentTotemRaffleLogType(v)
+	return nil
+}
+
+type EnhanceEquipmentTotemRaffleStatus string
+
+const EnhanceEquipmentTotemRaffleStatusClose EnhanceEquipmentTotemRaffleStatus = "close"
+const EnhanceEquipmentTotemRaffleStatusOpen EnhanceEquipmentTotemRaffleStatus = "open"
+const EnhanceEquipmentTotemRaffleStatusPending EnhanceEquipmentTotemRaffleStatus = "pending"
+
+var enumValues_EnhanceEquipmentTotemRaffleStatus = []interface{}{
+	"close",
+	"open",
+	"pending",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentTotemRaffleStatus) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_EnhanceEquipmentTotemRaffleStatus {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentTotemRaffleStatus, v)
+	}
+	*j = EnhanceEquipmentTotemRaffleStatus(v)
 	return nil
 }
 
@@ -9366,8 +9438,8 @@ type WorldTotemData struct {
 	// OwnerName corresponds to the JSON schema field "ownerName".
 	OwnerName string `json:"ownerName" yaml:"ownerName" mapstructure:"ownerName"`
 
-	// Price corresponds to the JSON schema field "price".
-	Price string `json:"price" yaml:"price" mapstructure:"price"`
+	// PriceRatio corresponds to the JSON schema field "priceRatio".
+	PriceRatio int `json:"priceRatio" yaml:"priceRatio" mapstructure:"priceRatio"`
 
 	// Quality corresponds to the JSON schema field "quality".
 	Quality string `json:"quality" yaml:"quality" mapstructure:"quality"`
@@ -9400,8 +9472,8 @@ func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["ownerName"]; raw != nil && !ok {
 		return fmt.Errorf("field ownerName in WorldTotemData: required")
 	}
-	if _, ok := raw["price"]; raw != nil && !ok {
-		return fmt.Errorf("field price in WorldTotemData: required")
+	if _, ok := raw["priceRatio"]; raw != nil && !ok {
+		return fmt.Errorf("field priceRatio in WorldTotemData: required")
 	}
 	if _, ok := raw["quality"]; raw != nil && !ok {
 		return fmt.Errorf("field quality in WorldTotemData: required")
