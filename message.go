@@ -1960,12 +1960,6 @@ type EnhanceEquipmentLog struct {
 	// Totem corresponds to the JSON schema field "totem".
 	Totem WorldTotemData `json:"totem" yaml:"totem" mapstructure:"totem"`
 
-	// TotemOwnerExpense corresponds to the JSON schema field "totemOwnerExpense".
-	TotemOwnerExpense string `json:"totemOwnerExpense" yaml:"totemOwnerExpense" mapstructure:"totemOwnerExpense"`
-
-	// TotemPoolAmount corresponds to the JSON schema field "totemPoolAmount".
-	TotemPoolAmount string `json:"totemPoolAmount" yaml:"totemPoolAmount" mapstructure:"totemPoolAmount"`
-
 	// UseProtectiveStone corresponds to the JSON schema field "useProtectiveStone".
 	UseProtectiveStone bool `json:"useProtectiveStone" yaml:"useProtectiveStone" mapstructure:"useProtectiveStone"`
 
@@ -2106,12 +2100,6 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["totem"]; raw != nil && !ok {
 		return fmt.Errorf("field totem in EnhanceEquipmentLog: required")
 	}
-	if _, ok := raw["totemOwnerExpense"]; raw != nil && !ok {
-		return fmt.Errorf("field totemOwnerExpense in EnhanceEquipmentLog: required")
-	}
-	if _, ok := raw["totemPoolAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field totemPoolAmount in EnhanceEquipmentLog: required")
-	}
 	if _, ok := raw["useProtectiveStone"]; raw != nil && !ok {
 		return fmt.Errorf("field useProtectiveStone in EnhanceEquipmentLog: required")
 	}
@@ -2195,6 +2183,9 @@ type EnhanceEquipmentRaffle struct {
 
 	// Status corresponds to the JSON schema field "status".
 	Status EnhanceEquipmentRaffleStatus `json:"status" yaml:"status" mapstructure:"status"`
+
+	// TotemOwnerExpense corresponds to the JSON schema field "totemOwnerExpense".
+	TotemOwnerExpense string `json:"totemOwnerExpense" yaml:"totemOwnerExpense" mapstructure:"totemOwnerExpense"`
 }
 
 type EnhanceEquipmentRaffleStatus string
@@ -2250,6 +2241,9 @@ func (j *EnhanceEquipmentRaffle) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["status"]; raw != nil && !ok {
 		return fmt.Errorf("field status in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["totemOwnerExpense"]; raw != nil && !ok {
+		return fmt.Errorf("field totemOwnerExpense in EnhanceEquipmentRaffle: required")
 	}
 	type Plain EnhanceEquipmentRaffle
 	var plain Plain
