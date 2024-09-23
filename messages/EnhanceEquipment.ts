@@ -81,6 +81,15 @@ export interface AttributeChangeData {
     after: integer;
 }
 
+export interface EnhanceEquipmentRaffle {
+    status: EnhanceEquipmentRaffleStatus; // 抽奖执行状态(pending, success)
+    isAward: boolean; // 是否中奖
+    awardAmount: string; // 中奖金额（ethWei）
+    poolAmount: string; // 奖金池总金额（ethWei）
+    contributeAmount: string; // 贡献金额，也就是本次强化费用打到奖金池的金额（ethWei）
+    probability: integer;  // 中奖概率
+}
+
 export interface EnhanceEquipmentLog {
     actionId: string;
     status: string;
@@ -105,8 +114,7 @@ export interface EnhanceEquipmentLog {
     price: string; // 强化单价(ethWei)
 
     useProtectiveStone: boolean;
-    awardAmount: string; // 中奖金额（ethWei）
-    awardStatus: string; // 中奖状态 pending || success 
+    raffle: EnhanceEquipmentRaffle;
     // 装备的属性变动
     AttributeList: AttributeChangeData[];
 }
