@@ -86,7 +86,8 @@ export interface EnhanceEquipmentRaffle {
     isAward: boolean; // 是否中奖
     awardAmount: string; // 中奖金额（ethWei）
     poolAmount: string; // 奖金池总金额（ethWei）
-    contributeAmount: string; // 贡献金额，也就是本次强化费用打到奖金池的金额（ethWei）
+    totemOwnerExpense: string; // 图腾主人拿走的手续费(price*0.7)（ethWei）
+    contributeAmount: string; // 贡献金额 也就是本次强化费用打到奖金池的金额（ethWei）
     probability: integer;  // 中奖概率
 }
 
@@ -97,8 +98,6 @@ export interface EnhanceEquipmentLog {
     finishTime: integer;
 
     totem: WorldTotemData;
-    totemOwnerExpense: string; // 图腾主人拿走的手续费(price*0.7)（ethWei）
-    totemPoolAmount: string;   // 进入奖金池的金额(price*0.3)（ethWei）
 
     raffleTxHash: string; // 抽奖的txHash
 
