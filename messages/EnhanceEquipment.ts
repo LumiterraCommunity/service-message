@@ -30,6 +30,11 @@ export enum EnhanceEquipmentTotemRaffleLogType {
     Prize = "prize",
 }
 
+export enum EnhanceEquipmentRaffleStatus {
+    Success = "success",
+    Pending = "pending"
+}
+
 
 // 执行强化
 export interface EnhanceEquipmentInput {
@@ -45,8 +50,6 @@ export interface EnhanceEquipmentInput {
 export interface EnhanceEquipmentOutput {
     success: boolean;
     failedReason: string;
-    awardAmount: string; // 中奖金额（ethWei）
-    awardStatus: string; // 中奖状态 pending || success 
     attributeList: AttributeChangeData[];
     enhanceLevel: integer;
     originLevel: integer;
@@ -203,15 +206,4 @@ export interface WorldTotemPoolRedemptionOutput {
 export interface RecycleWorldTotemEvent {
     totemOwnerId: string;
     totemNftId: string;
-}
-
-
-// 合约扣款
-export interface EnhanceEquipmentDeduction {
-    userId: string;
-    senderAddress: string;
-    totemOwnerAddress: string;
-    rafflePoolAddress: string;
-    totalAmount: string;
-    remark:string;
 }
