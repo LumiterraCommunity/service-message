@@ -1915,12 +1915,6 @@ type EnhanceEquipmentLog struct {
 	// ActionId corresponds to the JSON schema field "actionId".
 	ActionId string `json:"actionId" yaml:"actionId" mapstructure:"actionId"`
 
-	// AwardAmount corresponds to the JSON schema field "awardAmount".
-	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
-
-	// AwardStatus corresponds to the JSON schema field "awardStatus".
-	AwardStatus string `json:"awardStatus" yaml:"awardStatus" mapstructure:"awardStatus"`
-
 	// BeginTime corresponds to the JSON schema field "beginTime".
 	BeginTime int `json:"beginTime" yaml:"beginTime" mapstructure:"beginTime"`
 
@@ -1953,6 +1947,9 @@ type EnhanceEquipmentLog struct {
 
 	// Price corresponds to the JSON schema field "price".
 	Price string `json:"price" yaml:"price" mapstructure:"price"`
+
+	// Raffle corresponds to the JSON schema field "raffle".
+	Raffle EnhanceEquipmentRaffle `json:"raffle" yaml:"raffle" mapstructure:"raffle"`
 
 	// RaffleTxHash corresponds to the JSON schema field "raffleTxHash".
 	RaffleTxHash string `json:"raffleTxHash" yaml:"raffleTxHash" mapstructure:"raffleTxHash"`
@@ -2067,12 +2064,6 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["actionId"]; raw != nil && !ok {
 		return fmt.Errorf("field actionId in EnhanceEquipmentLog: required")
 	}
-	if _, ok := raw["awardAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field awardAmount in EnhanceEquipmentLog: required")
-	}
-	if _, ok := raw["awardStatus"]; raw != nil && !ok {
-		return fmt.Errorf("field awardStatus in EnhanceEquipmentLog: required")
-	}
 	if _, ok := raw["beginTime"]; raw != nil && !ok {
 		return fmt.Errorf("field beginTime in EnhanceEquipmentLog: required")
 	}
@@ -2102,6 +2093,9 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["price"]; raw != nil && !ok {
 		return fmt.Errorf("field price in EnhanceEquipmentLog: required")
+	}
+	if _, ok := raw["raffle"]; raw != nil && !ok {
+		return fmt.Errorf("field raffle in EnhanceEquipmentLog: required")
 	}
 	if _, ok := raw["raffleTxHash"]; raw != nil && !ok {
 		return fmt.Errorf("field raffleTxHash in EnhanceEquipmentLog: required")
@@ -2183,6 +2177,26 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type EnhanceEquipmentRaffle struct {
+	// AwardAmount corresponds to the JSON schema field "awardAmount".
+	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
+
+	// ContributeAmount corresponds to the JSON schema field "contributeAmount".
+	ContributeAmount string `json:"contributeAmount" yaml:"contributeAmount" mapstructure:"contributeAmount"`
+
+	// IsAward corresponds to the JSON schema field "isAward".
+	IsAward bool `json:"isAward" yaml:"isAward" mapstructure:"isAward"`
+
+	// PoolAmount corresponds to the JSON schema field "poolAmount".
+	PoolAmount string `json:"poolAmount" yaml:"poolAmount" mapstructure:"poolAmount"`
+
+	// Probability corresponds to the JSON schema field "probability".
+	Probability int `json:"probability" yaml:"probability" mapstructure:"probability"`
+
+	// Status corresponds to the JSON schema field "status".
+	Status EnhanceEquipmentRaffleStatus `json:"status" yaml:"status" mapstructure:"status"`
+}
+
 type EnhanceEquipmentRaffleStatus string
 
 const EnhanceEquipmentRaffleStatusPending EnhanceEquipmentRaffleStatus = "pending"
@@ -2210,6 +2224,39 @@ func (j *EnhanceEquipmentRaffleStatus) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentRaffleStatus, v)
 	}
 	*j = EnhanceEquipmentRaffleStatus(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentRaffle) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["awardAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field awardAmount in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["contributeAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field contributeAmount in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["isAward"]; raw != nil && !ok {
+		return fmt.Errorf("field isAward in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["poolAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field poolAmount in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["probability"]; raw != nil && !ok {
+		return fmt.Errorf("field probability in EnhanceEquipmentRaffle: required")
+	}
+	if _, ok := raw["status"]; raw != nil && !ok {
+		return fmt.Errorf("field status in EnhanceEquipmentRaffle: required")
+	}
+	type Plain EnhanceEquipmentRaffle
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = EnhanceEquipmentRaffle(plain)
 	return nil
 }
 
