@@ -1794,26 +1794,6 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type EnhanceEquipmentDeduction struct {
-	// RafflePoolAddress corresponds to the JSON schema field "rafflePoolAddress".
-	RafflePoolAddress string `json:"rafflePoolAddress" yaml:"rafflePoolAddress" mapstructure:"rafflePoolAddress"`
-
-	// Remark corresponds to the JSON schema field "remark".
-	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
-
-	// SenderAddress corresponds to the JSON schema field "senderAddress".
-	SenderAddress string `json:"senderAddress" yaml:"senderAddress" mapstructure:"senderAddress"`
-
-	// TotalAmount corresponds to the JSON schema field "totalAmount".
-	TotalAmount string `json:"totalAmount" yaml:"totalAmount" mapstructure:"totalAmount"`
-
-	// TotemOwnerAddress corresponds to the JSON schema field "totemOwnerAddress".
-	TotemOwnerAddress string `json:"totemOwnerAddress" yaml:"totemOwnerAddress" mapstructure:"totemOwnerAddress"`
-
-	// UserId corresponds to the JSON schema field "userId".
-	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
-}
-
 type EnhanceEquipmentDeductionStatus string
 
 const EnhanceEquipmentDeductionStatusFailed EnhanceEquipmentDeductionStatus = "failed"
@@ -1843,39 +1823,6 @@ func (j *EnhanceEquipmentDeductionStatus) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentDeductionStatus, v)
 	}
 	*j = EnhanceEquipmentDeductionStatus(v)
-	return nil
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentDeduction) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["rafflePoolAddress"]; raw != nil && !ok {
-		return fmt.Errorf("field rafflePoolAddress in EnhanceEquipmentDeduction: required")
-	}
-	if _, ok := raw["remark"]; raw != nil && !ok {
-		return fmt.Errorf("field remark in EnhanceEquipmentDeduction: required")
-	}
-	if _, ok := raw["senderAddress"]; raw != nil && !ok {
-		return fmt.Errorf("field senderAddress in EnhanceEquipmentDeduction: required")
-	}
-	if _, ok := raw["totalAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field totalAmount in EnhanceEquipmentDeduction: required")
-	}
-	if _, ok := raw["totemOwnerAddress"]; raw != nil && !ok {
-		return fmt.Errorf("field totemOwnerAddress in EnhanceEquipmentDeduction: required")
-	}
-	if _, ok := raw["userId"]; raw != nil && !ok {
-		return fmt.Errorf("field userId in EnhanceEquipmentDeduction: required")
-	}
-	type Plain EnhanceEquipmentDeduction
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = EnhanceEquipmentDeduction(plain)
 	return nil
 }
 
@@ -2193,12 +2140,6 @@ type EnhanceEquipmentOutput struct {
 	// AttributeList corresponds to the JSON schema field "attributeList".
 	AttributeList []AttributeChangeData `json:"attributeList" yaml:"attributeList" mapstructure:"attributeList"`
 
-	// AwardAmount corresponds to the JSON schema field "awardAmount".
-	AwardAmount string `json:"awardAmount" yaml:"awardAmount" mapstructure:"awardAmount"`
-
-	// AwardStatus corresponds to the JSON schema field "awardStatus".
-	AwardStatus string `json:"awardStatus" yaml:"awardStatus" mapstructure:"awardStatus"`
-
 	// EnhanceLevel corresponds to the JSON schema field "enhanceLevel".
 	EnhanceLevel int `json:"enhanceLevel" yaml:"enhanceLevel" mapstructure:"enhanceLevel"`
 
@@ -2221,12 +2162,6 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["attributeList"]; raw != nil && !ok {
 		return fmt.Errorf("field attributeList in EnhanceEquipmentOutput: required")
 	}
-	if _, ok := raw["awardAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field awardAmount in EnhanceEquipmentOutput: required")
-	}
-	if _, ok := raw["awardStatus"]; raw != nil && !ok {
-		return fmt.Errorf("field awardStatus in EnhanceEquipmentOutput: required")
-	}
 	if _, ok := raw["enhanceLevel"]; raw != nil && !ok {
 		return fmt.Errorf("field enhanceLevel in EnhanceEquipmentOutput: required")
 	}
@@ -2245,6 +2180,36 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = EnhanceEquipmentOutput(plain)
+	return nil
+}
+
+type EnhanceEquipmentRaffleStatus string
+
+const EnhanceEquipmentRaffleStatusPending EnhanceEquipmentRaffleStatus = "pending"
+const EnhanceEquipmentRaffleStatusSuccess EnhanceEquipmentRaffleStatus = "success"
+
+var enumValues_EnhanceEquipmentRaffleStatus = []interface{}{
+	"pending",
+	"success",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *EnhanceEquipmentRaffleStatus) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_EnhanceEquipmentRaffleStatus {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_EnhanceEquipmentRaffleStatus, v)
+	}
+	*j = EnhanceEquipmentRaffleStatus(v)
 	return nil
 }
 
