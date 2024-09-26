@@ -97,6 +97,12 @@ export enum Web3ServiceAction {
     // 转移LUA 支持同步支持系统回收(fromUserId -> toUserId )
     TransferLUA = 'TransferLUA',
 
+    // 兑换LUAOP(fromCId -> toUserId, fromGuidId -> toGuidId )
+    ConvertLUAOP = 'ConvertLUAOP',
+
+    // 兑换PTS(fromGuidId -> toGuidId )
+    ConvertPTS = 'ConvertPTS',
+
     // 检测自定义NFT属性铸造
     CheckMintNFTWithAttributes = 'CheckMintNFTWithAttributes',
 

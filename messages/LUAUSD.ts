@@ -30,16 +30,8 @@ export interface UseLUAUSD {
 // 转移lua 支持同步支持系统回收(fromUserId -> toUserId )
 export interface TransferLUAInput {
     fromUserId: string;
-    /**
-     *  fromUser转移多少lua(ethWei)
-     */
-    transferAmount: string;
-
+    amount: string;
     toUserId: string;
-    /**
-    * toUser获得多少lua(ethWei)
-    */
-    toUserGetAmount: string;
     /**
      * 转移备注
      */

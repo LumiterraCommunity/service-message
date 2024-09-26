@@ -28,6 +28,8 @@ export enum EnhanceEquipmentTotemRaffleLogType {
     Withdraw = "withdraw",
     Contribute = "contribute",
     Prize = "prize",
+    Deposit = "deposit",
+    Closed = "closed",
 }
 
 export enum EnhanceEquipmentRaffleStatus {
