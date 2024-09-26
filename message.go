@@ -2290,14 +2290,18 @@ func (j *EnhanceEquipmentStatus) UnmarshalJSON(b []byte) error {
 
 type EnhanceEquipmentTotemRaffleLogType string
 
+const EnhanceEquipmentTotemRaffleLogTypeClosed EnhanceEquipmentTotemRaffleLogType = "closed"
 const EnhanceEquipmentTotemRaffleLogTypeContribute EnhanceEquipmentTotemRaffleLogType = "contribute"
 const EnhanceEquipmentTotemRaffleLogTypeCreate EnhanceEquipmentTotemRaffleLogType = "create"
+const EnhanceEquipmentTotemRaffleLogTypeDeposit EnhanceEquipmentTotemRaffleLogType = "deposit"
 const EnhanceEquipmentTotemRaffleLogTypePrize EnhanceEquipmentTotemRaffleLogType = "prize"
 const EnhanceEquipmentTotemRaffleLogTypeWithdraw EnhanceEquipmentTotemRaffleLogType = "withdraw"
 
 var enumValues_EnhanceEquipmentTotemRaffleLogType = []interface{}{
+	"closed",
 	"contribute",
 	"create",
+	"deposit",
 	"prize",
 	"withdraw",
 }
@@ -8838,20 +8842,17 @@ func (j *TotemTraitRarity) UnmarshalJSON(b []byte) error {
 }
 
 type TransferLUAInput struct {
+	// Amount corresponds to the JSON schema field "amount".
+	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
+
 	// FromUserId corresponds to the JSON schema field "fromUserId".
 	FromUserId string `json:"fromUserId" yaml:"fromUserId" mapstructure:"fromUserId"`
 
 	// 转移备注
 	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
 
-	// toUser获得多少lua(ethWei)
-	ToUserGetAmount string `json:"toUserGetAmount" yaml:"toUserGetAmount" mapstructure:"toUserGetAmount"`
-
 	// ToUserId corresponds to the JSON schema field "toUserId".
 	ToUserId string `json:"toUserId" yaml:"toUserId" mapstructure:"toUserId"`
-
-	// fromUser转移多少lua(ethWei)
-	TransferAmount string `json:"transferAmount" yaml:"transferAmount" mapstructure:"transferAmount"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -8860,20 +8861,17 @@ func (j *TransferLUAInput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if _, ok := raw["amount"]; raw != nil && !ok {
+		return fmt.Errorf("field amount in TransferLUAInput: required")
+	}
 	if _, ok := raw["fromUserId"]; raw != nil && !ok {
 		return fmt.Errorf("field fromUserId in TransferLUAInput: required")
 	}
 	if _, ok := raw["remark"]; raw != nil && !ok {
 		return fmt.Errorf("field remark in TransferLUAInput: required")
 	}
-	if _, ok := raw["toUserGetAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field toUserGetAmount in TransferLUAInput: required")
-	}
 	if _, ok := raw["toUserId"]; raw != nil && !ok {
 		return fmt.Errorf("field toUserId in TransferLUAInput: required")
-	}
-	if _, ok := raw["transferAmount"]; raw != nil && !ok {
-		return fmt.Errorf("field transferAmount in TransferLUAInput: required")
 	}
 	type Plain TransferLUAInput
 	var plain Plain
@@ -9333,6 +9331,8 @@ const Web3ServiceActionBatchGetGameMessageStatus Web3ServiceAction = "BatchGetGa
 const Web3ServiceActionCheckMintNFTWithAttributes Web3ServiceAction = "CheckMintNFTWithAttributes"
 const Web3ServiceActionCheckMultiBatchBurnNFT Web3ServiceAction = "CheckMultiBatchBurnNFT"
 const Web3ServiceActionCheckMultiUseLUAUSD Web3ServiceAction = "CheckMultiUseLUAUSD"
+const Web3ServiceActionConvertLUAOP Web3ServiceAction = "ConvertLUAOP"
+const Web3ServiceActionConvertPTS Web3ServiceAction = "ConvertPTS"
 const Web3ServiceActionDistributeLUAG1 Web3ServiceAction = "DistributeLUAG1"
 const Web3ServiceActionDistributeLUAUSD Web3ServiceAction = "DistributeLUAUSD"
 const Web3ServiceActionDivestDungeon Web3ServiceAction = "DivestDungeon"
@@ -9376,6 +9376,8 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"CheckMintNFTWithAttributes",
 	"CheckMultiBatchBurnNFT",
 	"CheckMultiUseLUAUSD",
+	"ConvertLUAOP",
+	"ConvertPTS",
 	"DistributeLUAG1",
 	"DistributeLUAUSD",
 	"DivestDungeon",
