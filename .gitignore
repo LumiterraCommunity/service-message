@@ -3,3 +3,4 @@ node_modules
 dist
 message.go
 schema.json
+sync-to-local.sh
