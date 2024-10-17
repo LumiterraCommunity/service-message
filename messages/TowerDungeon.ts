@@ -53,6 +53,8 @@ export interface MintUserTowerRewardInput {
      * @items.minimum 0
      */
     itemAmounts: integer[];
+
+    remark: string;
 }
 
 export interface MintUserTowerRewardOutput {
