@@ -8589,6 +8589,7 @@ const SubscriptionEventRaffleDrawEvent SubscriptionEvent = "RaffleDrawEvent"
 const SubscriptionEventRecycleWorldTotemEvent SubscriptionEvent = "RecycleWorldTotemEvent"
 const SubscriptionEventUnloadEquipment SubscriptionEvent = "UnloadEquipment"
 const SubscriptionEventUpdateTotemInvestData SubscriptionEvent = "UpdateTotemInvestData"
+const SubscriptionEventUpdateTowerRafflePool SubscriptionEvent = "UpdateTowerRafflePool"
 const SubscriptionEventUpdateUpcomingUses SubscriptionEvent = "UpdateUpcomingUses"
 const SubscriptionEventUseEquipment SubscriptionEvent = "UseEquipment"
 const SubscriptionEventUseLUAUSD SubscriptionEvent = "UseLUAUSD"
@@ -8619,6 +8620,7 @@ var enumValues_SubscriptionEvent = []interface{}{
 	"RecycleWorldTotemEvent",
 	"UnloadEquipment",
 	"UpdateTotemInvestData",
+	"UpdateTowerRafflePool",
 	"UpdateUpcomingUses",
 	"UseEquipment",
 	"UseLUAUSD",
@@ -9554,6 +9556,7 @@ const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeo
 const Web3ServiceActionGetGameMessageStatusById Web3ServiceAction = "GetGameMessageStatusById"
 const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestLogs"
 const Web3ServiceActionGetRoninNFTMoveLogs Web3ServiceAction = "GetRoninNFTMoveLogs"
+const Web3ServiceActionGetTowerRafflePool Web3ServiceAction = "GetTowerRafflePool"
 const Web3ServiceActionGetUserAllTotemInvestData Web3ServiceAction = "GetUserAllTotemInvestData"
 const Web3ServiceActionGetUserExternalNFTs Web3ServiceAction = "GetUserExternalNFTs"
 const Web3ServiceActionGetUserMintOnChainCount Web3ServiceAction = "GetUserMintOnChainCount"
@@ -9565,6 +9568,7 @@ const Web3ServiceActionHavestDungeonInvestReward Web3ServiceAction = "HavestDung
 const Web3ServiceActionInvestDungeon Web3ServiceAction = "InvestDungeon"
 const Web3ServiceActionMergeByRecipe Web3ServiceAction = "MergeByRecipe"
 const Web3ServiceActionMintTaskTicket Web3ServiceAction = "MintTaskTicket"
+const Web3ServiceActionMintUserTowerReward Web3ServiceAction = "MintUserTowerReward"
 const Web3ServiceActionMoveNFTToOnchain Web3ServiceAction = "MoveNFTToOnchain"
 const Web3ServiceActionMoveNFTToRoninchain Web3ServiceAction = "MoveNFTToRoninchain"
 const Web3ServiceActionMoveRoninchainToGame Web3ServiceAction = "MoveRoninchainToGame"
@@ -9599,6 +9603,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"GetGameMessageStatusById",
 	"GetInvestHavestLogs",
 	"GetRoninNFTMoveLogs",
+	"GetTowerRafflePool",
 	"GetUserAllTotemInvestData",
 	"GetUserExternalNFTs",
 	"GetUserMintOnChainCount",
@@ -9610,6 +9615,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"InvestDungeon",
 	"MergeByRecipe",
 	"MintTaskTicket",
+	"MintUserTowerReward",
 	"MoveNFTToOnchain",
 	"MoveNFTToRoninchain",
 	"MoveRoninchainToGame",
