@@ -10,7 +10,17 @@ export interface TowerRafflePoolData {
     id: string; // 奖池 id
     sceneAreaId: string; // 场景区域 id
     bonusTotal: string; // 奖池金额
+    /** 
+     * @items.type integer
+     * @items.minimum 0
+     */
     itemIds: integer[];
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
     itemAmounts: integer[];
     expireTime: integer; //奖池过期时间
 }
@@ -31,7 +41,17 @@ export interface MintUserTowerRewardInput {
     poolId: string;
     userId: string;
     bonus: string;
+    /** 
+     * @items.type integer
+     * @items.minimum 0
+     */
     itemIds: integer[];
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
     itemAmounts: integer[];
 }
 
