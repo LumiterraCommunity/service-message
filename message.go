@@ -5360,11 +5360,12 @@ type MintUserTowerRewardInput struct {
 	// Bonus corresponds to the JSON schema field "bonus".
 	Bonus string `json:"bonus" yaml:"bonus" mapstructure:"bonus"`
 
-	// ItemAmounts corresponds to the JSON schema field "itemAmounts".
-	ItemAmounts []float64 `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
+	// index和itemIds一一对应
+	// 所有数量
+	ItemAmounts []int `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
 
 	// ItemIds corresponds to the JSON schema field "itemIds".
-	ItemIds []float64 `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+	ItemIds []int `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
 
 	// PoolId corresponds to the JSON schema field "poolId".
 	PoolId string `json:"poolId" yaml:"poolId" mapstructure:"poolId"`
@@ -8981,11 +8982,12 @@ type TowerRafflePoolData struct {
 	// Id corresponds to the JSON schema field "id".
 	Id string `json:"id" yaml:"id" mapstructure:"id"`
 
-	// ItemAmounts corresponds to the JSON schema field "itemAmounts".
-	ItemAmounts []float64 `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
+	// index和itemIds一一对应
+	// 所有数量
+	ItemAmounts []int `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
 
 	// ItemIds corresponds to the JSON schema field "itemIds".
-	ItemIds []float64 `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+	ItemIds []int `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
 
 	// SceneAreaId corresponds to the JSON schema field "sceneAreaId".
 	SceneAreaId string `json:"sceneAreaId" yaml:"sceneAreaId" mapstructure:"sceneAreaId"`
