@@ -3721,6 +3721,52 @@ func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GetTowerRafflePoolsInput struct {
+	// Timestamp corresponds to the JSON schema field "timestamp".
+	Timestamp int `json:"timestamp" yaml:"timestamp" mapstructure:"timestamp"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetTowerRafflePoolsInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["timestamp"]; raw != nil && !ok {
+		return fmt.Errorf("field timestamp in GetTowerRafflePoolsInput: required")
+	}
+	type Plain GetTowerRafflePoolsInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetTowerRafflePoolsInput(plain)
+	return nil
+}
+
+type GetTowerRafflePoolsOutput struct {
+	// Pools corresponds to the JSON schema field "pools".
+	Pools []TowerRafflePoolData `json:"pools" yaml:"pools" mapstructure:"pools"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetTowerRafflePoolsOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["pools"]; raw != nil && !ok {
+		return fmt.Errorf("field pools in GetTowerRafflePoolsOutput: required")
+	}
+	type Plain GetTowerRafflePoolsOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetTowerRafflePoolsOutput(plain)
+	return nil
+}
+
 type GetUserAllTotemInvestDataInput struct {
 	// DungeonId corresponds to the JSON schema field "dungeonId".
 	DungeonId *float64 `json:"dungeonId,omitempty" yaml:"dungeonId,omitempty" mapstructure:"dungeonId,omitempty"`
@@ -5307,6 +5353,88 @@ func (j *MintTaskTicketOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = MintTaskTicketOutput(plain)
+	return nil
+}
+
+type MintUserTowerRewardInput struct {
+	// Bonus corresponds to the JSON schema field "bonus".
+	Bonus string `json:"bonus" yaml:"bonus" mapstructure:"bonus"`
+
+	// ItemAmounts corresponds to the JSON schema field "itemAmounts".
+	ItemAmounts []float64 `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
+
+	// ItemIds corresponds to the JSON schema field "itemIds".
+	ItemIds []float64 `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+
+	// PoolId corresponds to the JSON schema field "poolId".
+	PoolId string `json:"poolId" yaml:"poolId" mapstructure:"poolId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MintUserTowerRewardInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["bonus"]; raw != nil && !ok {
+		return fmt.Errorf("field bonus in MintUserTowerRewardInput: required")
+	}
+	if _, ok := raw["itemAmounts"]; raw != nil && !ok {
+		return fmt.Errorf("field itemAmounts in MintUserTowerRewardInput: required")
+	}
+	if _, ok := raw["itemIds"]; raw != nil && !ok {
+		return fmt.Errorf("field itemIds in MintUserTowerRewardInput: required")
+	}
+	if _, ok := raw["poolId"]; raw != nil && !ok {
+		return fmt.Errorf("field poolId in MintUserTowerRewardInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in MintUserTowerRewardInput: required")
+	}
+	type Plain MintUserTowerRewardInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MintUserTowerRewardInput(plain)
+	return nil
+}
+
+type MintUserTowerRewardOutput struct {
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
+
+	// Reason corresponds to the JSON schema field "reason".
+	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *MintUserTowerRewardOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in MintUserTowerRewardOutput: required")
+	}
+	if _, ok := raw["reason"]; raw != nil && !ok {
+		return fmt.Errorf("field reason in MintUserTowerRewardOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in MintUserTowerRewardOutput: required")
+	}
+	type Plain MintUserTowerRewardOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = MintUserTowerRewardOutput(plain)
 	return nil
 }
 
@@ -8841,6 +8969,59 @@ func (j *TotemTraitRarity) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type TowerRafflePoolData struct {
+	// BonusTotal corresponds to the JSON schema field "bonusTotal".
+	BonusTotal string `json:"bonusTotal" yaml:"bonusTotal" mapstructure:"bonusTotal"`
+
+	// ExpireTime corresponds to the JSON schema field "expireTime".
+	ExpireTime int `json:"expireTime" yaml:"expireTime" mapstructure:"expireTime"`
+
+	// Id corresponds to the JSON schema field "id".
+	Id string `json:"id" yaml:"id" mapstructure:"id"`
+
+	// ItemAmounts corresponds to the JSON schema field "itemAmounts".
+	ItemAmounts []float64 `json:"itemAmounts" yaml:"itemAmounts" mapstructure:"itemAmounts"`
+
+	// ItemIds corresponds to the JSON schema field "itemIds".
+	ItemIds []float64 `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+
+	// SceneAreaId corresponds to the JSON schema field "sceneAreaId".
+	SceneAreaId string `json:"sceneAreaId" yaml:"sceneAreaId" mapstructure:"sceneAreaId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TowerRafflePoolData) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["bonusTotal"]; raw != nil && !ok {
+		return fmt.Errorf("field bonusTotal in TowerRafflePoolData: required")
+	}
+	if _, ok := raw["expireTime"]; raw != nil && !ok {
+		return fmt.Errorf("field expireTime in TowerRafflePoolData: required")
+	}
+	if _, ok := raw["id"]; raw != nil && !ok {
+		return fmt.Errorf("field id in TowerRafflePoolData: required")
+	}
+	if _, ok := raw["itemAmounts"]; raw != nil && !ok {
+		return fmt.Errorf("field itemAmounts in TowerRafflePoolData: required")
+	}
+	if _, ok := raw["itemIds"]; raw != nil && !ok {
+		return fmt.Errorf("field itemIds in TowerRafflePoolData: required")
+	}
+	if _, ok := raw["sceneAreaId"]; raw != nil && !ok {
+		return fmt.Errorf("field sceneAreaId in TowerRafflePoolData: required")
+	}
+	type Plain TowerRafflePoolData
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = TowerRafflePoolData(plain)
+	return nil
+}
+
 type TransferLUAInput struct {
 	// Amount corresponds to the JSON schema field "amount".
 	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
@@ -8972,6 +9153,29 @@ func (j *UpdateTotemInvestData) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = UpdateTotemInvestData(plain)
+	return nil
+}
+
+type UpdateTowerRafflePoolEvent struct {
+	// Pools corresponds to the JSON schema field "pools".
+	Pools []TowerRafflePoolData `json:"pools" yaml:"pools" mapstructure:"pools"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *UpdateTowerRafflePoolEvent) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["pools"]; raw != nil && !ok {
+		return fmt.Errorf("field pools in UpdateTowerRafflePoolEvent: required")
+	}
+	type Plain UpdateTowerRafflePoolEvent
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = UpdateTowerRafflePoolEvent(plain)
 	return nil
 }
 
