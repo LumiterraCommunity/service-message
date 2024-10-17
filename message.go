@@ -5370,6 +5370,9 @@ type MintUserTowerRewardInput struct {
 	// PoolId corresponds to the JSON schema field "poolId".
 	PoolId string `json:"poolId" yaml:"poolId" mapstructure:"poolId"`
 
+	// Remark corresponds to the JSON schema field "remark".
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
@@ -5391,6 +5394,9 @@ func (j *MintUserTowerRewardInput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["poolId"]; raw != nil && !ok {
 		return fmt.Errorf("field poolId in MintUserTowerRewardInput: required")
+	}
+	if _, ok := raw["remark"]; raw != nil && !ok {
+		return fmt.Errorf("field remark in MintUserTowerRewardInput: required")
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
 		return fmt.Errorf("field userId in MintUserTowerRewardInput: required")
