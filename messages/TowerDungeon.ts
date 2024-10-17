@@ -4,6 +4,8 @@
 type Int32 = number;
 type integer = Int32;
 
+
+// 爬塔副本抽奖
 export interface TowerRafflePoolData {
     id: string; // 奖池 id
     sceneAreaId: string; // 场景区域 id
