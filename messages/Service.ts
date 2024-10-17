@@ -57,6 +57,11 @@ export enum GameDataServiceAction {
 }
 
 export enum Web3ServiceAction {
+    // 获取爬塔奖池数据
+    GetTowerRafflePool = "GetTowerRafflePool",
+    // 发放爬塔奖励
+    MintUserTowerReward = "MintUserTowerReward",
+
     // 装备强化
     EnhanceEquipment = "EnhanceEquipment",
     ExtractEquipment = "ExtractEquipment",
@@ -153,6 +158,9 @@ export enum SubscriptionEventChannel {
  * 返回发送和接收的结构体同名
  */
 export enum SubscriptionEvent {
+    // 更新爬塔奖池事件
+    UpdateTowerRafflePool = 'UpdateTowerRafflePool',
+
     // 玩家强化装备事件
     EnhanceEquipmentEvent = 'EnhanceEquipmentEvent',
     // 更新世界图腾奖金池和强化收益事件
