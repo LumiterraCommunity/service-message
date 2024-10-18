@@ -5,6 +5,12 @@ type Int32 = number;
 type integer = Int32;
 
 
+export enum TowerRafflePoolStatus {
+    Open = "open",
+    Close = "close",
+    Pending = "pending", 
+}
+
 // 爬塔副本抽奖
 export interface TowerRafflePoolData {
     id: string; // 奖池 id
