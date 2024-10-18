@@ -9032,6 +9032,38 @@ func (j *TowerRafflePoolData) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type TowerRafflePoolStatus string
+
+const TowerRafflePoolStatusClose TowerRafflePoolStatus = "close"
+const TowerRafflePoolStatusOpen TowerRafflePoolStatus = "open"
+const TowerRafflePoolStatusPending TowerRafflePoolStatus = "pending"
+
+var enumValues_TowerRafflePoolStatus = []interface{}{
+	"close",
+	"open",
+	"pending",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TowerRafflePoolStatus) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_TowerRafflePoolStatus {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_TowerRafflePoolStatus, v)
+	}
+	*j = TowerRafflePoolStatus(v)
+	return nil
+}
+
 type TransferLUAInput struct {
 	// Amount corresponds to the JSON schema field "amount".
 	Amount string `json:"amount" yaml:"amount" mapstructure:"amount"`
