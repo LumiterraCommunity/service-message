@@ -9032,6 +9032,72 @@ func (j *TowerRafflePoolData) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type TowerRafflePoolRecordStatus string
+
+const TowerRafflePoolRecordStatusFail TowerRafflePoolRecordStatus = "fail"
+const TowerRafflePoolRecordStatusPending TowerRafflePoolRecordStatus = "pending"
+const TowerRafflePoolRecordStatusSuccess TowerRafflePoolRecordStatus = "success"
+
+var enumValues_TowerRafflePoolRecordStatus = []interface{}{
+	"fail",
+	"pending",
+	"success",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TowerRafflePoolRecordStatus) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_TowerRafflePoolRecordStatus {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_TowerRafflePoolRecordStatus, v)
+	}
+	*j = TowerRafflePoolRecordStatus(v)
+	return nil
+}
+
+type TowerRafflePoolRecordType string
+
+const TowerRafflePoolRecordTypeCharge TowerRafflePoolRecordType = "charge"
+const TowerRafflePoolRecordTypeCreate TowerRafflePoolRecordType = "create"
+const TowerRafflePoolRecordTypePrize TowerRafflePoolRecordType = "prize"
+const TowerRafflePoolRecordTypeReset TowerRafflePoolRecordType = "reset"
+
+var enumValues_TowerRafflePoolRecordType = []interface{}{
+	"charge",
+	"create",
+	"prize",
+	"reset",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *TowerRafflePoolRecordType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_TowerRafflePoolRecordType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_TowerRafflePoolRecordType, v)
+	}
+	*j = TowerRafflePoolRecordType(v)
+	return nil
+}
+
 type TowerRafflePoolStatus string
 
 const TowerRafflePoolStatusClose TowerRafflePoolStatus = "close"
