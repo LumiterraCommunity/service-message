@@ -11,6 +11,19 @@ export enum TowerRafflePoolStatus {
     Pending = "pending", 
 }
 
+export enum TowerRafflePoolRecordType {
+    Prize = "prize",
+    Charge = "charge",
+    Reset = "reset",
+    Create = "create",
+}
+
+export enum TowerRafflePoolRecordStatus {
+    Success = "success",
+    Pending = "pending",
+    Fail = "fail",
+}
+
 // 爬塔副本抽奖
 export interface TowerRafflePoolData {
     id: string; // 奖池 id
