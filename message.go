@@ -9759,6 +9759,7 @@ const Web3ServiceActionFetchTaskUseNFTSupplyList Web3ServiceAction = "FetchTaskU
 const Web3ServiceActionFindRaffleRrawLogs Web3ServiceAction = "FindRaffleRrawLogs"
 const Web3ServiceActionGetAllDungeonInvestData Web3ServiceAction = "GetAllDungeonInvestData"
 const Web3ServiceActionGetGameMessageStatusById Web3ServiceAction = "GetGameMessageStatusById"
+const Web3ServiceActionGetGameTokenPrice Web3ServiceAction = "GetGameTokenPrice"
 const Web3ServiceActionGetInvestHavestLogs Web3ServiceAction = "GetInvestHavestLogs"
 const Web3ServiceActionGetRoninNFTMoveLogs Web3ServiceAction = "GetRoninNFTMoveLogs"
 const Web3ServiceActionGetTowerRafflePool Web3ServiceAction = "GetTowerRafflePool"
@@ -9780,6 +9781,7 @@ const Web3ServiceActionMoveRoninchainToGame Web3ServiceAction = "MoveRoninchainT
 const Web3ServiceActionMultiGetWorldTotemPool Web3ServiceAction = "MultiGetWorldTotemPool"
 const Web3ServiceActionRaffleDraw Web3ServiceAction = "RaffleDraw"
 const Web3ServiceActionTransferLUA Web3ServiceAction = "TransferLUA"
+const Web3ServiceActionUseGameTokenByUSDAmount Web3ServiceAction = "UseGameTokenByUSDAmount"
 const Web3ServiceActionWorldTotemPoolDeposit Web3ServiceAction = "WorldTotemPoolDeposit"
 const Web3ServiceActionWorldTotemPoolRedemption Web3ServiceAction = "WorldTotemPoolRedemption"
 
@@ -9806,6 +9808,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"FindRaffleRrawLogs",
 	"GetAllDungeonInvestData",
 	"GetGameMessageStatusById",
+	"GetGameTokenPrice",
 	"GetInvestHavestLogs",
 	"GetRoninNFTMoveLogs",
 	"GetTowerRafflePool",
@@ -9827,6 +9830,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"MultiGetWorldTotemPool",
 	"RaffleDraw",
 	"TransferLUA",
+	"UseGameTokenByUSDAmount",
 	"WorldTotemPoolDeposit",
 	"WorldTotemPoolRedemption",
 }
