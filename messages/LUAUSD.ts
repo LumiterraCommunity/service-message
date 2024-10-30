@@ -43,15 +43,26 @@ export interface TransferLUAOutput {
 }
 
 
-// 查看 Lua 的oracle 价格
-export interface GetLUAOraclePriceInput {
-    interval: number; // seconds
+// 查看 GameToken 的价格
+export interface GetGameTokenPriceInput {}
+
+export interface GetGameTokenPriceOutput {
+    price: string;      // eth wei
+    expireTime: integer; // 价格有效期
 }
 
-export interface GetLUAOraclePriceOutput {
-    price: string;
-    expireTime: integer;
+
+// 根据 U 的数量和 GameToken 的汇率扣除 GameToken
+// GameToken根据业务来指定具体的 token
+export interface UseGameTokenByUSDAmountInput {
+    gameTokenPrice: string; // GameToken 当前价格(eth wei)
+    usdAmount: string; // 需要扣除的 USD 数量
+    remark: string; // 扣除备注
 }
 
-
+export interface UseGameTokenByUSDAmountOutput {
+    success: boolean;
+    failedReason: string;
+    deductedGameTokenAmount?: string; // 实际扣除的 GameToken 数量
+}
 
