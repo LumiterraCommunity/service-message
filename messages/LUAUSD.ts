@@ -41,3 +41,17 @@ export interface TransferLUAOutput {
     success: boolean;
     failedReason: string;
 }
+
+
+// 查看 Lua 的oracle 价格
+export interface GetLUAOraclePriceInput {
+    interval: number; // seconds
+}
+
+export interface GetLUAOraclePriceOutput {
+    price: string;
+    expireTime: integer;
+}
+
+
+
