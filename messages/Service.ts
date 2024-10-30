@@ -57,6 +57,11 @@ export enum GameDataServiceAction {
 }
 
 export enum Web3ServiceAction {
+    // 查询 gameToken 的汇率
+    GetGameTokenPrice = "GetGameTokenPrice",
+    // 根据 USD 和 gameToken 的汇率，扣除用户的 gameToken
+    UseGameTokenByUSDAmount = "UseGameTokenByUSDAmount",
+
     // 获取爬塔奖池数据
     GetTowerRafflePool = "GetTowerRafflePool",
     // 发放爬塔奖励
