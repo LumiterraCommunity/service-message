@@ -3259,6 +3259,37 @@ func (j *GetGameMessageStatusByIdOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type GetGameTokenPriceInput map[string]interface{}
+
+type GetGameTokenPriceOutput struct {
+	// ExpireTime corresponds to the JSON schema field "expireTime".
+	ExpireTime int `json:"expireTime" yaml:"expireTime" mapstructure:"expireTime"`
+
+	// Price corresponds to the JSON schema field "price".
+	Price string `json:"price" yaml:"price" mapstructure:"price"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *GetGameTokenPriceOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["expireTime"]; raw != nil && !ok {
+		return fmt.Errorf("field expireTime in GetGameTokenPriceOutput: required")
+	}
+	if _, ok := raw["price"]; raw != nil && !ok {
+		return fmt.Errorf("field price in GetGameTokenPriceOutput: required")
+	}
+	type Plain GetGameTokenPriceOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = GetGameTokenPriceOutput(plain)
+	return nil
+}
+
 type GetInvestHavestLogsInput struct {
 	// UserId corresponds to the JSON schema field "userId".
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
@@ -3302,58 +3333,6 @@ func (j *GetInvestHavestLogsOutput) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = GetInvestHavestLogsOutput(plain)
-	return nil
-}
-
-type GetLUAOraclePriceInput struct {
-	// Interval corresponds to the JSON schema field "interval".
-	Interval float64 `json:"interval" yaml:"interval" mapstructure:"interval"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetLUAOraclePriceInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["interval"]; raw != nil && !ok {
-		return fmt.Errorf("field interval in GetLUAOraclePriceInput: required")
-	}
-	type Plain GetLUAOraclePriceInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetLUAOraclePriceInput(plain)
-	return nil
-}
-
-type GetLUAOraclePriceOutput struct {
-	// ExpireTime corresponds to the JSON schema field "expireTime".
-	ExpireTime int `json:"expireTime" yaml:"expireTime" mapstructure:"expireTime"`
-
-	// Price corresponds to the JSON schema field "price".
-	Price string `json:"price" yaml:"price" mapstructure:"price"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *GetLUAOraclePriceOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["expireTime"]; raw != nil && !ok {
-		return fmt.Errorf("field expireTime in GetLUAOraclePriceOutput: required")
-	}
-	if _, ok := raw["price"]; raw != nil && !ok {
-		return fmt.Errorf("field price in GetLUAOraclePriceOutput: required")
-	}
-	type Plain GetLUAOraclePriceOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = GetLUAOraclePriceOutput(plain)
 	return nil
 }
 
@@ -8399,58 +8378,6 @@ func (j *SendTxOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-type SetWarehouseInput struct {
-	// Price corresponds to the JSON schema field "price".
-	Price string `json:"price" yaml:"price" mapstructure:"price"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *SetWarehouseInput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["price"]; raw != nil && !ok {
-		return fmt.Errorf("field price in SetWarehouseInput: required")
-	}
-	type Plain SetWarehouseInput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = SetWarehouseInput(plain)
-	return nil
-}
-
-type SetWarehouseOutput struct {
-	// Reason corresponds to the JSON schema field "reason".
-	Reason string `json:"reason" yaml:"reason" mapstructure:"reason"`
-
-	// Success corresponds to the JSON schema field "success".
-	Success bool `json:"success" yaml:"success" mapstructure:"success"`
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (j *SetWarehouseOutput) UnmarshalJSON(b []byte) error {
-	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
-		return err
-	}
-	if _, ok := raw["reason"]; raw != nil && !ok {
-		return fmt.Errorf("field reason in SetWarehouseOutput: required")
-	}
-	if _, ok := raw["success"]; raw != nil && !ok {
-		return fmt.Errorf("field success in SetWarehouseOutput: required")
-	}
-	type Plain SetWarehouseOutput
-	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
-		return err
-	}
-	*j = SetWarehouseOutput(plain)
-	return nil
-}
-
 type Sex string
 
 const SexFEMALE Sex = "FEMALE"
@@ -9516,6 +9443,74 @@ func (j *UseEquipment) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*j = UseEquipment(plain)
+	return nil
+}
+
+type UseGameTokenByUSDAmountInput struct {
+	// GameTokenPrice corresponds to the JSON schema field "gameTokenPrice".
+	GameTokenPrice string `json:"gameTokenPrice" yaml:"gameTokenPrice" mapstructure:"gameTokenPrice"`
+
+	// Remark corresponds to the JSON schema field "remark".
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
+	// UsdAmount corresponds to the JSON schema field "usdAmount".
+	UsdAmount string `json:"usdAmount" yaml:"usdAmount" mapstructure:"usdAmount"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["gameTokenPrice"]; raw != nil && !ok {
+		return fmt.Errorf("field gameTokenPrice in UseGameTokenByUSDAmountInput: required")
+	}
+	if _, ok := raw["remark"]; raw != nil && !ok {
+		return fmt.Errorf("field remark in UseGameTokenByUSDAmountInput: required")
+	}
+	if _, ok := raw["usdAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field usdAmount in UseGameTokenByUSDAmountInput: required")
+	}
+	type Plain UseGameTokenByUSDAmountInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = UseGameTokenByUSDAmountInput(plain)
+	return nil
+}
+
+type UseGameTokenByUSDAmountOutput struct {
+	// DeductedGameTokenAmount corresponds to the JSON schema field
+	// "deductedGameTokenAmount".
+	DeductedGameTokenAmount *string `json:"deductedGameTokenAmount,omitempty" yaml:"deductedGameTokenAmount,omitempty" mapstructure:"deductedGameTokenAmount,omitempty"`
+
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *UseGameTokenByUSDAmountOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in UseGameTokenByUSDAmountOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in UseGameTokenByUSDAmountOutput: required")
+	}
+	type Plain UseGameTokenByUSDAmountOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = UseGameTokenByUSDAmountOutput(plain)
 	return nil
 }
 
