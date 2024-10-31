@@ -48,7 +48,7 @@ export interface GetGameTokenPriceInput {}
 
 export interface GetGameTokenPriceOutput {
     price: string;      // eth wei
-    expireTime: integer; // 价格有效期
+    expireTime: integer; // 价格有效期(秒级别)
 }
 
 
@@ -64,6 +64,7 @@ export interface UseGameTokenByUSDAmountInput {
 export interface UseGameTokenByUSDAmountOutput {
     success: boolean;
     failedReason: string;
-    deductedGameTokenAmount?: string; // 实际扣除的 GameToken 数量
+    gameMessageId: string; // 扣除 GameToken 的 messageId
+    deductedGameTokenAmount: string; // 实际扣除的 GameToken 数量
 }
 
