@@ -56,8 +56,9 @@ export interface GetGameTokenPriceOutput {
 // GameToken根据业务来指定具体的 token
 export interface UseGameTokenByUSDAmountInput {
     gameTokenPrice: string; // GameToken 当前价格(eth wei)
-    usdAmount: string; // 需要扣除的 USD 数量
+    usdAmount: string; // 需要扣除的 USD 数量(eth wei)
     remark: string; // 扣除备注
+    userId: string; // 用户ID
 }
 
 export interface UseGameTokenByUSDAmountOutput {
