@@ -9455,6 +9455,9 @@ type UseGameTokenByUSDAmountInput struct {
 
 	// UsdAmount corresponds to the JSON schema field "usdAmount".
 	UsdAmount string `json:"usdAmount" yaml:"usdAmount" mapstructure:"usdAmount"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -9471,6 +9474,9 @@ func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["usdAmount"]; raw != nil && !ok {
 		return fmt.Errorf("field usdAmount in UseGameTokenByUSDAmountInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in UseGameTokenByUSDAmountInput: required")
 	}
 	type Plain UseGameTokenByUSDAmountInput
 	var plain Plain
