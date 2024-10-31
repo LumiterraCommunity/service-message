@@ -9490,10 +9490,13 @@ func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(b []byte) error {
 type UseGameTokenByUSDAmountOutput struct {
 	// DeductedGameTokenAmount corresponds to the JSON schema field
 	// "deductedGameTokenAmount".
-	DeductedGameTokenAmount *string `json:"deductedGameTokenAmount,omitempty" yaml:"deductedGameTokenAmount,omitempty" mapstructure:"deductedGameTokenAmount,omitempty"`
+	DeductedGameTokenAmount string `json:"deductedGameTokenAmount" yaml:"deductedGameTokenAmount" mapstructure:"deductedGameTokenAmount"`
 
 	// FailedReason corresponds to the JSON schema field "failedReason".
 	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// GameMessageId corresponds to the JSON schema field "gameMessageId".
+	GameMessageId string `json:"gameMessageId" yaml:"gameMessageId" mapstructure:"gameMessageId"`
 
 	// Success corresponds to the JSON schema field "success".
 	Success bool `json:"success" yaml:"success" mapstructure:"success"`
@@ -9505,8 +9508,14 @@ func (j *UseGameTokenByUSDAmountOutput) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &raw); err != nil {
 		return err
 	}
+	if _, ok := raw["deductedGameTokenAmount"]; raw != nil && !ok {
+		return fmt.Errorf("field deductedGameTokenAmount in UseGameTokenByUSDAmountOutput: required")
+	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
 		return fmt.Errorf("field failedReason in UseGameTokenByUSDAmountOutput: required")
+	}
+	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
+		return fmt.Errorf("field gameMessageId in UseGameTokenByUSDAmountOutput: required")
 	}
 	if _, ok := raw["success"]; raw != nil && !ok {
 		return fmt.Errorf("field success in UseGameTokenByUSDAmountOutput: required")
