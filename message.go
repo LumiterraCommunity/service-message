@@ -361,6 +361,92 @@ type BatchMintNFT struct {
 	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
 }
 
+type BatchMintNFTByAddress struct {
+	// index和itemIds一一对应
+	// 所有数量
+	Amounts []int `json:"amounts" yaml:"amounts" mapstructure:"amounts"`
+
+	// 需要mint的所有的itemId
+	ItemIds []string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+
+	// 所有的品质
+	// index和itemIds一一对应
+	QualityVals []string `json:"qualityVals,omitempty" yaml:"qualityVals,omitempty" mapstructure:"qualityVals,omitempty"`
+
+	// 所有的品质
+	// index和itemIds一一对应
+	Qualitys []BatchMintNFTByAddressQualitysElem `json:"qualitys,omitempty" yaml:"qualitys,omitempty" mapstructure:"qualitys,omitempty"`
+
+	// Remark corresponds to the JSON schema field "remark".
+	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
+
+	// UserAddress corresponds to the JSON schema field "userAddress".
+	UserAddress string `json:"userAddress" yaml:"userAddress" mapstructure:"userAddress"`
+}
+
+type BatchMintNFTByAddressQualitysElem string
+
+const BatchMintNFTByAddressQualitysElemAdvanced BatchMintNFTByAddressQualitysElem = "Advanced"
+const BatchMintNFTByAddressQualitysElemBasic BatchMintNFTByAddressQualitysElem = "Basic"
+const BatchMintNFTByAddressQualitysElemEnhanced BatchMintNFTByAddressQualitysElem = "Enhanced"
+const BatchMintNFTByAddressQualitysElemSuper BatchMintNFTByAddressQualitysElem = "Super"
+const BatchMintNFTByAddressQualitysElemUltimate BatchMintNFTByAddressQualitysElem = "Ultimate"
+
+var enumValues_BatchMintNFTByAddressQualitysElem = []interface{}{
+	"Advanced",
+	"Basic",
+	"Enhanced",
+	"Super",
+	"Ultimate",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchMintNFTByAddressQualitysElem) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_BatchMintNFTByAddressQualitysElem {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_BatchMintNFTByAddressQualitysElem, v)
+	}
+	*j = BatchMintNFTByAddressQualitysElem(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *BatchMintNFTByAddress) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["amounts"]; raw != nil && !ok {
+		return fmt.Errorf("field amounts in BatchMintNFTByAddress: required")
+	}
+	if _, ok := raw["itemIds"]; raw != nil && !ok {
+		return fmt.Errorf("field itemIds in BatchMintNFTByAddress: required")
+	}
+	if _, ok := raw["remark"]; raw != nil && !ok {
+		return fmt.Errorf("field remark in BatchMintNFTByAddress: required")
+	}
+	if _, ok := raw["userAddress"]; raw != nil && !ok {
+		return fmt.Errorf("field userAddress in BatchMintNFTByAddress: required")
+	}
+	type Plain BatchMintNFTByAddress
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = BatchMintNFTByAddress(plain)
+	return nil
+}
+
 type BatchMintNFTQualitysElem string
 
 const BatchMintNFTQualitysElemAdvanced BatchMintNFTQualitysElem = "Advanced"
@@ -6481,6 +6567,8 @@ const NFTTraitTypeSpear NFTTraitType = "Spear"
 const NFTTraitTypeSword NFTTraitType = "Sword"
 const NFTTraitTypeTaskTicket NFTTraitType = "TaskTicket"
 const NFTTraitTypeTotem NFTTraitType = "Totem"
+const NFTTraitTypeTotemBase NFTTraitType = "Totem Base"
+const NFTTraitTypeTotemRoof NFTTraitType = "Totem Roof"
 const NFTTraitTypeWearable NFTTraitType = "Wearable"
 
 var enumValues_NFTTraitType = []interface{}{
@@ -6500,6 +6588,8 @@ var enumValues_NFTTraitType = []interface{}{
 	"Sword",
 	"TaskTicket",
 	"Totem",
+	"Totem Base",
+	"Totem Roof",
 	"Wearable",
 }
 
