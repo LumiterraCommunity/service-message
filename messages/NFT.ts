@@ -469,6 +469,38 @@ export interface BatchMintNFT {
     remark: string;
 }
 
+export interface BatchMintNFTByAddress {
+    // mint to user address
+    userAddress: string
+
+    /**
+     * 需要mint的所有的itemId
+     */
+    itemIds: string[];
+
+    /**
+     * index和itemIds一一对应
+     * 所有数量
+     * @items.type integer
+     * @items.minimum 0
+     */
+    amounts: integer[];
+
+    /**
+     * 所有的品质
+     * index和itemIds一一对应
+     */
+    qualityVals?: string[];
+
+    /**
+     * 所有的品质
+     * index和itemIds一一对应
+     */
+    qualitys?: NFTTrait_Quality[];
+
+    remark: string;
+}
+
 export interface MintNFTWithAttributes {
     // mint to user id
     userId: string

@@ -185,6 +185,8 @@ export enum NFTTrait_Type {
     PetEgg = 'PetEgg', // 宠物蛋
     TaskTicket = 'TaskTicket', // 任务券
     Totem = 'Totem', // 图腾
+    TotemBase = 'Totem Base', // 图腾底
+    TotemRoof = 'Totem Roof', // 图腾顶
 }
 
 export enum TotemTrait_Rarity {
