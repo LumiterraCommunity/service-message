@@ -6440,6 +6440,48 @@ func (j *NFTSupply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type NFTTrackingType string
+
+const NFTTrackingTypeDefault NFTTrackingType = "Default"
+const NFTTrackingTypeEnhanceEquipment NFTTrackingType = "EnhanceEquipment"
+const NFTTrackingTypeMerge NFTTrackingType = "Merge"
+const NFTTrackingTypeMonsterDropDungeon NFTTrackingType = "MonsterDropDungeon"
+const NFTTrackingTypeMonsterDropHome NFTTrackingType = "MonsterDropHome"
+const NFTTrackingTypeMonsterDropWold NFTTrackingType = "MonsterDropWold"
+const NFTTrackingTypeTask NFTTrackingType = "Task"
+const NFTTrackingTypeTowerDungeon NFTTrackingType = "TowerDungeon"
+
+var enumValues_NFTTrackingType = []interface{}{
+	"Default",
+	"EnhanceEquipment",
+	"Merge",
+	"MonsterDropDungeon",
+	"MonsterDropHome",
+	"MonsterDropWold",
+	"Task",
+	"TowerDungeon",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTrackingType) UnmarshalJSON(b []byte) error {
+	var v string
+	if err := json.Unmarshal(b, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_NFTTrackingType {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTrackingType, v)
+	}
+	*j = NFTTrackingType(v)
+	return nil
+}
+
 // 核心技能id
 type NFTTraitCoreSkillId interface{}
 
