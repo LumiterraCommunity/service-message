@@ -1,4 +1,4 @@
-import {NFTTrackingType} from "./NFTTrackingType";
+
 
 /**
  * @TJS-type integer
