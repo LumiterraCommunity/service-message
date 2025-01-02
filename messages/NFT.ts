@@ -1,3 +1,5 @@
+import {NFTTrackingType} from "./NFTTrackingType";
+
 /**
  * @TJS-type integer
  */
@@ -519,7 +521,7 @@ export interface MintNFTWithAttributes {
     amount: integer;
 
     /**
-     * 
+     *
      */
     qualityVal: string;
 
@@ -533,13 +535,13 @@ export interface MintNFTWithSampleNFT {
         userId: string
 
         itemId: string;
-    
+
         amount: integer;
-    
+
         qualityVal: string;
-    
+
         attributes: NFTAttribute[];
-    
+
         remark: string;
 
         tokenId: string;
