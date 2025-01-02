@@ -6443,23 +6443,21 @@ func (j *NFTSupply) UnmarshalJSON(b []byte) error {
 type NFTTrackingType string
 
 const NFTTrackingTypeDefault NFTTrackingType = "Default"
+const NFTTrackingTypeDungeon NFTTrackingType = "Dungeon"
 const NFTTrackingTypeEnhanceEquipment NFTTrackingType = "EnhanceEquipment"
+const NFTTrackingTypeEntityDrop NFTTrackingType = "EntityDrop"
 const NFTTrackingTypeMerge NFTTrackingType = "Merge"
-const NFTTrackingTypeMonsterDropDungeon NFTTrackingType = "MonsterDropDungeon"
-const NFTTrackingTypeMonsterDropHome NFTTrackingType = "MonsterDropHome"
-const NFTTrackingTypeMonsterDropWold NFTTrackingType = "MonsterDropWold"
 const NFTTrackingTypeTask NFTTrackingType = "Task"
-const NFTTrackingTypeTowerDungeon NFTTrackingType = "TowerDungeon"
+const NFTTrackingTypeUserAction NFTTrackingType = "UserAction"
 
 var enumValues_NFTTrackingType = []interface{}{
 	"Default",
+	"Dungeon",
 	"EnhanceEquipment",
+	"EntityDrop",
 	"Merge",
-	"MonsterDropDungeon",
-	"MonsterDropHome",
-	"MonsterDropWold",
 	"Task",
-	"TowerDungeon",
+	"UserAction",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
