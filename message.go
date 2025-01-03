@@ -178,6 +178,9 @@ type BatchBurnNFT struct {
 	// NftIds corresponds to the JSON schema field "nftIds".
 	NftIds []string `json:"nftIds,omitempty" yaml:"nftIds,omitempty" mapstructure:"nftIds,omitempty"`
 
+	// NftTrackingMessage corresponds to the JSON schema field "nftTrackingMessage".
+	NftTrackingMessage NFTTracking `json:"nftTrackingMessage" yaml:"nftTrackingMessage" mapstructure:"nftTrackingMessage"`
+
 	// 每个用户的消耗备注
 	Remark string `json:"remark" yaml:"remark" mapstructure:"remark"`
 
@@ -277,6 +280,9 @@ func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
 	if _, ok := raw["amounts"]; raw != nil && !ok {
 		return fmt.Errorf("field amounts in BatchBurnNFT: required")
 	}
+	if _, ok := raw["nftTrackingMessage"]; raw != nil && !ok {
+		return fmt.Errorf("field nftTrackingMessage in BatchBurnNFT: required")
+	}
 	if _, ok := raw["remark"]; raw != nil && !ok {
 		return fmt.Errorf("field remark in BatchBurnNFT: required")
 	}
@@ -345,6 +351,9 @@ type BatchMintNFT struct {
 
 	// 需要mint的所有的itemId
 	ItemIds []string `json:"itemIds" yaml:"itemIds" mapstructure:"itemIds"`
+
+	// NftTrackingMessage corresponds to the JSON schema field "nftTrackingMessage".
+	NftTrackingMessage NFTTracking `json:"nftTrackingMessage" yaml:"nftTrackingMessage" mapstructure:"nftTrackingMessage"`
 
 	// 所有的品质
 	// index和itemIds一一对应
@@ -494,6 +503,9 @@ func (j *BatchMintNFT) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["itemIds"]; raw != nil && !ok {
 		return fmt.Errorf("field itemIds in BatchMintNFT: required")
+	}
+	if _, ok := raw["nftTrackingMessage"]; raw != nil && !ok {
+		return fmt.Errorf("field nftTrackingMessage in BatchMintNFT: required")
 	}
 	if _, ok := raw["remark"]; raw != nil && !ok {
 		return fmt.Errorf("field remark in BatchMintNFT: required")
@@ -5288,6 +5300,9 @@ type MintNFTWithAttributes struct {
 	// 需要mint的所有的itemId
 	ItemId string `json:"itemId" yaml:"itemId" mapstructure:"itemId"`
 
+	// NftTrackingMessage corresponds to the JSON schema field "nftTrackingMessage".
+	NftTrackingMessage NFTTracking `json:"nftTrackingMessage" yaml:"nftTrackingMessage" mapstructure:"nftTrackingMessage"`
+
 	// QualityVal corresponds to the JSON schema field "qualityVal".
 	QualityVal string `json:"qualityVal" yaml:"qualityVal" mapstructure:"qualityVal"`
 
@@ -5312,6 +5327,9 @@ func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
 	}
 	if _, ok := raw["itemId"]; raw != nil && !ok {
 		return fmt.Errorf("field itemId in MintNFTWithAttributes: required")
+	}
+	if _, ok := raw["nftTrackingMessage"]; raw != nil && !ok {
+		return fmt.Errorf("field nftTrackingMessage in MintNFTWithAttributes: required")
 	}
 	if _, ok := raw["qualityVal"]; raw != nil && !ok {
 		return fmt.Errorf("field qualityVal in MintNFTWithAttributes: required")
@@ -6440,24 +6458,71 @@ func (j *NFTSupply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type NFTTracking struct {
+	// Context corresponds to the JSON schema field "context".
+	Context NFTTrackingContext `json:"context" yaml:"context" mapstructure:"context"`
+
+	// Type corresponds to the JSON schema field "type".
+	Type NFTTrackingType `json:"type" yaml:"type" mapstructure:"type"`
+}
+
+type NFTTrackingContext struct {
+	// Data corresponds to the JSON schema field "data".
+	Data interface{} `json:"data" yaml:"data" mapstructure:"data"`
+
+	// Desc corresponds to the JSON schema field "desc".
+	Desc string `json:"desc" yaml:"desc" mapstructure:"desc"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTrackingContext) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["data"]; raw != nil && !ok {
+		return fmt.Errorf("field data in NFTTrackingContext: required")
+	}
+	if _, ok := raw["desc"]; raw != nil && !ok {
+		return fmt.Errorf("field desc in NFTTrackingContext: required")
+	}
+	type Plain NFTTrackingContext
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = NFTTrackingContext(plain)
+	return nil
+}
+
 type NFTTrackingType string
 
+const NFTTrackingTypeBoxStakeReward NFTTrackingType = "BoxStakeReward"
 const NFTTrackingTypeDefault NFTTrackingType = "Default"
+const NFTTrackingTypeDismantlingEquipment NFTTrackingType = "DismantlingEquipment"
 const NFTTrackingTypeDungeon NFTTrackingType = "Dungeon"
 const NFTTrackingTypeEnhanceEquipment NFTTrackingType = "EnhanceEquipment"
 const NFTTrackingTypeEntityDrop NFTTrackingType = "EntityDrop"
 const NFTTrackingTypeMerge NFTTrackingType = "Merge"
+const NFTTrackingTypePet NFTTrackingType = "Pet"
 const NFTTrackingTypeTask NFTTrackingType = "Task"
+const NFTTrackingTypeTotem NFTTrackingType = "Totem"
 const NFTTrackingTypeUserAction NFTTrackingType = "UserAction"
+const NFTTrackingTypeWagon NFTTrackingType = "Wagon"
 
 var enumValues_NFTTrackingType = []interface{}{
+	"BoxStakeReward",
 	"Default",
+	"DismantlingEquipment",
 	"Dungeon",
 	"EnhanceEquipment",
 	"EntityDrop",
 	"Merge",
+	"Pet",
 	"Task",
+	"Totem",
 	"UserAction",
+	"Wagon",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
@@ -6477,6 +6542,27 @@ func (j *NFTTrackingType) UnmarshalJSON(b []byte) error {
 		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_NFTTrackingType, v)
 	}
 	*j = NFTTrackingType(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *NFTTracking) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["context"]; raw != nil && !ok {
+		return fmt.Errorf("field context in NFTTracking: required")
+	}
+	if _, ok := raw["type"]; raw != nil && !ok {
+		return fmt.Errorf("field type in NFTTracking: required")
+	}
+	type Plain NFTTracking
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = NFTTracking(plain)
 	return nil
 }
 
