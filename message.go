@@ -6503,6 +6503,7 @@ const NFTTrackingTypeDismantlingEquipment NFTTrackingType = "DismantlingEquipmen
 const NFTTrackingTypeDungeon NFTTrackingType = "Dungeon"
 const NFTTrackingTypeEnhanceEquipment NFTTrackingType = "EnhanceEquipment"
 const NFTTrackingTypeEntityDrop NFTTrackingType = "EntityDrop"
+const NFTTrackingTypeGraphQLService NFTTrackingType = "GraphQLService"
 const NFTTrackingTypeMerge NFTTrackingType = "Merge"
 const NFTTrackingTypePet NFTTrackingType = "Pet"
 const NFTTrackingTypeTask NFTTrackingType = "Task"
@@ -6517,6 +6518,7 @@ var enumValues_NFTTrackingType = []interface{}{
 	"Dungeon",
 	"EnhanceEquipment",
 	"EntityDrop",
+	"GraphQLService",
 	"Merge",
 	"Pet",
 	"Task",
