@@ -17,4 +17,25 @@ export enum NFTTrackingType {
     Task = 'Task',
     // 玩家主动使用的场景(这里面应该只有 burn 的行为)
     UserAction = 'UserAction',
+    // 押镖场景
+    Wagon = 'Wagon',
+    // 盲盒奖励
+    BoxStakeReward = 'BoxStakeReward',
+    // 拆解装备
+    DismantlingEquipment = 'DismantlingEquipment',
+    // 图腾
+    Totem = 'Totem',
+    // 宠物
+    Pet = 'Pet',
+}
+
+
+export interface NFTTrackingContext {
+    desc: string;
+    data: any;
+}
+
+export interface NFTTracking {
+    type: NFTTrackingType;
+    context: NFTTrackingContext;
 }

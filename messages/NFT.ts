@@ -7,6 +7,7 @@ type Int32 = number;
 type integer = Int32;
 
 import { NFTTrait_Quality } from './NFTAttribute';
+import { NFTTracking } from './NFTTrackingType';
 
 export interface CanBuildNFTInput {
     /**
@@ -469,6 +470,8 @@ export interface BatchMintNFT {
     qualitys?: NFTTrait_Quality[];
 
     remark: string;
+
+    nftTrackingMessage: NFTTracking;
 }
 
 export interface BatchMintNFTByAddress {
@@ -528,6 +531,8 @@ export interface MintNFTWithAttributes {
     attributes: NFTAttribute[];
 
     remark: string;
+
+    nftTrackingMessage: NFTTracking;
 }
 
 
@@ -566,6 +571,8 @@ export interface BatchBurnNFT {
      * 每个用户的消耗备注
      */
     remark: string;
+
+    nftTrackingMessage: NFTTracking;
 }
 
 export interface BatchBurnNFTInput {
