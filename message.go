@@ -2626,6 +2626,76 @@ func (j *EstimateInvestDungeonOutput) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+type ExchangeEnhanceEquipmentInput struct {
+	// EquipmentNftId corresponds to the JSON schema field "equipmentNftId".
+	EquipmentNftId string `json:"equipmentNftId" yaml:"equipmentNftId" mapstructure:"equipmentNftId"`
+
+	// UserId corresponds to the JSON schema field "userId".
+	UserId string `json:"userId" yaml:"userId" mapstructure:"userId"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *ExchangeEnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["equipmentNftId"]; raw != nil && !ok {
+		return fmt.Errorf("field equipmentNftId in ExchangeEnhanceEquipmentInput: required")
+	}
+	if _, ok := raw["userId"]; raw != nil && !ok {
+		return fmt.Errorf("field userId in ExchangeEnhanceEquipmentInput: required")
+	}
+	type Plain ExchangeEnhanceEquipmentInput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = ExchangeEnhanceEquipmentInput(plain)
+	return nil
+}
+
+type ExchangeEnhanceEquipmentOutput struct {
+	// AttributeList corresponds to the JSON schema field "attributeList".
+	AttributeList []NFTAttribute `json:"attributeList" yaml:"attributeList" mapstructure:"attributeList"`
+
+	// EquipmentItemId corresponds to the JSON schema field "equipmentItemId".
+	EquipmentItemId int `json:"equipmentItemId" yaml:"equipmentItemId" mapstructure:"equipmentItemId"`
+
+	// FailedReason corresponds to the JSON schema field "failedReason".
+	FailedReason string `json:"failedReason" yaml:"failedReason" mapstructure:"failedReason"`
+
+	// Success corresponds to the JSON schema field "success".
+	Success bool `json:"success" yaml:"success" mapstructure:"success"`
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *ExchangeEnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["attributeList"]; raw != nil && !ok {
+		return fmt.Errorf("field attributeList in ExchangeEnhanceEquipmentOutput: required")
+	}
+	if _, ok := raw["equipmentItemId"]; raw != nil && !ok {
+		return fmt.Errorf("field equipmentItemId in ExchangeEnhanceEquipmentOutput: required")
+	}
+	if _, ok := raw["failedReason"]; raw != nil && !ok {
+		return fmt.Errorf("field failedReason in ExchangeEnhanceEquipmentOutput: required")
+	}
+	if _, ok := raw["success"]; raw != nil && !ok {
+		return fmt.Errorf("field success in ExchangeEnhanceEquipmentOutput: required")
+	}
+	type Plain ExchangeEnhanceEquipmentOutput
+	var plain Plain
+	if err := json.Unmarshal(b, &plain); err != nil {
+		return err
+	}
+	*j = ExchangeEnhanceEquipmentOutput(plain)
+	return nil
+}
+
 type ExecGameMessageInput struct {
 	// Data corresponds to the JSON schema field "data".
 	Data string `json:"data" yaml:"data" mapstructure:"data"`
