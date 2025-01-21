@@ -1,3 +1,5 @@
+import { NFTAttribute } from "./NFT";
+
 /**
  * @TJS-type integer
  */
@@ -173,7 +175,7 @@ export interface MultiGetWorldTotemPoolInput {
      * userId[] 和 totemNftId[] 下标一一匹配
     */
     totemOwnerIds: string[];
-    totemNftIds: string[]; 
+    totemNftIds: string[];
 }
 export interface MultiGetWorldTotemPoolOutput {
     success: boolean;
@@ -215,4 +217,18 @@ export interface WorldTotemPoolRedemptionOutput {
 export interface RecycleWorldTotemEvent {
     totemOwnerId: string;
     totemNftId: string;
+}
+
+
+
+export interface ExchangeEnhanceEquipmentInput {
+    userId: string;
+    equipmentNftId: string;
+}
+
+export interface ExchangeEnhanceEquipmentOutput {
+    success: boolean;
+    failedReason: string;
+    attributeList: NFTAttribute[];
+    equipmentItemId: integer;
 }
