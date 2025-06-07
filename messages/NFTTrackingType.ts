@@ -29,6 +29,7 @@ export enum NFTTrackingType {
     Pet = 'Pet',
     // GraphService
     GraphQL = 'GraphQLService',
+    ExchangeEnhanceEquipment = 'ExchangeEnhanceEquipment',
 }
 
 
