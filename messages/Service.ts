@@ -74,6 +74,7 @@ export enum Web3ServiceAction {
     MultiGetWorldTotemPool = "MultiGetWorldTotemPool",
     WorldTotemPoolDeposit = "WorldTotemPoolDeposit",
     WorldTotemPoolRedemption = "WorldTotemPoolRedemption",
+    ExchangeEnhanceEquipment = "ExchangeEnhanceEquipment",
 
     // 基于图鉴合并NFT
     MergeByRecipe = 'MergeByRecipe',
