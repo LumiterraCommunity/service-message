@@ -16,9 +16,9 @@ type AccountMigrate struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *AccountMigrate) UnmarshalJSON(b []byte) error {
+func (j *AccountMigrate) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["fromAddress"]; raw != nil && !ok {
@@ -29,7 +29,7 @@ func (j *AccountMigrate) UnmarshalJSON(b []byte) error {
 	}
 	type Plain AccountMigrate
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = AccountMigrate(plain)
@@ -55,9 +55,9 @@ var enumValues_AppId = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *AppId) UnmarshalJSON(b []byte) error {
+func (j *AppId) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -86,9 +86,9 @@ type AttributeChangeData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *AttributeChangeData) UnmarshalJSON(b []byte) error {
+func (j *AttributeChangeData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["after"]; raw != nil && !ok {
@@ -102,7 +102,7 @@ func (j *AttributeChangeData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain AttributeChangeData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = AttributeChangeData(plain)
@@ -130,9 +130,9 @@ var enumValues_AuthUserType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *AuthUserType) UnmarshalJSON(b []byte) error {
+func (j *AuthUserType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -150,9 +150,9 @@ func (j *AuthUserType) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Auth) UnmarshalJSON(b []byte) error {
+func (j *Auth) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["accessToken"]; raw != nil && !ok {
@@ -160,7 +160,7 @@ func (j *Auth) UnmarshalJSON(b []byte) error {
 	}
 	type Plain Auth
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = Auth(plain)
@@ -210,9 +210,9 @@ type BatchBurnNFTInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchBurnNFTInput) UnmarshalJSON(b []byte) error {
+func (j *BatchBurnNFTInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -229,7 +229,7 @@ func (j *BatchBurnNFTInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchBurnNFTInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchBurnNFTInput(plain)
@@ -248,9 +248,9 @@ type BatchBurnNFTOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
+func (j *BatchBurnNFTOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -264,7 +264,7 @@ func (j *BatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchBurnNFTOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchBurnNFTOutput(plain)
@@ -272,9 +272,9 @@ func (j *BatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
+func (j *BatchBurnNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -291,7 +291,7 @@ func (j *BatchBurnNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchBurnNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchBurnNFT(plain)
@@ -304,9 +304,9 @@ type BatchGetGameMessageStatusInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchGetGameMessageStatusInput) UnmarshalJSON(b []byte) error {
+func (j *BatchGetGameMessageStatusInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["messageIds"]; raw != nil && !ok {
@@ -314,7 +314,7 @@ func (j *BatchGetGameMessageStatusInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchGetGameMessageStatusInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchGetGameMessageStatusInput(plain)
@@ -327,9 +327,9 @@ type BatchGetGameMessageStatusOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchGetGameMessageStatusOutput) UnmarshalJSON(b []byte) error {
+func (j *BatchGetGameMessageStatusOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["results"]; raw != nil && !ok {
@@ -337,7 +337,7 @@ func (j *BatchGetGameMessageStatusOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchGetGameMessageStatusOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchGetGameMessageStatusOutput(plain)
@@ -410,9 +410,9 @@ var enumValues_BatchMintNFTByAddressQualitysElem = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchMintNFTByAddressQualitysElem) UnmarshalJSON(b []byte) error {
+func (j *BatchMintNFTByAddressQualitysElem) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -430,9 +430,9 @@ func (j *BatchMintNFTByAddressQualitysElem) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchMintNFTByAddress) UnmarshalJSON(b []byte) error {
+func (j *BatchMintNFTByAddress) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -449,7 +449,7 @@ func (j *BatchMintNFTByAddress) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchMintNFTByAddress
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchMintNFTByAddress(plain)
@@ -473,9 +473,9 @@ var enumValues_BatchMintNFTQualitysElem = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchMintNFTQualitysElem) UnmarshalJSON(b []byte) error {
+func (j *BatchMintNFTQualitysElem) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -493,9 +493,9 @@ func (j *BatchMintNFTQualitysElem) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchMintNFT) UnmarshalJSON(b []byte) error {
+func (j *BatchMintNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -515,7 +515,7 @@ func (j *BatchMintNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchMintNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchMintNFT(plain)
@@ -541,9 +541,9 @@ type BatchTransferNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BatchTransferNFT) UnmarshalJSON(b []byte) error {
+func (j *BatchTransferNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -563,7 +563,7 @@ func (j *BatchTransferNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BatchTransferNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BatchTransferNFT(plain)
@@ -617,9 +617,9 @@ type BuildData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BuildData) UnmarshalJSON(b []byte) error {
+func (j *BuildData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -666,7 +666,7 @@ func (j *BuildData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BuildData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BuildData(plain)
@@ -688,9 +688,9 @@ type BuildInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BuildInput) UnmarshalJSON(b []byte) error {
+func (j *BuildInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["landIds"]; raw != nil && !ok {
@@ -707,7 +707,7 @@ func (j *BuildInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BuildInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BuildInput(plain)
@@ -726,9 +726,9 @@ type BuildOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BuildOutput) UnmarshalJSON(b []byte) error {
+func (j *BuildOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -739,7 +739,7 @@ func (j *BuildOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain BuildOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = BuildOutput(plain)
@@ -758,9 +758,9 @@ type CanBuildNFTInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CanBuildNFTInput) UnmarshalJSON(b []byte) error {
+func (j *CanBuildNFTInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["aliveTimeSec"]; raw != nil && !ok {
@@ -774,7 +774,7 @@ func (j *CanBuildNFTInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CanBuildNFTInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CanBuildNFTInput(plain)
@@ -790,9 +790,9 @@ type CanBuildNFTOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CanBuildNFTOutput) UnmarshalJSON(b []byte) error {
+func (j *CanBuildNFTOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["canBuild"]; raw != nil && !ok {
@@ -803,7 +803,7 @@ func (j *CanBuildNFTOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CanBuildNFTOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CanBuildNFTOutput(plain)
@@ -825,9 +825,9 @@ type ChargedInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ChargedInput) UnmarshalJSON(b []byte) error {
+func (j *ChargedInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -844,7 +844,7 @@ func (j *ChargedInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ChargedInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ChargedInput(plain)
@@ -860,9 +860,9 @@ type ChargedOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ChargedOutput) UnmarshalJSON(b []byte) error {
+func (j *ChargedOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -873,7 +873,7 @@ func (j *ChargedOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ChargedOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ChargedOutput(plain)
@@ -886,9 +886,9 @@ type CheckMintNFTWithAttributesInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
+func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["input"]; raw != nil && !ok {
@@ -896,7 +896,7 @@ func (j *CheckMintNFTWithAttributesInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMintNFTWithAttributesInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMintNFTWithAttributesInput(plain)
@@ -912,9 +912,9 @@ type CheckMintNFTWithAttributesOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
+func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["resaon"]; raw != nil && !ok {
@@ -925,7 +925,7 @@ func (j *CheckMintNFTWithAttributesOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMintNFTWithAttributesOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMintNFTWithAttributesOutput(plain)
@@ -938,9 +938,9 @@ type CheckMultiBatchBurnNFTInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiBatchBurnNFTInput) UnmarshalJSON(b []byte) error {
+func (j *CheckMultiBatchBurnNFTInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["inputs"]; raw != nil && !ok {
@@ -948,7 +948,7 @@ func (j *CheckMultiBatchBurnNFTInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMultiBatchBurnNFTInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMultiBatchBurnNFTInput(plain)
@@ -961,9 +961,9 @@ type CheckMultiBatchBurnNFTOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiBatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
+func (j *CheckMultiBatchBurnNFTOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["results"]; raw != nil && !ok {
@@ -971,7 +971,7 @@ func (j *CheckMultiBatchBurnNFTOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMultiBatchBurnNFTOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMultiBatchBurnNFTOutput(plain)
@@ -984,9 +984,9 @@ type CheckMultiUseLUAUSDInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiUseLUAUSDInput) UnmarshalJSON(b []byte) error {
+func (j *CheckMultiUseLUAUSDInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["inputs"]; raw != nil && !ok {
@@ -994,7 +994,7 @@ func (j *CheckMultiUseLUAUSDInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMultiUseLUAUSDInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMultiUseLUAUSDInput(plain)
@@ -1007,9 +1007,9 @@ type CheckMultiUseLUAUSDOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(b []byte) error {
+func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["results"]; raw != nil && !ok {
@@ -1017,7 +1017,7 @@ func (j *CheckMultiUseLUAUSDOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckMultiUseLUAUSDOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckMultiUseLUAUSDOutput(plain)
@@ -1033,9 +1033,9 @@ type CheckQuestionAnswerInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckQuestionAnswerInput) UnmarshalJSON(b []byte) error {
+func (j *CheckQuestionAnswerInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["answerJSON"]; raw != nil && !ok {
@@ -1046,7 +1046,7 @@ func (j *CheckQuestionAnswerInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckQuestionAnswerInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckQuestionAnswerInput(plain)
@@ -1059,9 +1059,9 @@ type CheckQuestionAnswerOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckQuestionAnswerOutput) UnmarshalJSON(b []byte) error {
+func (j *CheckQuestionAnswerOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["isCorrect"]; raw != nil && !ok {
@@ -1069,7 +1069,7 @@ func (j *CheckQuestionAnswerOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckQuestionAnswerOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckQuestionAnswerOutput(plain)
@@ -1085,9 +1085,9 @@ type CheckUserRecipeInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckUserRecipeInput) UnmarshalJSON(b []byte) error {
+func (j *CheckUserRecipeInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["recipeId"]; raw != nil && !ok {
@@ -1098,7 +1098,7 @@ func (j *CheckUserRecipeInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckUserRecipeInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckUserRecipeInput(plain)
@@ -1111,9 +1111,9 @@ type CheckUserRecipeOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CheckUserRecipeOutput) UnmarshalJSON(b []byte) error {
+func (j *CheckUserRecipeOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["hasRecipe"]; raw != nil && !ok {
@@ -1121,7 +1121,7 @@ func (j *CheckUserRecipeOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CheckUserRecipeOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CheckUserRecipeOutput(plain)
@@ -1134,9 +1134,9 @@ type CloseServer struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CloseServer) UnmarshalJSON(b []byte) error {
+func (j *CloseServer) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["serverAppId"]; raw != nil && !ok {
@@ -1144,7 +1144,7 @@ func (j *CloseServer) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CloseServer
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CloseServer(plain)
@@ -1163,9 +1163,9 @@ type CollectionInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CollectionInput) UnmarshalJSON(b []byte) error {
+func (j *CollectionInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -1179,7 +1179,7 @@ func (j *CollectionInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CollectionInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CollectionInput(plain)
@@ -1195,9 +1195,9 @@ type CollectionOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CollectionOutput) UnmarshalJSON(b []byte) error {
+func (j *CollectionOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -1208,14 +1208,12 @@ func (j *CollectionOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CollectionOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CollectionOutput(plain)
 	return nil
 }
-
-type CreatePVPRoomInput map[string]interface{}
 
 type CreatePVPRoomOutput struct {
 	// RoomId corresponds to the JSON schema field "roomId".
@@ -1223,9 +1221,9 @@ type CreatePVPRoomOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *CreatePVPRoomOutput) UnmarshalJSON(b []byte) error {
+func (j *CreatePVPRoomOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["roomId"]; raw != nil && !ok {
@@ -1233,7 +1231,7 @@ func (j *CreatePVPRoomOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain CreatePVPRoomOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = CreatePVPRoomOutput(plain)
@@ -1249,9 +1247,9 @@ type DeductUserExpInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DeductUserExpInput) UnmarshalJSON(b []byte) error {
+func (j *DeductUserExpInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["deductExp"]; raw != nil && !ok {
@@ -1262,7 +1260,7 @@ func (j *DeductUserExpInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DeductUserExpInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DeductUserExpInput(plain)
@@ -1278,9 +1276,9 @@ type DeductUserExpOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DeductUserExpOutput) UnmarshalJSON(b []byte) error {
+func (j *DeductUserExpOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["deductSuccess"]; raw != nil && !ok {
@@ -1291,7 +1289,7 @@ func (j *DeductUserExpOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DeductUserExpOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DeductUserExpOutput(plain)
@@ -1307,9 +1305,9 @@ type DispatchGameMessage struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DispatchGameMessage) UnmarshalJSON(b []byte) error {
+func (j *DispatchGameMessage) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["isLarge"]; raw != nil && !ok {
@@ -1320,7 +1318,7 @@ func (j *DispatchGameMessage) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DispatchGameMessage
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DispatchGameMessage(plain)
@@ -1342,9 +1340,9 @@ type DistributeDungeonBonus struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DistributeDungeonBonus) UnmarshalJSON(b []byte) error {
+func (j *DistributeDungeonBonus) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -1361,7 +1359,7 @@ func (j *DistributeDungeonBonus) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DistributeDungeonBonus
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DistributeDungeonBonus(plain)
@@ -1383,9 +1381,9 @@ type DistributeLUAG1Input struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DistributeLUAG1Input) UnmarshalJSON(b []byte) error {
+func (j *DistributeLUAG1Input) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -1402,7 +1400,7 @@ func (j *DistributeLUAG1Input) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DistributeLUAG1Input
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DistributeLUAG1Input(plain)
@@ -1421,9 +1419,9 @@ type DistributeLUAG1Output struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DistributeLUAG1Output) UnmarshalJSON(b []byte) error {
+func (j *DistributeLUAG1Output) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -1437,7 +1435,7 @@ func (j *DistributeLUAG1Output) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DistributeLUAG1Output
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DistributeLUAG1Output(plain)
@@ -1459,9 +1457,9 @@ type DistributeLUAUSDInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DistributeLUAUSDInput) UnmarshalJSON(b []byte) error {
+func (j *DistributeLUAUSDInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -1478,7 +1476,7 @@ func (j *DistributeLUAUSDInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DistributeLUAUSDInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DistributeLUAUSDInput(plain)
@@ -1497,9 +1495,9 @@ type DistributeLUAUSDOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DistributeLUAUSDOutput) UnmarshalJSON(b []byte) error {
+func (j *DistributeLUAUSDOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -1513,7 +1511,7 @@ func (j *DistributeLUAUSDOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DistributeLUAUSDOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DistributeLUAUSDOutput(plain)
@@ -1538,9 +1536,9 @@ type DivestDungeonInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DivestDungeonInput) UnmarshalJSON(b []byte) error {
+func (j *DivestDungeonInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["dungeonId"]; raw != nil && !ok {
@@ -1560,7 +1558,7 @@ func (j *DivestDungeonInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DivestDungeonInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DivestDungeonInput(plain)
@@ -1576,9 +1574,9 @@ type DivestDungeonOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DivestDungeonOutput) UnmarshalJSON(b []byte) error {
+func (j *DivestDungeonOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["reason"]; raw != nil && !ok {
@@ -1589,7 +1587,7 @@ func (j *DivestDungeonOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DivestDungeonOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DivestDungeonOutput(plain)
@@ -1621,9 +1619,9 @@ type DungeonExtraDropPool struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonExtraDropPool) UnmarshalJSON(b []byte) error {
+func (j *DungeonExtraDropPool) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["created"]; raw != nil && !ok {
@@ -1649,7 +1647,7 @@ func (j *DungeonExtraDropPool) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DungeonExtraDropPool
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DungeonExtraDropPool(plain)
@@ -1727,9 +1725,9 @@ type DungeonInvestData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonInvestData) UnmarshalJSON(b []byte) error {
+func (j *DungeonInvestData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["curInvest"]; raw != nil && !ok {
@@ -1797,7 +1795,7 @@ func (j *DungeonInvestData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DungeonInvestData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DungeonInvestData(plain)
@@ -1816,9 +1814,9 @@ type DungeonPVEPStart struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonPVEPStart) UnmarshalJSON(b []byte) error {
+func (j *DungeonPVEPStart) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["appId"]; raw != nil && !ok {
@@ -1832,7 +1830,7 @@ func (j *DungeonPVEPStart) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DungeonPVEPStart
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DungeonPVEPStart(plain)
@@ -1860,9 +1858,9 @@ type DungeonStartPVEPCallback struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
+func (j *DungeonStartPVEPCallback) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["appId"]; raw != nil && !ok {
@@ -1885,7 +1883,7 @@ func (j *DungeonStartPVEPCallback) UnmarshalJSON(b []byte) error {
 	}
 	type Plain DungeonStartPVEPCallback
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = DungeonStartPVEPCallback(plain)
@@ -1905,9 +1903,9 @@ var enumValues_EnhanceEquipmentDeductionStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentDeductionStatus) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentDeductionStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -1930,9 +1928,9 @@ type EnhanceEquipmentEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentEvent) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -1940,7 +1938,7 @@ func (j *EnhanceEquipmentEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentEvent(plain)
@@ -1971,9 +1969,9 @@ type EnhanceEquipmentInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatarNftId"]; raw != nil && !ok {
@@ -1999,7 +1997,7 @@ func (j *EnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentInput(plain)
@@ -2086,9 +2084,9 @@ type EnhanceEquipmentLogInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentLogInput) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentLogInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["filterExtract"]; raw != nil && !ok {
@@ -2108,7 +2106,7 @@ func (j *EnhanceEquipmentLogInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentLogInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentLogInput(plain)
@@ -2124,9 +2122,9 @@ type EnhanceEquipmentLogOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentLogOutput) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentLogOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["logs"]; raw != nil && !ok {
@@ -2137,7 +2135,7 @@ func (j *EnhanceEquipmentLogOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentLogOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentLogOutput(plain)
@@ -2145,9 +2143,9 @@ func (j *EnhanceEquipmentLogOutput) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentLog) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["AttributeList"]; raw != nil && !ok {
@@ -2209,7 +2207,7 @@ func (j *EnhanceEquipmentLog) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentLog
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentLog(plain)
@@ -2234,9 +2232,9 @@ type EnhanceEquipmentOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["attributeList"]; raw != nil && !ok {
@@ -2256,7 +2254,7 @@ func (j *EnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentOutput(plain)
@@ -2297,9 +2295,9 @@ var enumValues_EnhanceEquipmentRaffleStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentRaffleStatus) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentRaffleStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -2317,9 +2315,9 @@ func (j *EnhanceEquipmentRaffleStatus) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentRaffle) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentRaffle) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["awardAmount"]; raw != nil && !ok {
@@ -2345,7 +2343,7 @@ func (j *EnhanceEquipmentRaffle) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EnhanceEquipmentRaffle
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EnhanceEquipmentRaffle(plain)
@@ -2367,9 +2365,9 @@ var enumValues_EnhanceEquipmentStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentStatus) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -2405,9 +2403,9 @@ var enumValues_EnhanceEquipmentTotemRaffleLogType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentTotemRaffleLogType) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentTotemRaffleLogType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -2437,9 +2435,9 @@ var enumValues_EnhanceEquipmentTotemRaffleStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EnhanceEquipmentTotemRaffleStatus) UnmarshalJSON(b []byte) error {
+func (j *EnhanceEquipmentTotemRaffleStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -2471,9 +2469,9 @@ type EstimateDivestDungeonInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EstimateDivestDungeonInput) UnmarshalJSON(b []byte) error {
+func (j *EstimateDivestDungeonInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["dungeonId"]; raw != nil && !ok {
@@ -2490,7 +2488,7 @@ func (j *EstimateDivestDungeonInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EstimateDivestDungeonInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EstimateDivestDungeonInput(plain)
@@ -2515,9 +2513,9 @@ type EstimateDivestDungeonOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EstimateDivestDungeonOutput) UnmarshalJSON(b []byte) error {
+func (j *EstimateDivestDungeonOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["newBaseLP"]; raw != nil && !ok {
@@ -2537,7 +2535,7 @@ func (j *EstimateDivestDungeonOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EstimateDivestDungeonOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EstimateDivestDungeonOutput(plain)
@@ -2559,9 +2557,9 @@ type EstimateInvestDungeonInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EstimateInvestDungeonInput) UnmarshalJSON(b []byte) error {
+func (j *EstimateInvestDungeonInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -2578,7 +2576,7 @@ func (j *EstimateInvestDungeonInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EstimateInvestDungeonInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EstimateInvestDungeonInput(plain)
@@ -2600,9 +2598,9 @@ type EstimateInvestDungeonOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *EstimateInvestDungeonOutput) UnmarshalJSON(b []byte) error {
+func (j *EstimateInvestDungeonOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["newBaseLP"]; raw != nil && !ok {
@@ -2619,7 +2617,7 @@ func (j *EstimateInvestDungeonOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain EstimateInvestDungeonOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = EstimateInvestDungeonOutput(plain)
@@ -2635,9 +2633,9 @@ type ExchangeEnhanceEquipmentInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExchangeEnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
+func (j *ExchangeEnhanceEquipmentInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["equipmentNftId"]; raw != nil && !ok {
@@ -2648,7 +2646,7 @@ func (j *ExchangeEnhanceEquipmentInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExchangeEnhanceEquipmentInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExchangeEnhanceEquipmentInput(plain)
@@ -2670,9 +2668,9 @@ type ExchangeEnhanceEquipmentOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExchangeEnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
+func (j *ExchangeEnhanceEquipmentOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["attributeList"]; raw != nil && !ok {
@@ -2689,7 +2687,7 @@ func (j *ExchangeEnhanceEquipmentOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExchangeEnhanceEquipmentOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExchangeEnhanceEquipmentOutput(plain)
@@ -2717,9 +2715,9 @@ type ExecGameMessageInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExecGameMessageInput) UnmarshalJSON(b []byte) error {
+func (j *ExecGameMessageInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -2742,7 +2740,7 @@ func (j *ExecGameMessageInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExecGameMessageInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExecGameMessageInput(plain)
@@ -2755,9 +2753,9 @@ type ExecGameMessageOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExecGameMessageOutput) UnmarshalJSON(b []byte) error {
+func (j *ExecGameMessageOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["messageId"]; raw != nil && !ok {
@@ -2765,7 +2763,7 @@ func (j *ExecGameMessageOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExecGameMessageOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExecGameMessageOutput(plain)
@@ -2781,9 +2779,9 @@ type ExtractEquipmentInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExtractEquipmentInput) UnmarshalJSON(b []byte) error {
+func (j *ExtractEquipmentInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["actionId"]; raw != nil && !ok {
@@ -2794,7 +2792,7 @@ func (j *ExtractEquipmentInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExtractEquipmentInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExtractEquipmentInput(plain)
@@ -2813,9 +2811,9 @@ type ExtractEquipmentOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *ExtractEquipmentOutput) UnmarshalJSON(b []byte) error {
+func (j *ExtractEquipmentOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["actionId"]; raw != nil && !ok {
@@ -2829,7 +2827,7 @@ func (j *ExtractEquipmentOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain ExtractEquipmentOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = ExtractEquipmentOutput(plain)
@@ -2842,9 +2840,9 @@ type FetchDungeonExtraDropPoolsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FetchDungeonExtraDropPoolsInput) UnmarshalJSON(b []byte) error {
+func (j *FetchDungeonExtraDropPoolsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["timestamp"]; raw != nil && !ok {
@@ -2852,7 +2850,7 @@ func (j *FetchDungeonExtraDropPoolsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FetchDungeonExtraDropPoolsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FetchDungeonExtraDropPoolsInput(plain)
@@ -2865,9 +2863,9 @@ type FetchDungeonExtraDropPoolsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FetchDungeonExtraDropPoolsOutput) UnmarshalJSON(b []byte) error {
+func (j *FetchDungeonExtraDropPoolsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pools"]; raw != nil && !ok {
@@ -2875,7 +2873,7 @@ func (j *FetchDungeonExtraDropPoolsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FetchDungeonExtraDropPoolsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FetchDungeonExtraDropPoolsOutput(plain)
@@ -2888,9 +2886,9 @@ type FetchTaskPoolsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FetchTaskPoolsInput) UnmarshalJSON(b []byte) error {
+func (j *FetchTaskPoolsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["timestamp"]; raw != nil && !ok {
@@ -2898,7 +2896,7 @@ func (j *FetchTaskPoolsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FetchTaskPoolsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FetchTaskPoolsInput(plain)
@@ -2911,9 +2909,9 @@ type FetchTaskPoolsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FetchTaskPoolsOutput) UnmarshalJSON(b []byte) error {
+func (j *FetchTaskPoolsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["taskPools"]; raw != nil && !ok {
@@ -2921,14 +2919,12 @@ func (j *FetchTaskPoolsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FetchTaskPoolsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FetchTaskPoolsOutput(plain)
 	return nil
 }
-
-type FetchTaskUseNFTSupplyListInput map[string]interface{}
 
 type FetchTaskUseNFTSupplyListOutput struct {
 	// NftSupplyList corresponds to the JSON schema field "nftSupplyList".
@@ -2936,9 +2932,9 @@ type FetchTaskUseNFTSupplyListOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FetchTaskUseNFTSupplyListOutput) UnmarshalJSON(b []byte) error {
+func (j *FetchTaskUseNFTSupplyListOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["nftSupplyList"]; raw != nil && !ok {
@@ -2946,7 +2942,7 @@ func (j *FetchTaskUseNFTSupplyListOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FetchTaskUseNFTSupplyListOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FetchTaskUseNFTSupplyListOutput(plain)
@@ -2965,9 +2961,9 @@ type FindRaffleRrawLogsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FindRaffleRrawLogsInput) UnmarshalJSON(b []byte) error {
+func (j *FindRaffleRrawLogsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["beginIdx"]; raw != nil && !ok {
@@ -2978,7 +2974,7 @@ func (j *FindRaffleRrawLogsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FindRaffleRrawLogsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FindRaffleRrawLogsInput(plain)
@@ -2994,9 +2990,9 @@ type FindRaffleRrawLogsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FindRaffleRrawLogsOutput) UnmarshalJSON(b []byte) error {
+func (j *FindRaffleRrawLogsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["logs"]; raw != nil && !ok {
@@ -3007,7 +3003,7 @@ func (j *FindRaffleRrawLogsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FindRaffleRrawLogsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FindRaffleRrawLogsOutput(plain)
@@ -3038,9 +3034,9 @@ type FinishQuestion struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FinishQuestion) UnmarshalJSON(b []byte) error {
+func (j *FinishQuestion) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["diffcultyChange"]; raw != nil && !ok {
@@ -3066,7 +3062,7 @@ func (j *FinishQuestion) UnmarshalJSON(b []byte) error {
 	}
 	type Plain FinishQuestion
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = FinishQuestion(plain)
@@ -3100,9 +3096,9 @@ var enumValues_GameDataServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GameDataServiceAction) UnmarshalJSON(b []byte) error {
+func (j *GameDataServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -3134,9 +3130,9 @@ type GameMessageResult struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GameMessageResult) UnmarshalJSON(b []byte) error {
+func (j *GameMessageResult) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["executed"]; raw != nil && !ok {
@@ -3153,7 +3149,7 @@ func (j *GameMessageResult) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GameMessageResult
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GameMessageResult(plain)
@@ -3169,9 +3165,9 @@ var enumValues_GameServiceRankAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GameServiceRankAction) UnmarshalJSON(b []byte) error {
+func (j *GameServiceRankAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -3194,9 +3190,9 @@ type GetAllBuildDataInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetAllBuildDataInput) UnmarshalJSON(b []byte) error {
+func (j *GetAllBuildDataInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["mapId"]; raw != nil && !ok {
@@ -3204,7 +3200,7 @@ func (j *GetAllBuildDataInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetAllBuildDataInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetAllBuildDataInput(plain)
@@ -3223,9 +3219,9 @@ type GetAllBuildDataOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetAllBuildDataOutput) UnmarshalJSON(b []byte) error {
+func (j *GetAllBuildDataOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -3236,14 +3232,12 @@ func (j *GetAllBuildDataOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetAllBuildDataOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetAllBuildDataOutput(plain)
 	return nil
 }
-
-type GetAllDungeonInvestDataInput map[string]interface{}
 
 type GetAllDungeonInvestDataOutput struct {
 	// InvestDatas corresponds to the JSON schema field "investDatas".
@@ -3251,9 +3245,9 @@ type GetAllDungeonInvestDataOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetAllDungeonInvestDataOutput) UnmarshalJSON(b []byte) error {
+func (j *GetAllDungeonInvestDataOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["investDatas"]; raw != nil && !ok {
@@ -3261,7 +3255,7 @@ func (j *GetAllDungeonInvestDataOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetAllDungeonInvestDataOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetAllDungeonInvestDataOutput(plain)
@@ -3274,9 +3268,9 @@ type GetAllLandDataInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetAllLandDataInput) UnmarshalJSON(b []byte) error {
+func (j *GetAllLandDataInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["mapId"]; raw != nil && !ok {
@@ -3284,7 +3278,7 @@ func (j *GetAllLandDataInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetAllLandDataInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetAllLandDataInput(plain)
@@ -3303,9 +3297,9 @@ type GetAllLandDataOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetAllLandDataOutput) UnmarshalJSON(b []byte) error {
+func (j *GetAllLandDataOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -3316,7 +3310,7 @@ func (j *GetAllLandDataOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetAllLandDataOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetAllLandDataOutput(plain)
@@ -3329,9 +3323,9 @@ type GetCurrentPkSessionIdInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetCurrentPkSessionIdInput) UnmarshalJSON(b []byte) error {
+func (j *GetCurrentPkSessionIdInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["player"]; raw != nil && !ok {
@@ -3339,7 +3333,7 @@ func (j *GetCurrentPkSessionIdInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetCurrentPkSessionIdInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetCurrentPkSessionIdInput(plain)
@@ -3352,9 +3346,9 @@ type GetCurrentPkSessionIdOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetCurrentPkSessionIdOutput) UnmarshalJSON(b []byte) error {
+func (j *GetCurrentPkSessionIdOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkSessionId"]; raw != nil && !ok {
@@ -3362,7 +3356,7 @@ func (j *GetCurrentPkSessionIdOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetCurrentPkSessionIdOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetCurrentPkSessionIdOutput(plain)
@@ -3375,9 +3369,9 @@ type GetGameMessageStatusByIdInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetGameMessageStatusByIdInput) UnmarshalJSON(b []byte) error {
+func (j *GetGameMessageStatusByIdInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["messageId"]; raw != nil && !ok {
@@ -3385,7 +3379,7 @@ func (j *GetGameMessageStatusByIdInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetGameMessageStatusByIdInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetGameMessageStatusByIdInput(plain)
@@ -3404,9 +3398,9 @@ type GetGameMessageStatusByIdOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetGameMessageStatusByIdOutput) UnmarshalJSON(b []byte) error {
+func (j *GetGameMessageStatusByIdOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["executed"]; raw != nil && !ok {
@@ -3420,14 +3414,12 @@ func (j *GetGameMessageStatusByIdOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetGameMessageStatusByIdOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetGameMessageStatusByIdOutput(plain)
 	return nil
 }
-
-type GetGameTokenPriceInput map[string]interface{}
 
 type GetGameTokenPriceOutput struct {
 	// ExpireTime corresponds to the JSON schema field "expireTime".
@@ -3438,9 +3430,9 @@ type GetGameTokenPriceOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetGameTokenPriceOutput) UnmarshalJSON(b []byte) error {
+func (j *GetGameTokenPriceOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["expireTime"]; raw != nil && !ok {
@@ -3451,7 +3443,7 @@ func (j *GetGameTokenPriceOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetGameTokenPriceOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetGameTokenPriceOutput(plain)
@@ -3464,9 +3456,9 @@ type GetInvestHavestLogsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetInvestHavestLogsInput) UnmarshalJSON(b []byte) error {
+func (j *GetInvestHavestLogsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -3474,7 +3466,7 @@ func (j *GetInvestHavestLogsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetInvestHavestLogsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetInvestHavestLogsInput(plain)
@@ -3487,9 +3479,9 @@ type GetInvestHavestLogsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetInvestHavestLogsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetInvestHavestLogsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["logs"]; raw != nil && !ok {
@@ -3497,7 +3489,7 @@ func (j *GetInvestHavestLogsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetInvestHavestLogsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetInvestHavestLogsOutput(plain)
@@ -3510,9 +3502,9 @@ type GetPlayerItemSlotsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerItemSlotsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -3520,7 +3512,7 @@ func (j *GetPlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerItemSlotsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerItemSlotsInput(plain)
@@ -3536,9 +3528,9 @@ type GetPlayerItemSlotsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerItemSlotsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["itemSlots"]; raw != nil && !ok {
@@ -3549,7 +3541,7 @@ func (j *GetPlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerItemSlotsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerItemSlotsOutput(plain)
@@ -3562,9 +3554,9 @@ type GetPlayerPvpProfileInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpProfileInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpProfileInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["playerId"]; raw != nil && !ok {
@@ -3572,7 +3564,7 @@ func (j *GetPlayerPvpProfileInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerPvpProfileInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerPvpProfileInput(plain)
@@ -3585,9 +3577,9 @@ type GetPlayerPvpProfileOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpProfileOutput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpProfileOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["profile"]; raw != nil && !ok {
@@ -3595,7 +3587,7 @@ func (j *GetPlayerPvpProfileOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerPvpProfileOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerPvpProfileOutput(plain)
@@ -3608,9 +3600,9 @@ type GetPlayerPvpRankInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpRankInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpRankInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["playerId"]; raw != nil && !ok {
@@ -3618,7 +3610,7 @@ func (j *GetPlayerPvpRankInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerPvpRankInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerPvpRankInput(plain)
@@ -3634,9 +3626,9 @@ type GetPlayerPvpRankOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerPvpRankOutput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerPvpRankOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["rankList"]; raw != nil && !ok {
@@ -3647,7 +3639,7 @@ func (j *GetPlayerPvpRankOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerPvpRankOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerPvpRankOutput(plain)
@@ -3660,9 +3652,9 @@ type GetPlayerUsingNftsByUserIdInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -3670,7 +3662,7 @@ func (j *GetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerUsingNftsByUserIdInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerUsingNftsByUserIdInput(plain)
@@ -3686,9 +3678,9 @@ type GetPlayerUsingNftsByUserIdOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
+func (j *GetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -3699,7 +3691,7 @@ func (j *GetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPlayerUsingNftsByUserIdOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPlayerUsingNftsByUserIdOutput(plain)
@@ -3712,9 +3704,9 @@ type GetPvpHistoryInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPvpHistoryInput) UnmarshalJSON(b []byte) error {
+func (j *GetPvpHistoryInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["playerId"]; raw != nil && !ok {
@@ -3722,7 +3714,7 @@ func (j *GetPvpHistoryInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPvpHistoryInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPvpHistoryInput(plain)
@@ -3735,9 +3727,9 @@ type GetPvpHistoryOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetPvpHistoryOutput) UnmarshalJSON(b []byte) error {
+func (j *GetPvpHistoryOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["historyList"]; raw != nil && !ok {
@@ -3745,7 +3737,7 @@ func (j *GetPvpHistoryOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetPvpHistoryOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetPvpHistoryOutput(plain)
@@ -3758,9 +3750,9 @@ type GetQuestionResourcesByTypesInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetQuestionResourcesByTypesInput) UnmarshalJSON(b []byte) error {
+func (j *GetQuestionResourcesByTypesInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["types"]; raw != nil && !ok {
@@ -3768,7 +3760,7 @@ func (j *GetQuestionResourcesByTypesInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetQuestionResourcesByTypesInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetQuestionResourcesByTypesInput(plain)
@@ -3781,9 +3773,9 @@ type GetQuestionResourcesByTypesOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetQuestionResourcesByTypesOutput) UnmarshalJSON(b []byte) error {
+func (j *GetQuestionResourcesByTypesOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["prefetchs"]; raw != nil && !ok {
@@ -3791,7 +3783,7 @@ func (j *GetQuestionResourcesByTypesOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetQuestionResourcesByTypesOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetQuestionResourcesByTypesOutput(plain)
@@ -3807,9 +3799,9 @@ type GetQuestionsByTypesRandomInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetQuestionsByTypesRandomInput) UnmarshalJSON(b []byte) error {
+func (j *GetQuestionsByTypesRandomInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["limit"]; raw != nil && !ok {
@@ -3820,7 +3812,7 @@ func (j *GetQuestionsByTypesRandomInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetQuestionsByTypesRandomInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetQuestionsByTypesRandomInput(plain)
@@ -3833,9 +3825,9 @@ type GetQuestionsByTypesRandomOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetQuestionsByTypesRandomOutput) UnmarshalJSON(b []byte) error {
+func (j *GetQuestionsByTypesRandomOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["questions"]; raw != nil && !ok {
@@ -3843,7 +3835,7 @@ func (j *GetQuestionsByTypesRandomOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetQuestionsByTypesRandomOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetQuestionsByTypesRandomOutput(plain)
@@ -3865,9 +3857,9 @@ type GetRoninNFTMoveLogsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
+func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["beginIdx"]; raw != nil && !ok {
@@ -3884,7 +3876,7 @@ func (j *GetRoninNFTMoveLogsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetRoninNFTMoveLogsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetRoninNFTMoveLogsInput(plain)
@@ -3900,9 +3892,9 @@ type GetRoninNFTMoveLogsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["logs"]; raw != nil && !ok {
@@ -3913,7 +3905,7 @@ func (j *GetRoninNFTMoveLogsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetRoninNFTMoveLogsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetRoninNFTMoveLogsOutput(plain)
@@ -3926,9 +3918,9 @@ type GetTowerRafflePoolsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetTowerRafflePoolsInput) UnmarshalJSON(b []byte) error {
+func (j *GetTowerRafflePoolsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["timestamp"]; raw != nil && !ok {
@@ -3936,7 +3928,7 @@ func (j *GetTowerRafflePoolsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetTowerRafflePoolsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetTowerRafflePoolsInput(plain)
@@ -3949,9 +3941,9 @@ type GetTowerRafflePoolsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetTowerRafflePoolsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetTowerRafflePoolsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pools"]; raw != nil && !ok {
@@ -3959,7 +3951,7 @@ func (j *GetTowerRafflePoolsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetTowerRafflePoolsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetTowerRafflePoolsOutput(plain)
@@ -3975,9 +3967,9 @@ type GetUserAllTotemInvestDataInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserAllTotemInvestDataInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserAllTotemInvestDataInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -3985,7 +3977,7 @@ func (j *GetUserAllTotemInvestDataInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserAllTotemInvestDataInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserAllTotemInvestDataInput(plain)
@@ -3998,9 +3990,9 @@ type GetUserAllTotemInvestDataOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserAllTotemInvestDataOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserAllTotemInvestDataOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["investDatas"]; raw != nil && !ok {
@@ -4008,7 +4000,7 @@ func (j *GetUserAllTotemInvestDataOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserAllTotemInvestDataOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserAllTotemInvestDataOutput(plain)
@@ -4025,9 +4017,9 @@ type GetUserExternalNFTsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserExternalNFTsInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserExternalNFTsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4035,7 +4027,7 @@ func (j *GetUserExternalNFTsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserExternalNFTsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserExternalNFTsInput(plain)
@@ -4051,9 +4043,9 @@ type GetUserExternalNFTsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserExternalNFTsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserExternalNFTsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -4064,7 +4056,7 @@ func (j *GetUserExternalNFTsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserExternalNFTsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserExternalNFTsOutput(plain)
@@ -4077,9 +4069,9 @@ type GetUserIdByAddressInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserIdByAddressInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserIdByAddressInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["blockchainAddress"]; raw != nil && !ok {
@@ -4087,7 +4079,7 @@ func (j *GetUserIdByAddressInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserIdByAddressInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserIdByAddressInput(plain)
@@ -4100,9 +4092,9 @@ type GetUserIdByAddressOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserIdByAddressOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4110,7 +4102,7 @@ func (j *GetUserIdByAddressOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserIdByAddressOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserIdByAddressOutput(plain)
@@ -4126,9 +4118,9 @@ type GetUserMintOnChainCountInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserMintOnChainCountInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["timestamp"]; raw != nil && !ok {
@@ -4139,7 +4131,7 @@ func (j *GetUserMintOnChainCountInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserMintOnChainCountInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserMintOnChainCountInput(plain)
@@ -4152,9 +4144,9 @@ type GetUserMintOnChainCountOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserMintOnChainCountOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserMintOnChainCountOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["mintOnChainCount"]; raw != nil && !ok {
@@ -4162,7 +4154,7 @@ func (j *GetUserMintOnChainCountOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserMintOnChainCountOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserMintOnChainCountOutput(plain)
@@ -4178,9 +4170,9 @@ type GetUserNFTsByUserIdAndAddressInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserNFTsByUserIdAndAddressInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserNFTsByUserIdAndAddressInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["blockchainAddress"]; raw != nil && !ok {
@@ -4191,7 +4183,7 @@ func (j *GetUserNFTsByUserIdAndAddressInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserNFTsByUserIdAndAddressInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserNFTsByUserIdAndAddressInput(plain)
@@ -4204,9 +4196,9 @@ type GetUserNFTsByUserIdAndAddressOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserNFTsByUserIdAndAddressOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserNFTsByUserIdAndAddressOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["nfts"]; raw != nil && !ok {
@@ -4214,7 +4206,7 @@ func (j *GetUserNFTsByUserIdAndAddressOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserNFTsByUserIdAndAddressOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserNFTsByUserIdAndAddressOutput(plain)
@@ -4227,9 +4219,9 @@ type GetUserNFTsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserNFTsInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserNFTsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4237,7 +4229,7 @@ func (j *GetUserNFTsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserNFTsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserNFTsInput(plain)
@@ -4253,9 +4245,9 @@ type GetUserNFTsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserNFTsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserNFTsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -4266,7 +4258,7 @@ func (j *GetUserNFTsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserNFTsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserNFTsOutput(plain)
@@ -4279,9 +4271,9 @@ type GetUserOffchainNFTsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserOffchainNFTsInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserOffchainNFTsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4289,7 +4281,7 @@ func (j *GetUserOffchainNFTsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserOffchainNFTsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserOffchainNFTsInput(plain)
@@ -4305,9 +4297,9 @@ type GetUserOffchainNFTsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserOffchainNFTsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserOffchainNFTsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -4318,7 +4310,7 @@ func (j *GetUserOffchainNFTsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserOffchainNFTsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserOffchainNFTsOutput(plain)
@@ -4331,9 +4323,9 @@ type GetUserOnchainNFTsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserOnchainNFTsInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserOnchainNFTsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4341,7 +4333,7 @@ func (j *GetUserOnchainNFTsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserOnchainNFTsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserOnchainNFTsInput(plain)
@@ -4357,9 +4349,9 @@ type GetUserOnchainNFTsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserOnchainNFTsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserOnchainNFTsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -4370,7 +4362,7 @@ func (j *GetUserOnchainNFTsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserOnchainNFTsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserOnchainNFTsOutput(plain)
@@ -4383,9 +4375,9 @@ type GetUserRecipesInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserRecipesInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserRecipesInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4393,7 +4385,7 @@ func (j *GetUserRecipesInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserRecipesInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserRecipesInput(plain)
@@ -4406,9 +4398,9 @@ type GetUserRecipesOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserRecipesOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserRecipesOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["recipeIds"]; raw != nil && !ok {
@@ -4416,7 +4408,7 @@ func (j *GetUserRecipesOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserRecipesOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserRecipesOutput(plain)
@@ -4429,9 +4421,9 @@ type GetUserReputationScoreInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserReputationScoreInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserReputationScoreInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4439,7 +4431,7 @@ func (j *GetUserReputationScoreInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserReputationScoreInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserReputationScoreInput(plain)
@@ -4452,9 +4444,9 @@ type GetUserReputationScoreOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserReputationScoreOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserReputationScoreOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["reputationScore"]; raw != nil && !ok {
@@ -4462,7 +4454,7 @@ func (j *GetUserReputationScoreOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserReputationScoreOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserReputationScoreOutput(plain)
@@ -4475,9 +4467,9 @@ type GetUserRoninchainNFTsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserRoninchainNFTsInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserRoninchainNFTsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4485,7 +4477,7 @@ func (j *GetUserRoninchainNFTsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserRoninchainNFTsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserRoninchainNFTsInput(plain)
@@ -4501,9 +4493,9 @@ type GetUserRoninchainNFTsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserRoninchainNFTsOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserRoninchainNFTsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -4514,7 +4506,7 @@ func (j *GetUserRoninchainNFTsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserRoninchainNFTsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserRoninchainNFTsOutput(plain)
@@ -4527,9 +4519,9 @@ type GetUserTrackInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserTrackInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserTrackInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4537,7 +4529,7 @@ func (j *GetUserTrackInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserTrackInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserTrackInput(plain)
@@ -4562,9 +4554,9 @@ type GetUserTrackOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserTrackOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserTrackOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["ditamin_amount"]; raw != nil && !ok {
@@ -4584,7 +4576,7 @@ func (j *GetUserTrackOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserTrackOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserTrackOutput(plain)
@@ -4597,9 +4589,9 @@ type GetUserWeb3ProfileInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserWeb3ProfileInput) UnmarshalJSON(b []byte) error {
+func (j *GetUserWeb3ProfileInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -4607,7 +4599,7 @@ func (j *GetUserWeb3ProfileInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserWeb3ProfileInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserWeb3ProfileInput(plain)
@@ -4620,9 +4612,9 @@ type GetUserWeb3ProfileOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetUserWeb3ProfileOutput) UnmarshalJSON(b []byte) error {
+func (j *GetUserWeb3ProfileOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["blockchainAddress"]; raw != nil && !ok {
@@ -4630,7 +4622,7 @@ func (j *GetUserWeb3ProfileOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetUserWeb3ProfileOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetUserWeb3ProfileOutput(plain)
@@ -4646,9 +4638,9 @@ type GetWorldTotemDataInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetWorldTotemDataInput) UnmarshalJSON(b []byte) error {
+func (j *GetWorldTotemDataInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["totemNftId"]; raw != nil && !ok {
@@ -4659,7 +4651,7 @@ func (j *GetWorldTotemDataInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetWorldTotemDataInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetWorldTotemDataInput(plain)
@@ -4675,9 +4667,9 @@ type GetWorldTotemDataOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GetWorldTotemDataOutput) UnmarshalJSON(b []byte) error {
+func (j *GetWorldTotemDataOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["exist"]; raw != nil && !ok {
@@ -4688,7 +4680,7 @@ func (j *GetWorldTotemDataOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain GetWorldTotemDataOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = GetWorldTotemDataOutput(plain)
@@ -4718,9 +4710,9 @@ var enumValues_GraphqlServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *GraphqlServiceAction) UnmarshalJSON(b []byte) error {
+func (j *GraphqlServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -4752,9 +4744,9 @@ type HandleGameMessageCallback struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *HandleGameMessageCallback) UnmarshalJSON(b []byte) error {
+func (j *HandleGameMessageCallback) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["executed"]; raw != nil && !ok {
@@ -4771,7 +4763,7 @@ func (j *HandleGameMessageCallback) UnmarshalJSON(b []byte) error {
 	}
 	type Plain HandleGameMessageCallback
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = HandleGameMessageCallback(plain)
@@ -4790,9 +4782,9 @@ type HarvestInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *HarvestInput) UnmarshalJSON(b []byte) error {
+func (j *HarvestInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -4806,7 +4798,7 @@ func (j *HarvestInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain HarvestInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = HarvestInput(plain)
@@ -4822,9 +4814,9 @@ type HarvestOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *HarvestOutput) UnmarshalJSON(b []byte) error {
+func (j *HarvestOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -4835,7 +4827,7 @@ func (j *HarvestOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain HarvestOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = HarvestOutput(plain)
@@ -4860,9 +4852,9 @@ type HavestDungeonInvestRewardInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *HavestDungeonInvestRewardInput) UnmarshalJSON(b []byte) error {
+func (j *HavestDungeonInvestRewardInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -4882,7 +4874,7 @@ func (j *HavestDungeonInvestRewardInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain HavestDungeonInvestRewardInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = HavestDungeonInvestRewardInput(plain)
@@ -4898,9 +4890,9 @@ type HavestDungeonInvestRewardOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *HavestDungeonInvestRewardOutput) UnmarshalJSON(b []byte) error {
+func (j *HavestDungeonInvestRewardOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["reason"]; raw != nil && !ok {
@@ -4911,7 +4903,7 @@ func (j *HavestDungeonInvestRewardOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain HavestDungeonInvestRewardOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = HavestDungeonInvestRewardOutput(plain)
@@ -4940,9 +4932,9 @@ type InvestDungeonInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *InvestDungeonInput) UnmarshalJSON(b []byte) error {
+func (j *InvestDungeonInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -4962,7 +4954,7 @@ func (j *InvestDungeonInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain InvestDungeonInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = InvestDungeonInput(plain)
@@ -4978,9 +4970,9 @@ type InvestDungeonOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *InvestDungeonOutput) UnmarshalJSON(b []byte) error {
+func (j *InvestDungeonOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["reason"]; raw != nil && !ok {
@@ -4991,7 +4983,7 @@ func (j *InvestDungeonOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain InvestDungeonOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = InvestDungeonOutput(plain)
@@ -5013,9 +5005,9 @@ type InvestHavestLog struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *InvestHavestLog) UnmarshalJSON(b []byte) error {
+func (j *InvestHavestLog) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5032,7 +5024,7 @@ func (j *InvestHavestLog) UnmarshalJSON(b []byte) error {
 	}
 	type Plain InvestHavestLog
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = InvestHavestLog(plain)
@@ -5069,9 +5061,9 @@ type LandData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *LandData) UnmarshalJSON(b []byte) error {
+func (j *LandData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["id"]; raw != nil && !ok {
@@ -5100,7 +5092,7 @@ func (j *LandData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain LandData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = LandData(plain)
@@ -5130,9 +5122,9 @@ var enumValues_LandServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *LandServiceAction) UnmarshalJSON(b []byte) error {
+func (j *LandServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -5162,9 +5154,9 @@ type LandUsingSkillInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *LandUsingSkillInput) UnmarshalJSON(b []byte) error {
+func (j *LandUsingSkillInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -5178,7 +5170,7 @@ func (j *LandUsingSkillInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain LandUsingSkillInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = LandUsingSkillInput(plain)
@@ -5201,9 +5193,9 @@ type LandUsingSkillOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *LandUsingSkillOutput) UnmarshalJSON(b []byte) error {
+func (j *LandUsingSkillOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -5220,7 +5212,7 @@ func (j *LandUsingSkillOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain LandUsingSkillOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = LandUsingSkillOutput(plain)
@@ -5238,9 +5230,9 @@ type LumiAttribute struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *LumiAttribute) UnmarshalJSON(b []byte) error {
+func (j *LumiAttribute) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["trait_type"]; raw != nil && !ok {
@@ -5251,7 +5243,7 @@ func (j *LumiAttribute) UnmarshalJSON(b []byte) error {
 	}
 	type Plain LumiAttribute
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = LumiAttribute(plain)
@@ -5270,9 +5262,9 @@ type MergeByRecipeInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MergeByRecipeInput) UnmarshalJSON(b []byte) error {
+func (j *MergeByRecipeInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5286,14 +5278,12 @@ func (j *MergeByRecipeInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MergeByRecipeInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MergeByRecipeInput(plain)
 	return nil
 }
-
-type MergeByRecipeOutput map[string]interface{}
 
 type MintBatteryInput struct {
 	// 赠送数量, 由前端传过来, 防止后端配表跟前端不一致时, 出现问题
@@ -5307,9 +5297,9 @@ type MintBatteryInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintBatteryInput) UnmarshalJSON(b []byte) error {
+func (j *MintBatteryInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["giftNum"]; raw != nil && !ok {
@@ -5323,7 +5313,7 @@ func (j *MintBatteryInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintBatteryInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintBatteryInput(plain)
@@ -5339,9 +5329,9 @@ type MintBatteryOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintBatteryOutput) UnmarshalJSON(b []byte) error {
+func (j *MintBatteryOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -5352,7 +5342,7 @@ func (j *MintBatteryOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintBatteryOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintBatteryOutput(plain)
@@ -5384,9 +5374,9 @@ type MintNFTWithAttributes struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
+func (j *MintNFTWithAttributes) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5412,7 +5402,7 @@ func (j *MintNFTWithAttributes) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintNFTWithAttributes
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintNFTWithAttributes(plain)
@@ -5443,9 +5433,9 @@ type MintNFTWithSampleNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintNFTWithSampleNFT) UnmarshalJSON(b []byte) error {
+func (j *MintNFTWithSampleNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5471,7 +5461,7 @@ func (j *MintNFTWithSampleNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintNFTWithSampleNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintNFTWithSampleNFT(plain)
@@ -5497,9 +5487,9 @@ type MintTaskTicketInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintTaskTicketInput) UnmarshalJSON(b []byte) error {
+func (j *MintTaskTicketInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amounts"]; raw != nil && !ok {
@@ -5519,7 +5509,7 @@ func (j *MintTaskTicketInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintTaskTicketInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintTaskTicketInput(plain)
@@ -5538,9 +5528,9 @@ type MintTaskTicketOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintTaskTicketOutput) UnmarshalJSON(b []byte) error {
+func (j *MintTaskTicketOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -5554,7 +5544,7 @@ func (j *MintTaskTicketOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintTaskTicketOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintTaskTicketOutput(plain)
@@ -5583,9 +5573,9 @@ type MintUserTowerRewardInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintUserTowerRewardInput) UnmarshalJSON(b []byte) error {
+func (j *MintUserTowerRewardInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["bonus"]; raw != nil && !ok {
@@ -5608,7 +5598,7 @@ func (j *MintUserTowerRewardInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintUserTowerRewardInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintUserTowerRewardInput(plain)
@@ -5627,9 +5617,9 @@ type MintUserTowerRewardOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MintUserTowerRewardOutput) UnmarshalJSON(b []byte) error {
+func (j *MintUserTowerRewardOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -5643,7 +5633,7 @@ func (j *MintUserTowerRewardOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MintUserTowerRewardOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MintUserTowerRewardOutput(plain)
@@ -5662,9 +5652,9 @@ type MoveNFTToOnchainInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTToOnchainInput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToOnchainInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5678,7 +5668,7 @@ func (j *MoveNFTToOnchainInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveNFTToOnchainInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveNFTToOnchainInput(plain)
@@ -5697,9 +5687,9 @@ type MoveNFTToOnchainOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTToOnchainOutput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToOnchainOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -5713,7 +5703,7 @@ func (j *MoveNFTToOnchainOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveNFTToOnchainOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveNFTToOnchainOutput(plain)
@@ -5732,9 +5722,9 @@ type MoveNFTToRoninchainInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTToRoninchainInput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToRoninchainInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5748,7 +5738,7 @@ func (j *MoveNFTToRoninchainInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveNFTToRoninchainInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveNFTToRoninchainInput(plain)
@@ -5767,9 +5757,9 @@ type MoveNFTToRoninchainOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveNFTToRoninchainOutput) UnmarshalJSON(b []byte) error {
+func (j *MoveNFTToRoninchainOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -5783,7 +5773,7 @@ func (j *MoveNFTToRoninchainOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveNFTToRoninchainOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveNFTToRoninchainOutput(plain)
@@ -5802,9 +5792,9 @@ type MoveRoninchainToGameInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveRoninchainToGameInput) UnmarshalJSON(b []byte) error {
+func (j *MoveRoninchainToGameInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -5818,7 +5808,7 @@ func (j *MoveRoninchainToGameInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveRoninchainToGameInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveRoninchainToGameInput(plain)
@@ -5837,9 +5827,9 @@ type MoveRoninchainToGameOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MoveRoninchainToGameOutput) UnmarshalJSON(b []byte) error {
+func (j *MoveRoninchainToGameOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameMessageId"]; raw != nil && !ok {
@@ -5853,7 +5843,7 @@ func (j *MoveRoninchainToGameOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MoveRoninchainToGameOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MoveRoninchainToGameOutput(plain)
@@ -5869,9 +5859,9 @@ type MultiBuildUpdateEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
+func (j *MultiBuildUpdateEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildDatas"]; raw != nil && !ok {
@@ -5882,7 +5872,7 @@ func (j *MultiBuildUpdateEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiBuildUpdateEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiBuildUpdateEvent(plain)
@@ -5895,9 +5885,9 @@ type MultiGetPlayerInfoByUserIdInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetPlayerInfoByUserIdInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userIds"]; raw != nil && !ok {
@@ -5905,7 +5895,7 @@ func (j *MultiGetPlayerInfoByUserIdInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetPlayerInfoByUserIdInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetPlayerInfoByUserIdInput(plain)
@@ -5918,9 +5908,9 @@ type MultiGetPlayerInfoByUserIdOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetPlayerInfoByUserIdOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["playerInfos"]; raw != nil && !ok {
@@ -5928,7 +5918,7 @@ func (j *MultiGetPlayerInfoByUserIdOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetPlayerInfoByUserIdOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetPlayerInfoByUserIdOutput(plain)
@@ -5941,9 +5931,9 @@ type MultiGetPlayerUsingNftsByUserIdInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetPlayerUsingNftsByUserIdInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userIds"]; raw != nil && !ok {
@@ -5951,7 +5941,7 @@ func (j *MultiGetPlayerUsingNftsByUserIdInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetPlayerUsingNftsByUserIdInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetPlayerUsingNftsByUserIdInput(plain)
@@ -5964,9 +5954,9 @@ type MultiGetPlayerUsingNftsByUserIdOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["UserUsingNfts"]; raw != nil && !ok {
@@ -5974,7 +5964,7 @@ func (j *MultiGetPlayerUsingNftsByUserIdOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetPlayerUsingNftsByUserIdOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetPlayerUsingNftsByUserIdOutput(plain)
@@ -5990,9 +5980,9 @@ type MultiGetWorldTotemPoolInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetWorldTotemPoolInput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetWorldTotemPoolInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["totemNftIds"]; raw != nil && !ok {
@@ -6003,7 +5993,7 @@ func (j *MultiGetWorldTotemPoolInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetWorldTotemPoolInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetWorldTotemPoolInput(plain)
@@ -6022,9 +6012,9 @@ type MultiGetWorldTotemPoolOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiGetWorldTotemPoolOutput) UnmarshalJSON(b []byte) error {
+func (j *MultiGetWorldTotemPoolOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -6038,7 +6028,7 @@ func (j *MultiGetWorldTotemPoolOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiGetWorldTotemPoolOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiGetWorldTotemPoolOutput(plain)
@@ -6054,9 +6044,9 @@ type MultiLandDataUpdateEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiLandDataUpdateEvent) UnmarshalJSON(b []byte) error {
+func (j *MultiLandDataUpdateEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6067,7 +6057,7 @@ func (j *MultiLandDataUpdateEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiLandDataUpdateEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiLandDataUpdateEvent(plain)
@@ -6083,9 +6073,9 @@ type MultiRecyclingEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiRecyclingEvent) UnmarshalJSON(b []byte) error {
+func (j *MultiRecyclingEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6096,7 +6086,7 @@ func (j *MultiRecyclingEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiRecyclingEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiRecyclingEvent(plain)
@@ -6135,9 +6125,9 @@ var enumValues_MultiUpdateUserNFTFromType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserNFTFromType) UnmarshalJSON(b []byte) error {
+func (j *MultiUpdateUserNFTFromType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6155,9 +6145,9 @@ func (j *MultiUpdateUserNFTFromType) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
+func (j *MultiUpdateUserNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6171,7 +6161,7 @@ func (j *MultiUpdateUserNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiUpdateUserNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiUpdateUserNFT(plain)
@@ -6190,9 +6180,9 @@ type MultiUpdateUserOffchainNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserOffchainNFT) UnmarshalJSON(b []byte) error {
+func (j *MultiUpdateUserOffchainNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6206,7 +6196,7 @@ func (j *MultiUpdateUserOffchainNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiUpdateUserOffchainNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiUpdateUserOffchainNFT(plain)
@@ -6225,9 +6215,9 @@ type MultiUpdateUserOnchainNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserOnchainNFT) UnmarshalJSON(b []byte) error {
+func (j *MultiUpdateUserOnchainNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6241,7 +6231,7 @@ func (j *MultiUpdateUserOnchainNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiUpdateUserOnchainNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiUpdateUserOnchainNFT(plain)
@@ -6260,9 +6250,9 @@ type MultiUpdateUserRoninchainNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *MultiUpdateUserRoninchainNFT) UnmarshalJSON(b []byte) error {
+func (j *MultiUpdateUserRoninchainNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["etag"]; raw != nil && !ok {
@@ -6276,7 +6266,7 @@ func (j *MultiUpdateUserRoninchainNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain MultiUpdateUserRoninchainNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = MultiUpdateUserRoninchainNFT(plain)
@@ -6339,9 +6329,9 @@ type NFTAttribute struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTAttribute) UnmarshalJSON(b []byte) error {
+func (j *NFTAttribute) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["trait_type"]; raw != nil && !ok {
@@ -6352,7 +6342,7 @@ func (j *NFTAttribute) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTAttribute
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTAttribute(plain)
@@ -6399,9 +6389,9 @@ type NFTMetadata struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
+func (j *NFTMetadata) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["attributes"]; raw != nil && !ok {
@@ -6415,7 +6405,7 @@ func (j *NFTMetadata) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTMetadata
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTMetadata(plain)
@@ -6455,9 +6445,9 @@ type NFTMoveLog struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
+func (j *NFTMoveLog) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["action"]; raw != nil && !ok {
@@ -6492,7 +6482,7 @@ func (j *NFTMoveLog) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTMoveLog
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTMoveLog(plain)
@@ -6508,9 +6498,9 @@ type NFTSupply struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTSupply) UnmarshalJSON(b []byte) error {
+func (j *NFTSupply) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["itemId"]; raw != nil && !ok {
@@ -6521,7 +6511,7 @@ func (j *NFTSupply) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTSupply
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTSupply(plain)
@@ -6545,9 +6535,9 @@ type NFTTrackingContext struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTrackingContext) UnmarshalJSON(b []byte) error {
+func (j *NFTTrackingContext) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -6558,7 +6548,7 @@ func (j *NFTTrackingContext) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTTrackingContext
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTTrackingContext(plain)
@@ -6573,6 +6563,7 @@ const NFTTrackingTypeDismantlingEquipment NFTTrackingType = "DismantlingEquipmen
 const NFTTrackingTypeDungeon NFTTrackingType = "Dungeon"
 const NFTTrackingTypeEnhanceEquipment NFTTrackingType = "EnhanceEquipment"
 const NFTTrackingTypeEntityDrop NFTTrackingType = "EntityDrop"
+const NFTTrackingTypeExchangeEnhanceEquipment NFTTrackingType = "ExchangeEnhanceEquipment"
 const NFTTrackingTypeGraphQLService NFTTrackingType = "GraphQLService"
 const NFTTrackingTypeMerge NFTTrackingType = "Merge"
 const NFTTrackingTypePet NFTTrackingType = "Pet"
@@ -6588,6 +6579,7 @@ var enumValues_NFTTrackingType = []interface{}{
 	"Dungeon",
 	"EnhanceEquipment",
 	"EntityDrop",
+	"ExchangeEnhanceEquipment",
 	"GraphQLService",
 	"Merge",
 	"Pet",
@@ -6598,9 +6590,9 @@ var enumValues_NFTTrackingType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTrackingType) UnmarshalJSON(b []byte) error {
+func (j *NFTTrackingType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6618,9 +6610,9 @@ func (j *NFTTrackingType) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTracking) UnmarshalJSON(b []byte) error {
+func (j *NFTTracking) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["context"]; raw != nil && !ok {
@@ -6631,7 +6623,7 @@ func (j *NFTTracking) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFTTracking
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFTTracking(plain)
@@ -6654,9 +6646,9 @@ var enumValues_NFTTraitPlaceableLands = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitPlaceableLands) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitPlaceableLands) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6690,9 +6682,9 @@ var enumValues_NFTTraitQuality = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitQuality) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitQuality) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6726,9 +6718,9 @@ var enumValues_NFTTraitRarity = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitRarity) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitRarity) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6792,9 +6784,9 @@ var enumValues_NFTTraitType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitType) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6882,9 +6874,9 @@ var enumValues_NFTTraitTypes = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitTypes) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitTypes) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6918,9 +6910,9 @@ var enumValues_NFTTraitWearingPosition = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFTTraitWearingPosition) UnmarshalJSON(b []byte) error {
+func (j *NFTTraitWearingPosition) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -6938,9 +6930,9 @@ func (j *NFTTraitWearingPosition) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *NFT) UnmarshalJSON(b []byte) error {
+func (j *NFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["address"]; raw != nil && !ok {
@@ -6978,7 +6970,7 @@ func (j *NFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain NFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = NFT(plain)
@@ -6996,9 +6988,9 @@ var enumValues_PVPEndType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPEndType) UnmarshalJSON(b []byte) error {
+func (j *PVPEndType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7021,9 +7013,9 @@ type PVPMatchEnterInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchEnterInput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchEnterInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["player"]; raw != nil && !ok {
@@ -7031,7 +7023,7 @@ func (j *PVPMatchEnterInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPMatchEnterInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPMatchEnterInput(plain)
@@ -7044,9 +7036,9 @@ type PVPMatchEnterOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchEnterOutput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchEnterOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["succese"]; raw != nil && !ok {
@@ -7054,7 +7046,7 @@ func (j *PVPMatchEnterOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPMatchEnterOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPMatchEnterOutput(plain)
@@ -7067,9 +7059,9 @@ type PVPMatchLeaveInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchLeaveInput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchLeaveInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["player"]; raw != nil && !ok {
@@ -7077,7 +7069,7 @@ func (j *PVPMatchLeaveInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPMatchLeaveInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPMatchLeaveInput(plain)
@@ -7090,9 +7082,9 @@ type PVPMatchLeaveOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPMatchLeaveOutput) UnmarshalJSON(b []byte) error {
+func (j *PVPMatchLeaveOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["succese"]; raw != nil && !ok {
@@ -7100,7 +7092,7 @@ func (j *PVPMatchLeaveOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPMatchLeaveOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPMatchLeaveOutput(plain)
@@ -7120,9 +7112,9 @@ var enumValues_PVPPKSessionStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPPKSessionStatus) UnmarshalJSON(b []byte) error {
+func (j *PVPPKSessionStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7148,9 +7140,9 @@ type PVPPlayer struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPPlayer) UnmarshalJSON(b []byte) error {
+func (j *PVPPlayer) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["id"]; raw != nil && !ok {
@@ -7161,7 +7153,7 @@ func (j *PVPPlayer) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPPlayer
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPPlayer(plain)
@@ -7177,9 +7169,9 @@ type PVPRoomPreLeaveInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomPreLeaveInput) UnmarshalJSON(b []byte) error {
+func (j *PVPRoomPreLeaveInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["player"]; raw != nil && !ok {
@@ -7190,7 +7182,7 @@ func (j *PVPRoomPreLeaveInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPRoomPreLeaveInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPRoomPreLeaveInput(plain)
@@ -7203,9 +7195,9 @@ type PVPRoomPreLeaveOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomPreLeaveOutput) UnmarshalJSON(b []byte) error {
+func (j *PVPRoomPreLeaveOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["canLeave"]; raw != nil && !ok {
@@ -7213,7 +7205,7 @@ func (j *PVPRoomPreLeaveOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPRoomPreLeaveOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPRoomPreLeaveOutput(plain)
@@ -7229,9 +7221,9 @@ type PVPRoomReadyInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPRoomReadyInput) UnmarshalJSON(b []byte) error {
+func (j *PVPRoomReadyInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["player"]; raw != nil && !ok {
@@ -7242,14 +7234,12 @@ func (j *PVPRoomReadyInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PVPRoomReadyInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PVPRoomReadyInput(plain)
 	return nil
 }
-
-type PVPRoomReadyOutput map[string]interface{}
 
 type PVPServiceAction string
 
@@ -7286,9 +7276,9 @@ var enumValues_PVPServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPServiceAction) UnmarshalJSON(b []byte) error {
+func (j *PVPServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7314,9 +7304,9 @@ var enumValues_PVPSubscriptionEvent = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPSubscriptionEvent) UnmarshalJSON(b []byte) error {
+func (j *PVPSubscriptionEvent) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7344,9 +7334,9 @@ var enumValues_PVPType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPType) UnmarshalJSON(b []byte) error {
+func (j *PVPType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7374,9 +7364,9 @@ var enumValues_PVPUserType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PVPUserType) UnmarshalJSON(b []byte) error {
+func (j *PVPUserType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7399,9 +7389,9 @@ type PageMeta struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PageMeta) UnmarshalJSON(b []byte) error {
+func (j *PageMeta) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["count"]; raw != nil && !ok {
@@ -7409,7 +7399,7 @@ func (j *PageMeta) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PageMeta
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PageMeta(plain)
@@ -7422,9 +7412,9 @@ type PkSessionAgainInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionAgainInput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionAgainInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkSessionId"]; raw != nil && !ok {
@@ -7432,7 +7422,7 @@ func (j *PkSessionAgainInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionAgainInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionAgainInput(plain)
@@ -7445,9 +7435,9 @@ type PkSessionAgainOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionAgainOutput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionAgainOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkRoomId"]; raw != nil && !ok {
@@ -7455,7 +7445,7 @@ func (j *PkSessionAgainOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionAgainOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionAgainOutput(plain)
@@ -7478,9 +7468,9 @@ type PkSessionDoQuestionInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionDoQuestionInput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionDoQuestionInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkSessionId"]; raw != nil && !ok {
@@ -7494,7 +7484,7 @@ func (j *PkSessionDoQuestionInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionDoQuestionInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionDoQuestionInput(plain)
@@ -7507,9 +7497,9 @@ type PkSessionDoQuestionOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionDoQuestionOutput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionDoQuestionOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["isCorrect"]; raw != nil && !ok {
@@ -7517,7 +7507,7 @@ func (j *PkSessionDoQuestionOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionDoQuestionOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionDoQuestionOutput(plain)
@@ -7533,9 +7523,9 @@ type PkSessionLoadSuccessInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionLoadSuccessInput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionLoadSuccessInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkSessionId"]; raw != nil && !ok {
@@ -7546,14 +7536,12 @@ func (j *PkSessionLoadSuccessInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionLoadSuccessInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionLoadSuccessInput(plain)
 	return nil
 }
-
-type PkSessionLoadSuccessOutput map[string]interface{}
 
 type PkSessionUITickInput struct {
 	// Data corresponds to the JSON schema field "data".
@@ -7567,9 +7555,9 @@ type PkSessionUITickInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PkSessionUITickInput) UnmarshalJSON(b []byte) error {
+func (j *PkSessionUITickInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -7583,14 +7571,12 @@ func (j *PkSessionUITickInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PkSessionUITickInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PkSessionUITickInput(plain)
 	return nil
 }
-
-type PkSessionUITickOutput map[string]interface{}
 
 type PlayerAvatar struct {
 	// Cid corresponds to the JSON schema field "cid".
@@ -7607,9 +7593,9 @@ type PlayerAvatar struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerAvatar) UnmarshalJSON(b []byte) error {
+func (j *PlayerAvatar) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["cid"]; raw != nil && !ok {
@@ -7626,7 +7612,7 @@ func (j *PlayerAvatar) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerAvatar
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerAvatar(plain)
@@ -7652,9 +7638,9 @@ type PlayerDeath struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerDeath) UnmarshalJSON(b []byte) error {
+func (j *PlayerDeath) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["deathLandId"]; raw != nil && !ok {
@@ -7674,7 +7660,7 @@ func (j *PlayerDeath) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerDeath
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerDeath(plain)
@@ -7699,9 +7685,9 @@ type PlayerInfo struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerInfo) UnmarshalJSON(b []byte) error {
+func (j *PlayerInfo) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["icon"]; raw != nil && !ok {
@@ -7721,7 +7707,7 @@ func (j *PlayerInfo) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerInfo
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerInfo(plain)
@@ -7737,9 +7723,9 @@ type PlayerItemSlot struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerItemSlot) UnmarshalJSON(b []byte) error {
+func (j *PlayerItemSlot) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["level"]; raw != nil && !ok {
@@ -7750,7 +7736,7 @@ func (j *PlayerItemSlot) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerItemSlot
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerItemSlot(plain)
@@ -7776,9 +7762,9 @@ type PlayerKilled struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerKilled) UnmarshalJSON(b []byte) error {
+func (j *PlayerKilled) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["killedLandId"]; raw != nil && !ok {
@@ -7798,7 +7784,7 @@ func (j *PlayerKilled) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerKilled
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerKilled(plain)
@@ -7828,9 +7814,9 @@ var enumValues_PlayerRebornType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerRebornType) UnmarshalJSON(b []byte) error {
+func (j *PlayerRebornType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -7848,9 +7834,9 @@ func (j *PlayerRebornType) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PlayerReborn) UnmarshalJSON(b []byte) error {
+func (j *PlayerReborn) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["rebornLandId"]; raw != nil && !ok {
@@ -7864,7 +7850,7 @@ func (j *PlayerReborn) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PlayerReborn
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PlayerReborn(plain)
@@ -7883,9 +7869,9 @@ type Prefetch struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Prefetch) UnmarshalJSON(b []byte) error {
+func (j *Prefetch) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["questionId"]; raw != nil && !ok {
@@ -7899,7 +7885,7 @@ func (j *Prefetch) UnmarshalJSON(b []byte) error {
 	}
 	type Plain Prefetch
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = Prefetch(plain)
@@ -7939,9 +7925,9 @@ type PvpHistory struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpHistory) UnmarshalJSON(b []byte) error {
+func (j *PvpHistory) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["endType"]; raw != nil && !ok {
@@ -7976,7 +7962,7 @@ func (j *PvpHistory) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PvpHistory
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PvpHistory(plain)
@@ -8001,9 +7987,9 @@ type PvpPlayerProfile struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpPlayerProfile) UnmarshalJSON(b []byte) error {
+func (j *PvpPlayerProfile) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatars"]; raw != nil && !ok {
@@ -8023,7 +8009,7 @@ func (j *PvpPlayerProfile) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PvpPlayerProfile
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PvpPlayerProfile(plain)
@@ -8048,9 +8034,9 @@ type PvpPlayerRank struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpPlayerRank) UnmarshalJSON(b []byte) error {
+func (j *PvpPlayerRank) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatars"]; raw != nil && !ok {
@@ -8070,7 +8056,7 @@ func (j *PvpPlayerRank) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PvpPlayerRank
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PvpPlayerRank(plain)
@@ -8086,9 +8072,9 @@ type PvpSurrenderInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpSurrenderInput) UnmarshalJSON(b []byte) error {
+func (j *PvpSurrenderInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pkSessionId"]; raw != nil && !ok {
@@ -8099,7 +8085,7 @@ func (j *PvpSurrenderInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PvpSurrenderInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PvpSurrenderInput(plain)
@@ -8112,9 +8098,9 @@ type PvpSurrenderOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *PvpSurrenderOutput) UnmarshalJSON(b []byte) error {
+func (j *PvpSurrenderOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["success"]; raw != nil && !ok {
@@ -8122,7 +8108,7 @@ func (j *PvpSurrenderOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain PvpSurrenderOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = PvpSurrenderOutput(plain)
@@ -8168,9 +8154,9 @@ var enumValues_QuestionType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *QuestionType) UnmarshalJSON(b []byte) error {
+func (j *QuestionType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -8188,9 +8174,9 @@ func (j *QuestionType) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Question) UnmarshalJSON(b []byte) error {
+func (j *Question) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["id"]; raw != nil && !ok {
@@ -8201,7 +8187,7 @@ func (j *Question) UnmarshalJSON(b []byte) error {
 	}
 	type Plain Question
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = Question(plain)
@@ -8214,9 +8200,9 @@ type RaffleDrawEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RaffleDrawEvent) UnmarshalJSON(b []byte) error {
+func (j *RaffleDrawEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["log"]; raw != nil && !ok {
@@ -8224,7 +8210,7 @@ func (j *RaffleDrawEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RaffleDrawEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RaffleDrawEvent(plain)
@@ -8243,9 +8229,9 @@ type RaffleDrawInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RaffleDrawInput) UnmarshalJSON(b []byte) error {
+func (j *RaffleDrawInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -8259,7 +8245,7 @@ func (j *RaffleDrawInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RaffleDrawInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RaffleDrawInput(plain)
@@ -8298,9 +8284,9 @@ type RaffleDrawLog struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
+func (j *RaffleDrawLog) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -8332,14 +8318,12 @@ func (j *RaffleDrawLog) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RaffleDrawLog
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RaffleDrawLog(plain)
 	return nil
 }
-
-type RaffleDrawOutput map[string]interface{}
 
 type RecipeInfo struct {
 	// 图鉴id
@@ -8350,9 +8334,9 @@ type RecipeInfo struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RecipeInfo) UnmarshalJSON(b []byte) error {
+func (j *RecipeInfo) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["id"]; raw != nil && !ok {
@@ -8363,7 +8347,7 @@ func (j *RecipeInfo) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RecipeInfo
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RecipeInfo(plain)
@@ -8379,9 +8363,9 @@ type RecycleWorldTotemEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RecycleWorldTotemEvent) UnmarshalJSON(b []byte) error {
+func (j *RecycleWorldTotemEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["totemNftId"]; raw != nil && !ok {
@@ -8392,7 +8376,7 @@ func (j *RecycleWorldTotemEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RecycleWorldTotemEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RecycleWorldTotemEvent(plain)
@@ -8408,9 +8392,9 @@ type RecyclingInfo struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RecyclingInfo) UnmarshalJSON(b []byte) error {
+func (j *RecyclingInfo) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -8421,7 +8405,7 @@ func (j *RecyclingInfo) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RecyclingInfo
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RecyclingInfo(plain)
@@ -8440,9 +8424,9 @@ type RecyclingInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RecyclingInput) UnmarshalJSON(b []byte) error {
+func (j *RecyclingInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["buildId"]; raw != nil && !ok {
@@ -8456,7 +8440,7 @@ func (j *RecyclingInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RecyclingInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RecyclingInput(plain)
@@ -8472,9 +8456,9 @@ type RecyclingOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *RecyclingOutput) UnmarshalJSON(b []byte) error {
+func (j *RecyclingOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -8485,7 +8469,7 @@ func (j *RecyclingOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain RecyclingOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = RecyclingOutput(plain)
@@ -8501,9 +8485,9 @@ var enumValues_SceneDynamicServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SceneDynamicServiceAction) UnmarshalJSON(b []byte) error {
+func (j *SceneDynamicServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -8544,9 +8528,9 @@ type SendMetaTxInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SendMetaTxInput) UnmarshalJSON(b []byte) error {
+func (j *SendMetaTxInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -8572,7 +8556,7 @@ func (j *SendMetaTxInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SendMetaTxInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = SendMetaTxInput(plain)
@@ -8585,9 +8569,9 @@ type SendMetaTxOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SendMetaTxOutput) UnmarshalJSON(b []byte) error {
+func (j *SendMetaTxOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["txId"]; raw != nil && !ok {
@@ -8595,7 +8579,7 @@ func (j *SendMetaTxOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SendMetaTxOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = SendMetaTxOutput(plain)
@@ -8617,9 +8601,9 @@ type SendTxInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SendTxInput) UnmarshalJSON(b []byte) error {
+func (j *SendTxInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -8636,7 +8620,7 @@ func (j *SendTxInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SendTxInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = SendTxInput(plain)
@@ -8649,9 +8633,9 @@ type SendTxOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SendTxOutput) UnmarshalJSON(b []byte) error {
+func (j *SendTxOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["txId"]; raw != nil && !ok {
@@ -8659,7 +8643,7 @@ func (j *SendTxOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SendTxOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = SendTxOutput(plain)
@@ -8677,9 +8661,9 @@ var enumValues_Sex = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Sex) UnmarshalJSON(b []byte) error {
+func (j *Sex) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -8705,9 +8689,9 @@ type Skill struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Skill) UnmarshalJSON(b []byte) error {
+func (j *Skill) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["level"]; raw != nil && !ok {
@@ -8718,7 +8702,7 @@ func (j *Skill) UnmarshalJSON(b []byte) error {
 	}
 	type Plain Skill
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = Skill(plain)
@@ -8740,9 +8724,9 @@ type SmapleNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SmapleNFT) UnmarshalJSON(b []byte) error {
+func (j *SmapleNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -8759,7 +8743,7 @@ func (j *SmapleNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SmapleNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = SmapleNFT(plain)
@@ -8781,9 +8765,9 @@ type StartServerInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *StartServerInput) UnmarshalJSON(b []byte) error {
+func (j *StartServerInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["agentCPU"]; raw != nil && !ok {
@@ -8800,7 +8784,7 @@ func (j *StartServerInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain StartServerInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = StartServerInput(plain)
@@ -8813,9 +8797,9 @@ type StartServerOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *StartServerOutput) UnmarshalJSON(b []byte) error {
+func (j *StartServerOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["serverAppId"]; raw != nil && !ok {
@@ -8823,7 +8807,7 @@ func (j *StartServerOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain StartServerOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = StartServerOutput(plain)
@@ -8848,9 +8832,9 @@ var enumValues_SubscriptionEventChannel2 = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SubscriptionEventChannel2) UnmarshalJSON(b []byte) error {
+func (j *SubscriptionEventChannel2) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -8876,9 +8860,9 @@ var enumValues_SubscriptionEventChannel = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SubscriptionEventChannel) UnmarshalJSON(b []byte) error {
+func (j *SubscriptionEventChannel) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -8954,9 +8938,9 @@ var enumValues_SubscriptionEvent = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SubscriptionEvent) UnmarshalJSON(b []byte) error {
+func (j *SubscriptionEvent) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9045,9 +9029,9 @@ type TaskPool struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TaskPool) UnmarshalJSON(b []byte) error {
+func (j *TaskPool) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["basicBonus"]; raw != nil && !ok {
@@ -9118,7 +9102,7 @@ func (j *TaskPool) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TaskPool
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TaskPool(plain)
@@ -9155,9 +9139,9 @@ type TemporaryTokenExtraInfo struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TemporaryTokenExtraInfo) UnmarshalJSON(b []byte) error {
+func (j *TemporaryTokenExtraInfo) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -9165,7 +9149,7 @@ func (j *TemporaryTokenExtraInfo) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TemporaryTokenExtraInfo
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TemporaryTokenExtraInfo(plain)
@@ -9173,9 +9157,9 @@ func (j *TemporaryTokenExtraInfo) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TemporaryToken) UnmarshalJSON(b []byte) error {
+func (j *TemporaryToken) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["createdAt"]; raw != nil && !ok {
@@ -9195,7 +9179,7 @@ func (j *TemporaryToken) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TemporaryToken
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TemporaryToken(plain)
@@ -9226,9 +9210,9 @@ type TotemInvestData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TotemInvestData) UnmarshalJSON(b []byte) error {
+func (j *TotemInvestData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["baseLP"]; raw != nil && !ok {
@@ -9254,7 +9238,7 @@ func (j *TotemInvestData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TotemInvestData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TotemInvestData(plain)
@@ -9278,9 +9262,9 @@ var enumValues_TotemTraitRarity = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TotemTraitRarity) UnmarshalJSON(b []byte) error {
+func (j *TotemTraitRarity) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9319,9 +9303,9 @@ type TowerRafflePoolData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TowerRafflePoolData) UnmarshalJSON(b []byte) error {
+func (j *TowerRafflePoolData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["bonusTotal"]; raw != nil && !ok {
@@ -9344,7 +9328,7 @@ func (j *TowerRafflePoolData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TowerRafflePoolData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TowerRafflePoolData(plain)
@@ -9364,9 +9348,9 @@ var enumValues_TowerRafflePoolRecordStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TowerRafflePoolRecordStatus) UnmarshalJSON(b []byte) error {
+func (j *TowerRafflePoolRecordStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9398,9 +9382,9 @@ var enumValues_TowerRafflePoolRecordType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TowerRafflePoolRecordType) UnmarshalJSON(b []byte) error {
+func (j *TowerRafflePoolRecordType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9430,9 +9414,9 @@ var enumValues_TowerRafflePoolStatus = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TowerRafflePoolStatus) UnmarshalJSON(b []byte) error {
+func (j *TowerRafflePoolStatus) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9464,9 +9448,9 @@ type TransferLUAInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TransferLUAInput) UnmarshalJSON(b []byte) error {
+func (j *TransferLUAInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -9483,7 +9467,7 @@ func (j *TransferLUAInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TransferLUAInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TransferLUAInput(plain)
@@ -9499,9 +9483,9 @@ type TransferLUAOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *TransferLUAOutput) UnmarshalJSON(b []byte) error {
+func (j *TransferLUAOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -9512,7 +9496,7 @@ func (j *TransferLUAOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain TransferLUAOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = TransferLUAOutput(plain)
@@ -9531,9 +9515,9 @@ type UnloadEquipment struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UnloadEquipment) UnmarshalJSON(b []byte) error {
+func (j *UnloadEquipment) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["nftId"]; raw != nil && !ok {
@@ -9547,7 +9531,7 @@ func (j *UnloadEquipment) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UnloadEquipment
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UnloadEquipment(plain)
@@ -9563,9 +9547,9 @@ type UpdateTotemInvestData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UpdateTotemInvestData) UnmarshalJSON(b []byte) error {
+func (j *UpdateTotemInvestData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["data"]; raw != nil && !ok {
@@ -9576,7 +9560,7 @@ func (j *UpdateTotemInvestData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UpdateTotemInvestData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UpdateTotemInvestData(plain)
@@ -9589,9 +9573,9 @@ type UpdateTowerRafflePoolEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UpdateTowerRafflePoolEvent) UnmarshalJSON(b []byte) error {
+func (j *UpdateTowerRafflePoolEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pools"]; raw != nil && !ok {
@@ -9599,7 +9583,7 @@ func (j *UpdateTowerRafflePoolEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UpdateTowerRafflePoolEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UpdateTowerRafflePoolEvent(plain)
@@ -9612,9 +9596,9 @@ type UpdateUpcomingUses struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UpdateUpcomingUses) UnmarshalJSON(b []byte) error {
+func (j *UpdateUpcomingUses) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["number"]; raw != nil && !ok {
@@ -9622,7 +9606,7 @@ func (j *UpdateUpcomingUses) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UpdateUpcomingUses
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UpdateUpcomingUses(plain)
@@ -9638,9 +9622,9 @@ type UpgradePlayerItemSlotsInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UpgradePlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
+func (j *UpgradePlayerItemSlotsInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["itemSlots"]; raw != nil && !ok {
@@ -9651,7 +9635,7 @@ func (j *UpgradePlayerItemSlotsInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UpgradePlayerItemSlotsInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UpgradePlayerItemSlotsInput(plain)
@@ -9667,9 +9651,9 @@ type UpgradePlayerItemSlotsOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UpgradePlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
+func (j *UpgradePlayerItemSlotsOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["success"]; raw != nil && !ok {
@@ -9680,7 +9664,7 @@ func (j *UpgradePlayerItemSlotsOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UpgradePlayerItemSlotsOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UpgradePlayerItemSlotsOutput(plain)
@@ -9705,9 +9689,9 @@ type UseEquipment struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UseEquipment) UnmarshalJSON(b []byte) error {
+func (j *UseEquipment) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatarPos"]; raw != nil && !ok {
@@ -9727,7 +9711,7 @@ func (j *UseEquipment) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UseEquipment
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UseEquipment(plain)
@@ -9749,9 +9733,9 @@ type UseGameTokenByUSDAmountInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(b []byte) error {
+func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["gameTokenPrice"]; raw != nil && !ok {
@@ -9768,7 +9752,7 @@ func (j *UseGameTokenByUSDAmountInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UseGameTokenByUSDAmountInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UseGameTokenByUSDAmountInput(plain)
@@ -9791,9 +9775,9 @@ type UseGameTokenByUSDAmountOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UseGameTokenByUSDAmountOutput) UnmarshalJSON(b []byte) error {
+func (j *UseGameTokenByUSDAmountOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["deductedGameTokenAmount"]; raw != nil && !ok {
@@ -9810,7 +9794,7 @@ func (j *UseGameTokenByUSDAmountOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UseGameTokenByUSDAmountOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UseGameTokenByUSDAmountOutput(plain)
@@ -9830,9 +9814,9 @@ type UseLUAUSD struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UseLUAUSD) UnmarshalJSON(b []byte) error {
+func (j *UseLUAUSD) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["amount"]; raw != nil && !ok {
@@ -9846,7 +9830,7 @@ func (j *UseLUAUSD) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UseLUAUSD
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UseLUAUSD(plain)
@@ -9898,9 +9882,9 @@ var enumValues_UserType = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UserType) UnmarshalJSON(b []byte) error {
+func (j *UserType) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -9926,9 +9910,9 @@ type UserUsingNft struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UserUsingNft) UnmarshalJSON(b []byte) error {
+func (j *UserUsingNft) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["userId"]; raw != nil && !ok {
@@ -9939,7 +9923,7 @@ func (j *UserUsingNft) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UserUsingNft
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UserUsingNft(plain)
@@ -9947,9 +9931,9 @@ func (j *UserUsingNft) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *User) UnmarshalJSON(b []byte) error {
+func (j *User) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatar"]; raw != nil && !ok {
@@ -9984,7 +9968,7 @@ func (j *User) UnmarshalJSON(b []byte) error {
 	}
 	type Plain User
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = User(plain)
@@ -10009,9 +9993,9 @@ type UsingNFT struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *UsingNFT) UnmarshalJSON(b []byte) error {
+func (j *UsingNFT) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["avatarPos"]; raw != nil && !ok {
@@ -10031,7 +10015,7 @@ func (j *UsingNFT) UnmarshalJSON(b []byte) error {
 	}
 	type Plain UsingNFT
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = UsingNFT(plain)
@@ -10054,6 +10038,7 @@ const Web3ServiceActionEnhanceEquipment Web3ServiceAction = "EnhanceEquipment"
 const Web3ServiceActionEnhanceEquipmentLog Web3ServiceAction = "EnhanceEquipmentLog"
 const Web3ServiceActionEstimateDivestDungeon Web3ServiceAction = "EstimateDivestDungeon"
 const Web3ServiceActionEstimateInvestDungeon Web3ServiceAction = "EstimateInvestDungeon"
+const Web3ServiceActionExchangeEnhanceEquipment Web3ServiceAction = "ExchangeEnhanceEquipment"
 const Web3ServiceActionExecGameMessage Web3ServiceAction = "ExecGameMessage"
 const Web3ServiceActionExtractEquipment Web3ServiceAction = "ExtractEquipment"
 const Web3ServiceActionFetchDungeonExtraDropPools Web3ServiceAction = "FetchDungeonExtraDropPools"
@@ -10103,6 +10088,7 @@ var enumValues_Web3ServiceAction = []interface{}{
 	"EnhanceEquipmentLog",
 	"EstimateDivestDungeon",
 	"EstimateInvestDungeon",
+	"ExchangeEnhanceEquipment",
 	"ExecGameMessage",
 	"ExtractEquipment",
 	"FetchDungeonExtraDropPools",
@@ -10139,9 +10125,9 @@ var enumValues_Web3ServiceAction = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *Web3ServiceAction) UnmarshalJSON(b []byte) error {
+func (j *Web3ServiceAction) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -10188,9 +10174,9 @@ type WorldTotemData struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemData) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["energy"]; raw != nil && !ok {
@@ -10222,7 +10208,7 @@ func (j *WorldTotemData) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemData
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemData(plain)
@@ -10258,9 +10244,9 @@ type WorldTotemPoolDepositInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPoolDepositInput) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPoolDepositInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["depositAmount"]; raw != nil && !ok {
@@ -10274,7 +10260,7 @@ func (j *WorldTotemPoolDepositInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPoolDepositInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPoolDepositInput(plain)
@@ -10293,9 +10279,9 @@ type WorldTotemPoolDepositOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPoolDepositOutput) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPoolDepositOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -10309,7 +10295,7 @@ func (j *WorldTotemPoolDepositOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPoolDepositOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPoolDepositOutput(plain)
@@ -10331,9 +10317,9 @@ type WorldTotemPoolRedemptionInput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPoolRedemptionInput) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPoolRedemptionInput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["redemptionAll"]; raw != nil && !ok {
@@ -10350,7 +10336,7 @@ func (j *WorldTotemPoolRedemptionInput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPoolRedemptionInput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPoolRedemptionInput(plain)
@@ -10366,9 +10352,9 @@ type WorldTotemPoolRedemptionOutput struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPoolRedemptionOutput) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPoolRedemptionOutput) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["failedReason"]; raw != nil && !ok {
@@ -10379,7 +10365,7 @@ func (j *WorldTotemPoolRedemptionOutput) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPoolRedemptionOutput
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPoolRedemptionOutput(plain)
@@ -10392,9 +10378,9 @@ type WorldTotemPoolUpdateEvent struct {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPoolUpdateEvent) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPoolUpdateEvent) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["pool"]; raw != nil && !ok {
@@ -10402,7 +10388,7 @@ func (j *WorldTotemPoolUpdateEvent) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPoolUpdateEvent
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPoolUpdateEvent(plain)
@@ -10410,9 +10396,9 @@ func (j *WorldTotemPoolUpdateEvent) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *WorldTotemPool) UnmarshalJSON(b []byte) error {
+func (j *WorldTotemPool) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["enhanceIncome"]; raw != nil && !ok {
@@ -10432,7 +10418,7 @@ func (j *WorldTotemPool) UnmarshalJSON(b []byte) error {
 	}
 	type Plain WorldTotemPool
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	*j = WorldTotemPool(plain)
