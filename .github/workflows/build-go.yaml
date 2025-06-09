@@ -47,7 +47,7 @@ jobs:
           go-version: '1.22'
       - run: |
           go get github.com/atombender/go-jsonschema/...
-          go install github.com/atombender/go-jsonschema@latest
+          go install github.com/atombender/go-jsonschema@v0.18.0
           mkdir -p out
           go-jsonschema -p main schema.json > ./out/message.go
           
