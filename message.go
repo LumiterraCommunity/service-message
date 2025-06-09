@@ -1215,6 +1215,8 @@ func (j *CollectionOutput) UnmarshalJSON(value []byte) error {
 	return nil
 }
 
+type CreatePVPRoomInput map[string]interface{}
+
 type CreatePVPRoomOutput struct {
 	// RoomId corresponds to the JSON schema field "roomId".
 	RoomId string `json:"roomId" yaml:"roomId" mapstructure:"roomId"`
@@ -2926,6 +2928,8 @@ func (j *FetchTaskPoolsOutput) UnmarshalJSON(value []byte) error {
 	return nil
 }
 
+type FetchTaskUseNFTSupplyListInput map[string]interface{}
+
 type FetchTaskUseNFTSupplyListOutput struct {
 	// NftSupplyList corresponds to the JSON schema field "nftSupplyList".
 	NftSupplyList []NFTSupply `json:"nftSupplyList" yaml:"nftSupplyList" mapstructure:"nftSupplyList"`
@@ -3239,6 +3243,8 @@ func (j *GetAllBuildDataOutput) UnmarshalJSON(value []byte) error {
 	return nil
 }
 
+type GetAllDungeonInvestDataInput map[string]interface{}
+
 type GetAllDungeonInvestDataOutput struct {
 	// InvestDatas corresponds to the JSON schema field "investDatas".
 	InvestDatas []DungeonInvestData `json:"investDatas" yaml:"investDatas" mapstructure:"investDatas"`
@@ -3420,6 +3426,8 @@ func (j *GetGameMessageStatusByIdOutput) UnmarshalJSON(value []byte) error {
 	*j = GetGameMessageStatusByIdOutput(plain)
 	return nil
 }
+
+type GetGameTokenPriceInput map[string]interface{}
 
 type GetGameTokenPriceOutput struct {
 	// ExpireTime corresponds to the JSON schema field "expireTime".
@@ -5284,6 +5292,8 @@ func (j *MergeByRecipeInput) UnmarshalJSON(value []byte) error {
 	*j = MergeByRecipeInput(plain)
 	return nil
 }
+
+type MergeByRecipeOutput map[string]interface{}
 
 type MintBatteryInput struct {
 	// 赠送数量, 由前端传过来, 防止后端配表跟前端不一致时, 出现问题
@@ -7241,6 +7251,8 @@ func (j *PVPRoomReadyInput) UnmarshalJSON(value []byte) error {
 	return nil
 }
 
+type PVPRoomReadyOutput map[string]interface{}
+
 type PVPServiceAction string
 
 const PVPServiceActionCreatePVPRoom PVPServiceAction = "CreatePVPRoom"
@@ -7543,6 +7555,8 @@ func (j *PkSessionLoadSuccessInput) UnmarshalJSON(value []byte) error {
 	return nil
 }
 
+type PkSessionLoadSuccessOutput map[string]interface{}
+
 type PkSessionUITickInput struct {
 	// Data corresponds to the JSON schema field "data".
 	Data string `json:"data" yaml:"data" mapstructure:"data"`
@@ -7577,6 +7591,8 @@ func (j *PkSessionUITickInput) UnmarshalJSON(value []byte) error {
 	*j = PkSessionUITickInput(plain)
 	return nil
 }
+
+type PkSessionUITickOutput map[string]interface{}
 
 type PlayerAvatar struct {
 	// Cid corresponds to the JSON schema field "cid".
@@ -8324,6 +8340,8 @@ func (j *RaffleDrawLog) UnmarshalJSON(value []byte) error {
 	*j = RaffleDrawLog(plain)
 	return nil
 }
+
+type RaffleDrawOutput map[string]interface{}
 
 type RecipeInfo struct {
 	// 图鉴id
